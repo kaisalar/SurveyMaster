@@ -1,6 +1,8 @@
+const uuidv4 = require('uuid/v4')
+
 class Element {
     constructor(props) {
-        this._id = props._id || 0
+        this._id = props._id || uuidv4()
     }
 
     toJson() {
