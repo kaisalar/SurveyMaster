@@ -76,7 +76,7 @@ class Survey extends Element {
     }
     // loading all survey responses info to current Survey 
     async loadSurveyResponsesInfo(){
-        return await SurveyIO.loadSurveyResponsesInfoById(this._id);
+        return await this.loadSurveyResponsesInfo(this._id);
     }
     // loading entire one specific response By Surey Id and response Id
     async static loadSurveyResponseById(surveyId, responseId){
@@ -84,15 +84,21 @@ class Survey extends Element {
     }
     // loading entire one specific response to current Survey by response Id
     async loadSurveyResponseById(responseId){
-        return new Response(await SurveyIO.loadEntirResponseById(this._id, responseId));
+        return await this.loadSurveyResponseById(this._id, responseId);
     }
     // loading all Responses to an Survey By survey Id 
     async static loadSurveyResponses(surveyId){ 
         return await SurveyIO.loadSurveyResponsesById(surveyId);
     }
     // loading all Responses to current Survey 
-    async loadSurveyResponses(surveyId){ 
-        return await SurveyIO.loadSurveyResponsesById(this._id);
+    async loadSurveyResponses(){
+        return await this.loadSurveyResponses(this._id);
+    }
+    async static  generatReport(surveyId){
+
+    }
+    async generatReport(){
+        this.generatReport(this._id);
     }
     static validate(survey) {
         const result = Joi.validate(survey, surveySchema)
