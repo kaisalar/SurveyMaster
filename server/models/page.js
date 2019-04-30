@@ -1,4 +1,5 @@
 const _ = require('lodash')
+const Joi = require('joi')
 const Element = require('./element')
 const Question = require('./question')
 const TextQuestion = require('./textQuestion')
@@ -10,6 +11,7 @@ const SliderQuestion = require('./sliderQuestion')
 const RatingQuestion = require('./ratingQuestion')
 const RangeQuestion = require('./rangeQuestion')
 const types = require('./types')
+const { pageSchema } = require('./validationSchemas')
 
 class Page extends Element {
     constructor(props) {
@@ -66,6 +68,11 @@ class Page extends Element {
 
         if (question instanceof Question)
             this.questions.push(question)
+    }
+
+    static validate(page) {
+        const result = Joi.validate(page, pageSchema)
+        return result
     }
 }
 

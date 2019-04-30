@@ -1,5 +1,7 @@
+const Joi = require('joi')
 const Answer = require('./answer')
 const types = require('./types')
+const { Answers } = require('./validationSchemas')
 
 class MultipleChoiceAnswer extends Answer {
     constructor(props) {
@@ -8,6 +10,11 @@ class MultipleChoiceAnswer extends Answer {
         this.content = {
             choices: props.content.choices || []
         }
+    }
+
+    static validate(multipleChoiceAnswer) {
+        const result = Joi.validate(multipleChoiceAnswer, Answers.multipleChoiceAnswerSchema)
+        return result
     }
 }
 

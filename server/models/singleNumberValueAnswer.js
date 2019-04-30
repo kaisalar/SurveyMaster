@@ -1,5 +1,7 @@
+const Joi = require('joi')
 const Answer = require('./answer')
 const types = require('./types')
+const { Answers } = require('./validationSchemas')
 
 class SingleNumberValueAnswer extends Answer {
     constructor(props) {
@@ -8,6 +10,11 @@ class SingleNumberValueAnswer extends Answer {
         this.content = {
             value: props.content.value || 0
         }
+    }
+
+    static validate(singleNumberValueAnswer) {
+        const result = Joi.validate(singleNumberValueAnswer, Answers.singleNumberValueAnswerSchema)
+        return result
     }
 }
 

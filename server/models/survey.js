@@ -1,7 +1,9 @@
 const _ = require('lodash')
+const Joi = require('joi')
 const Element = require('./element')
 const Page = require('./page')
 const Response = require('./response')
+const { surveySchema } = require('./validationSchemas')
 
 class Survey extends Element {
     constructor(props) {
@@ -36,6 +38,11 @@ class Survey extends Element {
             response = new Response(response)
         }
         this.responses.push(response)
+    }
+
+    static validate(survey) {
+        const result = Joi.validate(survey, surveySchema)
+        return result
     }
 }
 
