@@ -1,4 +1,5 @@
 const _ = require('lodash')
+const Joi = require('joi')
 const Element = require('./element')
 const Answer = require('./answer')
 const TextAnswer = require('./textAnswer')
@@ -6,6 +7,7 @@ const MultipleChoiceAnswer = require('./multipleChoiceAnswer')
 const SingleNumberValueAnswer = require('./singleNumberValueAnswer')
 const RangeAnswer = require('./rangeAnswer')
 const types = require('./types')
+const { responseSchema } = require('./validationSchemas')
 
 class Response extends Element {
     constructor(props) {
@@ -48,4 +50,11 @@ class Response extends Element {
             this.answers.push(answer)
         }
     }
+
+    static validate(response) {
+        const result = Joi.validate(response, responseSchema)
+        return result
+    }
 }
+
+module.exports = Response

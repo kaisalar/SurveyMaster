@@ -1,5 +1,7 @@
+const Joi = require('joi')
 const Answer = require('./answer')
 const types = require('./types')
+const { Answers } = require('./validationSchemas')
 
 class RangeAnswer extends Answer {
     constructor(props) {
@@ -10,4 +12,11 @@ class RangeAnswer extends Answer {
             maxValue: props.content.maxValue
         }
     }
+
+    static validate(rangeAnswer) {
+        const result = Joi.validate(rangeAnswer, Answers.rangeAnswerSchema)
+        return result
+    }
 }
+
+module.exports = RangeAnswer

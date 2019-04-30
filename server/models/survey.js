@@ -1,8 +1,11 @@
 const _ = require('lodash')
+const Joi = require('joi')
 const Element = require('./element')
 const Page = require('./page')
 const Response = require('./response')
 const SurveyIO = require('../data/surveyIO');
+const { surveySchema } = require('./validationSchemas')
+
 class Survey extends Element {
     constructor(props) {
         super(props)
@@ -90,6 +93,10 @@ class Survey extends Element {
     // loading all Responses to current Survey 
     async loadSurveyResponses(surveyId){ 
         return await SurveyIO.loadSurveyResponsesById(this._id);
+    }
+    static validate(survey) {
+        const result = Joi.validate(survey, surveySchema)
+        return result
     }
 }
 
