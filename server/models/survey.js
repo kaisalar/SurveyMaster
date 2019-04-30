@@ -50,28 +50,28 @@ class Survey extends Element {
     }
     // load one survey to fill
     // loading info and pages
-    async static loadSurveyToFiliingById(surveyId){
+    static async loadSurveyToFiliingById(surveyId){
         return new Survey(await SurveyIO.loadSurveyToFiliingById(surveyId));
     }
     // loading all survey 
     // must used to loading survey for an specific user 
-    async static loadSurveys(){
+    static async loadSurveys(){
         return await SurveyIO.getSurveys();
     }
     // check if an survey exsisit by its id 
-    async static isExsisit(surveyId){
+    static async isExsisit(surveyId){
         return await SurveyIO.isSurveyExists(surveyId);
     }
     // saving new Response
-    async static saveNewResponse(response){
+    static async saveNewResponse(response){
         await SurveyIO.saveEntireResponse(response);
     }
     // saving new Response Info
-    async static saveResponseInfo(response){
+    static async saveResponseInfo(response){
         await SurveyIO.saveResponseInfo(response);
     }
     // loading all survey responses info  by sruvey Id
-    async static loadSurveyResponsesInfo(surveyId){
+    static async loadSurveyResponsesInfo(surveyId){
         return await SurveyIO.loadSurveyResponsesInfoById(surveyId);
     }
     // loading all survey responses info to current Survey 
@@ -79,7 +79,7 @@ class Survey extends Element {
         return await this.loadSurveyResponsesInfo(this._id);
     }
     // loading entire one specific response By Surey Id and response Id
-    async static loadSurveyResponseById(surveyId, responseId){
+    static async loadSurveyResponseById(surveyId, responseId){
         return new Response(await SurveyIO.loadEntirResponseById(surveyId, responseId));
     }
     // loading entire one specific response to current Survey by response Id
@@ -87,15 +87,16 @@ class Survey extends Element {
         return await this.loadSurveyResponseById(this._id, responseId);
     }
     // loading all Responses to an Survey By survey Id 
-    async static loadSurveyResponses(surveyId){ 
+    static async loadSurveyResponses(surveyId){ 
         return await SurveyIO.loadSurveyResponsesById(surveyId);
     }
     // loading all Responses to current Survey 
     async loadSurveyResponses(){
         return await this.loadSurveyResponses(this._id);
     }
-    async static  generatReport(surveyId){
-
+    static async  generatReport(surveyId){
+        const response = await this.loadSurveyResponses(surveyId);
+        
     }
     async generatReport(){
         this.generatReport(this._id);

@@ -63,18 +63,18 @@ class SurveyIO {
         return responses.find(response => response._id === responseId);
     }
     // loading answers for one specific response by response id 
-    static loadResponseAnswersById(responseId){
+    static async loadResponseAnswersById(responseId){
         return await loadJson(`${ANSWERS_PATH}/${responseId}.json`);
     }
     // loading one entire response by survey id and response id 
-    static loadEntirResponseById(surveyId, responseId){
+    static async loadEntirResponseById(surveyId, responseId){
         const info = await SurveyIO.loadResponseInfoById(surveyId, responseId);
         const answers = await SurveyIO.loadResponseAnswersById(responseId);
         return {...info, answers};
     }
     // loading all responses to Sruvey by survey id 
     // to use it in reports :3
-    static loadSurveyResponsesById(surveyId){
+    static async loadSurveyResponsesById(surveyId){
         const responses = await SurveyIO.loadResponsesInfoByID(surveyId);
         responses.forEach(response => {
             response = SurveyIO.loadEntirResponseById(response._id);
