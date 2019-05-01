@@ -184,8 +184,14 @@ const surveySchema = {
     pages: Joi.array().items(pageSchema).required()
 }
 
+function getErrorMessages(error) {
+    const messages = error.details.map(detail => detail.message)
+    return messages
+}
+
 module.exports.Questions = Questions
 module.exports.Answers = Answers
 module.exports.pageSchema = pageSchema
 module.exports.responseSchema = responseSchema
 module.exports.surveySchema = surveySchema
+module.exports.getErrorMessages = getErrorMessages
