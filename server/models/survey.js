@@ -38,11 +38,16 @@ class Survey extends Element {
     }
     // load one survey to fill
     // loading info and pages
+<<<<<<< HEAD
     async static loadSurveyToFiliingById(surveyId) {
+=======
+    static async loadSurveyToFiliingById(surveyId){
+>>>>>>> 1756b62a21e0ef9c4c471228bb8a9cf275e5a381
         return new Survey(await SurveyIO.loadSurveyToFiliingById(surveyId));
     }
     // loading all survey 
     // must used to loading survey for an specific user 
+<<<<<<< HEAD
     async static loadSurveys() {
         return await SurveyIO.getSurveys();
     }
@@ -60,6 +65,25 @@ class Survey extends Element {
     }
     // loading all survey responses info  by sruvey Id
     async static loadSurveyResponsesInfo(surveyId) {
+=======
+    static async loadSurveys(){
+        return await SurveyIO.getSurveys();
+    }
+    // check if an survey exsisit by its id 
+    static async isExsisit(surveyId){
+        return await SurveyIO.isSurveyExists(surveyId);
+    }
+    // saving new Response
+    static async saveNewResponse(response){
+        await SurveyIO.saveEntireResponse(response);
+    }
+    // saving new Response Info
+    static async saveResponseInfo(response){
+        await SurveyIO.saveResponseInfo(response);
+    }
+    // loading all survey responses info  by sruvey Id
+    static async loadSurveyResponsesInfo(surveyId){
+>>>>>>> 1756b62a21e0ef9c4c471228bb8a9cf275e5a381
         return await SurveyIO.loadSurveyResponsesInfoById(surveyId);
     }
     // loading all survey responses info to current Survey 
@@ -67,7 +91,11 @@ class Survey extends Element {
         return await this.loadSurveyResponsesInfo(this._id);
     }
     // loading entire one specific response By Surey Id and response Id
+<<<<<<< HEAD
     async static loadSurveyResponseById(surveyId, responseId) {
+=======
+    static async loadSurveyResponseById(surveyId, responseId){
+>>>>>>> 1756b62a21e0ef9c4c471228bb8a9cf275e5a381
         return new Response(await SurveyIO.loadEntirResponseById(surveyId, responseId));
     }
     // loading entire one specific response to current Survey by response Id
@@ -75,15 +103,25 @@ class Survey extends Element {
         return await this.loadSurveyResponseById(this._id, responseId);
     }
     // loading all Responses to an Survey By survey Id 
+<<<<<<< HEAD
     async static loadSurveyResponses(surveyId) {
+=======
+    static async loadSurveyResponses(surveyId){ 
+>>>>>>> 1756b62a21e0ef9c4c471228bb8a9cf275e5a381
         return await SurveyIO.loadSurveyResponsesById(surveyId);
     }
     // loading all Responses to current Survey 
     async loadSurveyResponses() {
         return await this.loadSurveyResponses(this._id);
     }
+<<<<<<< HEAD
     async static generatReport(surveyId) {
 
+=======
+    static async  generatReport(surveyId){
+        const response = await this.loadSurveyResponses(surveyId);
+        
+>>>>>>> 1756b62a21e0ef9c4c471228bb8a9cf275e5a381
     }
     async generatReport() {
         this.generatReport(this._id);
