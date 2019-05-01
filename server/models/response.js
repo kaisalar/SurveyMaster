@@ -8,7 +8,7 @@ const SingleNumberValueAnswer = require('./singleNumberValueAnswer')
 const RangeAnswer = require('./rangeAnswer')
 const types = require('./types')
 const { responseSchema } = require('./validationSchemas')
-const { IO } = require('../data/IO');
+const IO = require('../data/IO');
 class Response extends Element {
     constructor(props) {
         super(props)

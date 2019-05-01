@@ -1,1 +1,10 @@
-[{"number":1,"title":"pesonal info","questions":[{"_id":1,"title":"how are you","type":"text"},{"_id":2,"title":"how old are you","type":"number"}]}]
+[
+  {
+    "number": 1,
+    "title": "pesonal info",
+    "questions": [
+      { "_id": 1, "title": "how are you", "type": "text" },
+      { "_id": 2, "title": "how old are you", "type": "number" }
+    ]
+  }
+]

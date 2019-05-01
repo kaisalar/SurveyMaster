@@ -1,10 +1,10 @@
 const _ = require('lodash')
 const { saveJson, loadJson, getFiles, exists, removeFile} = require('./dataUtils')
 
-const SURVEYS_PATH   = 'server/data/db/surveys'
-const RESPONSES_PATH = 'server/data/db/surveys/responses'
-const PAGES_PATH     = 'server/data/db/surveys/pages'
-const ANSWERS_PATH   = 'server/data/db/surveys/responses/answers'
+const SURVEYS_PATH   = 'data/db/surveys'
+const RESPONSES_PATH = 'data/db/surveys/responses'
+const PAGES_PATH     = 'data/db/surveys/pages'
+const ANSWERS_PATH   = 'data/db/surveys/responses/answers'
 
 class IO {
     /// pages section ///
@@ -72,10 +72,10 @@ class IO {
     // loading all responses to Sruvey by survey id 
     // to use it in reports :3
     static async loadSurveyResponsesById(surveyId){
-        const responsesInfo = await IO.loadSurveyResponsesInfoById(surveyId);
+        const responsesInfo = await this.loadSurveyResponsesInfoById(surveyId);
         let responses =[];
        for(let response of responsesInfo){
-            responses.push(await IO.loadEntirResponseById(surveyId, response._id));
+            responses.push(await this.loadEntirResponseById(surveyId, response._id));
         }
         return responses;
     }
@@ -89,8 +89,8 @@ class IO {
     // saving a new survey
     // for saving info and pages of the survey 
     static async saveNewSurvey(survey){
-        await saveSurveyInfo(survey);
-        await saveSurveyPages(survey);
+        await this.saveSurveyInfo(survey);
+        await this.saveSurveyPages(survey);
     }
     // saving every thing in the survey 
     static async saveEntireSurvey(survey) {
@@ -137,25 +137,26 @@ class IO {
         return surveys
     }
     // remove Info of The Survey By survey Id
-    async removeSurveyInfoById(surveyId){
+    static async removeSurveyInfoById(surveyId){
         await removeFile(`${SURVEYS_PATH}/${surveyId}.json`);
     }
     // remove Survey Pages of Survey Bu Sutvey Id
-    async removeSurveyPagesById(surveyId){
+    static async removeSurveyPagesById(surveyId){
         await removeFile(`${PAGES_PATH}/${surveyId}.json`);
     }
-    async removeSurveyById(surveyId){
-        await IO.removeSurveyInfoById(surveyId);
-        await IO.removeSurveyPagesById(surveyId);
+    static async removeSurveyById(surveyId){
+        await this.removeSurveyInfoById(surveyId);
+        await this.removeSurveyPagesById(surveyId);
     }
-    async removeSurveyResponsesInfoById(surveyId){
+    static async removeSurveyResponsesInfoById(surveyId){
         await removeFile(`${RESPONSES_PATH}/${surveyId}.json`);
     }
 }
 async function test(){
     // you can test what ever you want here ^_^ 
-    const surveys = await getFiles(SURVEYS_PATH);
-    console.log(surveys);
+    // const surveys = await getFiles(SURVEYS_PATH);
+    const ss = await IO.loadSurveyResponsesInfoById('12')
+    console.log(ss);
 }
-test();
+// test();
 module.exports = IO

@@ -25,7 +25,7 @@ class Survey extends Element {
         if (!page instanceof Page) {
             page = new Page(page)
         }
-        this.pages.push(response)
+        this.pages.push(page)
     }
 
     // saving survey info and pages 
