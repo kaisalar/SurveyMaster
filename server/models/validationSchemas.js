@@ -101,7 +101,7 @@ const Questions = {
 }
 
 const answerSchema = {
-    questionId: Joi.string().required()
+    questionId: Joi.string().uuid({ version: 'uuidv4' }).required()
 }
 
 const textAnswerSchema = {
@@ -145,7 +145,7 @@ const Answers = {
 }
 
 const pageSchema = {
-    title: Joi.string().max(1024).required(),
+    title: Joi.string().max(1024).optional(),
     description: Joi.string().max(1024).optional(),
     questions: Joi
         .array()
@@ -163,7 +163,7 @@ const pageSchema = {
 }
 
 const responseSchema = {
-    surveyId: Joi.string().required(),
+    surveyId: Joi.string().uuid({ version: 'uuidv4' }).required(),
     date: Joi.date().optional(),
     answers: Joi
         .array()
@@ -184,8 +184,14 @@ const surveySchema = {
     pages: Joi.array().items(pageSchema).required()
 }
 
+function getErrorMessages(error) {
+    const messages = error.details.map(detail => detail.message)
+    return messages
+}
+
 module.exports.Questions = Questions
 module.exports.Answers = Answers
 module.exports.pageSchema = pageSchema
 module.exports.responseSchema = responseSchema
 module.exports.surveySchema = surveySchema
+module.exports.getErrorMessages = getErrorMessages
