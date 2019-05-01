@@ -101,7 +101,7 @@ const Questions = {
 }
 
 const answerSchema = {
-    questionId: Joi.string().uuid().required()
+    questionId: Joi.string().uuid({ version: 'uuidv4' }).required()
 }
 
 const textAnswerSchema = {
@@ -163,7 +163,7 @@ const pageSchema = {
 }
 
 const responseSchema = {
-    surveyId: Joi.string().uuid().required(),
+    surveyId: Joi.string().uuid({ version: 'uuidv4' }).required(),
     date: Joi.date().optional(),
     answers: Joi
         .array()
