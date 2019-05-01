@@ -3,7 +3,6 @@ import CreateQuestion from "./CreateQuestion/CreateQuestion";
 import Question from "../../Question/Question";
 import styleClass from "./SurveyBuilder.module.css";
 import {MDBBtn} from 'mdbreact'
-import axios from 'axios'
 class SurveyBuilder extends Component {
   state = {
     Questions: []
@@ -48,9 +47,7 @@ class SurveyBuilder extends Component {
     newQuestions[QuestionID].content.choices[ChoiseID] = event.target.value;
     this.setState({ Questions: newQuestions });
   }
-  submitSurvey = () = { 
-
-  }
+ 
   render() {
     let Questions = this.state.Questions.map(el => (
       <Question
@@ -67,7 +64,7 @@ class SurveyBuilder extends Component {
       <div className={styleClass.SurveyBuilder}>
         <CreateQuestion clicked={this.addNewQuestion} />
         {Questions}
-        <MDBBtn  gradient="blue" onClick={this.submitSurvey}>Submit</MDBBtn>
+        <MDBBtn  gradient="blue">Submit</MDBBtn>
       </div>
     );
   }
