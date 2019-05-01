@@ -19,12 +19,6 @@ class Survey extends Element {
                 this.addPage(p)
             });
         }
-        this.responses = []
-        if (props.responses && _.isArray(props.responses)) {
-            props.responses.forEach(r => {
-                this.addResponse(response)
-            })
-        }
     }
 
     addPage(page) {
@@ -34,70 +28,64 @@ class Survey extends Element {
         this.pages.push(response)
     }
 
-    addResponse(response) {
-        if (!response instanceof Response) {
-            response = new Response(response)
-        }
-        this.responses.push(response)
-    }
     // saving survey info and pages 
-    async save(){
+    async save() {
         await SurveyIO.saveNewSurvey(this);
     }
     // saving just survey Info 
-    async saveInfo(){
+    async saveInfo() {
         await SurveyIO.saveSurveyInfo(this);
     }
     // load one survey to fill
     // loading info and pages
-    async static loadSurveyToFiliingById(surveyId){
+    async static loadSurveyToFiliingById(surveyId) {
         return new Survey(await SurveyIO.loadSurveyToFiliingById(surveyId));
     }
     // loading all survey 
     // must used to loading survey for an specific user 
-    async static loadSurveys(){
+    async static loadSurveys() {
         return await SurveyIO.getSurveys();
     }
     // check if an survey exsisit by its id 
-    async static isExsisit(surveyId){
+    async static isExsisit(surveyId) {
         return await SurveyIO.isSurveyExists(surveyId);
     }
     // saving new Response
-    async static saveNewResponse(response){
+    async static saveNewResponse(response) {
         await SurveyIO.saveEntireResponse(response);
     }
     // saving new Response Info
-    async static saveResponseInfo(response){
+    async static saveResponseInfo(response) {
         await SurveyIO.saveResponseInfo(response);
     }
     // loading all survey responses info  by sruvey Id
-    async static loadSurveyResponsesInfo(surveyId){
+    async static loadSurveyResponsesInfo(surveyId) {
         return await SurveyIO.loadSurveyResponsesInfoById(surveyId);
     }
     // loading all survey responses info to current Survey 
-    async loadSurveyResponsesInfo(){
+    async loadSurveyResponsesInfo() {
         return await this.loadSurveyResponsesInfo(this._id);
     }
     // loading entire one specific response By Surey Id and response Id
-    async static loadSurveyResponseById(surveyId, responseId){
+    async static loadSurveyResponseById(surveyId, responseId) {
         return new Response(await SurveyIO.loadEntirResponseById(surveyId, responseId));
     }
     // loading entire one specific response to current Survey by response Id
-    async loadSurveyResponseById(responseId){
+    async loadSurveyResponseById(responseId) {
         return await this.loadSurveyResponseById(this._id, responseId);
     }
     // loading all Responses to an Survey By survey Id 
-    async static loadSurveyResponses(surveyId){ 
+    async static loadSurveyResponses(surveyId) {
         return await SurveyIO.loadSurveyResponsesById(surveyId);
     }
     // loading all Responses to current Survey 
-    async loadSurveyResponses(){
+    async loadSurveyResponses() {
         return await this.loadSurveyResponses(this._id);
     }
-    async static  generatReport(surveyId){
+    async static generatReport(surveyId) {
 
     }
-    async generatReport(){
+    async generatReport() {
         this.generatReport(this._id);
     }
     static validate(survey) {
