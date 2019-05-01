@@ -8,7 +8,7 @@
     "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
     "start": "yarn build && nodemon dist/server.js"
   },
-  "author": "Mouaz Alkhodari",
+  "author": "Mouaz Alkhodari, Kais Alar",
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -23,6 +23,7 @@
     "express": "^4.16.2",
     "joi": "^14.3.1",
     "lodash": "^4.17.11",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.2",
+    "uuid-validate": "0.0.3"
   }
 }
