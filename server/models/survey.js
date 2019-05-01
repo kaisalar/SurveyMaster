@@ -94,7 +94,7 @@ class Survey extends Element {
     async loadSurveyResponses(){
         return await this.loadSurveyResponses(this._id);
     }
-    static async  generatReport(surveyId){
+    static async generatReport(surveyId){
         const response = await this.loadSurveyResponses(surveyId);
         
     }
