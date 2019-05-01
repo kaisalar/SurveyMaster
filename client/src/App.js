@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import Customers from './components/customers';
 
 class App extends Component {
   
@@ -10,7 +9,6 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">React Express Starter</h1>
         </header>
-        <Customers />
       </div>
     );
   }
