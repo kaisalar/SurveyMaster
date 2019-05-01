@@ -1,12 +1,12 @@
 const _ = require('lodash')
-const { saveJson, loadJson, getFiles, exists } = require('./dataUtils')
+const { saveJson, loadJson, getFiles, exists, removeFile} = require('./dataUtils')
 
 const SURVEYS_PATH   = 'server/data/db/surveys'
 const RESPONSES_PATH = 'server/data/db/surveys/responses'
 const PAGES_PATH     = 'server/data/db/surveys/pages'
 const ANSWERS_PATH   = 'server/data/db/surveys/responses/answers'
 
-class SurveyIO {
+class IO {
     /// pages section ///
     
     // saving all pages in survey 
@@ -40,13 +40,13 @@ class SurveyIO {
     }
     // saving one entire response 
     static async saveEntireResponse(response){
-        await SurveyIO.saveResponseInfo(response);
-        await SurveyIO.saveResponseAnswers(response);
+        await IO.saveResponseInfo(response);
+        await IO.saveResponseAnswers(response);
     }
     // i think we dont need this function 
     static async saveSurveyResponses(survey){
         survey.responses.forEach(response => {
-            SurveyIO.saveEntireResponse(response);
+            IO.saveEntireResponse(response);
         });
     }
 
@@ -56,7 +56,7 @@ class SurveyIO {
     }
     // loading one specific response info to survey By servey Id & response Id
     static async loadResponseInfoById(surveyId, responseId){
-        const responses = await SurveyIO.loadSurveyResponsesInfoById(surveyId);
+        const responses = await IO.loadSurveyResponsesInfoById(surveyId);
         return responses.find(response => response._id == responseId);
     }
     // loading answers for one specific response by response id 
@@ -65,17 +65,17 @@ class SurveyIO {
     }
     // loading one entire response by survey id and response id 
     static async loadEntirResponseById(surveyId, responseId){
-        const info = await SurveyIO.loadResponseInfoById(surveyId, responseId);
-        const answers = await SurveyIO.loadResponseAnswersById(responseId);
+        const info = await IO.loadResponseInfoById(surveyId, responseId);
+        const answers = await IO.loadResponseAnswersById(responseId);
         return {...info, answers};
     }
     // loading all responses to Sruvey by survey id 
     // to use it in reports :3
     static async loadSurveyResponsesById(surveyId){
-        const responsesInfo = await SurveyIO.loadSurveyResponsesInfoById(surveyId);
+        const responsesInfo = await IO.loadSurveyResponsesInfoById(surveyId);
         let responses =[];
        for(let response of responsesInfo){
-            responses.push(await SurveyIO.loadEntirResponseById(surveyId, response._id));
+            responses.push(await IO.loadEntirResponseById(surveyId, response._id));
         }
         return responses;
     }
@@ -94,9 +94,9 @@ class SurveyIO {
     }
     // saving every thing in the survey 
     static async saveEntireSurvey(survey) {
-        await SurveyIO.saveSurveyInfo(survey)
-        await SurveyIO.saveSurveyPages(survey)
-        await SurveyIO.saveSurveyResponses(survey)
+        await IO.saveSurveyInfo(survey)
+        await IO.saveSurveyPages(survey)
+        await IO.saveSurveyResponses(survey)
     }
 
     // loading survey info for specific survey by survey id
@@ -105,15 +105,15 @@ class SurveyIO {
     }
     // loading survey info and pages so the user can fill it 
     static async loadSurveyToFiliingById(surveyId){
-        const info  = await SurveyIO.loadSurveyInfoById(surveyId);
-        const pages = await SurveyIO.loadSurveyPagesById(surveyId)
+        const info  = await IO.loadSurveyInfoById(surveyId);
+        const pages = await IO.loadSurveyPagesById(surveyId)
         return {...info, pages};
     }
     // laoad every thing in the survey 
     static async loadEntireSurvey(surveyId) {
-        const info      = await SurveyIO.loadSurveyInfoById(surveyId)
-        const responses = await SurveyIO.loadSurveyResponsesById(surveyId)
-        const pages     = await SurveyIO.loadSurveyPagesById(surveyId)
+        const info      = await IO.loadSurveyInfoById(surveyId)
+        const responses = await IO.loadSurveyResponsesById(surveyId)
+        const pages     = await IO.loadSurveyPagesById(surveyId)
         return { ...info, responses, pages }
     }
     static async isSurveyExists(surveyId){
@@ -136,6 +136,21 @@ class SurveyIO {
         }
         return surveys
     }
+    // remove Info of The Survey By survey Id
+    async removeSurveyInfoById(surveyId){
+        await removeFile(`${SURVEYS_PATH}/${surveyId}.json`);
+    }
+    // remove Survey Pages of Survey Bu Sutvey Id
+    async removeSurveyPagesById(surveyId){
+        await removeFile(`${PAGES_PATH}/${surveyId}.json`);
+    }
+    async removeSurveyById(surveyId){
+        await IO.removeSurveyInfoById(surveyId);
+        await IO.removeSurveyPagesById(surveyId);
+    }
+    async removeSurveyResponsesInfoById(surveyId){
+        await removeFile(`${RESPONSES_PATH}/${surveyId}.json`);
+    }
 }
 async function test(){
     // you can test what ever you want here ^_^ 
@@ -143,4 +158,4 @@ async function test(){
     console.log(surveys);
 }
 test();
-module.exports = SurveyIO
+module.exports = IO

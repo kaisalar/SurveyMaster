@@ -30,12 +30,15 @@ async function getFiles(path) {
 async function exists(path){
     return await files.exists(path);
 }
-async function deleteFile(path){
-    
+async function removeFile(path){
+    if(exists(path)){
+        await files.remove(path);
+    }
 }
 module.exports = {
     saveJson,
     loadJson,
     getFiles,
-    exists
+    exists,
+    removeFile
 }
