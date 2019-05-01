@@ -145,7 +145,7 @@ const Answers = {
 }
 
 const pageSchema = {
-    title: Joi.string().max(1024).required(),
+    title: Joi.string().max(1024).optional(),
     description: Joi.string().max(1024).optional(),
     questions: Joi
         .array()
