@@ -1,4 +1,4 @@
 let port = 5000
-export {
+module.exports = {
   port
 };

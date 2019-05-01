@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "react-scripts build",
-    "start": "yarn build && react-scripts start",
+    "start": "react-scripts start",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
