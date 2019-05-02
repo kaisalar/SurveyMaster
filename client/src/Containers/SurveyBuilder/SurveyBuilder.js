@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import CreateQuestion from "../../Components/CreateQuestion/CreateQuestion";
 import Question from "../../Components/Question/Question";
+import Layout from "../../Components/Layout/Layout";
 import styleClass from "./SurveyBuilder.module.css";
-import * as actions from '../../store/actions'
-import {MDBBtn} from 'mdbreact'
-import { connect } from 'react-redux'
+import * as actions from "../../store/actions/types";
+import { MDBBtn } from "mdbreact";
+import { connect } from "react-redux";
 class SurveyBuilder extends Component {
   state = {
     Questions: []
@@ -29,14 +30,14 @@ class SurveyBuilder extends Component {
     newQuestions[QuestionID].type = event.target.value;
     this.setState({ Questions: newQuestions });
   };
-  changeChoiseHandler = (event, ChoiseID, id) => { 
+  changeChoiseHandler = (event, ChoiseID, id) => {
     let newQuestions = [...this.state.Questions];
     let QuestionID = this.findQuestionIndex(id);
     console.log(event, ChoiseID, id);
     newQuestions[QuestionID].content.choices[ChoiseID] = event.target.value;
     this.setState({ Questions: newQuestions });
-  }
- 
+  };
+
   render() {
     let Questions = this.props.Qs.map(el => (
       <Question
@@ -46,28 +47,35 @@ class SurveyBuilder extends Component {
         typeChanged={event => this.ChangeTypeHandler(event, el._id)}
         title={el.title}
         labelChanged={event => this.ChangeLabelHandler(event, el._id)}
-        content = {el.content}
-        choiseChanged = {(event, id) => this.changeChoiseHandler(event,id,el._id)}
+        content={el.content}
+        choiseChanged={(event, id) =>
+          this.changeChoiseHandler(event, id, el._id)
+        }
       />
     ));
     return (
-      <div className={styleClass.SurveyBuilder}>
-        <CreateQuestion clicked={this.props.addNewQuestion} />
-        {Questions}
-        <MDBBtn  gradient="blue">Submit</MDBBtn>
-      </div>
+      <Layout>
+        <div className={styleClass.SurveyBuilder}>
+          <CreateQuestion clicked={this.props.addNewQuestion} />
+          {Questions}
+          <MDBBtn gradient="blue">Submit</MDBBtn>
+        </div>
+      </Layout>
     );
   }
 }
-const mapStateToProps = state => { 
+const mapStateToProps = state => {
   return {
-    Qs: state.questions.Questions
+    Qs: state.createSurvey.Questions
   };
-}
-const mapDispatchToProps = dispatch => { 
-  return { 
-    addNewQuestion: () => dispatch({type: actions.ADD_QUESTION})
-  }
-}
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    addNewQuestion: () => dispatch({ type: actions.ADD_QUESTION })
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(SurveyBuilder);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SurveyBuilder);

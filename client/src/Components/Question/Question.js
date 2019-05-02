@@ -4,7 +4,7 @@ import styleClass from "./Question.module.css";
 import ShortText from './ShortText/ShortText'
 import MultipleChoise from './MultipleChoise/MultipleChoice'
 import { connect } from 'react-redux';
-import * as actions from '../../store/actions'
+import * as actions from '../../store/actions/types'
 import * as Qtypes from './QuestionTypes'
 
 class Question extends Component {
@@ -51,7 +51,7 @@ class Question extends Component {
   
 const mapStateToProps = (state,ownProps) => { 
   return { 
-    Q: state.Questions[ownProps.index]
+    Q: state.createSurvey.Questions[ownProps.index]
   }
 }
 const mapDispatchToProps = (dispatch,ownProps) => { 
