@@ -29,39 +29,39 @@ class Survey extends Element {
     }
 
     // saving survey info and pages 
-    async save(){
+    async save() {
         await IO.saveNewSurvey(this);
     }
     // saving just survey Info 
-    async saveInfo(){
+    async saveInfo() {
         await IO.saveSurveyInfo(this);
     }
     // load one survey to fill
     // loading info and pages
-    static async loadSurveyToFiliingById(surveyId){
+    static async loadSurveyToFiliingById(surveyId) {
         return new Survey(await IO.loadSurveyToFiliingById(surveyId));
     }
     // loading all survey 
     // must used to loading survey for an specific user 
-    static async loadSurveys(){
+    static async loadSurveys() {
         return await IO.getSurveys();
     }
     // check if an survey exsisit by its id 
-    static async isExsisit(surveyId){
+    static async isExsisit(surveyId) {
         return await IO.isSurveyExists(surveyId);
     }
-    static async generatReport(surveyId){
+    static async generatReport(surveyId) {
         const response = await this.loadSurveyResponses(surveyId);
     }
-    static async remove(surveyId){
+    static async remove(surveyId) {
         await IO.removeSurveyById(surveyId);
     }
-    async remove(){
+    async remove() {
         await this.remove(this._id);
         return await SurveyIO.loadSugitgitrveyResponsesInfoById(surveyId);
     }
-    static async  generatReport(surveyId){
-        const response = await this.loadSurveyResponses(surveyId);        
+    static async  generatReport(surveyId) {
+        const response = await this.loadSurveyResponses(surveyId);
     }
     async generatReport() {
         this.generatReport(this._id);

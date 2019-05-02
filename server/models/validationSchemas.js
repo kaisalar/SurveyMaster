@@ -9,29 +9,29 @@ const questionSchema = {
 const textQuestionSchema = {
     ...questionSchema,
     type: types.QUESTION_TEXT,
-    content: {
+    content: Joi.object().keys({
         placeHolder: Joi.string().max(255).optional(),
         inputType: [types.INPUT_TEXT, types.INPUT_NUMERIC, types.INPUT_PHONE_NUMBER, types.INPUT_EMAIL],
         min: Joi.number().positive().optional(),
         max: Joi.number().positive().optional()
-    }
+    }).required()
 }
 
 const paragraphQuestionSchema = {
     ...questionSchema,
     type: types.QUESTION_PARAGRAPH,
-    content: {
+    content: Joi.object().keys({
         placeHolder: Joi.string().max(255).optional(),
         min: Joi.number().positive().optional(),
         max: Joi.number().positive().optional()
-    }
+    }).required()
 }
 
 const multipleChoiceQuestionSchema = {
     ...questionSchema,
-    content: {
+    content: Joi.object().keys({
         choices: Joi.array().items(Joi.string().required()).required()
-    }
+    }).required()
 }
 
 const radioGroupQuestionSchema = {
