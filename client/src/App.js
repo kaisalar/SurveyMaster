@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import {BrowserRouter} from 'react-router-dom'
-import Layout from './Components/Layout/Layout';
-import SurveyBuilder from './Containers/SurveyBuilder/SurveyBuilder'
 import Routes from './Routes'
 import './App.css';
 

@@ -50,8 +50,7 @@ class SurveyBuilder extends Component {
         content={el.content}
         choiseChanged={(event, id) =>
           this.changeChoiseHandler(event, id, el._id)
-        }
-      />
+        } />
     ));
     return (
       <Layout>
