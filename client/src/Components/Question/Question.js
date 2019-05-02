@@ -11,27 +11,29 @@ class Question extends Component {
 
     render() { 
       let AnswerType;
-      switch (this.props.Qs[this.props.index].type) { 
+      const index = this.props.index
+      const Q = this.props.Qs[index]
+      switch (Q.type) { 
           case Qtypes.TEXT:
-          AnswerType = (<ShortText index = {this.props.index} />)
+          AnswerType = (<ShortText index = {index} />)
           break;
           case Qtypes.MULTIPLE_CHOISE:
-          AnswerType = (<MultipleChoise index = {this.props.index} contesnt={this.props.Qs[this.props.index].content.choices}/>)
+          AnswerType = (<MultipleChoise index = {index} contesnt={Q.content.choices}/>)
           break;
           default:
-          AnswerType = (<ShortText index={this.props.index}/>)
+          AnswerType = (<ShortText index={index}/>)
           break;
       } 
     return (
       <div className={styleClass.QuestionContainer}>
         <div className={styleClass.Question}>
           <MDBInput
-            label="Untitled Question" value={this.props.Qs[this.props.index].title} onChange={(e) => this.props.ChangeLabelHandler(this.props.index, e.target.value)} className={styleClass.BigText}
+            label="Untitled Question" value={Q.title} onChange={(e) => this.props.ChangeLabelHandler(index, e.target.value)} className={styleClass.BigText}
           />
           <select
             className={styleClass.SelectInput}
-            value={this.props.Qs[this.props.index].type}
-            onChange={e => this.props.ChangeTypeHandler(this.props.index, e.target.value)}
+            value={Q.type}
+            onChange={e => this.props.ChangeTypeHandler(index, e.target.value)}
           >
             <option value={Qtypes.TEXT}>
               short answer

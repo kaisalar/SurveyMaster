@@ -5,7 +5,9 @@ import * as actions from '../../../store/actions/types'
 
 class multipleChoise extends Component {
   render() {
-    const Choices = this.props.Qs[this.props.index].content.choices.map((el,id) => <MDBInput key={id} label={el} value={el} onChange={e => this.props.changeChoiseHandler(this.props.index,id,e.target.value)}/>)
+    const index = this.props.index
+    const choices = this.props.Qs[index].content.choices
+    const Choices = choices.map((el,id) => <MDBInput key={id} label={el} value={el} onChange={e => this.props.changeChoiseHandler(index,id,e.target.value)}/>)
     return (
       <React.Fragment>
        {Choices}

@@ -14,14 +14,7 @@ class SurveyBuilder extends Component {
     });
     return QuestionID;
   };
-  changeChoiseHandler = (event, ChoiseID, id) => {
-    let newQuestions = [...this.state.Questions];
-    let QuestionID = this.findQuestionIndex(id);
-    console.log(event, ChoiseID, id);
-    newQuestions[QuestionID].content.choices[ChoiseID] = event.target.value;
-    this.setState({ Questions: newQuestions });
-  };
-
+  
   render() {
     let Questions = this.props.Qs.map(el => {
       return(
