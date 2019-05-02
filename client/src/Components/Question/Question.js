@@ -1,33 +1,37 @@
-import React from "react";
+import React, { Component } from "react";
 import { MDBInput } from "mdbreact";
 import styleClass from "./Question.module.css";
 import ShortText from './ShortText/ShortText'
 import MultipleChoise from './MultipleChoise/MultipleChoice'
+import { connect } from 'react-redux';
+import * as actions from '../../store/actions'
+import * as Qtypes from './QuestionTypes'
 
-const Question = props => {
+class Question extends Component {
 
+    render() { 
       let AnswerType;
-      switch (props.type) { 
-          case "Text":
-          AnswerType = (<ShortText content={props.content} />)
+      switch (this.props.Q.type) { 
+          case Qtypes.text:
+          AnswerType = (<ShortText content={this.props.Q.content} />)
           break;
-          case "Multiple Choice":
-          AnswerType = (<MultipleChoise content={props.content} changed={(id, event) => props.choiseChanged(id, event)}/>)
+          case Qtypes.multipleChoise:
+          AnswerType = (<MultipleChoise content={this.props.Q.content} changed={(id, event) => this.props.choiseChanged(id, event)}/>)
           break;
           default:
-          AnswerType = (<ShortText content={props.content}/>)
+          AnswerType = (<ShortText content={this.props.Q.content}/>)
           break;
       } 
     return (
       <div className={styleClass.QuestionContainer}>
         <div className={styleClass.Question}>
           <MDBInput
-            label="Untitled Question" value={props.label} onChange={props.labelChanged} className={styleClass.BigText}
+            label="Untitled Question" value={this.props.Q.label} onChange={this.props.labelChanged} className={styleClass.BigText}
           />
           <select
             className={styleClass.SelectInput}
-            value={props.type}
-            onChange={props.typeChanged}
+            value={this.props.Q.type}
+            onChange={this.props.typeChanged}
           >
             <option value="text">
               short answer
@@ -38,9 +42,22 @@ const Question = props => {
         <div className={styleClass.Answer}>
         {AnswerType}
         </div>
-        
+       
       </div>
     );
+    }
+    
   }
+  
+const mapStateToProps = state => { 
+  return { 
+    Q: state.Questions[this.props.index]
+  }
+}
+const mapDispatchToProps = dispatch => { 
+  return { 
+    ChangeLabelHandler: () => dispatch({type: actions.CHANGE_QUESTION_LABEL,index: this.props.index})
+  }
+}
 
-export default Question;
+export default connect(mapStateToProps,mapDispatchToProps)(Question);

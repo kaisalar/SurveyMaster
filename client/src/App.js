@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import Layout from './Components/Layout/Layout';
-import CreateSurvey from './Containers/CreateSurvey/CreateSurvey'
+import SurveyBuilder from './Containers/SurveyBuilder/SurveyBuilder'
 import './App.css';
 
 class App extends Component {
   render() {
     return (
       <Layout>
-        <CreateSurvey />
+        <SurveyBuilder />
       </Layout>
       );
   }

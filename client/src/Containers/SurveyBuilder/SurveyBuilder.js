@@ -1,8 +1,10 @@
 import React, { Component } from "react";
-import CreateQuestion from "./CreateQuestion/CreateQuestion";
-import Question from "../../Question/Question";
+import CreateQuestion from "../../Components/CreateQuestion/CreateQuestion";
+import Question from "../../Components/Question/Question";
 import styleClass from "./SurveyBuilder.module.css";
+import * as actions from '../../store/actions'
 import {MDBBtn} from 'mdbreact'
+import { connect } from 'react-redux'
 class SurveyBuilder extends Component {
   state = {
     Questions: []
@@ -15,19 +17,6 @@ class SurveyBuilder extends Component {
     return QuestionID;
   };
 
-  addNewQuestion = () => {
-    let newQuestions = [...this.state.Questions];
-    const newQuestion = {
-      _id: newQuestions.length + 1,
-      type: "Text",
-      title: "Untitled Question",
-      content: {
-        choices: ["","","",""],
-      }
-    };
-    newQuestions.push(newQuestion);
-    this.setState({ Questions: newQuestions });
-  };
   ChangeLabelHandler = (event, id) => {
     let newQuestions = [...this.state.Questions];
     let QuestionID = this.findQuestionIndex(id);
@@ -49,9 +38,10 @@ class SurveyBuilder extends Component {
   }
  
   render() {
-    let Questions = this.state.Questions.map(el => (
+    let Questions = this.props.Qs.map(el => (
       <Question
         key={el._id}
+        index={el._id}
         type={el.type}
         typeChanged={event => this.ChangeTypeHandler(event, el._id)}
         title={el.title}
@@ -62,53 +52,22 @@ class SurveyBuilder extends Component {
     ));
     return (
       <div className={styleClass.SurveyBuilder}>
-        <CreateQuestion clicked={this.addNewQuestion} />
+        <CreateQuestion clicked={this.props.addNewQuestion} />
         {Questions}
         <MDBBtn  gradient="blue">Submit</MDBBtn>
       </div>
     );
   }
 }
+const mapStateToProps = state => { 
+  return { 
+    Qs: state.Questions
+  }
+}
+const mapDispatchToProps = dispatch => { 
+  return { 
+    addNewQuestion: () => dispatch({type: actions.ADD_QUESTION})
+  }
+}
 
-export default SurveyBuilder;
-
-// const ans = new Answer({title:"hello"});
-// console.log(ans);
-// class question {
-//     constructor(props){
-//         this.id=props.id;
-//         this.title=props.title;
-//     }
-// }
-// class textQuestion extends question{
-//     constructor(props){
-//         super(props);
-//         this.type="Text";
-//     }
-// }
-// class survey {
-//     constructor() {
-//         this.Questions=[
-//             new textQuestion({id:1,title:"how are you"}),
-//             new textQuestion({id:2,title:"i love you Do you?"})
-//         ]
-//     }
-
-//     addNewQuestion = () => {
-//         this.Questions.push({id: this.Questions.length + 1, title:"newQuestion"});
-//       };
-// }
-
-// function createquestion(){
-//     let id = question.length;
-//     let title = "new queiotion";
-//     question.push(new question({id:id,title:title}));
-// }
-// function updateQuestion(id){
-//     let question = questions[id];
-//     let newquestion = new question(...question);
-//     newquestion.title="";
-//     newquestion.type="Text";
-//     question[id]=newquestion;
-//     return newquestion
-// }
+export default connect(mapStateToProps, mapDispatchToProps)(SurveyBuilder);
