@@ -14,7 +14,7 @@ class Response extends Element {
         super(props)
         this.surveyId = props.surveyId
         this.date = props.date || Date.now()
-        this.answers = []``
+        this.answers = [];
         if (props.answers && _.isArray(props.answers)) {
             props.answers.forEach(a => {
                 this.addAnswer(a)
@@ -53,6 +53,9 @@ class Response extends Element {
     // saving new Response
     static async saveNewResponse(response){
         await IO.saveEntireResponse(response);
+    }
+    async save(){
+        await Response.saveNewResponse(this);
     }
     // saving new Response Info
     static async saveResponseInfo(response){
