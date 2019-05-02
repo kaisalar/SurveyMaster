@@ -58,7 +58,7 @@ const sliderQuestionSchema = {
         minLabel: Joi.string().max(50).optional(),
         maxLabel: Joi.string().max(50).optional(),
         defaultValue: Joi.number().optional(),
-        step: Joi.number().positive().required()
+        step: Joi.number().positive().optional()
     }).required()
 }
 
@@ -67,8 +67,8 @@ const ratingQuestionSchema = {
     type: types.QUESTION_RATING,
     content: Joi.object().keys({
         ratingType: Joi.any().valid(types.RATING_NUMBERS, types.RATING_STARS).optional(),
-        min: Joi.number().positive().required(),
-        max: Joi.number().positive().required(),
+        min: Joi.number().positive().optional(),
+        max: Joi.number().positive().optional(),
         minLabel: Joi.string().max(50).optional(),
         maxLabel: Joi.string().max(50).optional(),
         defaultValue: Joi.number().positive().optional()
@@ -83,9 +83,9 @@ const rangeQuestionSchema = {
         max: Joi.number().required(),
         minLabel: Joi.string().max(50).optional(),
         maxLabel: Joi.string().max(50).optional(),
-        minDefaultValue: Joi.number().required(),
-        maxDefaultValue: Joi.number().required(),
-        step: Joi.number().positive().required()
+        minDefaultValue: Joi.number().optional(),
+        maxDefaultValue: Joi.number().optional(),
+        step: Joi.number().positive().optional()
     }).required()
 }
 
@@ -147,33 +147,14 @@ const Answers = {
 const pageSchema = {
     title: Joi.string().max(1024).optional(),
     description: Joi.string().max(1024).optional(),
-    questions: Joi
-        .array()
-        .items(
-            textQuestionSchema,
-            paragraphQuestionSchema,
-            radioGroupQuestionSchema,
-            checkBoxQuestionSchema,
-            dropDownQuestionSchema,
-            ratingQuestionSchema,
-            sliderQuestionSchema,
-            rangeQuestionSchema
-        )
+    questions: Joi.array().items(...Questions)
         .optional()
 }
 
 const responseSchema = {
     surveyId: Joi.string().uuid({ version: 'uuidv4' }).required(),
     date: Joi.date().optional(),
-    answers: Joi
-        .array()
-        .items(
-            textAnswerSchema,
-            multipleChoiceAnswerSchema,
-            singleNumberValueAnswerSchema,
-            rangeAnswerSchema
-        )
-        .required()
+    answers: Joi.array().items(...Answers).required()
 }
 
 const surveySchema = {
@@ -186,7 +167,7 @@ const surveySchema = {
 
 function getErrorMessages(error) {
     const messages = error.details.map(detail => detail.message)
-    return messages
+    return messages;
 }
 
 module.exports.Questions = Questions

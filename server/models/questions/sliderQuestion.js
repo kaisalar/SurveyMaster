@@ -1,19 +1,19 @@
 const Joi = require('joi')
 const Question = require('./question')
-const types = require('./types')
-const { Questions } = require('./validationSchemas')
+const types = require('../types')
+const { Questions } = require('../validationSchemas')
 
 class SliderQuestion extends Question {
     constructor(props) {
         super(props)
         this.type = types.QUESTION_SLIDER
         this.content = {
-            min: props.content.min || 0,
-            max: props.content.max || 5,
+            min: props.content.min ,
+            max: props.content.max ,
             minLabel: props.content.minLabel || 'minimum',
             maxLabel: props.content.maxLabel || 'maximum',
-            defaultValue: props.content.defaultValue || (props.content.min + props.content.max) / 2 || 0,
-            step: props.content.step || -1 // if -1 -> there is no step
+            defaultValue: props.content.defaultValue || min || 0,
+            step: props.content.step || 1 // if 1 -> there is no step
         }
     }
 

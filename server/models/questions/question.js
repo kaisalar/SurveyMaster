@@ -1,4 +1,4 @@
-const Element = require('./element')
+const Element = require('../element')
 
 class Question extends Element {
     constructor(props) {

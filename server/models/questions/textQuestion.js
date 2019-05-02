@@ -1,4 +1,4 @@
-const Joi = require('joi')
+const Joi = require('./node_modules/joi')
 const Question = require('./question')
 const types = require('./types')
 const { Questions } = require('./validationSchemas')
@@ -12,7 +12,7 @@ class TextQuestion extends Question {
                 placeHolder: props.content.placeHolder || '',
                 inputType: props.content.inputType || types.INPUT_TEXT,
                 min: props.content.min || 0,
-                max: props.content.max || 0
+                max: props.content.max || 512
             }
     }
 

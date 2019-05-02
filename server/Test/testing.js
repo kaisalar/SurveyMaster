@@ -7,3 +7,5 @@ class A{
     }
 }
 A.f1();
+const a = b || c || 2;
+console.log(a);

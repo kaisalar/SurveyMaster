@@ -1,7 +1,7 @@
-const Joi = require('joi')
+const Joi = require('./node_modules/joi')
 const Question = require('./question')
-const types = require('./types')
-const { Questions } = require('./validationSchemas')
+const types = require('../types')
+const { Questions } = require('../validationSchemas')
 
 class RatingQuestion extends Question {
     constructor(props) {

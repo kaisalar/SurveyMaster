@@ -1,7 +1,7 @@
 const Joi = require('joi')
 const MultipleChoiceQuestion = require('./multipleChoiceQuestion')
-const types = require('./types')
-const { Questions } = require('./validationSchemas')
+const types = require('../types')
+const { Questions } = require('../validationSchemas')
 
 class CheckBoxQuestion extends MultipleChoiceQuestion {
     constructor(props) {

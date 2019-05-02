@@ -1,4 +1,4 @@
-const Joi = require('joi')
+const Joi = require('./node_modules/joi')
 const MultipleChoiceQuestion = require('./multipleChoiceQuestion')
 const types = require('./types')
 const { Questions } = require('./validationSchemas')

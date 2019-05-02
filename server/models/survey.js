@@ -68,7 +68,7 @@ class Survey extends Element {
         return await IO.getSurveys();
     }
     // check if an survey exsisit by its id 
-    static async isExsisit(surveyId) {
+    static async isExists(surveyId) {
         return await IO.isSurveyExists(surveyId);
     }
     static async remove(surveyId) {
@@ -76,9 +76,8 @@ class Survey extends Element {
     }
     async remove() {
         await this.remove(this._id);
-        return await SurveyIO.loadSugitgitrveyResponsesInfoById(surveyId);
     }
-    static async  generatReport(surveyId) {
+    static async generatReport(surveyId) {
         // fetching all responses and questions for current survey
         const responses = await Response.loadSurveyResponses(surveyId);
         const questions = await Survey.loadQustions(surveyId);
