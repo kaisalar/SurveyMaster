@@ -40,21 +40,21 @@ class Survey extends Element {
     async saveInfo() {
         await IO.saveSurveyInfo(this);
     }
-    static async loadPages(surveyId){
+    static async loadPages(surveyId) {
         return await IO.loadSurveyPagesById(surveyId);
     }
-    async loadPages(){
+    async loadPages() {
         this.loadPages(this._id);
     }
-    static async loadQustions(surveyId){
+    static async loadQustions(surveyId) {
         const pages = await Survey.loadPages(surveyId);
         const questions = [];
-        for(const page of pages){
-            for(const question of page.questions)questions.push(question);
+        for (const page of pages) {
+            for (const question of page.questions) questions.push(question);
         }
         return questions;
     }
-    async loadQustions(){
+    async loadQustions() {
         this.loadQustions(this_id);
     }
     // load one survey to fill
@@ -71,80 +71,68 @@ class Survey extends Element {
     static async isExsisit(surveyId) {
         return await IO.isSurveyExists(surveyId);
     }
-<<<<<<< HEAD
-    static async generatReport(surveyId) {
-        const response = await this.loadSurveyResponses(surveyId);
-    }
     static async remove(surveyId) {
-=======
-    static async remove(surveyId){
->>>>>>> 4c8e90d4aba7f67657608cae8a80db18d820267d
         await IO.removeSurveyById(surveyId);
     }
     async remove() {
         await this.remove(this._id);
         return await SurveyIO.loadSugitgitrveyResponsesInfoById(surveyId);
     }
-<<<<<<< HEAD
     static async  generatReport(surveyId) {
-        const response = await this.loadSurveyResponses(surveyId);
-=======
-    static async  generatReport(surveyId){
         // fetching all responses and questions for current survey
         const responses = await Response.loadSurveyResponses(surveyId);
         const questions = await Survey.loadQustions(surveyId);
         const report = {};
         // init report whith needed valuse 
 
-        for(const question of questions){
-            const {_id, content, type } = question;
-            report[_id]={};
+        for (const question of questions) {
+            const { _id, content, type } = question;
+            report[_id] = {};
             //console.log(question);
             switch (type) {
                 // text and single value init in the response
                 case types.QUESTION_CHECKBOX:
                 case types.QUESTION_DROPDOWN:
                 case types.QUESTION_RADIO_GROUP:
-                    for(const choice of content.choices)
-                        report[_id][choice]=0;
-                break;
+                    for (const choice of content.choices)
+                        report[_id][choice] = 0;
+                    break;
                 case types.QUESTION_RANGE:
                 case types.QUESTION_SLIDER:
                 case types.QUESTION_RATING:
                     //TODO: need to add step instead of 1
-                    for(let i = content.min;i <= content.max;i += 1)
+                    for (let i = content.min; i <= content.max; i += 1)
                         report[_id][i] = 0;
-                break;
+                    break;
             }
         }
-        for(const response of responses){
-            for(const answer of response.answers){
-            //    console.log(answer);
-                const {questionId, content, type} = answer;
+        for (const response of responses) {
+            for (const answer of response.answers) {
+                //    console.log(answer);
+                const { questionId, content, type } = answer;
                 switch (type) {
                     case types.ANSWER_RANGE:
                         // TODO need TO add Step instead of 1
-                        for(let i = content.minValue;i <= content.maxValue ; i+=1)
+                        for (let i = content.minValue; i <= content.maxValue; i += 1)
                             report[questionId][i]++;
-                    break
+                        break
                     case types.ANSWER_MULTIPLE_CHOICE:
-                        for(const choice of content.choices)
+                        for (const choice of content.choices)
                             report[questionId][choice]++;
-                    break
+                        break
 
                     // same content.value can be used here ^_^ 
                     //case types.ANSWER_TEXT:
                     //case types.ANSWER_SINGLE_NUMBER_VALUE:
                     // or if dont have any type:
-                    default:   
-                    if(!report[questionId][content.value])report[questionId][content.value] = 0;
-                    report[questionId][content.value]++;
-                    break
+                    default:
+                        if (!report[questionId][content.value]) report[questionId][content.value] = 0;
+                        report[questionId][content.value]++;
+                        break
                 }
             }
         }
         return report;
->>>>>>> 4c8e90d4aba7f67657608cae8a80db18d820267d
     }
     async generatReport() {
         await this.generatReport(this._id);
@@ -158,7 +146,7 @@ class Survey extends Element {
         return result;
     }
 }
-async function test(){
+async function test() {
     const report = await Survey.generatReport("823d09fe-2898-4ddc-8e6d-6a6a35d7b5a5");
     console.log(report);
 }

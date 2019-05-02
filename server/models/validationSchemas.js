@@ -52,33 +52,33 @@ const dropDownQuestionSchema = {
 const sliderQuestionSchema = {
     ...questionSchema,
     type: types.QUESTION_SLIDER,
-    content: {
+    content: Joi.object().keys({
         min: Joi.number().required(),
         max: Joi.number().required(),
         minLabel: Joi.string().max(50).optional(),
         maxLabel: Joi.string().max(50).optional(),
         defaultValue: Joi.number().optional(),
         step: Joi.number().positive().required()
-    }
+    }).required()
 }
 
 const ratingQuestionSchema = {
     ...questionSchema,
     type: types.QUESTION_RATING,
-    content: {
+    content: Joi.object().keys({
         ratingType: [types.RATING_NUMBERS, types.RATING_STARS],
         min: Joi.number().positive().required(),
         max: Joi.number().positive().required(),
         minLabel: Joi.string().max(50).optional(),
         maxLabel: Joi.string().max(50).optional(),
         defaultValue: Joi.number().positive().optional()
-    }
+    }).required()
 }
 
 const rangeQuestionSchema = {
     ...questionSchema,
     type: types.QUESTION_RANGE,
-    content: {
+    content: Joi.object().keys({
         min: Joi.number().required(),
         max: Joi.number().required(),
         minLabel: Joi.string().max(50).optional(),
@@ -86,7 +86,7 @@ const rangeQuestionSchema = {
         minDefaultValue: Joi.number().required(),
         maxDefaultValue: Joi.number().required(),
         step: Joi.number().positive().required()
-    }
+    }).required()
 }
 
 const Questions = {
@@ -107,34 +107,34 @@ const answerSchema = {
 const textAnswerSchema = {
     ...answerSchema,
     type: types.ANSWER_TEXT,
-    content: {
+    content: Joi.object().keys({
         value: Joi.string().required()
-    }
+    }).required()
 }
 
 const multipleChoiceAnswerSchema = {
     ...answerSchema,
     type: types.ANSWER_MULTIPLE_CHOICE,
-    content: {
+    content: Joi.object().keys({
         choices: Joi.array().items(Joi.string()).required()
-    }
+    }).required()
 }
 
 const singleNumberValueAnswerSchema = {
     ...answerSchema,
     type: types.ANSWER_SINGLE_NUMBER_VALUE,
-    content: {
+    content: Joi.object().keys({
         value: Joi.number().required()
-    }
+    }).required()
 }
 
 const rangeAnswerSchema = {
     ...answerSchema,
     type: types.ANSWER_RANGE,
-    content: {
+    content: Joi.object().keys({
         minValue: Joi.number().required(),
         maxValue: Joi.number().required()
-    }
+    }).required()
 }
 
 const Answers = {
