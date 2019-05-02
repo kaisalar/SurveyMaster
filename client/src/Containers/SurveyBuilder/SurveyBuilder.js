@@ -28,9 +28,6 @@ class SurveyBuilder extends Component {
       <Question
         key={el._id}
         index={el._id - 1}
-        title={el.title}
-        type={el.type}
-        content={el.content}
       />
     )});
     return (

@@ -51,7 +51,7 @@ const handleContentOfType = (Question) => {
     return;
     case Qtypes.MULTIPLE_CHOISE: 
     Question.content = {
-      choices: [""]
+      choices: ["Option 1"]
     }
     return;
     default: 
