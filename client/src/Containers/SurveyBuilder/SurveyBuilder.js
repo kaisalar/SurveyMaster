@@ -41,7 +41,7 @@ class SurveyBuilder extends Component {
     let Questions = this.props.Qs.map(el => (
       <Question
         key={el._id}
-        index={el._id}
+        index={el._id - 1}
         type={el.type}
         typeChanged={event => this.ChangeTypeHandler(event, el._id)}
         title={el.title}

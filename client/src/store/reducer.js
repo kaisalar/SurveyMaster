@@ -9,14 +9,20 @@ const reducer = (state = initialState, action) => {
         _id: state.Questions.length + 1,
         type: "Text",
         title: "Untitled Question",
-        content: {
-        }
+        content: {}
       };
-      return { 
+      return {
         ...state,
         Questions: state.Questions.concat(newQuestion)
-      }
-    default:
+      };
+    case actions.CHANGE_QUESTION_TITLE:
+      const newQuestions = [...state.Questions];
+      newQuestions[action.index].title = "test"
+      return {
+        ...state,
+        Questions: newQuestions
+      };
+      default:
       break;
   }
   return state;
