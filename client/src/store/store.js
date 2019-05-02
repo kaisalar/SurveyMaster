@@ -4,6 +4,15 @@
 // const Store = createStore(rootReducer);
 
 // export default Store
+
+
+
+
+/* 
+
+     I COMBINED KAREEMS WORK  "above" WITH MINE IN THE rootReducer "below" 
+
+*/
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import rootReducer from "./reducers";

@@ -14,7 +14,7 @@ class Surveys extends Component {
         this.props.initSurvey();
     }
     deleteItemHandler = (id) => {
-      
+     
 
     }
     render() {
