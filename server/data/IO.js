@@ -89,13 +89,8 @@ class IO {
     // saving a new survey
     // for saving info and pages of the survey 
     static async saveNewSurvey(survey){
-<<<<<<< HEAD
         await IO.saveSurveyInfo(survey);
         await IO.saveSurveyPages(survey);
-=======
-        await this.saveSurveyInfo(survey);
-        await this.saveSurveyPages(survey);
->>>>>>> 9e817f2fa35e08942ac139828c2ff2623d9912a2
     }
     // saving every thing in the survey 
     static async saveEntireSurvey(survey) {
@@ -163,9 +158,5 @@ async function test(){
     const ss = await IO.loadSurveyResponsesInfoById('12')
     console.log(ss);
 }
-<<<<<<< HEAD
 //test();
-=======
-// test();
->>>>>>> 9e817f2fa35e08942ac139828c2ff2623d9912a2
 module.exports = IO
