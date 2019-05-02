@@ -7,28 +7,12 @@ import * as actions from "../../store/actions/types";
 import { MDBBtn } from "mdbreact";
 import { connect } from "react-redux";
 class SurveyBuilder extends Component {
-  state = {
-    Questions: []
-  };
 
   findQuestionIndex = id => {
     let QuestionID = this.state.Questions.findIndex(p => {
       return p._id === id;
     });
     return QuestionID;
-  };
-
-  ChangeLabelHandler = (event, id) => {
-    let newQuestions = [...this.state.Questions];
-    let QuestionID = this.findQuestionIndex(id);
-    newQuestions[QuestionID].title = event.target.value;
-    this.setState({ Questions: newQuestions });
-  };
-  ChangeTypeHandler = (event, id) => {
-    let newQuestions = [...this.state.Questions];
-    let QuestionID = this.findQuestionIndex(id);
-    newQuestions[QuestionID].type = event.target.value;
-    this.setState({ Questions: newQuestions });
   };
   changeChoiseHandler = (event, ChoiseID, id) => {
     let newQuestions = [...this.state.Questions];
@@ -39,19 +23,16 @@ class SurveyBuilder extends Component {
   };
 
   render() {
-    let Questions = this.props.Qs.map(el => (
+    let Questions = this.props.Qs.map(el => {
+      return(
       <Question
         key={el._id}
         index={el._id - 1}
-        type={el.type}
-        typeChanged={event => this.ChangeTypeHandler(event, el._id)}
         title={el.title}
-        labelChanged={event => this.ChangeLabelHandler(event, el._id)}
+        type={el.type}
         content={el.content}
-        choiseChanged={(event, id) =>
-          this.changeChoiseHandler(event, id, el._id)
-        } />
-    ));
+      />
+    )});
     return (
       <Layout>
         <div className={styleClass.SurveyBuilder}>

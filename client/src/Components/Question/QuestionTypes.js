@@ -1,2 +1,2 @@
-export const text = "Text";
-export const multipleChoise = "Multiple Choise";
+export const TEXT = "Text";
+export const MULTIPLE_CHOISE = "Multiple Choise";
