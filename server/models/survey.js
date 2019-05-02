@@ -26,7 +26,7 @@ class Survey extends Element {
     }
 
     addPage(page) {
-        if (!page instanceof Page) {
+        if (!(page instanceof Page)) {
             page = new Page(page)
         }
         this.pages.push(page)
@@ -147,8 +147,8 @@ class Survey extends Element {
     }
 }
 async function test() {
-    const report = await Survey.generatReport("823d09fe-2898-4ddc-8e6d-6a6a35d7b5a5");
-    console.log(report);
+    // const report = await Survey.generatReport("823d09fe-2898-4ddc-8e6d-6a6a35d7b5a5");
+    // console.log(report);
 }
 test();
 module.exports = Survey

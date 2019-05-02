@@ -50,19 +50,19 @@ class Page extends Element {
                 break
 
             case types.QUESTION_DROPDOWN:
-                question = new DropDownQuestion(props)
+                question = new DropDownQuestion(question)
                 break
 
             case types.QUESTION_SLIDER:
-                question = new SliderQuestion(props)
+                question = new SliderQuestion(question)
                 break
 
             case types.QUESTION_RATING:
-                question = new RatingQuestion(props)
+                question = new RatingQuestion(question)
                 break
 
             case types.QUESTION_RANGE:
-                question = new RangeQuestion(props)
+                question = new RangeQuestion(question)
                 break
         }
 
