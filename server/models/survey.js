@@ -84,14 +84,7 @@ class Survey extends Element {
         const questions = await Survey.loadQustions(surveyId);
         const report = {};
         // init report whith needed valuse 
-        /*
-    QUESTION_RADIO_GROUP: 'QUESTION_RADIO_GROUP',
-    QUESTION_CHECKBOX: 'QUESTION_CHECKBOX',
-    QUESTION_DROPDOWN: 'QUESTION_DROPDOWN',
-    QUESTION_SLIDER: 'QUESTION_SLIDER',
-    QUESTION_RATING: 'QUESTION_RATING',
-    QUESTION_RANGE: 'QUESTION_RANGE',
-*/
+
         for(const question of questions){
             const {_id, content, type } = question;
             report[_id]={};
@@ -101,16 +94,16 @@ class Survey extends Element {
                 case types.QUESTION_CHECKBOX:
                 case types.QUESTION_DROPDOWN:
                 case types.QUESTION_RADIO_GROUP:
-                for(const choice of content.choices)
-                    report[_id][choice]=0;
-                    //TODO: need to add step instead of 1
-                    break;
+                    for(const choice of content.choices)
+                        report[_id][choice]=0;
+                break;
                 case types.QUESTION_RANGE:
                 case types.QUESTION_SLIDER:
                 case types.QUESTION_RATING:
+                    //TODO: need to add step instead of 1
                     for(let i = content.min;i <= content.max;i += 1)
                         report[_id][i] = 0;
-                    break;
+                break;
             }
         }
         for(const response of responses){
