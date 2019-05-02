@@ -89,8 +89,8 @@ class IO {
     // saving a new survey
     // for saving info and pages of the survey 
     static async saveNewSurvey(survey){
-        await saveSurveyInfo(survey);
-        await saveSurveyPages(survey);
+        await IO.saveSurveyInfo(survey);
+        await IO.saveSurveyPages(survey);
     }
     // saving every thing in the survey 
     static async saveEntireSurvey(survey) {
@@ -157,5 +157,5 @@ async function test(){
     const surveys = await getFiles(SURVEYS_PATH);
     console.log(surveys);
 }
-test();
+//test();
 module.exports = IO
