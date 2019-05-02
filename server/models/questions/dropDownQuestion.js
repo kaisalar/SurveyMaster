@@ -15,4 +15,4 @@ class DropDownQuestion extends MultipleChoiceQuestion {
     }
 }
 
-module.exports = DropDownQuestionpDownQuestion
+module.exports = DropDownQuestion

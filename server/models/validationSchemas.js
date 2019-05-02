@@ -41,7 +41,7 @@ const radioGroupQuestionSchema = {
 
 const checkBoxQuestionSchema = {
     ...multipleChoiceQuestionSchema,
-    type: types.QUESTION_RADIO_GROUP
+    type: types.QUESTION_CHECKBOX
 }
 
 const dropDownQuestionSchema = {
