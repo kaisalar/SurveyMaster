@@ -1,0 +1,36 @@
+.fixedBar{
+    top:0;
+    width: 100%;
+    z-index: 100;
+    margin:0;
+    position:fixed;
+    background-color: aliceblue;
+
+
+}
+
+.Layout{
+        width: 100%;
+        margin: auto;
+        background-color: #f1f1f1;
+        box-shadow: 5px 5px 5px rgba(0, 0, 0, .3);
+        padding: 10px ;
+        
+}
+.NavItems{
+    
+}
+.btn{
+    background-color: plum;
+}
+.flip{
+      position: absolute;
+      left: -100px;
+      width: 100px;
+      height: 100px;
+      background: blue;
+      -webkit-animation: slide 0.5s forwards;
+      -webkit-animation-delay: 2s;
+      animation: slide 0.5s forwards;
+      animation-delay: 2s;
+}

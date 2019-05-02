@@ -60,9 +60,9 @@ class SurveyBuilder extends Component {
   }
 }
 const mapStateToProps = state => { 
-  return { 
-    Qs: state.Questions
-  }
+  return {
+    Qs: state.questions.Questions
+  };
 }
 const mapDispatchToProps = dispatch => { 
   return { 

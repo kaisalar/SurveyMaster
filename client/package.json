@@ -4,18 +4,22 @@
   "private": true,
   "scripts": {
     "build": "react-scripts build",
-    "start": "yarn build && react-scripts start",
+    "start": "react-scripts start",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "proxy": "http://localhost:5000/",
   "dependencies": {
+    "axios": "^0.18.0",
     "mdbreact": "^4.13.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-redux": "^7.0.3",
+    "react-redux": "^6.0.0",
+    "react-router": "^5.0.0",
+    "react-router-dom": "^5.0.0",
     "react-scripts": "^3.0.0",
-    "redux": "^4.0.1"
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "yarn": "^1.15.2"
