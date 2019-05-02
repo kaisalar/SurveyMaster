@@ -11,7 +11,7 @@ const textQuestionSchema = {
     type: types.QUESTION_TEXT,
     content: Joi.object().keys({
         placeHolder: Joi.string().max(255).optional(),
-        inputType: [types.INPUT_TEXT, types.INPUT_NUMERIC, types.INPUT_PHONE_NUMBER, types.INPUT_EMAIL],
+        inputType: Joi.any().valid(types.INPUT_TEXT, types.INPUT_NUMERIC, types.INPUT_PHONE_NUMBER, types.INPUT_EMAIL).optional(),
         min: Joi.number().positive().optional(),
         max: Joi.number().positive().optional()
     }).required()
@@ -66,7 +66,7 @@ const ratingQuestionSchema = {
     ...questionSchema,
     type: types.QUESTION_RATING,
     content: Joi.object().keys({
-        ratingType: [types.RATING_NUMBERS, types.RATING_STARS],
+        ratingType: Joi.any().valid(types.RATING_NUMBERS, types.RATING_STARS).optional(),
         min: Joi.number().positive().required(),
         max: Joi.number().positive().required(),
         minLabel: Joi.string().max(50).optional(),
