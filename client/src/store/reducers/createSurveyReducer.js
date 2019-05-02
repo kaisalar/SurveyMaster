@@ -17,7 +17,7 @@ const reducer = (state = initialState, action) => {
       };
     case actions.CHANGE_QUESTION_TITLE:
       const newQuestions = [...state.Questions];
-      newQuestions[action.index].title = "test"
+      newQuestions[action.index].title = action.val
       return {
         ...state,
         Questions: newQuestions

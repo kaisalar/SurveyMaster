@@ -26,7 +26,7 @@ class Question extends Component {
       <div className={styleClass.QuestionContainer}>
         <div className={styleClass.Question}>
           <MDBInput
-            label="Untitled Question" value={this.props.Q.title} onChange={this.props.ChangeLabelHandler} className={styleClass.BigText}
+            label="Untitled Question" value={this.props.Q.title} onChange={(e) => this.props.ChangeLabelHandler(e.target.value)} className={styleClass.BigText}
           />
           <select
             className={styleClass.SelectInput}
@@ -56,7 +56,7 @@ const mapStateToProps = (state,ownProps) => {
 }
 const mapDispatchToProps = (dispatch,ownProps) => { 
   return { 
-    ChangeLabelHandler: () => dispatch({type: actions.CHANGE_QUESTION_TITLE,index: ownProps.index})
+    ChangeLabelHandler: (newVal) => dispatch({type: actions.CHANGE_QUESTION_TITLE,index: ownProps.index,val:newVal })
   }
 }
 
