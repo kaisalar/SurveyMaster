@@ -3,7 +3,6 @@ import axios from '../../../axios-requests'
 import Question from '../../../Components/SurveyAnswersList/SurveyFill_Item/SurveyFill_item';
 import { previewSurvey } from '../../../store/actions/answersAction'
 import { connect } from 'react-redux';
-import Layout from '../../../Components/Layout/Layout';
 import { MDBBtn } from 'mdbreact';
 import styles from './SurveyFillList.module.css'
 /**************** */

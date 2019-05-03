@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Choise from "./Choise/Choise";
-import { MDBInput } from "mdbreact";
 import { connect } from "react-redux";
 import * as actions from "../../../store/actions/types";
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TransitionGroup, CSSTransition, Transition } from 'react-transition-group'
+import { TransitionGroup } from 'react-transition-group'
 import { MDBBtn } from 'mdbreact'
 import { Link } from 'react-router-dom'
 //import wallpaper from "../../assets/18924.jpg";
