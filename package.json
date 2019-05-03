@@ -20,8 +20,14 @@
   },
   "dependencies": {
     "@material-ui/core": "^3.9.3",
+    "@material-ui/lab": "^3.0.0-alpha.30",
     "concurrently": "^3.5.1",
     "express": "^4.16.2",
-    "material-ui-slider": "^3.0.0"
+    "material-ui-slider": "^3.0.0",
+    "materialize-css": "^1.0.0-rc.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-md": "^1.10.2",
+    "rsuite": "^3.8.3"
   }
 }
