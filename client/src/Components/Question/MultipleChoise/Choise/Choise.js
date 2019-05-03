@@ -1,5 +1,5 @@
 import React from 'react';
-import { MDBInput, MDBBtn } from "mdbreact";
+import { MDBInput, MDBBtn, MDBIcon } from "mdbreact";
 import styleClass from './Choice.module.css'
 
 
