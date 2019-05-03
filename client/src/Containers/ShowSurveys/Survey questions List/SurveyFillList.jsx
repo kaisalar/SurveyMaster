@@ -11,13 +11,13 @@ import styles from './SurveyFillList.module.css'
 /************* */
 class SurveyFillList extends Component {
 
-    createresponse(survey) {
-        this.state.response.surveyId = survey.id;
-        this.state.response.answers = [];
-        // survey.pages[0].foreach( (v)=>{
-        //     answers.push({questionid:v._id,type:v.type,content:{choices:["kmsadlkasd","a;slkd;"]} });
-        // })
-    }
+    // createresponse(survey) {
+    //     this.state.response.surveyId = survey.id;
+    //     this.state.response.answers = [];
+    //     // survey.pages[0].foreach( (v)=>{
+    //     //     answers.push({questionid:v._id,type:v.type,content:{choices:["kmsadlkasd","a;slkd;"]} });
+    //     // })
+    // }
     componentDidMount() {
         this.props.previewSurvey(this.props.match.params.id);
     }
