@@ -3,15 +3,18 @@ import { Link } from 'react-router-dom';
 // import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { MDBAlert, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol, Button } from 'mdbreact';
 
+/* single item for View all Surveys List in surveys.jsx*/
+
 class CardExample extends Component {
   constructor(props) {
     super(props);
-   
-    this.URL = "/filling/" + this.props.id;
-    this.B_URL = "http://localhost:7929";
+
+    this.URL = "/fill/" + this.props.id;
+    this.B_URL = "http://localhost:3000";
   }
 
   render() {
+
     return (
       <React.Fragment>
         <MDBCol>
@@ -23,15 +26,15 @@ class CardExample extends Component {
               <MDBCardText>
                 Date:  {this.props.date}
               </MDBCardText>
+             
               <Link to={this.URL}>
-                <Button style={{ color: 'white' }} onClick={this.showSurviyOnClick}>
+                <Button style={{ color: 'white' }} >
                   Preview
                </Button>
               </Link>
-              <Button onClick={this.props.click} style={{ color: 'red' }}>Delete</Button>
+              <Button onClick={this.props.click} style={{ backgroundColor: 'red', color: 'white' }}>Delete</Button>
               {/* <CopyToClipboard text={this.B_URL + this.URL} */}
-               /**on copy */>
-                <Button style={{ color: 'white' }} > Get Link
+              <Button style={{ color: 'white' }} > Get Link
                 </Button>
               {/* </CopyToClipboard> */}
               <MDBAlert color="success" >

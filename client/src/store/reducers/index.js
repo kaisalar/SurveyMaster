@@ -1,8 +1,10 @@
 ///combine reducers
 import {combineReducers} from 'redux';
-import answersReducer from './answersReducer';
+import viewReducer from './viewReducer';
 import createSurveyReducer from './createSurveyReducer'
+import fillSurveyReducer from './answersReducer'
 export default combineReducers({
-    fill_items:answersReducer,
+    viewSurvey:viewReducer,
     createSurvey:createSurveyReducer,
+    fillSurvey: fillSurveyReducer
 })

@@ -1,26 +1,24 @@
 import React, { Component } from 'react';
 import axios from '../../../axios-requests';
-import SurveyItem from '../../../Components/Survey List item/SurveyItem';
+import SurveyItem from '../../../Components/Surveys items/SurveyItem';
 import { MDBRow } from 'mdbreact';
 import {connect} from 'react-redux';
-import {initSurvey} from '../../../store/actions/answersAction'
+import {initSurvey,deleteSurvey} from '../../../store/actions/viewAction'
 class Surveys extends Component {
-
-    state = {
-        surveys: []
-    }
-  
+    
     componentDidMount() {
         this.props.initSurvey();
     }
+  
     deleteItemHandler = (id) => {
-     
-
+      this.props.deleteSurvey(id);
+      this.setState(this.props.initSurvey());
     }
     render() {
-        let surveyList = this.props.surveys.map((survey, i) => {
+        let surveys = this.props.surveys
+        let surveyList = surveys.map((survey, i) => {
             return (
-
+                    
                 <React.Fragment key={i}>
                     <SurveyItem id={survey._id}
                         date={survey.date}
@@ -48,6 +46,7 @@ class Surveys extends Component {
 
 }
 const mapStatetoProps = state => ({
-    surveys : state.fill_items.surveys
+
+    surveys : state.viewSurvey.surveys
 })
-export default connect(mapStatetoProps,{initSurvey})(Surveys);
+export default connect(mapStatetoProps,{initSurvey,deleteSurvey})(Surveys);
