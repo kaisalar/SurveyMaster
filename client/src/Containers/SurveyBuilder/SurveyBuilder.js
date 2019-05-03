@@ -2,32 +2,35 @@ import React, { Component } from "react";
 import CreateQuestion from "../../Components/CreateQuestion/CreateQuestion";
 import Question from "../../Components/Question/Question";
 import Layout from "../../Components/Layout/Layout";
+import SurveyBuilderWelcome from "../../Components/SurveyBuilderWelcome/SurveyBuilderWelcome";
 import styleClass from "./SurveyBuilder.module.css";
-import styleClass2 from "../../Components/CreateQuestion/CreateQuestion.module.css";
 import * as actions from "../../store/actions/types";
 import { MDBBtn } from "mdbreact";
 import { connect } from "react-redux";
 class SurveyBuilder extends Component {
-  findQuestionIndex = id => {
-    let QuestionID = this.state.Questions.findIndex(p => {
-      return p._id === id;
-    });
-    return QuestionID;
-  };
-
   render() {
-    let Questions = this.props.Qs.map(el => {
-      return <Question key={el._id} index={el._id - 1} />;
-    });
-    return (
-      <Layout>
+    let Questions = [];
+    let PageContent;
+    if (this.props.Qs.length > 0) {
+      Questions = this.props.Qs.map((el,index) => {
+        return <Question key={el._id} index={index} />;
+      });
+      PageContent = (
         <div className={styleClass.SurveyBuilder}>
           <CreateQuestion clicked={this.props.addNewQuestion} />
           {Questions}
-          <div className={styleClass2.CreateQuestion}>
+          <div className={styleClass.CreateQuestion}>
             <MDBBtn gradient="blue">SUBMIT</MDBBtn>
           </div>
         </div>
+      );
+    } else { 
+      PageContent = (<SurveyBuilderWelcome clicked={this.props.addNewQuestion}/>)
+    }
+
+    return (
+      <Layout>
+        {PageContent}
       </Layout>
     );
   }

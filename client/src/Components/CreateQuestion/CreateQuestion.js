@@ -1,6 +1,6 @@
 import React from 'react';
 import { MDBBtn } from "mdbreact";
-import styleClass from './CreateQuestion.module.css'
+import styleClass from '../../Containers/SurveyBuilder/SurveyBuilder.module.css'
 const CreateQuestion= props => {
     return(
         <div className={styleClass.CreateQuestion}>

@@ -29,7 +29,7 @@ class Question extends Component {
       <div className={styleClass.QuestionContainer}>
         <div className={styleClass.Question}>
           <MDBInput
-            label="Untitled Question"
+            label="Enter Your Question Title"
             value={Q.title}
             onChange={e => this.props.ChangeLabelHandler(index, e.target.value)}
             className={styleClass.BigText}
