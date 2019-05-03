@@ -1,0 +1,8 @@
+.Choice { 
+    display: flex;
+}
+.Choice button { 
+    padding: 5px;
+    margin: 30px auto;
+    font-size: 11px;
+}

@@ -1,3 +1,16 @@
 .SurveyBuilder { 
-    padding: 0 10%;
+    padding: 20px 10%;
+}
+select { 
+    border: 0;
+    border-bottom: 1px solid #ced4da;
+    background-color: #F1F1F1;
+    margin: 0.3rem 0 0.55rem 0;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out
+}
+select:focus { 
+    outline-color: transparent;
+    box-shadow: 0 1px 0 0 #4285f4;
+    border-bottom: 1px solid #4285f4;
+
 }

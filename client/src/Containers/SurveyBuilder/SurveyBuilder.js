@@ -28,7 +28,7 @@ class SurveyBuilder extends Component {
         <div className={styleClass.SurveyBuilder}>
           <CreateQuestion clicked={this.props.addNewQuestion} />
           {Questions}
-          <MDBBtn gradient="blue">Submit</MDBBtn>
+          <MDBBtn gradient="blue">SUBMIT</MDBBtn>
         </div>
       </Layout>
     );

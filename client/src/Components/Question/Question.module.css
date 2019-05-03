@@ -2,20 +2,14 @@
     display: flex;
 }
 .SelectInput { 
-    margin: 1.5rem auto;
-}
-.md-form { 
-    min-width: 100%;
+    margin: 1.9rem auto;
 }
 .QuestionContainer { 
     padding: 10px 10px;
 }
 .Answer { 
-    padding: 0 20% 0 0;
+    padding: 0 10%;
 }
 .Question .BigText { 
     font-size: 25px;
-}
-.Question.md-form { 
-    min-width: 70%;
 }
