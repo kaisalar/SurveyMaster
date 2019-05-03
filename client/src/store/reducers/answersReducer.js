@@ -1,23 +1,38 @@
-import * as ActionTypes from "../actions/types";
-
+import * as actionTypes from "../actions/types";
 const initialState = {
-  surveys: []
+  _id: 0,
+  title: "",
+  description: "",
+  date: 0,
+  pages: [
+    // {
+    //   _id: 1,
+    //   title: "no title",
+    //   type: "QUESTION_TEXT"
+    // }
+  ]
 };
+
 const answerReducer = (state = initialState, action) => {
+    console.log("hellooo")
   switch (action.type) {
-    case ActionTypes.SHOW_SURVEYS:
+    case actionTypes.PREVIEW_SURVEY:
+      console.log("answers reducer", action.payload);
       return {
         ...state,
-        surveys: action.payload
+        _id: action.payload._id,
+        title: action.payload.title,
+        description: action.payload.description,
+        date: action.payload.date,
+        pages: action.payload.pages
       };
-    case ActionTypes.FETCH_SURVEYS_FAILED:
+
+    //   case actionTypes.SUBMET_SURVEY:
+
+    default:
       return {
         ...state
       };
-      default:
-      return{
-          ...state
-      }
   }
 };
 export default answerReducer;

@@ -1,9 +1,3 @@
-// import { createStore } from 'redux';
-// import rootReducer from './reducer'
-
-// const Store = createStore(rootReducer);
-
-// export default Store
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import rootReducer from "./reducers";

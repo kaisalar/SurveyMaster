@@ -4,7 +4,7 @@ import HomePage from "./Containers/HomePage/Homepage";
 import Surveys from "./Containers/ShowSurveys/Surveys List/Surveys";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import SurveyBuilder from "./Containers/SurveyBuilder/SurveyBuilder";
-//import './Routes.css'
+import SurveyFillList from './Containers/ShowSurveys/Survey questions List/SurveyFillList'
 
 class Routes extends Component {
   render() {
@@ -19,9 +19,9 @@ class Routes extends Component {
       classNames="slide">
 <Switch location={location}>
         <Route path="/" exact component={HomePage} />
-        <Route path="/filling/:id" component={Surveys} />
+        <Route path="/fill/:id" component={SurveyFillList} />
         <Route path="/create" component={SurveyBuilder} />
-        {/* <Route path="/surveys" render={() => <Surveys {...this.props} />} /> */}
+        <Route path="/surveys" component={Surveys} />
       </Switch>
        </CSSTransition>
      </TransitionGroup>
