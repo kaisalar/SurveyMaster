@@ -4,6 +4,7 @@ import ShortText from '../answerTypes/shortText';
 import Paragraph from '../answerTypes/paragraph';
 import Range from '../answerTypes/range';
 import Rating from '../answerTypes/rating';
+import Slider from '../answerTypes/slider';
 /************************ */
 /*single question to fill */
 /************************ */
@@ -24,6 +25,9 @@ const fill_item = props => {
             break;
         case "range":
             answer = <Range />
+            break;
+        case "QUESTION_SLIDER": 
+            answer = <Slider/>
             break;
         default:
             answer = <ShortText />

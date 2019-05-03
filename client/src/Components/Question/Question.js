@@ -11,32 +11,34 @@ class Question extends Component {
 
     render() { 
       let AnswerType;
-      switch (this.props.Q.type) { 
-          case Qtypes.text:
-          AnswerType = (<ShortText content={this.props.Q.content} />)
+      const index = this.props.index
+      const Q = this.props.Qs[index]
+      switch (Q.type) { 
+          case Qtypes.TEXT:
+          AnswerType = (<ShortText index = {index} />)
           break;
-          case Qtypes.multipleChoise:
-          AnswerType = (<MultipleChoise content={this.props.Q.content} changed={(id, event) => this.props.choiseChanged(id, event)}/>)
+          case Qtypes.MULTIPLE_CHOISE:
+          AnswerType = (<MultipleChoise index = {index} contesnt={Q.content.choices}/>)
           break;
           default:
-          AnswerType = (<ShortText content={this.props.Q.content}/>)
+          AnswerType = (<ShortText index={index}/>)
           break;
       } 
     return (
       <div className={styleClass.QuestionContainer}>
         <div className={styleClass.Question}>
           <MDBInput
-            label="Untitled Question" value={this.props.Q.title} onChange={this.props.ChangeLabelHandler} className={styleClass.BigText}
+            label="Untitled Question" value={Q.title} onChange={(e) => this.props.ChangeLabelHandler(index, e.target.value)} className={styleClass.BigText}
           />
           <select
             className={styleClass.SelectInput}
-            value={this.props.Q.type}
-            onChange={this.props.typeChanged}
+            value={Q.type}
+            onChange={e => this.props.ChangeTypeHandler(index, e.target.value)}
           >
-            <option value="text">
+            <option value={Qtypes.TEXT}>
               short answer
             </option>
-            <option value="Multiple Choice">multiple choise</option>
+            <option value={Qtypes.MULTIPLE_CHOISE}>multiple choise</option>
           </select>
         </div>
         <div className={styleClass.Answer}>
@@ -49,14 +51,15 @@ class Question extends Component {
     
   }
   
-const mapStateToProps = (state,ownProps) => { 
+const mapStateToProps = state => { 
   return { 
-    Q: state.createSurvey.Questions[ownProps.index]
+    Qs: state.createSurvey.Questions
   }
 }
-const mapDispatchToProps = (dispatch,ownProps) => { 
+const mapDispatchToProps = dispatch => { 
   return { 
-    ChangeLabelHandler: () => dispatch({type: actions.CHANGE_QUESTION_TITLE,index: ownProps.index})
+    ChangeLabelHandler: (index, newVal) => dispatch({type: actions.CHANGE_QUESTION_TITLE,index: index,val:newVal }),
+    ChangeTypeHandler: (index, newVal) => dispatch({type: actions.CHANGE_QUESTION_TYPE,index: index,val:newVal })
   }
 }
 

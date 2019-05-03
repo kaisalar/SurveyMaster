@@ -6,7 +6,7 @@ export const setSurveys = surveys => {
     payload: surveys
   };
 };
-
+////////////////////////
 export const deleteSurvey = id => dispatch => {
   axios.delete("api/surveys/" + id)
        .then(response => {
@@ -14,7 +14,7 @@ export const deleteSurvey = id => dispatch => {
               dispatch(initSurvey());
               });
 };
-
+////////////////////////
 export const initSurvey = () => dispatch => {
   axios
     .get("api/surveys")
