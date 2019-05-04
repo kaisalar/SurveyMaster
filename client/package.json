@@ -10,7 +10,10 @@
   },
   "proxy": "http://localhost:5000/",
   "dependencies": {
+    "@material-ui/core": "^3.9.3",
+    "@material-ui/lab": "^3.0.0-alpha.30",
     "axios": "^0.18.0",
+    "material-ui-slider": "^3.0.0",
     "mdbreact": "^4.13.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -19,7 +22,8 @@
     "react-router-dom": "^5.0.0",
     "react-scripts": "^3.0.0",
     "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "rsuite": "^3.8.3"
   },
   "devDependencies": {
     "yarn": "^1.15.2"
