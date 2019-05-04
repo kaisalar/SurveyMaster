@@ -1,13 +1,14 @@
 import React, { Component } from "react";
-import { MDBInput, MDBBtn } from "mdbreact";
+import { MDBInput } from "mdbreact";
 import styleClass from "./Choice.module.css";
+import { IconButton, Icon } from "rsuite";
 
 class Choise extends Component {
   state = {
     mouseHover: false
   };
   mouseHoverOn = () => {
-    console.log('mousein');
+    console.log("mousein");
     this.setState({
       mouseHover: true
     });
@@ -20,11 +21,11 @@ class Choise extends Component {
 
   render() {
     let Style = null;
-    if(this.state.mouseHover){
-      Style = { 
+    if (this.state.mouseHover) {
+      Style = {
         borderBottom: "1px solid #D32F2F",
-        boxShadow: '0 1px 0 0 #D32F2F'
-      }
+        boxShadow: "0 1px 0 0 #D32F2F"
+      };
     }
     return (
       <div className={styleClass.Choice}>
@@ -34,15 +35,15 @@ class Choise extends Component {
           value={this.props.el}
           onKeyPress={event => this.props.keyPressedHandler(event)}
           onChange={e => this.props.changeChoiseHandler(e.target.value)}
-        />
-        <MDBBtn
+        />  
+        <IconButton
+          icon={<Icon icon="minus"/>}
           color="red"
+          circle
           onClick={this.props.clicked}
           onMouseEnter={this.mouseHoverOn}
           onMouseLeave={this.mouseHoverOff}
-        >
-          Delete
-        </MDBBtn>
+        />
       </div>
     );
   }

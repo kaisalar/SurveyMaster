@@ -8,7 +8,7 @@ const SurveyBuilderWelcome = props => {
       <h1>WELCOME TO SURVEY MASTER</h1>
       <h2>LET'S START ADDING QUESTION</h2>
       <p>you can choose one of many types of questions available so pick & choose what you want</p> 
-      <MDBBtn gradient="blue" onClick={props.clicked}>ADD new Question</MDBBtn>     
+      <MDBBtn gradient="blue" onClick={props.clicked}>ADD new Question</MDBBtn> 
     </div>
   );
 };
