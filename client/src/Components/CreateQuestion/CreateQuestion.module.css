@@ -1,9 +1,0 @@
-.CreateQuestion {
-    display: flex;
-    align-items: center;
-    text-align: center  
-}
-.AddQuestionBtn { 
-    color: white !important;
-    font-size: 1.2rem !important;
-}

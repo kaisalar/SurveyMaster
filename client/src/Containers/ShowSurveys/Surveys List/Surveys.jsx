@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from '../../../axios-requests';
 import SurveyItem from '../../../Components/Surveys items/SurveyItem';
 import { MDBRow } from 'mdbreact';
 import {connect} from 'react-redux';

@@ -1,0 +1,10 @@
+.Choice { 
+    display: flex;
+}
+.Choice button { 
+    margin: 30px 15px;
+    font-size: 11px;
+}
+.Choice div { 
+    flex-grow: 1;
+}
