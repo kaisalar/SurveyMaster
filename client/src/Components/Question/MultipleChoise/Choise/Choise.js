@@ -37,9 +37,10 @@ class Choise extends Component {
           onChange={e => this.props.changeChoiseHandler(e.target.value)}
         />  
         <IconButton
-          icon={<Icon icon="minus"/>}
+          icon={<Icon icon="close"/>}
           color="red"
           circle
+          size="sm"
           onClick={this.props.clicked}
           onMouseEnter={this.mouseHoverOn}
           onMouseLeave={this.mouseHoverOff}

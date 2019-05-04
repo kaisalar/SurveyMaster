@@ -4,9 +4,11 @@ import Question from "../../Components/Question/Question";
 import Layout from "../../Components/Layout/Layout";
 import SurveyBuilderWelcome from "../../Components/SurveyBuilderWelcome/SurveyBuilderWelcome";
 import styleClass from "./SurveyBuilder.module.css";
+import './SurveyBuilder.css'
 import * as actions from "../../store/actions/types";
 import { MDBBtn } from "mdbreact";
 import { connect } from "react-redux";
+
 class SurveyBuilder extends Component {
   render() {
     let Questions = [];
