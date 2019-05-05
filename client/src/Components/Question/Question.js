@@ -54,11 +54,11 @@ class Question extends Component {
         break;
     }
     const data = [
-      { label: "Short Text", value: Qtypes.TEXT },
-      { label: "Paragraph", value: Qtypes.PARAGRAPH },
-      { label: Qtypes.MULTIPLE_CHOISE, value: Qtypes.MULTIPLE_CHOISE },
-      { label: Qtypes.RADIO_GROUP, value: Qtypes.RADIO_GROUP },
-      { label: Qtypes.DROPDOWN, value: Qtypes.DROPDOWN }
+      { label: "Short Text", value: Qtypes.TEXT,role: "Text Answer" },
+      { label: "Paragraph", value: Qtypes.PARAGRAPH,role: "Text Answer" },
+      { label: Qtypes.MULTIPLE_CHOISE, value: Qtypes.MULTIPLE_CHOISE,role: "CheckBox"  },
+      { label: Qtypes.RADIO_GROUP, value: Qtypes.RADIO_GROUP,role: "Z" },
+      { label: Qtypes.DROPDOWN, value: Qtypes.DROPDOWN,role: "Z" }
     ];
     return (
       <div
@@ -77,6 +77,10 @@ class Question extends Component {
           <SelectPicker
             className={styleClass.SelectInput}
             data={data}
+            appearance="subtle"
+            groupBy="role" 
+            sort={isGroup => { 
+              if(isGroup) {return(a,b) => a.groupTitle > b.groupTitle} }}
             defaultValue={Qtypes.TEXT}
             value={Q.type}
             searchable={false}
