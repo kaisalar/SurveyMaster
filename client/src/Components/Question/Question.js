@@ -35,7 +35,14 @@ class Question extends Component {
     const Q = this.props.Qs[index];
     switch (Q.type) {
       case Qtypes.TEXT:
-        AnswerType = <TextAnswer index={index} type="text" label="Short Answer Text"/>;
+        AnswerType = (
+          <TextAnswer index={index} type="text" label="Short Answer Text" />
+        );
+        break;
+      case Qtypes.PARAGRAPH:
+        AnswerType = (
+          <TextAnswer index={index} type="textarea" label="Long Answer Text" />
+        );
         break;
       case Qtypes.MULTIPLE_CHOISE:
         AnswerType = (
@@ -48,6 +55,7 @@ class Question extends Component {
     }
     const data = [
       { label: "Short Text", value: Qtypes.TEXT },
+      { label: "Paragraph", value: Qtypes.PARAGRAPH },
       { label: Qtypes.MULTIPLE_CHOISE, value: Qtypes.MULTIPLE_CHOISE },
       { label: Qtypes.RADIO_GROUP, value: Qtypes.RADIO_GROUP },
       { label: Qtypes.DROPDOWN, value: Qtypes.DROPDOWN }
