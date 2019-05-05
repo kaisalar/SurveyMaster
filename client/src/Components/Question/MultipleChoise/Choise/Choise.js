@@ -8,7 +8,6 @@ class Choise extends Component {
     mouseHover: false
   };
   mouseHoverOn = () => {
-    console.log("mousein");
     this.setState({
       mouseHover: true
     });

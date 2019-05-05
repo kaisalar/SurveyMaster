@@ -1,22 +1,24 @@
 .Question { 
     display: flex;
 }
-.Question div { 
+.Question div  { 
     flex-grow: 1;
 }
 .SelectInput { 
-    margin: 1.7rem 15px;
+    margin: 1.7rem 20px;
+    flex-grow: 0 !important
 }
 .QuestionContainer { 
     margin: 10px auto;
     padding: 10px 10px;
     box-shadow: 0px 0px 5px 2px rgba(0, 0, 255, .05);
     border-radius: 5px;
+    transition: box-shadow 0.15s ease-in-out;
 }
 .Answer { 
     padding: 0 10%;
 }
 .Question .BigText { 
     font-size: 25px;
-    flex-grow: 1;
+    margin-left: 30px;
 }
