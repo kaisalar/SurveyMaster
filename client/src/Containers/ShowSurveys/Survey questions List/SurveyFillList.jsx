@@ -10,8 +10,8 @@ import styles from './SurveyFillList.module.css'
 /* whole questions for a single survey*/
 /************* */
 class SurveyFillList extends Component {
-
    
+ 
     componentDidMount() {
         this.props.previewSurvey(this.props.match.params.id);
     }
@@ -27,34 +27,35 @@ class SurveyFillList extends Component {
     }
     render() {
         //    console.log("new State in SurveyFillList.jsx", this.props)
+        const { id, title, date, surveyPages } = this.props
 
         return (
             <div className={styles.layout}>
 
                 <div>
-                    <h1>Title :{this.props.title}</h1>
-                    <h6>ID: {this.props.id}</h6>
-                    <h5>Date: {this.props.date}</h5>
+                    <h1>Title :{title}</h1>
+                    <h6>ID: {id}</h6>
+                    <h5>Date: {date}</h5>
                 </div>
                 <div>
-                    {this.props.surveyPages.map(page => {
-
+                    {surveyPages.map(page => {
+                        
                         console.log('page', page)
                         return page.questions.map((question, i) => {
                             console.log('question', question)
                             return (<Question
                                 key={i}
                                 id={question._id}
-                                description={question.description}
+                                number={i+1}
                                 title={question.title}
                                 answerObjectType={question.type}
                                 /* getAnswer={(event) => this.getAnswerHandler()}*/ />)
-
-                        })
-                    })}
+                                
+                            })
+                        })}
 
                 </div>
-                <MDBBtn gradient="blue">submit</MDBBtn>
+                <MDBBtn gradient="blue" style={{color:'White',borderRadius:'5px'}}>submit</MDBBtn>
             </div>
         )
     }

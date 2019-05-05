@@ -1,9 +1,9 @@
 import * as actionType from '../actions/types';
 const initialState= {
-   surveyId,
+   surveyId:0,
     answers:[{
-        questionId,
-        type,
+        questionId:0,
+        type:"",
         content:{ value : "" /**number or string */ }
     }]    
 }
@@ -11,13 +11,17 @@ const initialState= {
 const contentReducer = (state = initialState , action)=>{
     switch(action.type){
         case actionType.SHORT_TEXT:
+            console.log('answer content reducer' , action.content)
         return{
+            // ...state,
+            // surveyId : newAnswer[action.surveyId],
+            // answers: answers.push(action.content)
             ...state,
-            surveyId : newAnswer[action.surveyId],
-            answers: answers.push(action.content)
+            answers:[...state.answers,action.content]
         }
         default:
         return {...state}
     }
 }
+
 export default contentReducer;

@@ -10,3 +10,9 @@ export const previewSurvey = (id) => dispatch => {
        console.log("Preview Survey from answersAction.js" , response.data);
      });
 }
+export const addquestion = (state) => dispatch => {
+   dispatch({
+     type:actionTypes.SHORT_TEXT,
+     content : state
+   })
+}

@@ -1,59 +1,90 @@
-import React from 'react'
+import React, { Component } from 'react'
 import MultipleChoice from '../answerTypes/multiplechoice'
 import ShortText from '../answerTypes/shortText';
 import Paragraph from '../answerTypes/paragraph';
 import Range from '../answerTypes/range';
 import Rating from '../answerTypes/rating';
 import Slider from '../answerTypes/slider';
+import Dropdown from '../answerTypes/dropdownmenu'
+import {connect} from 'react-redux';
+import {addquestion} from '../../../store/actions/answersAction'
 /************************ */
 /*single question to fill */
 /************************ */
-const fill_item = props => {
-    let answer = null;
-    switch (props.answerObjectType) {
-        case 'multiplechoice':
-            answer = <MultipleChoice />
-            break;
-        case "QUESTION_TEXT":
-            answer = <ShortText />
-            break;
-        case "paragraph":
-            answer = <Paragraph />
-            break;
-        case "rating":
-            answer = <Rating />
-            break;
-        case "range":
-            answer = <Range />
-            break;
-        case "QUESTION_SLIDER": 
-            answer = <Slider/>
-            break;
-        default:
-            answer = <ShortText />
+class SurveyPage extends Component {
+    state = {
+        questionId: this.props.id,
+        type: "",
+        content: { value: "" }
 
     }
-    return (<div>
-        <div className="card">
-            <div className="card-header">
-                
-               
-            </div>
-            <div className="card-body">
-                <blockquote className="blockquote mb-0">
-                    <h3><strong>Question: </strong> {props.title}</h3>
-                    <footer className="blockquote-footer">Someone famous in<cite title="Source Title">Source Title</cite></footer>
-                </blockquote>
-            </div>
-        </div>
-        <br />
+   
+    onAnswerChange = (value) => {
+        this.setState({ content: { value: value } },() => this.props.addquestion(this.state))
+    }
+    render() {
+        const { answerObjectType, title,number } = this.props
+        let answer = null;
 
-        <div className="form-group">
-            <p >Your Answer</p>
-            {answer}
+        switch (answerObjectType) {
+            case 'QUESTION_CHECKBOX':
+               // this.setState({ type: "ANSWER_MULTIPLE_CHOICE" })
+                answer = <MultipleChoice change={this.onAnswerChange} />
+                break;
+            case "QUESTION_TEXT":
+                answer = <ShortText change={this.onAnswerChange} />
+                break;
+            case "QUESTION_DROPDOWN":
+                answer = <Dropdown />
+                break;
+            case "QUESTION_PARAGRAPH":
+                answer = <Paragraph change={this.onAnswerChange} />
+                break;
            
+                case "QUESTION_RATING":
+                answer = <Rating change={this.onAnswerChange} />
+                break;
+            // case "QUESTION_RANGE":
+            //     answer = <Range change={this.onAnswerChange}/>
+            //     break;
+            case "QUESTION_SLIDER":
+                answer = <Slider change={this.onAnswerChange} />
+                break;
+            default:
+                answer = <ShortText change={this.onAnswerChange} />
 
+        }
+        return (
+       
+            <div>
+            <div className="card">
+                <div className="card-header">
+
+
+                </div>
+                <div className="card-body">
+                    <blockquote className="blockquote mb-0">
+                        <h3 style={{ textAlign: 'left' }}><strong>Question {number}:</strong> {title}</h3>
+                    </blockquote>
+                </div>
+            </div>
+            <br />
+
+            <div >
+                
+                <cite >Your Answer</cite>
+                {answer}
+
+
+            </div>
         </div>
-    </div>)
+        )
+    }
 }
-export default fill_item;
+const mapStateToProps = state =>{
+  return{
+      newState : state.questionAnswer.answers
+      
+}  
+}
+export default connect(mapStateToProps,{addquestion})(SurveyPage);

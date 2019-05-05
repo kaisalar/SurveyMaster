@@ -20,6 +20,8 @@ class SimpleSlider extends React.Component {
 
     handleChange = (event, value) => {
         this.setState({ value });
+    this.props.change(value)
+
     };
 
     render() {
@@ -35,6 +37,7 @@ class SimpleSlider extends React.Component {
                     value={value}
                     aria-labelledby="label"
                     onChange={this.handleChange}
+                    onChangeCapture={(event) => this.props.change(event)}
                 />
             </div>
         );
