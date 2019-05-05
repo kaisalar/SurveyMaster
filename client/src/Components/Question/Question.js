@@ -1,21 +1,41 @@
 import React, { Component } from "react";
 import { MDBInput } from "mdbreact";
 import styleClass from "./Question.module.css";
-import ShortText from "./ShortText/ShortText";
+import TextAnswer from "./TextAnswer/TextAnswer";
 import MultipleChoice from "./MultipleChoise/MultipleChoice";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/types";
 import * as Qtypes from "./QuestionTypes";
-import {  SelectPicker } from "rsuite";
+import { SelectPicker } from "rsuite";
 
 class Question extends Component {
+  state = {
+    mouseHover: false
+  };
+  mouseHoverOn = () => {
+    this.setState({
+      mouseHover: true
+    });
+  };
+  mouseHoverOff = () => {
+    this.setState({
+      mouseHover: false
+    });
+  };
   render() {
+    let Style = null;
+    if (this.state.mouseHover) {
+      Style = {
+        boxShadow: "0px 0px 10px 10px rgba(0, 0, 255, .1)"
+      };
+    }
+
     let AnswerType;
     const index = this.props.index;
     const Q = this.props.Qs[index];
     switch (Q.type) {
       case Qtypes.TEXT:
-        AnswerType = <ShortText index={index} />;
+        AnswerType = <TextAnswer index={index} type="text" label="Short Answer Text"/>;
         break;
       case Qtypes.MULTIPLE_CHOISE:
         AnswerType = (
@@ -23,17 +43,22 @@ class Question extends Component {
         );
         break;
       default:
-        AnswerType = <ShortText index={index} />;
+        AnswerType = <TextAnswer index={index} />;
         break;
     }
     const data = [
-      {label: "Short Text", value: Qtypes.TEXT},
-      {label: Qtypes.MULTIPLE_CHOISE, value: Qtypes.MULTIPLE_CHOISE},
-      {label: Qtypes.RADIO_GROUP, value: Qtypes.RADIO_GROUP},
-      {label: Qtypes.DROPDOWN_MENU, value: Qtypes.DROPDOWN_MENU},
-    ]
+      { label: "Short Text", value: Qtypes.TEXT },
+      { label: Qtypes.MULTIPLE_CHOISE, value: Qtypes.MULTIPLE_CHOISE },
+      { label: Qtypes.RADIO_GROUP, value: Qtypes.RADIO_GROUP },
+      { label: Qtypes.DROPDOWN, value: Qtypes.DROPDOWN }
+    ];
     return (
-      <div className={styleClass.QuestionContainer}>
+      <div
+        className={styleClass.QuestionContainer}
+        style={Style}
+        onMouseEnter={this.mouseHoverOn}
+        onMouseLeave={this.mouseHoverOff}
+      >
         <div className={styleClass.Question}>
           <MDBInput
             label="Enter Your Question Title"
@@ -48,9 +73,7 @@ class Question extends Component {
             value={Q.type}
             searchable={false}
             cleanable={false}
-            onChange={newVal =>
-              this.props.ChangeTypeHandler(index, newVal)
-            }
+            onChange={newVal => this.props.ChangeTypeHandler(index, newVal)}
           >
             {/* <option value={Qtypes.TEXT}>short answer</option>
             <option value={Qtypes.MULTIPLE_CHOISE}>multiple choise</option>

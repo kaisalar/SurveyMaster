@@ -9,7 +9,7 @@ const reducer = (state = initialState, action) => {
     case actions.ADD_QUESTION:
       const newQuestion = {
         _id: state.Questions.length + 1,
-        type: "Text",
+        type: Qtypes.TEXT,
         title: "Untitled Question",
         content: {}
       };
