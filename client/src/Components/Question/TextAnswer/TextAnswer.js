@@ -3,7 +3,7 @@ import { MDBInput, } from "mdbreact";
 
 const TextAnswer= props => {
     return(
-        <MDBInput type={props.type} label={props.label} />
+        <MDBInput type={props.type} label={props.label} disabled/>
     );
 }
 

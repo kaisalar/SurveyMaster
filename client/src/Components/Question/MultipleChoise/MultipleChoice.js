@@ -20,6 +20,7 @@ class multipleChoice extends Component {
           index={index}
           id={id}
           el={el}
+          type={this.props.type}
           keyPressedHandler={(e) => this.keyPressedHandler(e,index)}
           clicked={() => this.props.deleteChoiceHandler(index, id)}
           changeChoiseHandler={(newVal) =>

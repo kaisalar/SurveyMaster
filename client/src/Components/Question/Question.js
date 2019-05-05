@@ -44,9 +44,19 @@ class Question extends Component {
           <TextAnswer index={index} type="textarea" label="Long Answer Text" />
         );
         break;
-      case Qtypes.MULTIPLE_CHOISE:
+      case Qtypes.RADIO_GROUP:
         AnswerType = (
-          <MultipleChoice index={index} contesnt={Q.content.choices} />
+          <MultipleChoice index={index} type={Qtypes.RADIO_GROUP} />
+        );
+        break;
+        case Qtypes.CHECKBOX:
+        AnswerType = (
+          <MultipleChoice index={index} type={Qtypes.CHECKBOX} />
+        );
+        break;
+        case Qtypes.DROPDOWN:
+        AnswerType = (
+          <MultipleChoice index={index} type={Qtypes.DROPDOWN} />
         );
         break;
       default:
@@ -56,9 +66,9 @@ class Question extends Component {
     const data = [
       { label: "Short Text", value: Qtypes.TEXT,role: "Text Answer" },
       { label: "Paragraph", value: Qtypes.PARAGRAPH,role: "Text Answer" },
-      { label: Qtypes.MULTIPLE_CHOISE, value: Qtypes.MULTIPLE_CHOISE,role: "CheckBox"  },
-      { label: Qtypes.RADIO_GROUP, value: Qtypes.RADIO_GROUP,role: "Z" },
-      { label: Qtypes.DROPDOWN, value: Qtypes.DROPDOWN,role: "Z" }
+      { label: "Radio Group", value: Qtypes.RADIO_GROUP,role: "Muliple Choise"  },
+      { label: "Checkbox", value: Qtypes.CHECKBOX,role: "Muliple Choise" },
+      { label: "Dropdown Menu", value: Qtypes.DROPDOWN,role: "Muliple Choise" }
     ];
     return (
       <div
@@ -78,10 +88,7 @@ class Question extends Component {
             className={styleClass.SelectInput}
             data={data}
             appearance="subtle"
-            groupBy="role" 
-            sort={isGroup => { 
-              if(isGroup) {return(a,b) => a.groupTitle > b.groupTitle} }}
-            defaultValue={Qtypes.TEXT}
+            groupBy="role"
             value={Q.type}
             searchable={false}
             cleanable={false}

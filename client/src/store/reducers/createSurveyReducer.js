@@ -66,7 +66,9 @@ const handleContentOfType = Question => {
     case Qtypes.TEXT:
       Question.content = {};
       return;
-    case Qtypes.MULTIPLE_CHOISE:
+    case Qtypes.RADIO_GROUP:
+    case Qtypes.CHECKBOX:
+    case Qtypes.DROPDOWN:
       Question.content = {
         choices: ["Option 1"]
       };
