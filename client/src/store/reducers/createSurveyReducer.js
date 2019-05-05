@@ -11,7 +11,9 @@ const reducer = (state = initialState, action) => {
         _id: state.Questions.length + 1,
         type: Qtypes.TEXT,
         title: "Untitled Question",
-        content: {}
+        content: {
+          choices: ["Option 1"]
+        }
       };
       return {
         ...state,
@@ -27,7 +29,7 @@ const reducer = (state = initialState, action) => {
     case actions.CHANGE_QUESTION_TYPE:
       newQuestions = [...state.Questions];
       newQuestions[action.index].type = action.val;
-      handleContentOfType(newQuestions[action.index]);
+     // handleContentOfType(newQuestions[action.index]);
       return {
         ...state,
         Questions: newQuestions
