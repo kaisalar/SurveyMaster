@@ -12,9 +12,10 @@ export const previewSurvey = (id) => dispatch => {
      });
 }
 export const addquestion = (state) => dispatch => {
+  console.log('state action ',state)
    dispatch({
-     type: state.content.type,
-     content: state.content,
+     type: state.info.type,
+     content: state.info,
      id: state.survey_id
    });
 }
@@ -24,13 +25,7 @@ export const addquestion = (state) => dispatch => {
 //      id : state
 //    })
 // }
-export const holdBackState = (recievedState) => dispatch =>{
-  answers.push(recievedState)
-  console.log(answers)
-  dispatch({
-    content: recievedState
-  })
-}
+
 export const postAnswers = (answers,surveyId) => dispatch=> {
 
   console.log("answersssss" , answers)

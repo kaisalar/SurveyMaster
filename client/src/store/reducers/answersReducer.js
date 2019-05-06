@@ -10,10 +10,10 @@ const initialState = {
 };
 
 const answerReducer = (state = initialState, action) => {
-    console.log("hellooo")
+    
   switch (action.type) {
     case actionTypes.PREVIEW_SURVEY:
-      console.log("answers reducer", action.payload);
+  //    console.log("answers reducer", action.payload);
       return {
         ...state,
         _id: action.payload._id,

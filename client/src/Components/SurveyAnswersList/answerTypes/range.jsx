@@ -1,40 +1,50 @@
-import React, { Component } from 'react'
-import { Slider } from 'rsuite';
-class CustomSlider extends React.Component {
+
+import 'rc-slider/assets/index.css';
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Slider, { Range} from 'rc-slider';
+
+class DynamicBounds extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: 0
+            minValue: 0,
+            maxValue: 100,
         };
     }
-    onRangeChanged = (value) => {
-        this.setState({value: value} , () => this.props.change(value))
+    onAfterChanged = (value) =>{
+        let state = {minValue: value[0] ,maxValue: value[1]}
+        this.props.change(state)
+    }
+    onSliderChange = (value) => {
+        console.log(value)
+
+    }
+    onMinChange = (e) => {
+        this.setState({
+            min: +e.target.value || 0,
+        });
+    }
+    onMaxChange = (e) => {
+        this.setState({
+            max: +e.target.value || 100,
+        });
     }
     render() {
-        const labels = [0,1,2,3,4,5,6,7,8,9,10];
-        const { value } = this.state;
-        const handleStyle = {
-            color: '#000',
-            fontSize: 12,
-            width: '70%',
-            height: 32,
-            margin:'30px auto',
-            //verticalAlign:'middle'
-            
-        };
-
         return (
-            <div>
-                <p style={{float:'left' ,margin: 'auto'}}>min value: {labels[0]}</p>
-                <p style={{ float: 'right' , margin:'auto' }}>max value:{labels.length - 1}</p>
-                <Slider defaultValue={  50} min={10} step={10} max={100} 
-                graduated
-                 progress 
-                style={handleStyle}
-                onChange={this.onRangeChanged}/>
-              
+            <div style={{width:"70%" , margin : 'auto',marginBottom:'20px'}}>
+                <label>Min: </label>
+                <input type="number" value={this.state.minValue} disabled onChange={this.onMinChange} />
+                <br />
+                <label>Max: </label>
+                <input type="number" value={this.state.maxValue} disabled onChange={this.onMaxChange} />
+                <br /><br />
+                <Range style={{border:'blue'}} defaultValue={[20, 50]}  onAfterChange={this.onAfterChanged} min={this.state.min} max={this.state.max}
+                    onChange={this.onSliderChange}
+                />
             </div>
         );
     }
 }
-export default CustomSlider;
+export default DynamicBounds

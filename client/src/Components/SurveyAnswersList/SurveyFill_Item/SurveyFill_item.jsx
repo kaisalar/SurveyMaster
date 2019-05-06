@@ -9,83 +9,78 @@ import Dropdown from '../answerTypes/dropdownmenu'
 import * as Qtype from '../../Question/QuestionTypes'
 import * as Atype from '../../../store/actions/types'
 import { connect } from 'react-redux';
-import { addquestion, holdBackState } from '../../../store/actions/answersAction'
+import { addquestion } from '../../../store/actions/answersAction'
 import RadioButton from '../answerTypes/radioGroup';
 /************************ */
 /*single question to fill */
 /************************ */
 class SurveyPage extends Component {
-    state = {
-        questionId: this.props.id,
-        type: "",
-        content: { value: "" }
-
-    }
+    
     constructor(props) {
         super(props);
         this.localState = {
             survey_id: this.props.surveyId,
-            content: {
+          
+            info: {
                 questionId: this.props.id,
                 type: "",
-                content: { value: "" }
+                content: { }
             }
         }
 
     }
-    onSubmit = () => {
-        this.props.holdBackState(this.localState);
-    }
+  
     onAnswerChange = (value) => {
-
-        this.localState.content.content.value = value
+        this.localState.info.content = value
+        console.log(this.localState)
         this.props.addquestion(this.localState)
     }
     render() {
         const { answerObjectType, title, number } = this.props
         let answer = null;
-        let content = this.localState.content
+        let info = this.localState.info
         switch (answerObjectType) {
             case Qtype.CHECKBOX :
                 {
-                    content.type = Atype.ANSWER_MULTIPLE_CHOICE
-                    console.log('type', this.localState.type)
-                    answer = <CheckBox change={this.onAnswerChange} />
+                    info.type = Atype.ANSWER_MULTIPLE_CHOICE
+              //      console.log('type', this.localState.type)
+                    answer = <CheckBox change={this.onAnswerChange}  />
                     break;
                 }
             case Qtype.TEXT: {
-                content.type = Atype.ANSWER_TEXT
+                info.type = Atype.ANSWER_TEXT
                 answer = <ShortText change={this.onAnswerChange} />
                 break;
             }
             case Qtype.RADIO_GROUP:
-                content.type = Atype.ANSWER_MULTIPLE_CHOICE
+                info.type = Atype.ANSWER_SINGLE_NUMBER_VALUE
                 answer = <RadioButton change={this.onAnswerChange}/>
                 break;
 
             case Qtype.DROPDOWN:
-                content.type = Atype.ANSWER_MULTIPLE_CHOICE
+                info.type = Atype.ANSWER_SINGLE_NUMBER_VALUE
                 answer = <Dropdown change={this.onAnswerChange} />
                 break;
             case Qtype.PARAGRAPH: {
-                content.type = Atype.ANSWER_TEXT
+                info.type = Atype.ANSWER_TEXT
 
                 answer = <Paragraph change={this.onAnswerChange} />
                 break;
             }
             case Qtype.RANGE:
-                content.type =  Atype.ANSWER_RANGE
+                info.type =  Atype.ANSWER_RANGE
                 answer = <Range change={this.onAnswerChange} />
                 break;
             case Qtype.RATING:
+                info.type =  Atype.ANSWER_SINGLE_NUMBER_VALUE
                 answer = <Rating change={this.onAnswerChange} />
                 break;
             case Qtype.SLIDER:
-                content.type = Atype.ANSWER_SINGLE_NUMBER_VALUE
+                info.type = Atype.ANSWER_SINGLE_NUMBER_VALUE
                 answer = <Slider change={this.onAnswerChange} />
                 break;
             default:
-                content.type = Atype.ANSWER_TEXT
+                info.type = Atype.ANSWER_TEXT
 
                 answer = <ShortText change={this.onAnswerChange} />
 
@@ -118,4 +113,4 @@ class SurveyPage extends Component {
     }
 }
 
-export default connect(null, { addquestion, holdBackState })(SurveyPage);
+export default connect(null, { addquestion })(SurveyPage);

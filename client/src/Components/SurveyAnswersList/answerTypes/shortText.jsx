@@ -3,7 +3,7 @@ import React from 'react'
 
 const shortText = (props) => {
    const onTextchanged = (event)=>{
-        props.change(event.target.value)
+        props.change({value:event.target.value})
     }
     return(
     <MDBInput label="Here you should write your answer" onChange={onTextchanged}/>)}

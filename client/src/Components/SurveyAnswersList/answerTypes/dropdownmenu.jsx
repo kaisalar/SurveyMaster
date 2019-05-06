@@ -7,7 +7,8 @@ class Dropdownmenu extends Component {
      active:"",
  }
     onItemSelect = (value) => {
-        this.setState({ title: value ,active:value},()=>this.props.change(value))
+        this.setState({ title: value ,active:value},()=>this.props.change({value:value}))
+        
     }
     render(){
         const {title,active} = this.state;

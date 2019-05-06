@@ -4,7 +4,8 @@ import { MDBInput } from "mdbreact";
 const TextareaPage = (props) => {
 
     const onInputChanged = (event)=>  {
-        props.change(event.target.value);
+        
+        props.change({ value: event.target.value });
     }
     return (
         <MDBInput 

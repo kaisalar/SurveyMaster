@@ -14,7 +14,7 @@ class RadioButton extends Component {
         value: 0
     }
     onChoiceChanged = (value) => {
-        this.props.change(value)
+        this.props.change({value:value})
     }
     render() {
 

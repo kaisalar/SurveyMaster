@@ -7,7 +7,7 @@ class Rater extends React.Component {
         this.value = 0;
     }
     ratingChanged = (newRating) => {
-        this.props.change(newRating)
+        this.props.change({value:newRating})
         this.value = newRating;
     }
 
