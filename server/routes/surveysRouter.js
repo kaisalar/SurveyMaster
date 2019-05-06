@@ -75,7 +75,7 @@ router.get('/:id/report', async (req, res) => {
         return res.status(404).send(`The survey with the given id: ${_id} NOT FOUND.`)
     }
 
-    const report = Survey.generatReport(_id)
+    const report = await Survey.generatReport(_id)
 
     res.send(report)
 })

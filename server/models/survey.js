@@ -146,7 +146,7 @@ class Survey extends Element {
     }
 }
 async function test() {
-    const report = await Survey.generatReport("823d09fe-2898-4ddc-8e6d-6a6a35d7b5a5");
+    const report = await Survey.generatReport("ad03a182-672a-4c6d-b79c-a0f55b605449");
     console.log(report);
 }
 // test();
