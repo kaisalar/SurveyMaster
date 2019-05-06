@@ -59,7 +59,7 @@ router.get('/:sid/responses/:rid', async (req, res) => {
         return res.status(404).send(`The survey with the given id: ${surveyId} NOT FOUND.`)
     }
 
-    const response = await Response.loadSurveyResponsesInfo(surveyId, responseId)
+    const response = await Response.loadSurveyResponseById(surveyId, responseId)
 
     res.send(response)
 })
