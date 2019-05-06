@@ -27,7 +27,6 @@ select:focus {
     font-size: 1.2rem !important;
     margin: 15px auto !important;
 }
-
-.md-form { 
-    margin: 1rem auto !important;
+.sideOpened { 
+    margin: 25px auto
 }

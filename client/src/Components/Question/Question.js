@@ -26,7 +26,7 @@ class Question extends Component {
     let Style = null;
     if (this.state.mouseHover) {
       Style = {
-        boxShadow: "0px 0px 10px 10px rgba(0, 0, 255, .1)"
+        boxShadow: "0px 0px 5px 5px rgba(0, 0, 255, .1)"
       };
     }
 
@@ -76,6 +76,7 @@ class Question extends Component {
         style={Style}
         onMouseEnter={this.mouseHoverOn}
         onMouseLeave={this.mouseHoverOff}
+        onClick={this.props.clicked}
       >
         <div className={styleClass.Question}>
           <MDBInput
