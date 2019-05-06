@@ -3,7 +3,13 @@
     "title": "Pesonal Info",
     "questions": [
       { "_id": "4d3c15f0-f63f-449e-92cd-a55fdbd7d56f1", "title": "What's your name?", "type": "QUESTION_TEXT" },
-      { "_id": "4d3c15f0-f63f-449e-92cd-a55fdbd7d56f2", "title": "How old are you?", "type": "QUESTION_SLIDER" }
+      { "_id": "4d3c15f0-f63f-449e-92cd-a55fdbd7d56f2", "title": "How old are you?", "type": "QUESTION_SLIDER" },
+      { "_id": "4d3c15f0-f63f-449e-92cd-a55fdbd7d56f3", "title": "How old are you?", "type": "QUESTION_RANGE" },
+      { "_id": "4d3c15f0-f63f-449e-92cd-a55fdbd7d56f4", "title": "How old are you?", "type": "QUESTION_PARAGRAPH" },
+      { "_id": "4d3c15f0-f63f-449e-92cd-a55fdbd7d56f5", "title": "How old are you?", "type": "QUESTION_CHECKBOX" },
+      { "_id": "4d3c15f0-f63f-449e-92cd-a55fdbd7d56f6", "title": "How old are you?", "type": "QUESTION_RADIOGROUP" },
+      { "_id": "4d3c15f0-f63f-449e-92cd-a55fdbd7d56f7", "title": "How old are you?", "type": "QUESTION_DROPDOWN" },
+      { "_id": "4d3c15f0-f63f-449e-92cd-a55fdbd7d56f8", "title": "How old are you?", "type": "QUESTION_RATING" }
     ]
   }
 ]
