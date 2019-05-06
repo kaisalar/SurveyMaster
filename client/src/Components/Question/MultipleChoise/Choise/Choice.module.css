@@ -8,3 +8,6 @@
 .Choice div { 
     flex-grow: 1;
 }
+.Choice i { 
+    margin: auto;
+}
