@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from '../../../axios-requests'
 import Question from '../../../Components/SurveyAnswersList/SurveyFill_Item/SurveyFill_item';
-import { previewSurvey } from '../../../store/actions/answersAction'
+import { previewSurvey, postAnswers } from '../../../store/actions/answersAction'
 import { connect } from 'react-redux';
 import { MDBBtn } from 'mdbreact';
 import styles from './SurveyFillList.module.css'
@@ -10,13 +10,20 @@ import styles from './SurveyFillList.module.css'
 /* whole questions for a single survey*/
 /************* */
 class SurveyFillList extends Component {
-   
- 
+    constructor(props) {
+        super(props);
+    }
+
     componentDidMount() {
         this.props.previewSurvey(this.props.match.params.id);
     }
+    onSubmitHandler = () => {
+         
+        this.props.postAnswers(this.props.answers, this.props.id)
+    }
 
     submitAnswers = () => {
+
         let answer = this.state.answer;
         console.log(this.state.answer)
         axios.post('/filling/', answer)
@@ -39,23 +46,25 @@ class SurveyFillList extends Component {
                 </div>
                 <div>
                     {surveyPages.map(page => {
-                        
+
                         console.log('page', page)
                         return page.questions.map((question, i) => {
                             console.log('question', question)
                             return (<Question
                                 key={i}
                                 id={question._id}
-                                number={i+1}
+                                surveyId={id}
+                                number={i + 1}
                                 title={question.title}
                                 answerObjectType={question.type}
-                                /* getAnswer={(event) => this.getAnswerHandler()}*/ />)
-                                
-                            })
-                        })}
+                                                                />)
+
+                        })
+                    })}
 
                 </div>
-                <MDBBtn gradient="blue" style={{color:'White',borderRadius:'5px'}}>submit</MDBBtn>
+                <MDBBtn gradient="blue" style={{ color: 'White', borderRadius: '5px' }}
+                    onClick={this.onSubmitHandler}>submit</MDBBtn>
             </div>
         )
     }
@@ -67,6 +76,7 @@ const mapStateToProps = state => {
         id: state.fillSurvey._id,
         date: state.fillSurvey.date,
         title: state.fillSurvey.title,
+           answers: state.questionAnswer
     }
 }
-export default connect(mapStateToProps, { previewSurvey })(SurveyFillList); 
+export default connect(mapStateToProps, { previewSurvey, postAnswers})(SurveyFillList); 

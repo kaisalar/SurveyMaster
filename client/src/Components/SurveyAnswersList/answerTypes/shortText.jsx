@@ -1,5 +1,10 @@
 import { MDBInput } from "mdbreact";
 import React from 'react'
 
-const shortText = () => (<MDBInput label="Here you should write your answer"></MDBInput>) 
+const shortText = (props) => {
+   const onTextchanged = (event)=>{
+        props.change(event.target.value)
+    }
+    return(
+    <MDBInput label="Here you should write your answer" onChange={onTextchanged}/>)}
 export default shortText

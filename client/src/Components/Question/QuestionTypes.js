@@ -1,13 +1,12 @@
 export const TEXT = "QUESTION_TEXT";
 export const PARAGRAPH = "QUESTION_PARAGRAPH";
 export const MULTIPLE_CHOISE = "Multiple Choise";
-export const RADIO_GROUP = "QUESTION_RADIO_GROUP"
+export const RADIO_GROUP = "QUESTION_RADIOGROUP"
 export const CHECKBOX = "QUESTION_CHECKBOX"
 export const DROPDOWN = "QUESTION_DROPDOWN";
 export const SLIDER = "QUESTION_SLIDER";
 export const RATING = "QUESTION_RATING";
 export const RANGE = "QUESTION_RANGE";
-
 
 // module.exports = {
 //     QUESTION_TEXT: 'QUESTION_TEXT',

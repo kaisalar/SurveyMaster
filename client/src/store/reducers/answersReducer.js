@@ -5,11 +5,7 @@ const initialState = {
   description: "",
   date: 0,
   pages: [
-    // {
-    //   _id: 1,
-    //   title: "no title",
-    //   type: "QUESTION_TEXT"
-    // }
+
   ]
 };
 

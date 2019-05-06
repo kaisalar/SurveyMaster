@@ -7,7 +7,7 @@ const TextareaPage = (props) => {
         props.change(event.target.value);
     }
     return (
-        <MDBInput
+        <MDBInput 
             type="textarea"
             label="write 250 character at least "
             rows="5"
