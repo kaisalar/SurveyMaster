@@ -6,7 +6,7 @@ const { Questions } = require('../validationSchemas')
 class DropDownQuestion extends MultipleChoiceQuestion {
     constructor(props) {
         super(props)
-        this.type = types.QUESTION_CHECKBOX
+        this.type = types.QUESTION_DROPDOWN
     }
 
     static validate(dropDownQuestion) {

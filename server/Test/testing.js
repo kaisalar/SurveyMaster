@@ -6,6 +6,6 @@ class A{
         this.f();
     }
 }
-A.f1();
+// A.f1();
 const a = b || c || 2;
-console.log(a);
+// console.log(a);

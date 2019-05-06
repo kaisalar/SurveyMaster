@@ -12,7 +12,7 @@ class SliderQuestion extends Question {
             max: props.content.max ,
             minLabel: props.content.minLabel || 'minimum',
             maxLabel: props.content.maxLabel || 'maximum',
-            defaultValue: props.content.defaultValue || min || 0,
+            defaultValue: props.content.defaultValue || props.content.min || 0,
             step: props.content.step || 1 // if 1 -> there is no step
         }
     }

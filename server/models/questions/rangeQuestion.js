@@ -12,8 +12,8 @@ class RangeQuestion extends Question {
             max: props.content.max || 5,
             minLabel: props.content.minLabel || 'minimum',
             maxLabel: props.content.maxLabel || 'maximum',
-            minDefaultValue: props.content.minDefaultValue || min,
-            maxDefaultValue: props.content.maxDefaultValue || max,
+            minDefaultValue: props.content.minDefaultValue || props.content.min,
+            maxDefaultValue: props.content.maxDefaultValue || props.content.max,
             step: props.content.step || 1 // if -1 -> there is no step
         }
     }

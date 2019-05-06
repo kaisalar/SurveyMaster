@@ -1,7 +1,7 @@
-const Joi = require('./node_modules/joi')
+const Joi = require('joi')
 const MultipleChoiceQuestion = require('./multipleChoiceQuestion')
-const types = require('./types')
-const { Questions } = require('./validationSchemas')
+const types = require('../types')
+const { Questions } = require('../validationSchemas')
 
 class RadioGroupQuestion extends MultipleChoiceQuestion {
     constructor(props) {

@@ -1,4 +1,4 @@
-const Joi = require('./node_modules/joi')
+const Joi = require('joi')
 const Question = require('./question')
 const types = require('../types')
 const { Questions } = require('../validationSchemas')
@@ -10,7 +10,7 @@ class RatingQuestion extends Question {
         this.content = {
             ratingType: props.content.ratingType || types.RATING_NUMBERS,
             min: props.content.min || 0,
-            max: props.content.max || 0,
+            max: props.content.max || 5,
             minLabel: props.content.minLabel || 'minimum',
             maxLabel: props.content.maxLabel || 'maximum',
             defaultValue: props.content.defaultValue || 0,

@@ -1,0 +1,56 @@
+[
+  {
+    "_id": "6a24c600-db90-430b-8f04-b21a9aabc371",
+    "questionId": "f82bb13b-00a9-4112-bf5c-15893335def2",
+    "type": "ANSWER_TEXT",
+    "content": { "value": "Kinan A" }
+  },
+  {
+    "_id": "6e350d26-6c7e-4689-84c4-a6552099e60c",
+    "questionId": "e4485b04-cf94-403e-8e84-419af516223b",
+    "type": "ANSWER_SINGLE_NUMBER_VALUE",
+    "content": { "value": 3 }
+  },
+  {
+    "_id": "906e19c0-fe99-4e45-921e-47e260c6224e",
+    "questionId": "3e760ad2-affd-4629-97a8-5e05b45e8380",
+    "type": "ANSWER_TEXT",
+    "content": { "value": "long long story" }
+  },
+  {
+    "_id": "24935a85-56ad-4114-8be0-1dd5b589220c",
+    "questionId": "da45ef85-7697-40ca-a91d-8ba61f90b988",
+    "type": "ANSWER_MULTIPLE_CHOICE",
+    "content": { "choices": ["yes"] }
+  },
+  {
+    "_id": "6612c6b9-5356-43d9-b4c5-7e15f68b6f28",
+    "questionId": "79e7556c-aad9-418e-967e-74dd3f19df48",
+    "type": "ANSWER_MULTIPLE_CHOICE",
+    "content": { "choices": ["apple", "orange"] }
+  },
+  {
+    "_id": "b02db64b-990e-4f46-b66f-fcf1567a8206",
+    "questionId": "5cb0fd37-2e62-4964-b86a-cffe6da1e542",
+    "type": "ANSWER_MULTIPLE_CHOICE",
+    "content": { "choices": ["water"] }
+  },
+  {
+    "_id": "beae1020-3620-46e4-b4c6-304f6c4a4c7f",
+    "questionId": "f7b8a324-befa-4f1c-bb7d-f1dbdec3712f",
+    "type": "ANSWER_SINGLE_NUMBER_VALUE",
+    "content": { "value": 4 }
+  },
+  {
+    "_id": "c728be14-492c-4d86-ab05-8dff96cc0b41",
+    "questionId": "92c4d605-451d-4604-bb8e-1b7f43ab262b",
+    "type": "ANSWER_SINGLE_NUMBER_VALUE",
+    "content": { "value": 7 }
+  },
+  {
+    "_id": "39240d33-0180-466b-a0b3-3f1e3e5129be",
+    "questionId": "d9d3cdf0-d7c1-4a55-a613-4fa1b41bb7d4",
+    "type": "ANSWER_RANGE",
+    "content": { "minValue": 10, "maxValue": 60 }
+  }
+]

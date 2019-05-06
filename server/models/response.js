@@ -1,14 +1,16 @@
 const _ = require('lodash')
 const Joi = require('joi')
 const Element = require('./element')
-const Answer = require('./answer')
-const TextAnswer = require('./textAnswer')
-const MultipleChoiceAnswer = require('./multipleChoiceAnswer')
-const SingleNumberValueAnswer = require('./singleNumberValueAnswer')
-const RangeAnswer = require('./rangeAnswer')
+const Answer = require('./answers/answer')
+const TextAnswer = require('./answers/textAnswer')
+const MultipleChoiceAnswer = require('./answers/multipleChoiceAnswer')
+const SingleNumberValueAnswer = require('./answers/singleNumberValueAnswer')
+const RangeAnswer = require('./answers/rangeAnswer')
 const types = require('./types')
 const { responseSchema } = require('./validationSchemas')
 const IO = require('../data/IO');
+
+
 class Response extends Element {
     constructor(props) {
         super(props)

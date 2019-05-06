@@ -6,9 +6,9 @@ const Response = require('./response')
 const { surveySchema } = require('./validationSchemas')
 const IO = require('../data/IO');
 const types = require('./types');
-const TextAnswer = require('./textAnswer');
-const MultipleChoiceAnswer = require('./multipleChoiceAnswer');
-const SingleNumberValueAnswer = require('./singleNumberValueAnswer');
+const TextAnswer = require('./answers/textAnswer');
+const MultipleChoiceAnswer = require('./answers/multipleChoiceAnswer');
+const SingleNumberValueAnswer = require('./answers/singleNumberValueAnswer');
 console.log(IO);
 class Survey extends Element {
     constructor(props) {
@@ -149,5 +149,5 @@ async function test() {
     const report = await Survey.generatReport("823d09fe-2898-4ddc-8e6d-6a6a35d7b5a5");
     console.log(report);
 }
-test();
+// test();
 module.exports = Survey
