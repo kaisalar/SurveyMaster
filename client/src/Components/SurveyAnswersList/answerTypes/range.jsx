@@ -1,9 +1,7 @@
 
-// import 'rc-slider/assets/index.css';
-
+import 'rc-slider/assets/index.css';
 import React from 'react';
-import ReactDOM from 'react-dom';
-//import Slider, { Range} from 'rc-slider';
+import Slider, { Range} from 'rc-slider';
 
 class DynamicBounds extends React.Component {
     constructor(props) {
@@ -40,9 +38,9 @@ class DynamicBounds extends React.Component {
                 <label>Max: </label>
                 <input type="number" value={this.state.maxValue} disabled onChange={this.onMaxChange} />
                 <br /><br />
-                {/* <Range style={{border:'blue'}} defaultValue={[20, 50]}  onAfterChange={this.onAfterChanged} min={this.state.min} max={this.state.max}
+                <Range style={{border:'blue'}} defaultValue={[20, 50]}  onAfterChange={this.onAfterChanged} min={this.state.min} max={this.state.max}
                     onChange={this.onSliderChange}
-                /> */}
+                />
             </div>
         );
     }

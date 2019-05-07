@@ -149,5 +149,4 @@ async function test() {
     const report = await Survey.generatReport("ad03a182-672a-4c6d-b79c-a0f55b605449");
     console.log(report);
 }
-// test();
 module.exports = Survey

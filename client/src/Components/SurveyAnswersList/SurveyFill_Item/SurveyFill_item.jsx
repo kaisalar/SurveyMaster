@@ -32,7 +32,7 @@ class SurveyPage extends Component {
   
     onAnswerChange = (value) => {
         this.localState.info.content = value
-        console.log(this.localState)
+        console.log('value',value)
         this.props.addquestion(this.localState)
     }
     render() {
