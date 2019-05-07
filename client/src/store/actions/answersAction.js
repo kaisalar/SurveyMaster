@@ -28,12 +28,20 @@ export const addquestion = (state) => dispatch => {
 
 export const postAnswers = (answers,surveyId) => dispatch=> {
 
-  console.log("answersssss" , answers)
-   axios.post('/fill/'+surveyId,answers).then(response => dispatch({
+  //console.log("answersssss" , answers)
+   axios.post('/fill/'+surveyId,answers).then(response => {
+     console.log("rrrrrrrrrrrrrrrrrrr",response.data)
+    return dispatch({
      type:actionTypes.POST,
      payload:response.data
-   })).catch(error=>dispatch({
+
+   })}).catch(error=>{ 
+     console.log("rrrrrrrrrrrrrrrrrrr", error.message);
+   return  dispatch({
      type:actionTypes.POST_FAILED,
      payload:error.message
-   }))
-}
+   
+   
+    })})
+  }
+  

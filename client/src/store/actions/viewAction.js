@@ -19,7 +19,7 @@ export const initSurvey = () => dispatch => {
   axios
     .get("api/surveys")
     .then(response => {
-      console.log("get", response.data);
+     console.log("get", response.data);
       dispatch(setSurveys(response.data));
     })
     .catch(error => {

@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const _ = require('lodash')
-// const { Survey, validateSurvey } = require('../models/survey')
 const Survey = require('../models/survey')
 const Response = require('../models/response')
+const { getErrorMessages } = require('../models/validationSchemas')
 
 
 // @route  Get api/surveys
@@ -20,7 +20,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     const _id = req.params.id
 
-    const exist = await Survey.isExsisit(_id)
+    const exist = await Survey.isExists(_id)
     if (!exist) {
         return res.status(404).send(`The survey with the given id: ${_id} NOT FOUND.`)
     }
@@ -37,7 +37,7 @@ router.get('/:id/responses', async (req, res) => {
     const _id = req.params.id
 
     // Validate if the survey with this _id exist?
-    const exist = await Survey.isExsisit(_id)
+    const exist = await Survey.isExists(_id)
     if (!exist) {
         return res.status(404).send(`The survey with the given id: ${_id} NOT FOUND.`)
     }
@@ -54,12 +54,12 @@ router.get('/:sid/responses/:rid', async (req, res) => {
     const surveyId = req.params.sid
     const responseId = req.params.rid
 
-    const exist = await Survey.isExsisit(surveyId)
+    const exist = await Survey.isExists(surveyId)
     if (!exist) {
         return res.status(404).send(`The survey with the given id: ${surveyId} NOT FOUND.`)
     }
 
-    const response = await Response.loadSurveyResponsesInfo(surveyId, responseId)
+    const response = await Response.loadSurveyResponseById(surveyId, responseId)
 
     res.send(response)
 })
@@ -70,12 +70,12 @@ router.get('/:sid/responses/:rid', async (req, res) => {
 router.get('/:id/report', async (req, res) => {
     const _id = req.params.id
 
-    const exist = await Survey.isExsisit(_id)
+    const exist = await Survey.isExists(_id)
     if (!exist) {
         return res.status(404).send(`The survey with the given id: ${_id} NOT FOUND.`)
     }
 
-    const report = Survey.generatReport(_id)
+    const report = await Survey.generatReport(_id)
 
     res.send(report)
 })
@@ -86,7 +86,10 @@ router.get('/:id/report', async (req, res) => {
 router.post('/', async (req, res) => {
     // Validation 
     const { error } = Survey.validate(req.body)
-    if(error) return res.status(400).send(error.details[0].message)
+    if (error) {
+        const message = getErrorMessages(error)
+        return res.status(400).send(message)
+    }
 
     // Create survey
     const survey = new Survey({
@@ -105,7 +108,7 @@ router.post('/', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     const _id = req.params.id
 
-    const exist = await Survey.isExsisit(_id)
+    const exist = await Survey.isExists(_id)
     if (!exist) {
         return res.status(404).send(`The survey with the given id: ${_id} NOT FOUND.`)
     }

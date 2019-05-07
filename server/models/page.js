@@ -1,15 +1,15 @@
 const _ = require('lodash')
 const Joi = require('joi')
 const Element = require('./element')
-const Question = require('./question')
-const TextQuestion = require('./textQuestion')
-const ParagraphQuestion = require('./paragraphQuestion')
-const RadioGroupQuestion = require('./radioGroupQuestion')
-const CheckBoxQuestion = require('./checkBoxQuestion')
-const DropDownQuestion = require('./dropDownQuestion')
-const SliderQuestion = require('./sliderQuestion')
-const RatingQuestion = require('./ratingQuestion')
-const RangeQuestion = require('./rangeQuestion')
+const Question = require('./questions/question')
+const TextQuestion = require('./questions/textQuestion')
+const ParagraphQuestion = require('./questions/paragraphQuestion')
+const RadioGroupQuestion = require('./questions/radioGroupQuestion')
+const CheckBoxQuestion = require('./questions/checkBoxQuestion')
+const DropDownQuestion = require('./questions/dropDownQuestion')
+const SliderQuestion = require('./questions/sliderQuestion')
+const RatingQuestion = require('./questions/ratingQuestion')
+const RangeQuestion = require('./questions/rangeQuestion')
 const types = require('./types')
 const { pageSchema } = require('./validationSchemas')
 
@@ -50,19 +50,19 @@ class Page extends Element {
                 break
 
             case types.QUESTION_DROPDOWN:
-                question = new DropDownQuestion(props)
+                question = new DropDownQuestion(question)
                 break
 
             case types.QUESTION_SLIDER:
-                question = new SliderQuestion(props)
+                question = new SliderQuestion(question)
                 break
 
             case types.QUESTION_RATING:
-                question = new RatingQuestion(props)
+                question = new RatingQuestion(question)
                 break
 
             case types.QUESTION_RANGE:
-                question = new RangeQuestion(props)
+                question = new RangeQuestion(question)
                 break
         }
 
