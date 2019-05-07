@@ -13,7 +13,7 @@ const initialState= {
 const contentReducer = (state = initialState , action)=>{
     let _answers = state.answers;
     let _content = action.content;
-  console.log(action.content)
+ // console.log(action.content)
       
     switch(action.type){    
       case actionType.ANSWER_TEXT:
@@ -41,7 +41,7 @@ const contentReducer = (state = initialState , action)=>{
 
             }        
         default:
-        console.log(JSON.stringify(state));
+ //       console.log(JSON.stringify(state));
         return {...state}
     }
 }

@@ -3,30 +3,47 @@ import CreateQuestion from "../../Components/CreateQuestion/CreateQuestion";
 import Question from "../../Components/Question/Question";
 import Layout from "../../Components/Layout/Layout";
 import SurveyBuilderWelcome from "../../Components/SurveyBuilderWelcome/SurveyBuilderWelcome";
-import SideEditor from "../../Components/SideEditor/SideEditor";
+import {AddQuestion,SubmitNewSurvey} from "../../store/actions/BuilderAction";
 import styleClass from "./SurveyBuilder.module.css";
 import "./SurveyBuilder.css";
-import * as actions from "../../store/actions/types";
 import { MDBBtn, MDBRow, MDBCol } from "mdbreact";
 import { connect } from "react-redux";
+import _ from "lodash";
+import SideEditor from "../../Components/SideEditor/SideEditor";
+import axios from "../../axios-requests";
 
 class SurveyBuilder extends Component {
   state = {
     showSideEditor: false,
     focusedQuestion: 0
   };
+
   showSideEditorHandler = index => {
     this.setState({
       showSideEditor: true,
       focusedQuestion: index
     });
   };
+  HideSideEditorHandler = () => {
+    this.setState({
+      showSideEditor: false
+    });
+  };
+
   render() {
+    const Qs = this.props.pages[0].questions;
     let Questions = [];
-    let sideEditor = this.state.showSideEditor ? <MDBCol size="3"><SideEditor index={this.state.focusedQuestion}/> </MDBCol>: null;
+    let sideEditor = this.state.showSideEditor ? (
+      <MDBCol size="3">
+        <SideEditor
+          HideSideEditor={this.HideSideEditorHandler}
+          index={this.state.focusedQuestion}
+        />
+      </MDBCol>
+    ) : null;
     let PageContent;
-    if (this.props.Qs.length > 0) {
-      Questions = this.props.Qs.map((el, index) => {
+    if (Qs.length > 0) {
+      Questions = Qs.map((el, index) => {
         return (
           <Question
             key={el._id}
@@ -37,26 +54,31 @@ class SurveyBuilder extends Component {
       });
       PageContent = (
         <React.Fragment>
-          <div className={styleClass.SurveyBuilder + " " }>
-            <CreateQuestion clicked={this.props.addNewQuestion} />
+          <div className={styleClass.SurveyBuilder + " "}>
+            <CreateQuestion clicked={this.props.AddQuestion} />
             {Questions}
             <div className={styleClass.CreateQuestion}>
-              <MDBBtn gradient="blue">SUBMIT</MDBBtn>
+              <MDBBtn
+                gradient="blue"
+                onClick={() => this.props.SubmitNewSurvey(this.props.create)}
+              >
+                SUBMIT
+              </MDBBtn>
             </div>
           </div>
         </React.Fragment>
       );
     } else {
       PageContent = (
-        <SurveyBuilderWelcome clicked={this.props.addNewQuestion} />
+        <SurveyBuilderWelcome clicked={this.props.AddQuestion} />
       );
     }
 
     return (
       <MDBRow>
-        {/* {sideEditor} */}
-        <MDBCol> 
-        <Layout sideOpened={/*this.state.showSideEditor*/false}>{PageContent}</Layout>
+        {sideEditor}
+        <MDBCol>
+          <Layout sideOpened={this.state.showSideEditor}>{PageContent}</Layout>
         </MDBCol>
       </MDBRow>
       // <React.Fragment>
@@ -66,16 +88,18 @@ class SurveyBuilder extends Component {
 }
 const mapStateToProps = state => {
   return {
-    Qs: state.createSurvey.Questions
+    create: state.createSurvey,
+    pages: state.createSurvey.pages
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
-    addNewQuestion: () => dispatch({ type: actions.ADD_QUESTION })
+    // addNewQuestion: () => ,
+    // submitNewSurvey: 
   };
 };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  { AddQuestion,SubmitNewSurvey }
 )(SurveyBuilder);

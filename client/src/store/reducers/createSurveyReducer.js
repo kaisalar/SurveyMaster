@@ -1,63 +1,70 @@
 import * as actions from "../actions/types";
 import * as Qtypes from "../../Components/Question/QuestionTypes";
 const initialState = {
-  Questions: []
+  title: "newSurvey",
+  pages : [{
+    questions: [],
+  }]
 };
 const reducer = (state = initialState, action) => {
-  let newQuestions;
+  let newPages
   switch (action.type) {
     case actions.ADD_QUESTION:
       const newQuestion = {
-        _id: state.Questions.length + 1,
+        _id: state.pages[0].questions.length + 1,
         type: Qtypes.TEXT,
         title: "Untitled Question",
         content: {
           choices: ["Option 1"]
         }
       };
+      newPages = [...state.pages];
+      newPages[0].questions.push(newQuestion)
       return {
         ...state,
-        Questions: state.Questions.concat(newQuestion)
+        pages: newPages
       };
     case actions.CHANGE_QUESTION_TITLE:
-      newQuestions = [...state.Questions];
-      newQuestions[action.index].title = action.val;
+      newPages = [...state.pages];
+      newPages[0].questions[action.index].title = action.val;
       return {
         ...state,
-        Questions: newQuestions
+        pages: newPages
       };
     case actions.CHANGE_QUESTION_TYPE:
-      newQuestions = [...state.Questions];
-      newQuestions[action.index].type = action.val;
-     // handleContentOfType(newQuestions[action.index]);
+      newPages = [...state.pages];
+      newPages[0].questions[action.index].type = action.val;
+     // handleContentOfType(newPages[action.index]);
       return {
         ...state,
-        Questions: newQuestions
+        pages: newPages
       };
     case actions.CHANGE_CHOISE_LABEL:
-      newQuestions = [...state.Questions];
-      newQuestions[action.index].content.choices[action.choiceIndex] =
+      newPages = [...state.pages];
+      newPages[0].questions[action.index].content.choices[action.choiceIndex] =
         action.val;
       return {
         ...state,
-        Questions: newQuestions
+        pages: newPages
       };
       case actions.ADD_CHOICE:
-      newQuestions = [...state.Questions];
-      newQuestions[action.index].content.choices.push("Option " + (newQuestions[action.index].content.choices.length +1));
+      newPages = [...state.pages];
+      newPages[0].questions[action.index].content.choices.push("Option " + (newPages[0].questions[action.index].content.choices.length +1));
       return {
         ...state,
-        Questions: newQuestions
+        pages: newPages
       };
       case actions.DELETE_CHOICE:
-      newQuestions = [...state.Questions];
-      const newChoices = state.Questions[action.index].content.choices.filter((_,index) => index !== action.choiceIndex);
-      newQuestions[action.index].content.choices = newChoices
-      console.log(newQuestions)
+      newPages = [...state.pages];
+      const newChoices = newPages[0].questions[action.index].content.choices.filter((_,index) => index !== action.choiceIndex);
+      newPages[action.index].content.choices = newChoices
+      console.log(newPages)
       return {
         ...state,
-        Questions: newQuestions
+        pages: newPages
       };
+      case actions.SUBMIT_NEW_SERVEY: 
+
     default:
       break;
   }

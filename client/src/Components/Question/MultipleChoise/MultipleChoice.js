@@ -10,8 +10,9 @@ class multipleChoice extends Component {
     }
   };
   render() {
+    const Qs = this.props.pages[0].questions
     const index = this.props.index;
-    const choices = this.props.Qs[index].content.choices;
+    const choices = Qs[index].content.choices;
     let Choices = [];
     if (choices) {
       Choices = choices.map((el, id) => (
@@ -35,7 +36,7 @@ class multipleChoice extends Component {
 
 const mapStateToProps = state => {
   return {
-    Qs: state.createSurvey.Questions
+    pages: state.createSurvey.pages
   };
 };
 const mapDispatchToProps = dispatch => {
