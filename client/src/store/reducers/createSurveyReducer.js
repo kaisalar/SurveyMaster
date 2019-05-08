@@ -79,16 +79,16 @@ const reducer = (state = initialState, action) => {
       switch (action.content) {
         case actions.CHANGE_MIN_VALUE:
           newPages[0].questions[action.index].content.min = action.val;
-
+          break;
         case actions.CHANGE_MAX_VALUE:
           newPages[0].questions[action.index].content.max = action.val;
-
+          break;
         case actions.CHANGE_STEP_VALUE:
           newPages[0].questions[action.index].content.step = action.val;
-
+          break;
         case actions.CHANGE_DEFAULT_VALUE:
-          newPages[0].questions[action.index].content.defaultValue =
-            action.val;
+          newPages[0].questions[action.index].content.defaultValue = action.val;
+          break;
       }
       return {
         ...state,
