@@ -47,9 +47,7 @@ class SurveyFillList extends Component {
                 <div>
                     {surveyPages.map(page => {
 
-                        //console.log('page', page)
                         return page.questions.map((question, i) => {
-                            console.log('question', question)
                             return (<Question
                                 key={i}
                                 id={question._id}

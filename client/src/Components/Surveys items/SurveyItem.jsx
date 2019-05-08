@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-// import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { MDBAlert, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol, Button } from 'mdbreact';
+import { Notification,Paragraph } from 'rsuite';
+ import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { MDBAlert, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol,Button } from 'mdbreact';
+import SurveyFillList from '../../Containers/ShowSurveys/Survey questions List/SurveyFillList';
 
 /* single item for View all Surveys List in surveys.jsx*/
 
@@ -12,6 +14,13 @@ class CardExample extends Component {
     this.URL = "/fill/" + this.props.id;
     this.B_URL = "http://localhost:3000";
   }
+   open = (funcName) => {
+  Notification[funcName]({
+    title: funcName,
+    description: <Paragraph style={{ width: 320 }} rows={3} />
+  });
+     this.props.click();
+}
 
   render() {
 
@@ -19,7 +28,6 @@ class CardExample extends Component {
       <React.Fragment>
         <MDBCol>
           <MDBCard style={{ width: "22rem", margin: '20px auto' }}>
-            <MDBCardImage className="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" waves />
             <MDBCardBody>
               <h4>ID : {this.props.id}</h4>
               <MDBCardTitle>title: {this.props.title}</MDBCardTitle>
@@ -33,10 +41,12 @@ class CardExample extends Component {
                </Button>
               </Link>
               <Button onClick={this.props.click} style={{ backgroundColor: 'red', color: 'white' }}>Delete</Button>
-              {/* <CopyToClipboard text={this.B_URL + this.URL} */}
-              <Button style={{ color: 'white' }} > Get Link
+              <CopyToClipboard text={this.B_URL + this.URL}>
+               <a onClick = {() => window.open(this.B_URL+this.URL , SurveyFillList)}>
+                <Button onClick={() => {this.open('success')}} style={{ color: 'white' }} > Get Link
                 </Button>
-              {/* </CopyToClipboard> */}
+              </a>
+              </CopyToClipboard>
               <MDBAlert color="success" >
                 A simple success alert—check it out!
       </MDBAlert>

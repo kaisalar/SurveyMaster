@@ -1,3 +1,7 @@
+body {
+  background: url(../../assets/leaves.png);
+}
+
 .fixedBar{
     top:0;
     width: 100%;

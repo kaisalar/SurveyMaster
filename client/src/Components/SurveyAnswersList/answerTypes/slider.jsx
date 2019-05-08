@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import Slider from '@material-ui/lab/Slider';
-
+//import Slider from '@material-ui/lab/Slider';
+import './slider.css'
+import { Slider } from 'rsuite';
 const styles = {
   
     slider: {
         padding: '22px 0px',
-        margin: 'auto',
+        margin: '50px auto',
         width:'60%'
     },
 };
@@ -18,7 +19,7 @@ class SimpleSlider extends React.Component {
         value: 5,
     };
 
-    handleChange = (event, value) => {
+    handleChange = (value) => {
         this.setState({ value });
     this.props.change({value:value})
 
@@ -29,23 +30,21 @@ class SimpleSlider extends React.Component {
         const { value } = this.state;
 
         return (
-            <div >
-                <Typography id="label">{this.state.value}</Typography>
-                <Slider
-                step={1}
-                    classes={{ container: classes.slider }}
-                    value={value}
-                    aria-labelledby="label"
-                    onChange={this.handleChange}
-                    onChangeCapture={(event) => this.props.change(event)}
-                />
-            </div>
+            // <div >
+            //     <Typography id="label">{this.state.value}</Typography>
+            //     <Slider
+            //     step={1}
+            //         classes={{ container: classes.slider }}
+            //         value={value}
+            //         aria-labelledby="label"
+            //         onChange={this.handleChange}
+            //         onChangeCapture={(event) => this.props.change(event)}
+            //     />
+            // </div>
+            <Slider progress  defaultValue={50} className="slider" onChange = {this.handleChange} style={{styles}}/>
         );
     }
 }
 
-SimpleSlider.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
 
-export default withStyles(styles)(SimpleSlider);
+export default (SimpleSlider);

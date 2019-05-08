@@ -20,8 +20,6 @@ const contentReducer = (state = initialState , action)=>{
       case actionType.ANSWER_MULTIPLE_CHOICE:
       case actionType.ANSWER_RANGE:
       case actionType.ANSWER_SINGLE_NUMBER_VALUE:
-            console.log('answer content Action' , action.content)
-            console.log('initial State' , state)
             let isContain = _answers.includes(_content);
             if(isContain){
               _answers[_answers.indexOf(_content)].content = _content.content
