@@ -4,26 +4,25 @@ import styleClass from "./Question.module.css";
 import TextAnswer from "./TextAnswer/TextAnswer";
 import MultipleChoice from "./MultipleChoise/MultipleChoice";
 import Data from "./QuestionsData";
-import LinearScale from './LinearScale/LinearScale'
+import LinearScale from "./LinearScale/LinearScale";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/types";
 import * as Qtypes from "./QuestionTypes";
 import { SelectPicker } from "rsuite";
+import Close from "../UI/Close/Close";
+import { style } from "react-toastify";
 
 class Question extends Component {
   state = {
-    mouseHover: false
+    deleteHover: false
   };
-  mouseHoverOn = () => {
+  deleteHoverHandler = newValue => { 
+    console.log('test');
     this.setState({
-      mouseHover: true
-    });
-  };
-  mouseHoverOff = () => {
-    this.setState({
-      mouseHover: false
-    });
-  };
+      deleteHover: newValue
+    })
+  }
+
   render() {
     const Qs = this.props.pages[0].questions;
     let AnswerType;
@@ -41,47 +40,38 @@ class Question extends Component {
         );
         break;
       case Qtypes.RADIO_GROUP:
-        AnswerType = (
-          <MultipleChoice index={index} type={Qtypes.RADIO_GROUP} />
-        );
+        AnswerType = <MultipleChoice index={index} type={Qtypes.RADIO_GROUP} />;
         break;
-        case Qtypes.CHECKBOX:
-        AnswerType = (
-          <MultipleChoice index={index} type={Qtypes.CHECKBOX} />
-        );
+      case Qtypes.CHECKBOX:
+        AnswerType = <MultipleChoice index={index} type={Qtypes.CHECKBOX} />;
         break;
-        case Qtypes.DROPDOWN:
-        AnswerType = (
-          <MultipleChoice index={index} type={Qtypes.DROPDOWN} />
-        );
+      case Qtypes.DROPDOWN:
+        AnswerType = <MultipleChoice index={index} type={Qtypes.DROPDOWN} />;
         break;
-        case Qtypes.RATING:
-        AnswerType = (
-          <LinearScale index={index} type={Qtypes.RATING} />
-        );
+      case Qtypes.RATING:
+        AnswerType = <LinearScale index={index} type={Qtypes.RATING} />;
         break;
-        case Qtypes.SLIDER:
-        AnswerType = (
-          <LinearScale index={index} type={Qtypes.SLIDER} />
-        );
+      case Qtypes.SLIDER:
+        AnswerType = <LinearScale index={index} type={Qtypes.SLIDER} />;
         break;
-        case Qtypes.RANGE:
-        AnswerType = (
-          <LinearScale index={index} type={Qtypes.RANGE} />
-        );
+      case Qtypes.RANGE:
+        AnswerType = <LinearScale index={index} type={Qtypes.RANGE} />;
         break;
       default:
         AnswerType = <TextAnswer index={index} />;
         break;
     }
     const data = Data;
+    let containerStyleClass = this.state.deleteHover ? styleClass.QuestionContainer + " " + styleClass.red : styleClass.QuestionContainer;
     return (
       <div
-        className={styleClass.QuestionContainer}
-        onMouseEnter={this.mouseHoverOn}
-        onMouseLeave={this.mouseHoverOff}
+        className={containerStyleClass}
         onClick={this.props.clicked}
       >
+        <Close
+          hoverIn={() => this.deleteHoverHandler(true)}
+          hoverOut={() => this.deleteHoverHandler(false)}
+        />
         <div className={styleClass.Question}>
           <MDBInput
             label="Enter Your Question Title"
