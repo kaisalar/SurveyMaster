@@ -33,20 +33,21 @@ class SurveyBuilder extends Component {
   render() {
     const Qs = this.props.pages[0].questions;
     let Questions = [];
-    let sideEditor = this.state.showSideEditor ? (
-      <MDBCol size="3">
-        <SideEditor
-          HideSideEditor={this.HideSideEditorHandler}
-          index={this.state.focusedQuestion}
-        />
-      </MDBCol>
-    ) : null;
+    let sideEditor = null 
+    // this.state.showSideEditor ? (
+    //   <MDBCol size="3">
+    //     <SideEditor
+    //       HideSideEditor={this.HideSideEditorHandler}
+    //       index={this.state.focusedQuestion}
+    //     />
+    //   </MDBCol>
+    // ) : null;
     let PageContent;
     if (Qs.length > 0) {
       Questions = Qs.map((el, index) => {
         return (
           <Question
-            key={el._id}
+            key={index}
             index={index}
             clicked={() => this.showSideEditorHandler(index)}
           />
@@ -78,7 +79,7 @@ class SurveyBuilder extends Component {
       <MDBRow>
         {sideEditor}
         <MDBCol>
-          <Layout sideOpened={this.state.showSideEditor}>{PageContent}</Layout>
+          <Layout sideOpened={/*this.state.showSideEditor*/false}>{PageContent}</Layout>
         </MDBCol>
       </MDBRow>
       // <React.Fragment>

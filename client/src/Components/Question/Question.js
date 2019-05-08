@@ -4,6 +4,7 @@ import styleClass from "./Question.module.css";
 import TextAnswer from "./TextAnswer/TextAnswer";
 import MultipleChoice from "./MultipleChoise/MultipleChoice";
 import Data from "./QuestionsData";
+import LinearScale from './LinearScale/LinearScale'
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/types";
 import * as Qtypes from "./QuestionTypes";
@@ -52,6 +53,21 @@ class Question extends Component {
         case Qtypes.DROPDOWN:
         AnswerType = (
           <MultipleChoice index={index} type={Qtypes.DROPDOWN} />
+        );
+        break;
+        case Qtypes.RATING:
+        AnswerType = (
+          <LinearScale index={index} type={Qtypes.RATING} />
+        );
+        break;
+        case Qtypes.SLIDER:
+        AnswerType = (
+          <LinearScale index={index} type={Qtypes.SLIDER} />
+        );
+        break;
+        case Qtypes.RANGE:
+        AnswerType = (
+          <LinearScale index={index} type={Qtypes.RANGE} />
         );
         break;
       default:
