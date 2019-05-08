@@ -19,12 +19,10 @@ class CardExample extends Component {
       <React.Fragment>
         <MDBCol>
           <MDBCard style={{ width: "22rem", margin: '20px auto' }}>
-            <MDBCardImage className="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" waves />
             <MDBCardBody>
-              <h4>ID : {this.props.id}</h4>
-              <MDBCardTitle>title: {this.props.title}</MDBCardTitle>
+              <h3 className="font-weight-bold mb-3" >{this.props.title}</h3>
               <MDBCardText>
-                Date:  {this.props.date}
+                Date:  {this.props.date}    
               </MDBCardText>
              
               <Link to={this.URL}>
