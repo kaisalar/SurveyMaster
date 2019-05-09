@@ -23,8 +23,7 @@ class Surveys extends Component {
                         date={survey.date}
                         title={survey.title}
                         click={() => this.deleteItemHandler(survey._id)}
-                        question={survey.question}
-                        answer={survey.answer}
+                        description={survey.description}
                         pages={survey.pages}
 
                     />

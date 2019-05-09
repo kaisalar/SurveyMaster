@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-// import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { MDBAlert, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol, Button } from 'mdbreact';
-
+import { Button, Card, Image } from 'semantic-ui-react'
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import SurveyFillList from '../../Containers/ShowSurveys/Survey questions List/SurveyFillList';
+import './SurveyItem.css'
 /* single item for View all Surveys List in surveys.jsx*/
 
 class CardExample extends Component {
@@ -13,39 +13,55 @@ class CardExample extends Component {
     this.B_URL = "http://localhost:3000";
   }
 
-  render() {
 
+
+  render() {
+    const { id, description, title, date } = this.props
     return (
       <React.Fragment>
-        <MDBCol>
-          <MDBCard style={{ width: "22rem", margin: '20px auto' }}>
-            <MDBCardBody>
-              <h3 className="font-weight-bold mb-3" >{this.props.title}</h3>
-              <MDBCardText>
-                Date:  {this.props.date}    
-              </MDBCardText>
-             
-              <Link to={this.URL}>
+        <div style={{ margin: '10px' }}>
+
+          <Card className='card' >
+            <Card.Content>
+              <Image floated='right' size='mini' src='https://react.semantic-ui.com/images/avatar/large/steve.jpg' />
+              <Card.Header>{title}</Card.Header>
+              <Card.Meta>ID: {id}</Card.Meta>
+              <Card.Meta>Date: {date}</Card.Meta>
+              <Card.Description>
+                {description}
+              </Card.Description>
+            </Card.Content>
+            <Card.Content extra>
+              <div className='ui two buttons'>
+                <CopyToClipboard text={this.B_URL + this.URL}>
+
+                  <Button basic color='green' style={{ color: 'white' }} onClick={() =>{alert("copied"); window.open(this.B_URL + this.URL, SurveyFillList)}}>
+                    Share <i className="fas fa-paper-plane"></i>
+                  </Button>
+                </CopyToClipboard>
+                <div style={{ width: '40px', marginLeft: '3px' }}>
+
+                  <Button color='red' onClick={this.props.click} style={{ backgroundColor: 'red', color: 'white' }}>
+                    <i className="fas fa-backspace"></i>
+                  </Button>
+                </div>
+
+              </div>  
+            </Card.Content>
+          </Card>
+        </div>
+
+        {/* <Link to={this.URL}>
                 <Button style={{ color: 'white' }} >
                   Preview
                </Button>
-              </Link>
-              <Button onClick={this.props.click} style={{ backgroundColor: 'red', color: 'white' }}>Delete</Button>
-              {/* <CopyToClipboard text={this.B_URL + this.URL} */}
-              <Button style={{ color: 'white' }} > Get Link
-                </Button>
-              {/* </CopyToClipboard> */}
-              <MDBAlert color="success" >
-                A simple success alert—check it out!
-      </MDBAlert>
+              </Link> */}
 
-            </MDBCardBody>
-          </MDBCard>
-        </MDBCol>
+
       </React.Fragment>
     )
+
+
   }
-
 }
-
 export default CardExample;

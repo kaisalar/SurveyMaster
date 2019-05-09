@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { MDBInput, MDBFormInline } from 'mdbreact';
-import { Checkbox, CheckboxGroup } from 'rsuite';
+import { Checkbox } from 'rsuite';
 
 class InputPage extends Component {
     state = {

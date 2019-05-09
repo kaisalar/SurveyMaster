@@ -10,7 +10,6 @@ import * as actions from "../../store/actions/types";
 import * as Qtypes from "./QuestionTypes";
 import { SelectPicker } from "rsuite";
 import Close from "../UI/Close/Close";
-import { style } from "react-toastify";
 
 class Question extends Component {
   state = {

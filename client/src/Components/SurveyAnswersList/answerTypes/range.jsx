@@ -1,14 +1,14 @@
 
 import 'rc-slider/assets/index.css';
 import React from 'react';
-import Slider, { Range} from 'rc-slider';
-
+import { Range} from 'rc-slider';
+import './range.css'
 class DynamicBounds extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            minValue: 0,
-            maxValue: 100,
+            minValue: 20,
+            maxValue: 50,
         };
     }
     onAfterChanged = (value) =>{
@@ -16,7 +16,7 @@ class DynamicBounds extends React.Component {
         this.props.change(state)
     }
     onSliderChange = (value) => {
-        console.log(value)
+        this.setState({minValue:value[0],maxValue:value[1]})
 
     }
     onMinChange = (e) => {
@@ -31,14 +31,13 @@ class DynamicBounds extends React.Component {
     }
     render() {
         return (
-            <div style={{width:"70%" , margin : 'auto',marginBottom:'20px'}}>
-                <label>Min: </label>
-                <input type="number" value={this.state.minValue} disabled onChange={this.onMinChange} />
-                <br />
-                <label>Max: </label>
-                <input type="number" value={this.state.maxValue} disabled onChange={this.onMaxChange} />
-                <br /><br />
-                <Range style={{border:'blue'}} defaultValue={[20, 50]}  onAfterChange={this.onAfterChanged} min={this.state.min} max={this.state.max}
+            <div style={{  margin : 'auto',marginBottom:'20px'}}>
+                <label className="min">Min: {this.state.minValue} </label>
+                
+              
+                <label className="max">Max: {this.state.maxValue}</label>
+               
+                <Range  className='range' defaultValue={[20, 50]}  onAfterChange={this.onAfterChanged} min={this.state.min} max={this.state.max}
                     onChange={this.onSliderChange}
                 />
             </div>

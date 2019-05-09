@@ -1,6 +1,5 @@
 import * as actions from "../actions/types";
 import * as Qtypes from "../../Components/Question/QuestionTypes";
-import { Cascader } from "rsuite";
 const initialState = {
   title: "newSurvey",
   pages: [
@@ -18,10 +17,10 @@ const reducer = (state = initialState, action) => {
         title: "Untitled Question",
         content: {
           choices: ["Option 1"],
-          min: 0,
-          max: 0,
-          step: 0,
-          defaultValue: 0
+          min: '0',
+          max: '0',
+          step: '0',
+          defaultValue: '0'
         }
       };
       newPages[0].questions.push(newQuestion);
@@ -50,7 +49,7 @@ const reducer = (state = initialState, action) => {
       const newChoices = newPages[0].questions[
         action.index
       ].content.choices.filter((_, index) => index !== action.choiceIndex);
-      newPages[action.index].content.choices = newChoices;
+      newPages[0].questions[action.index].content.choices = newChoices;
       break;
     case actions.CHANGE_LINEAR_CONTENT:
       switch (action.content) {
@@ -66,6 +65,8 @@ const reducer = (state = initialState, action) => {
         case actions.CHANGE_DEFAULT_VALUE:
           newPages[0].questions[action.index].content.defaultValue = action.val;
           break;
+        default:
+        break;
       }
       break;
     default:

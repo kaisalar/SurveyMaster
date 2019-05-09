@@ -1,0 +1,15 @@
+.range{
+    width:70%;
+    border-color: blue;
+    margin: auto;
+    margin-top:20px;
+    vertical-align: middle
+}
+.min{
+    float: left;;
+    margin:auto 0px auto 10px;
+}
+.max{
+ float: right;
+ margin: auto 10px auto 0px
+}

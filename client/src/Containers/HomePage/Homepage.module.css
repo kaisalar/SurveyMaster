@@ -1,3 +1,6 @@
+body{
+  background: url('../../assets/prism.png')
+}
 .fixedBar{
     top:0;
     width: 100%;
@@ -20,8 +23,8 @@
 .NavItems{
     
 }
-.btn{
-    background-color: plum;
+btn{
+    background: #2bbbad;
 }
 .flip{
       position: absolute;

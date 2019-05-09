@@ -9,7 +9,6 @@ class LinearScale extends Component {
   render() {
     const index = this.props.index;
     const content = this.props.pages[0].questions[index].content;
-    console.log(content)
     return (
       <div>
         <MDBRow>

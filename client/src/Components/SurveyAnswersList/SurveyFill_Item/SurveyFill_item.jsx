@@ -32,11 +32,11 @@ class SurveyPage extends Component {
   
     onAnswerChange = (value) => {
         this.localState.info.content = value
-        console.log('value',value)
+        //console.log('value',value)
         this.props.addquestion(this.localState)
     }
     render() {
-        const { answerObjectType, title, number } = this.props
+        const { answerObjectType, title, number,content } = this.props
         let answer = null;
         let info = this.localState.info
         switch (answerObjectType) {
@@ -77,7 +77,7 @@ class SurveyPage extends Component {
                 break;
             case Qtype.SLIDER:
                 info.type = Atype.ANSWER_SINGLE_NUMBER_VALUE
-                answer = <Slider change={this.onAnswerChange} />
+                answer = <Slider content={content} change={this.onAnswerChange} />
                 break;
             default:
                 info.type = Atype.ANSWER_TEXT

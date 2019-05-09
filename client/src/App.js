@@ -5,7 +5,7 @@ import Routes from './Routes'
 class App extends Component {
   render() {
     return (
-      <BrowserRouter>
+      <BrowserRouter basename="/">
         <div>
           <Routes />
         </div>

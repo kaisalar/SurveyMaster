@@ -10,10 +10,6 @@ import styles from './SurveyFillList.module.css'
 /* whole questions for a single survey*/
 /************* */
 class SurveyFillList extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     componentDidMount() {
         this.props.previewSurvey(this.props.match.params.id);
     }
@@ -47,9 +43,8 @@ class SurveyFillList extends Component {
                 <div>
                     {surveyPages.map(page => {
 
-                        //console.log('page', page)
                         return page.questions.map((question, i) => {
-                            console.log('question', question)
+                            console.log(question)
                             return (<Question
                                 key={i}
                                 id={question._id}
@@ -57,6 +52,7 @@ class SurveyFillList extends Component {
                                 number={i + 1}
                                 title={question.title}
                                 answerObjectType={question.type}
+                                content  = {question.content}
                                                                 />)
 
                         })
@@ -76,7 +72,8 @@ const mapStateToProps = state => {
         id: state.fillSurvey._id,
         date: state.fillSurvey.date,
         title: state.fillSurvey.title,
-           answers: state.questionAnswer
+           answers: state.questionAnswer,
+        
     }
 }
 export default connect(mapStateToProps, { previewSurvey, postAnswers})(SurveyFillList); 

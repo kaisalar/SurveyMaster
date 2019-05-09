@@ -10,7 +10,7 @@ export const setSurveys = surveys => {
 export const deleteSurvey = id => dispatch => {
   axios.delete("api/surveys/" + id)
        .then(response => {
-              console.log(response);
+
               dispatch(initSurvey());
               });
 };
@@ -19,7 +19,6 @@ export const initSurvey = () => dispatch => {
   axios
     .get("api/surveys")
     .then(response => {
-     console.log("get", response.data);
       dispatch(setSurveys(response.data));
     })
     .catch(error => {

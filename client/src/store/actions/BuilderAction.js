@@ -27,6 +27,7 @@ export const SubmitNewSurvey = survey => dispatch => {
         break;
         case Qtypes.RATING:
         newQ.content = _.pick(newQ.content,["max"])
+        break;
         default: 
         newQ.content = {}
         break;
@@ -40,6 +41,6 @@ export const SubmitNewSurvey = survey => dispatch => {
   console.log(survey);
   axios
     .post("/api/surveys", survey)
-    .then(response => console.log(response))
+    .then(response =>{alert("Submitted Successfully");console.log(response)})
     .catch(err => console.log(err));
 };
