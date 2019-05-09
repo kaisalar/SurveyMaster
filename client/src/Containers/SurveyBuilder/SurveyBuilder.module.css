@@ -1,0 +1,32 @@
+.SurveyBuilder { 
+    padding: 20px 10%;
+}
+select { 
+    border: 0;
+    border-bottom: 1px solid #ced4da;
+    background-color: #F1F1F1;
+    margin: 0.3rem 0 0.55rem 0;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out
+}
+select:focus { 
+    outline-color: transparent;
+    box-shadow: 0 1px 0 0 #4285f4;
+    border-bottom: 1px solid #4285f4;
+
+}
+.CreateQuestion {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    border-bottom: 3px solid rgba(58, 131, 204,0.5);
+    box-shadow: 0px 0px 5px 3px  rgba(0, 0, 0, .05);
+    border-radius: 5px
+}
+.CreateQuestion button { 
+    color: white !important;
+    font-size: 1.2rem !important;
+    margin: 15px auto !important;
+}
+.sideOpened { 
+    margin: 25px auto
+}

@@ -7,7 +7,7 @@
   "scripts": {
     "client-install": "cd client && npm i",
     "server-install": "cd server && npm i",
-    "install": "yarn clint-install && yarn server-install",
+    "install": "yarn client-install && yarn server-install",
     "server": "cd server && yarn start",
     "client": "cd client && yarn start",
     "start": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""

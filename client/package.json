@@ -4,15 +4,32 @@
   "private": true,
   "scripts": {
     "build": "react-scripts build",
-    "start": "yarn build && react-scripts start",
+    "start": "react-scripts start",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "proxy": "http://localhost:5000/",
   "dependencies": {
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-scripts": "^3.0.0"
+    "@material-ui/core": "^3.9.3",
+    "@material-ui/lab": "^3.0.0-alpha.30",
+    "axios": "^0.18.0",
+    "lodash": "^4.17.11",
+    "material-ui-slider": "^3.0.0",
+    "mdbreact": "^4.13.0",
+    "node-sass": "^4.12.0",
+    "rc-slider": "^8.6.9",
+    "react-copy-to-clipboard": "^5.0.1",
+    "react-rater": "^5.0.5",
+    "react-redux": "^6.0.0",
+    "react-router": "^5.0.0",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "^3.0.0",
+    "react-stars": "^2.2.5",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
+    "rsuite": "^3.8.3",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.87.1"
   },
   "devDependencies": {
     "yarn": "^1.15.2"

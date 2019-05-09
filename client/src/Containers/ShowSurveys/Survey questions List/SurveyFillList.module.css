@@ -1,0 +1,13 @@
+.layout {
+  width: 75%;
+  height: 100%;
+  border-radius: 5px ;
+  margin: auto;
+  margin-bottom: 20px;
+  background-color: #f1f1f1;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+body {
+  background: url(../../../assets/prism.png);
+}

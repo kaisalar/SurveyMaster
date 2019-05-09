@@ -1,0 +1,25 @@
+.welcomeContainer { 
+    margin: 0 auto;
+    padding: 25px 10%;
+    text-align: center;
+}
+.welcomeContainer p { 
+    font-style: italic;
+    letter-spacing: 1px
+}
+.welcomeContainer h1{ 
+    line-height: 3em;
+    letter-spacing: 3px;
+    font-size: 48px;
+}
+.welcomeContainer h2 {
+    letter-spacing: 3px;
+    font-weight: 200;
+    line-height: 2.5em
+}
+
+.welcomeContainer button {
+    color: white !important;
+    font-size: 1.2rem !important;
+    margin: 15px auto !important;
+}
