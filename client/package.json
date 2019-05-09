@@ -27,7 +27,9 @@
     "react-stars": "^2.2.5",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
-    "rsuite": "^3.8.3"
+    "rsuite": "^3.8.3",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.87.1"
   },
   "devDependencies": {
     "yarn": "^1.15.2"
