@@ -1,1 +1,7 @@
-[{"_id":"622b40cf-6ff2-4f8d-bb42-e58b5956b25b","surveyId":"ad03a182-672a-4c6d-b79c-a0f55b605449","date":1557146822319},{"_id":"18a89b9c-cacf-4de2-97fb-98466f361733","surveyId":"ad03a182-672a-4c6d-b79c-a0f55b605449","date":1557249769115},{"_id":"f5b70993-f48b-40fd-b9f1-d02ef83bf3eb","surveyId":"ad03a182-672a-4c6d-b79c-a0f55b605449","date":1557250039908}]
+[
+  {
+    "_id": "622b40cf-6ff2-4f8d-bb42-e58b5956b25b",
+    "surveyId": "ad03a182-672a-4c6d-b79c-a0f55b605449",
+    "date": 1557146822319
+  }
+]
