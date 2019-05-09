@@ -1,0 +1,26 @@
+{
+  "name": "surveymaster",
+  "version": "1.0.0",
+  "description": "Survey Manager server for creating and publishing surveys",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
+    "start": "nodemon server.js"
+  },
+  "author": "Mouaz Alkhodari, Kais Alar",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^1.14.6",
+    "yarn": "^1.15.2"
+  },
+  "dependencies": {
+    "concurrently": "^3.5.1",
+    "cors": "^2.8.5",
+    "express": "^4.16.2",
+    "joi": "^14.3.1",
+    "lodash": "^4.17.11",
+    "uuid": "^3.3.2",
+    "uuid-validate": "0.0.3"
+  }
+}
