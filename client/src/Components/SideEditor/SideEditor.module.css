@@ -1,0 +1,8 @@
+.SideEditor { 
+    width: 25%;
+    height: 100%;
+    position: fixed;
+    background-color: #f1f1f1;
+    z-index: 10;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.1);
+}
