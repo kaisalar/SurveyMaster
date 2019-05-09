@@ -44,7 +44,7 @@ class SurveyBuilder extends Component {
     // ) : null;
     let PageContent;
     if (Qs.length > 0) {
-      Questions = Qs.map((el, index) => {
+      Questions = Qs.map((_, index) => {
         return (
           <Question
             key={index}
