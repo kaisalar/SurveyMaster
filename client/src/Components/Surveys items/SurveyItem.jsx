@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { Button, Card, Image } from 'semantic-ui-react'
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { MDBAlert, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol } from 'mdbreact';
 import SurveyFillList from '../../Containers/ShowSurveys/Survey questions List/SurveyFillList';
 import './SurveyItem.css'
 /* single item for View all Surveys List in surveys.jsx*/
@@ -36,8 +34,8 @@ class CardExample extends Component {
           <Card.Content extra>
             <div className='ui two buttons'>
               <CopyToClipboard text={this.B_URL + this.URL}>
-                <a onClick={() => window.open(this.B_URL + this.URL, SurveyFillList)}>
-                  
+                <a href="#" onClick={() => window.open(this.B_URL + this.URL, SurveyFillList)}>
+                   
                   <Button basic color='green'  style={{ color: 'white' }} > 
                       Share <i className="fas fa-paper-plane"></i>
                 </Button>

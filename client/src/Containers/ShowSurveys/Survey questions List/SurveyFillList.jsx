@@ -10,10 +10,6 @@ import styles from './SurveyFillList.module.css'
 /* whole questions for a single survey*/
 /************* */
 class SurveyFillList extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     componentDidMount() {
         this.props.previewSurvey(this.props.match.params.id);
     }

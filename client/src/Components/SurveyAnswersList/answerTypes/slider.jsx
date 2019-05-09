@@ -1,7 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 //import Slider from '@material-ui/lab/Slider';
 import './slider.css'
 import { Slider } from 'rsuite';
@@ -26,10 +23,7 @@ class SimpleSlider extends React.Component {
     };
 
     render() {
-        const { classes } = this.props;
-        const { value } = this.state;
-
-        return (
+         return (
             // <div >
             //     <Typography id="label">{this.state.value}</Typography>
             //     <Slider

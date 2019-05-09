@@ -1,6 +1,5 @@
 import * as actionTypes from './types';
 import axios from '../../axios-requests';
-let answers = []
 export const previewSurvey = (id) => dispatch => {
      axios.get("/fill/" + id)
      .then(response => {

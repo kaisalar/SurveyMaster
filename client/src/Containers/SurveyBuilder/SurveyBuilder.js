@@ -8,9 +8,6 @@ import styleClass from "./SurveyBuilder.module.css";
 import "./SurveyBuilder.css";
 import { MDBBtn, MDBRow, MDBCol } from "mdbreact";
 import { connect } from "react-redux";
-import _ from "lodash";
-import SideEditor from "../../Components/SideEditor/SideEditor";
-import axios from "../../axios-requests";
 
 class SurveyBuilder extends Component {
   state = {
@@ -91,12 +88,6 @@ const mapStateToProps = state => {
   return {
     create: state.createSurvey,
     pages: state.createSurvey.pages
-  };
-};
-const mapDispatchToProps = dispatch => {
-  return {
-    // addNewQuestion: () => ,
-    // submitNewSurvey: 
   };
 };
 

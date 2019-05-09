@@ -1,6 +1,5 @@
 import * as actions from "../actions/types";
 import * as Qtypes from "../../Components/Question/QuestionTypes";
-import { Cascader } from "rsuite";
 const initialState = {
   title: "newSurvey",
   pages: [
@@ -66,6 +65,8 @@ const reducer = (state = initialState, action) => {
         case actions.CHANGE_DEFAULT_VALUE:
           newPages[0].questions[action.index].content.defaultValue = action.val;
           break;
+        default:
+        break;
       }
       break;
     default:

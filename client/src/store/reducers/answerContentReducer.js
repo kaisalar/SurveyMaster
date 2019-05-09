@@ -1,6 +1,4 @@
 import * as actionType from '../actions/types';
-import * as questionType from '../../Components/Question/QuestionTypes'
-import _ from 'lodash'
 const initialState= {
    surveyId:0,
     answers:[{
@@ -44,14 +42,14 @@ const contentReducer = (state = initialState , action)=>{
     }
 }
 
-function getSafe(fn, defaultVal) {
-  try {
-      console.log('sss',fn())
-    return fn();
-  } catch (e) {
-    return defaultVal;
-  }
-}
+// // function getSafe(fn, defaultVal) {
+// //   try {
+// //       console.log('sss',fn())
+// //     return fn();
+// //   } catch (e) {
+// //     return defaultVal;
+// //   }
+// }
 const deleteFirstItem = (array,value) =>{
    array.push(value)
     if(array[0].questionId === 0)
