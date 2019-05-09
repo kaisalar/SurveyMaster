@@ -14,6 +14,8 @@ const styles = {
 class SimpleSlider extends React.Component {
     state = {
         value: 5,
+        min:0,
+        max:10
     };
 
     handleChange = (value) => {
@@ -21,6 +23,14 @@ class SimpleSlider extends React.Component {
     this.props.change({value:value})
 
     };
+   
+    componentDidMount() {
+        console.log("....", this.props.content.max)
+        this.setState({ max: this.props.content.max,min:this.props.content.min })
+      
+    }
+    
+
 
     render() {
          return (
@@ -35,7 +45,8 @@ class SimpleSlider extends React.Component {
             //         onChangeCapture={(event) => this.props.change(event)}
             //     />
             // </div>
-            <Slider progress  defaultValue={50} className="slider" onChange = {this.handleChange} style={{styles}}/>
+            <Slider progress  max={this.state.max}  step={this.props.content.step} defaultValue={50} className="slider" onChange = {this.handleChange} style={{styles}}/>
+
         );
     }
 }

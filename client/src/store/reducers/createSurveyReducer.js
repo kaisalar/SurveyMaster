@@ -49,7 +49,7 @@ const reducer = (state = initialState, action) => {
       const newChoices = newPages[0].questions[
         action.index
       ].content.choices.filter((_, index) => index !== action.choiceIndex);
-      newPages[action.index].content.choices = newChoices;
+      newPages[0].questions[action.index].content.choices = newChoices;
       break;
     case actions.CHANGE_LINEAR_CONTENT:
       switch (action.content) {

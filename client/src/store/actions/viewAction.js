@@ -10,6 +10,7 @@ export const setSurveys = surveys => {
 export const deleteSurvey = id => dispatch => {
   axios.delete("api/surveys/" + id)
        .then(response => {
+
               dispatch(initSurvey());
               });
 };

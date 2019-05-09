@@ -12,58 +12,56 @@ class CardExample extends Component {
     this.URL = "/fill/" + this.props.id;
     this.B_URL = "http://localhost:3000";
   }
-  
+
 
 
   render() {
-    const {id , description , title , date} = this.props
+    const { id, description, title, date } = this.props
     return (
       <React.Fragment>
-        <div style={{margin:'10px'}}>
+        <div style={{ margin: '10px' }}>
 
-        <Card className ='card' >
-          <Card.Content>
-            <Image floated='right' size='mini' src='https://react.semantic-ui.com/images/avatar/large/steve.jpg' />
-            <Card.Header>{title}</Card.Header>
-            <Card.Meta>ID: {id}</Card.Meta>
-            <Card.Meta>Date: {date}</Card.Meta>
-            <Card.Description>
-              {description} 
-            </Card.Description>
-          </Card.Content>
-          <Card.Content extra>
-            <div className='ui two buttons'>
-              <CopyToClipboard text={this.B_URL + this.URL}>
-                <a href="#" onClick={() => window.open(this.B_URL + this.URL, SurveyFillList)}>
-                   
-                  <Button basic color='green'  style={{ color: 'white' }} > 
-                      Share <i className="fas fa-paper-plane"></i>
-                </Button>
-                </a>
-              </CopyToClipboard>
-              <div style={{width:'40px' , marginLeft:'3px'}}>
+          <Card className='card' >
+            <Card.Content>
+              <Image floated='right' size='mini' src='https://react.semantic-ui.com/images/avatar/large/steve.jpg' />
+              <Card.Header>{title}</Card.Header>
+              <Card.Meta>ID: {id}</Card.Meta>
+              <Card.Meta>Date: {date}</Card.Meta>
+              <Card.Description>
+                {description}
+              </Card.Description>
+            </Card.Content>
+            <Card.Content extra>
+              <div className='ui two buttons'>
+                <CopyToClipboard text={this.B_URL + this.URL}>
 
-              <Button color='red' onClick={this.props.click} style={{ backgroundColor: 'red', color: 'white' }}>
+                  <Button basic color='green' style={{ color: 'white' }} onClick={() =>{alert("copied"); window.open(this.B_URL + this.URL, SurveyFillList)}}>
+                    Share <i className="fas fa-paper-plane"></i>
+                  </Button>
+                </CopyToClipboard>
+                <div style={{ width: '40px', marginLeft: '3px' }}>
+
+                  <Button color='red' onClick={this.props.click} style={{ backgroundColor: 'red', color: 'white' }}>
                     <i className="fas fa-backspace"></i>
-              </Button>
-              </div>
-            
-            </div>
-          </Card.Content>
-        </Card>
+                  </Button>
+                </div>
+
+              </div>  
+            </Card.Content>
+          </Card>
         </div>
-        
-              {/* <Link to={this.URL}>
+
+        {/* <Link to={this.URL}>
                 <Button style={{ color: 'white' }} >
                   Preview
                </Button>
               </Link> */}
-           
+
 
       </React.Fragment>
     )
-            
 
-}
+
+  }
 }
 export default CardExample;
