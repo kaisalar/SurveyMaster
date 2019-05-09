@@ -15,7 +15,7 @@ class HomePage extends Component {
 
 
                         <Link to="/create">
-                                <Button color="#2bbbad">Create New Survey</Button></Link>
+                                <Button>Create New Survey</Button></Link>
                             
                         <Link to="/surveys"><Button >Show Surveys</Button></Link>
                       </div>

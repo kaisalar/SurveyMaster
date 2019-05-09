@@ -19,8 +19,6 @@
     "yarn": "^1.15.2"
   },
   "dependencies": {
-    "@material-ui/core": "^3.9.3",
-    "@material-ui/lab": "^3.0.0-alpha.30",
     "concurrently": "^3.5.1",
     "express": "^4.16.2"
   }

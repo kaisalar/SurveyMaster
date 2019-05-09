@@ -39,14 +39,14 @@ class CardExample extends Component {
                 <a onClick={() => window.open(this.B_URL + this.URL, SurveyFillList)}>
                   
                   <Button basic color='green'  style={{ color: 'white' }} > 
-                      Share <i class="fas fa-paper-plane"></i>
+                      Share <i className="fas fa-paper-plane"></i>
                 </Button>
                 </a>
               </CopyToClipboard>
               <div style={{width:'40px' , marginLeft:'3px'}}>
 
               <Button color='red' onClick={this.props.click} style={{ backgroundColor: 'red', color: 'white' }}>
-                    <i class="fas fa-backspace"></i>
+                    <i className="fas fa-backspace"></i>
               </Button>
               </div>
             

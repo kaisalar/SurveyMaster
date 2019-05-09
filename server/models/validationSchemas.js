@@ -30,7 +30,7 @@ const paragraphQuestionSchema = {
 const multipleChoiceQuestionSchema = {
     ...questionSchema,
     content: Joi.object().keys({
-        choices: Joi.array().items(Joi.string().required()).required()
+        choices: Joi.array().items(Joi.string()).required()
     }).required()
 }
 

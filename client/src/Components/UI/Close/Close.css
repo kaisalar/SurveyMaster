@@ -1,0 +1,6 @@
+.rs-icon-close { 
+    transition: color 0.15s ease-in-out;
+}
+.rs-icon-close:hover { 
+    color: red;
+}

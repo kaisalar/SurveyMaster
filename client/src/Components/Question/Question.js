@@ -3,36 +3,31 @@ import { MDBInput } from "mdbreact";
 import styleClass from "./Question.module.css";
 import TextAnswer from "./TextAnswer/TextAnswer";
 import MultipleChoice from "./MultipleChoise/MultipleChoice";
+import Data from "./QuestionsData";
+import LinearScale from "./LinearScale/LinearScale";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/types";
 import * as Qtypes from "./QuestionTypes";
 import { SelectPicker } from "rsuite";
+import Close from "../UI/Close/Close";
+import { style } from "react-toastify";
 
 class Question extends Component {
   state = {
-    mouseHover: false
+    deleteHover: false
   };
-  mouseHoverOn = () => {
+  deleteHoverHandler = newValue => { 
+    console.log('test');
     this.setState({
-      mouseHover: true
-    });
-  };
-  mouseHoverOff = () => {
-    this.setState({
-      mouseHover: false
-    });
-  };
-  render() {
-    let Style = null;
-    if (this.state.mouseHover) {
-      Style = {
-        boxShadow: "0px 0px 5px 5px rgba(0, 0, 255, .1)"
-      };
-    }
+      deleteHover: newValue
+    })
+  }
 
+  render() {
+    const Qs = this.props.pages[0].questions;
     let AnswerType;
     const index = this.props.index;
-    const Q = this.props.Qs[index];
+    const Q = Qs[index];
     switch (Q.type) {
       case Qtypes.TEXT:
         AnswerType = (
@@ -45,39 +40,38 @@ class Question extends Component {
         );
         break;
       case Qtypes.RADIO_GROUP:
-        AnswerType = (
-          <MultipleChoice index={index} type={Qtypes.RADIO_GROUP} />
-        );
+        AnswerType = <MultipleChoice index={index} type={Qtypes.RADIO_GROUP} />;
         break;
-        case Qtypes.CHECKBOX:
-        AnswerType = (
-          <MultipleChoice index={index} type={Qtypes.CHECKBOX} />
-        );
+      case Qtypes.CHECKBOX:
+        AnswerType = <MultipleChoice index={index} type={Qtypes.CHECKBOX} />;
         break;
-        case Qtypes.DROPDOWN:
-        AnswerType = (
-          <MultipleChoice index={index} type={Qtypes.DROPDOWN} />
-        );
+      case Qtypes.DROPDOWN:
+        AnswerType = <MultipleChoice index={index} type={Qtypes.DROPDOWN} />;
+        break;
+      case Qtypes.RATING:
+        AnswerType = <LinearScale index={index} type={Qtypes.RATING} />;
+        break;
+      case Qtypes.SLIDER:
+        AnswerType = <LinearScale index={index} type={Qtypes.SLIDER} />;
+        break;
+      case Qtypes.RANGE:
+        AnswerType = <LinearScale index={index} type={Qtypes.RANGE} />;
         break;
       default:
         AnswerType = <TextAnswer index={index} />;
         break;
     }
-    const data = [
-      { label: "Short Text", value: Qtypes.TEXT,role: "Text Answer" },
-      { label: "Paragraph", value: Qtypes.PARAGRAPH,role: "Text Answer" },
-      { label: "Radio Group", value: Qtypes.RADIO_GROUP,role: "Muliple Choise"  },
-      { label: "Checkbox", value: Qtypes.CHECKBOX,role: "Muliple Choise" },
-      { label: "Dropdown Menu", value: Qtypes.DROPDOWN,role: "Muliple Choise" }
-    ];
+    const data = Data;
+    let containerStyleClass = this.state.deleteHover ? styleClass.QuestionContainer + " " + styleClass.red : styleClass.QuestionContainer;
     return (
       <div
-        className={styleClass.QuestionContainer}
-        style={Style}
-        onMouseEnter={this.mouseHoverOn}
-        onMouseLeave={this.mouseHoverOff}
+        className={containerStyleClass}
         onClick={this.props.clicked}
       >
+        <Close
+          hoverIn={() => this.deleteHoverHandler(true)}
+          hoverOut={() => this.deleteHoverHandler(false)}
+        />
         <div className={styleClass.Question}>
           <MDBInput
             label="Enter Your Question Title"
@@ -109,7 +103,7 @@ class Question extends Component {
 
 const mapStateToProps = state => {
   return {
-    Qs: state.createSurvey.Questions
+    pages: state.createSurvey.pages
   };
 };
 const mapDispatchToProps = dispatch => {

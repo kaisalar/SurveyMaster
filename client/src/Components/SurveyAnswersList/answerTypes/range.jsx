@@ -1,8 +1,6 @@
 
 import 'rc-slider/assets/index.css';
-
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Slider, { Range} from 'rc-slider';
 import './range.css'
 class DynamicBounds extends React.Component {
