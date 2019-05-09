@@ -10,11 +10,10 @@ const initialState = {
   ]
 };
 const reducer = (state = initialState, action) => {
-  let newPages;
+  let newPages = [...state.pages];
   switch (action.type) {
     case actions.ADD_QUESTION:
       const newQuestion = {
-        _id: state.pages[0].questions.length + 1,
         type: Qtypes.TEXT,
         title: "Untitled Question",
         content: {
@@ -25,57 +24,35 @@ const reducer = (state = initialState, action) => {
           defaultValue: '0'
         }
       };
-      newPages = [...state.pages];
       newPages[0].questions.push(newQuestion);
-      return {
-        ...state,
-        pages: newPages
-      };
+      break;
+    case actions.DELETE_QUESTION:
+    newPages[0].questions = newPages[0].questions.filter((_,index) => index !== action.index)
+      break;
     case actions.CHANGE_QUESTION_TITLE:
-      newPages = [...state.pages];
       newPages[0].questions[action.index].title = action.val;
-      return {
-        ...state,
-        pages: newPages
-      };
+      break;
     case actions.CHANGE_QUESTION_TYPE:
-      newPages = [...state.pages];
       newPages[0].questions[action.index].type = action.val;
-      // handleContentOfType(newPages[action.index]);
-      return {
-        ...state,
-        pages: newPages
-      };
+      break;
+
     case actions.CHANGE_CHOISE_LABEL:
-      newPages = [...state.pages];
       newPages[0].questions[action.index].content.choices[action.choiceIndex] =
         action.val;
-      return {
-        ...state,
-        pages: newPages
-      };
+      break;
     case actions.ADD_CHOICE:
-      newPages = [...state.pages];
       newPages[0].questions[action.index].content.choices.push(
         "Option " +
           (newPages[0].questions[action.index].content.choices.length + 1)
       );
-      return {
-        ...state,
-        pages: newPages
-      };
+      break;
     case actions.DELETE_CHOICE:
-      newPages = [...state.pages];
       const newChoices = newPages[0].questions[
         action.index
       ].content.choices.filter((_, index) => index !== action.choiceIndex);
       newPages[action.index].content.choices = newChoices;
-      return {
-        ...state,
-        pages: newPages
-      };
+      break;
     case actions.CHANGE_LINEAR_CONTENT:
-      newPages = [...state.pages];
       switch (action.content) {
         case actions.CHANGE_MIN_VALUE:
           newPages[0].questions[action.index].content.min = action.val;
@@ -90,15 +67,14 @@ const reducer = (state = initialState, action) => {
           newPages[0].questions[action.index].content.defaultValue = action.val;
           break;
       }
-      return {
-        ...state,
-        pages: newPages
-      };
-
+      break;
     default:
       break;
   }
-  return state;
+  return {
+    ...state,
+    pages: newPages
+  };
 };
 // const handleContentOfType = Question => {
 //   switch (Question.type) {

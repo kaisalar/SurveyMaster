@@ -17,7 +17,6 @@ class Question extends Component {
     deleteHover: false
   };
   deleteHoverHandler = newValue => { 
-    console.log('test');
     this.setState({
       deleteHover: newValue
     })
@@ -71,6 +70,7 @@ class Question extends Component {
         <Close
           hoverIn={() => this.deleteHoverHandler(true)}
           hoverOut={() => this.deleteHoverHandler(false)}
+          clicked={() => this.props.DeleteQuestionHandler(index)}
         />
         <div className={styleClass.Question}>
           <MDBInput
@@ -119,7 +119,8 @@ const mapDispatchToProps = dispatch => {
         type: actions.CHANGE_QUESTION_TYPE,
         index: index,
         val: newVal
-      })
+      }),
+    DeleteQuestionHandler: (index) => dispatch({type: actions.DELETE_QUESTION,index: index})
   };
 };
 
