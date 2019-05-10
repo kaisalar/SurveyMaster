@@ -10,14 +10,18 @@ class Dropdownmenu extends Component {
         this.setState({ title: value ,active:value},()=>this.props.change({value:value}))
         
     }
+    componentDidMount() {
+    }
+    
     render(){
+        this.choicesSentences = this.props.content.choices;
+
+        let items = this.choicesSentences.map((c, i) => <Dropdown.Item key={i} onChange={this.onItemSelect}
+            value={i + 1}>{c}</Dropdown.Item>)
         const {title,active} = this.state;
         return (<ButtonToolbar>
-        <Dropdown title={title} activeKey={active}>
-            <Dropdown.Item eventKey="Item A" onSelect={this.onItemSelect}>Item A</Dropdown.Item>
-            <Dropdown.Item eventKey="Item B" onSelect={this.onItemSelect}>Item B</Dropdown.Item>
-            <Dropdown.Item eventKey="Item C" onSelect={this.onItemSelect}>Item C</Dropdown.Item>
-            <Dropdown.Item eventKey="Item D" onSelect={this.onItemSelect}>Item D</Dropdown.Item>
+        <Dropdown style={{height:'auto'}} title={title} activeKey={active}>
+         {items}
         </Dropdown>
     </ButtonToolbar>)
         }

@@ -13,6 +13,8 @@ import { addquestion } from "../../../store/actions/answersAction";
 import RadioButton from "../answerTypes/radioGroup";
 import styleClass from "./SurveyFll_item.module.css";
 import "./style.css";
+import RatingNumbers from '../answerTypes/ratingNumbers';
+import _ from 'lodash'
 /************************ */
 /*single question to fill */
 /************************ */
@@ -30,68 +32,71 @@ class SurveyPage extends Component {
     };
   }
 
-  onAnswerChange = value => {
-    this.localState.info.content = value;
+  onAnswerChange = (value) => {
+    this.localState.info.content = value
     //console.log('value',value)
-    this.props.addquestion(this.localState);
-  };
-  render() {
-    const { answerObjectType, title, number, content } = this.props;
+    this.props.addquestion(this.localState)
+}
+render() {
+    const { answerObjectType, title, number,content } = this.props
     let answer = null;
-    let info = this.localState.info;
+    let info = this.localState.info
     switch (answerObjectType) {
-      case Qtype.CHECKBOX: {
-        info.type = Atype.ANSWER_MULTIPLE_CHOICE;
-        //      console.log('type', this.localState.type)
-        answer = <CheckBox change={this.onAnswerChange} />;
-        break;
-      }
-      case Qtype.TEXT: {
-        info.type = Atype.ANSWER_TEXT;
-        answer = <ShortText change={this.onAnswerChange} />;
-        break;
-      }
-      case Qtype.RADIO_GROUP:
-        info.type = Atype.ANSWER_SINGLE_NUMBER_VALUE;
-        answer = <RadioButton change={this.onAnswerChange} />;
-        break;
+        case Qtype.CHECKBOX :
+            {
+                info.type = Atype.ANSWER_MULTIPLE_CHOICE
+          //      console.log('type', this.localState.type)
+                answer = <CheckBox content={content}  change={this.onAnswerChange}  />
+                break;
+            }
+        case Qtype.TEXT: {
+            info.type = Atype.ANSWER_TEXT
+            answer = <ShortText content={content} change={this.onAnswerChange} />
+            break;
+        }
+        case Qtype.RADIO_GROUP:
+            info.type = Atype.ANSWER_SINGLE_NUMBER_VALUE
+            answer = <RadioButton content={content} change={this.onAnswerChange} />
+            break;
 
-      case Qtype.DROPDOWN:
-        info.type = Atype.ANSWER_SINGLE_NUMBER_VALUE;
-        answer = <Dropdown change={this.onAnswerChange} />;
-        break;
-      case Qtype.PARAGRAPH: {
-        info.type = Atype.ANSWER_TEXT;
+        case Qtype.DROPDOWN:
+            info.type = Atype.ANSWER_SINGLE_NUMBER_VALUE
+            answer = <Dropdown content={content}  change={this.onAnswerChange} />
+            break;
+        case Qtype.PARAGRAPH: {
+            info.type = Atype.ANSWER_TEXT
 
-        answer = <Paragraph change={this.onAnswerChange} />;
-        break;
-      }
-      case Qtype.RANGE:
-        info.type = Atype.ANSWER_RANGE;
-        answer = <Range change={this.onAnswerChange} />;
-        break;
-      case Qtype.RATING:
-        info.type = Atype.ANSWER_SINGLE_NUMBER_VALUE;
-        answer = <Rating change={this.onAnswerChange} />;
-        break;
-      case Qtype.SLIDER:
-        info.type = Atype.ANSWER_SINGLE_NUMBER_VALUE;
-        answer = <Slider content={content} change={this.onAnswerChange} />;
-        break;
-      default:
-        info.type = Atype.ANSWER_TEXT;
+            answer = <Paragraph content={content}  change={this.onAnswerChange} />
+            break;
+        }
+        case Qtype.RANGE:
+            info.type =  Atype.ANSWER_RANGE
+            answer = <Range content={content}  change={this.onAnswerChange} />
+            break;
+        case Qtype.RATING:
+             info.type =  Atype.ANSWER_SINGLE_NUMBER_VALUE
+            if (content.ratingType === "RATING_NUMBERS")
+                answer = <RatingNumbers content={content} change={this.onAnswerChange} />
+             else
+            answer = <Rating  content={content} change={this.onAnswerChange} />
+            break;
+        case Qtype.SLIDER:
+            info.type = Atype.ANSWER_SINGLE_NUMBER_VALUE
+            answer = <Slider content={content} change={this.onAnswerChange} />
+            break;
+        default:
+            info.type = Atype.ANSWER_TEXT
 
-        answer = <ShortText change={this.onAnswerChange} />;
+            answer = <ShortText content={content}  change={this.onAnswerChange} />
+
     }
-    return (
-      <div className="section">
+return (
         <div className={styleClass.QuestionContainer}>
           <div className={styleClass.QuestionTitle}>
             <h3>{title}</h3>
           </div>
           <div className={styleClass.Answer}>{answer}</div>
         </div>
-      </div>
     );
   }
 }
