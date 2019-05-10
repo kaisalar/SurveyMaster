@@ -4,18 +4,26 @@ import Question from '../../../Components/SurveyAnswersList/SurveyFill_Item/Surv
 import { previewSurvey, postAnswers } from '../../../store/actions/answersAction'
 import { connect } from 'react-redux';
 import { MDBBtn } from 'mdbreact';
+import {Redirect} from 'react-router-dom'
+import {Alert} from 'rsuite';   
 import styles from './SurveyFillList.module.css'
 /**************** */
 /* using answersAction here  */
 /* whole questions for a single survey*/
 /************* */
 class SurveyFillList extends Component {
+    state={
+        redirect:false
+    }
     componentDidMount() {
         this.props.previewSurvey(this.props.match.params.id);
     }
     onSubmitHandler = () => {
          
         this.props.postAnswers(this.props.answers, this.props.id)
+        Alert.success("Thanks For your Time , Your Opinion is priceless :)");
+        window.setTimeout(() => (this.setState({redirect:true})), 2000)
+       
     }
 
     submitAnswers = () => {
@@ -33,8 +41,10 @@ class SurveyFillList extends Component {
         const { id, title, date, surveyPages } = this.props
 
         return (
+            
             <div className={styles.layout}>
-
+            { this.state.redirect? <Redirect  to="/" />:null
+            }
                 <div>
                     <h1>Title :{title}</h1>
                     <h6>ID: {id}</h6>

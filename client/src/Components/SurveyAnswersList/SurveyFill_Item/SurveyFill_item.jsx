@@ -5,12 +5,14 @@ import Paragraph from '../answerTypes/paragraph';
 import Range from '../answerTypes/range';
 import Rating from '../answerTypes/rating';
 import Slider from '../answerTypes/slider';
+import RadioButton from '../answerTypes/radioButton';
 import Dropdown from '../answerTypes/dropdownmenu'
 import * as Qtype from '../../Question/QuestionTypes'
 import * as Atype from '../../../store/actions/types'
 import { connect } from 'react-redux';
 import { addquestion } from '../../../store/actions/answersAction'
-import RadioButton from '../answerTypes/radioGroup';
+import RatingNumbers from '../answerTypes/ratingNumbers';
+import _ from 'lodash'
 /************************ */
 /*single question to fill */
 /************************ */
@@ -44,36 +46,39 @@ class SurveyPage extends Component {
                 {
                     info.type = Atype.ANSWER_MULTIPLE_CHOICE
               //      console.log('type', this.localState.type)
-                    answer = <CheckBox change={this.onAnswerChange}  />
+                    answer = <CheckBox content={content}  change={this.onAnswerChange}  />
                     break;
                 }
             case Qtype.TEXT: {
                 info.type = Atype.ANSWER_TEXT
-                answer = <ShortText change={this.onAnswerChange} />
+                answer = <ShortText content={content} change={this.onAnswerChange} />
                 break;
             }
             case Qtype.RADIO_GROUP:
                 info.type = Atype.ANSWER_SINGLE_NUMBER_VALUE
-                answer = <RadioButton change={this.onAnswerChange}/>
+                answer = <RadioButton content={content} change={this.onAnswerChange} />
                 break;
 
             case Qtype.DROPDOWN:
                 info.type = Atype.ANSWER_SINGLE_NUMBER_VALUE
-                answer = <Dropdown change={this.onAnswerChange} />
+                answer = <Dropdown content={content}  change={this.onAnswerChange} />
                 break;
             case Qtype.PARAGRAPH: {
                 info.type = Atype.ANSWER_TEXT
 
-                answer = <Paragraph change={this.onAnswerChange} />
+                answer = <Paragraph content={content}  change={this.onAnswerChange} />
                 break;
             }
             case Qtype.RANGE:
                 info.type =  Atype.ANSWER_RANGE
-                answer = <Range change={this.onAnswerChange} />
+                answer = <Range content={content}  change={this.onAnswerChange} />
                 break;
             case Qtype.RATING:
-                info.type =  Atype.ANSWER_SINGLE_NUMBER_VALUE
-                answer = <Rating change={this.onAnswerChange} />
+                 info.type =  Atype.ANSWER_SINGLE_NUMBER_VALUE
+                if (content.ratingType === "RATING_NUMBERS")
+                    answer = <RatingNumbers content={content} change={this.onAnswerChange} />
+                 else
+                answer = <Rating  content={content} change={this.onAnswerChange} />
                 break;
             case Qtype.SLIDER:
                 info.type = Atype.ANSWER_SINGLE_NUMBER_VALUE
@@ -82,7 +87,7 @@ class SurveyPage extends Component {
             default:
                 info.type = Atype.ANSWER_TEXT
 
-                answer = <ShortText change={this.onAnswerChange} />
+                answer = <ShortText content={content}  change={this.onAnswerChange} />
 
         }
         return (
