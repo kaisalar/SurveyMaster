@@ -19,8 +19,11 @@
     "yarn": "^1.15.2"
   },
   "dependencies": {
+    "@fullpage/react-fullpage": "^0.1.14",
     "concurrently": "^3.5.1",
     "express": "^4.16.2",
-    "files": "^1.0.0"
+    "files": "^1.0.0",
+    "i": "^0.3.6",
+    "npm": "^6.9.0"
   }
 }

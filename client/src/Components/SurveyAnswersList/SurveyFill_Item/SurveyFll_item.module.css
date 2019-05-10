@@ -1,0 +1,32 @@
+.QuestionTitle {
+    margin: 15px;
+    padding: 50px 15px;
+}
+.QuestionTitle:after { 
+    content: ""; /* So that it will show */
+    display: block; /* So it can have width */
+    width: 10%; /* Make sure position on these elements is relative (or something besides default) */
+    height: 1px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    margin: 0px auto; /* Center the line */
+}
+
+.QuestionTitle h3 {
+  font-size: 3rem;
+  line-height: 5rem;
+  color: rgba(255,255,255,0.95)
+}
+.QuestionContainer { 
+    text-align: center;
+}
+.Answer { 
+    width: 60%;
+    text-align: left;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    color: rgba(255,255,255,0.8);
+    margin: auto
+}
+.Answer label { 
+    font-size: 2rem
+}
