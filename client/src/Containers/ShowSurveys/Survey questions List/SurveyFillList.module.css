@@ -28,7 +28,7 @@
   font-weight: 200
 }
 body {
-  background: linear-gradient(#00d4ff,#3042A1) !important;
+  background: linear-gradient(#00d4ff,#3042A1);
   /* background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(7,60,155,1) 38%, rgba(4,127,199,1) 74%, #00d4ff 100%); */
 
 }
