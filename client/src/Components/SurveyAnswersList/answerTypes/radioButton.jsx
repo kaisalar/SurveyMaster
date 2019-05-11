@@ -37,21 +37,19 @@ class RadioButton extends Component{
     }
 
     changedChoiceHandler = (value) => {
+        console.log(value)
          this.setState({ value: value }, () => this.props.change(this.state));
-     console.log(value)
      }
      render() {
    
       this.choicesSentences = this.props.content.choices;
 
-         let radios = this.choicesSentences.map((c,i) => (<Radio key={i} value={i} onChange={this.changedChoiceHandler} >{c}</Radio>))
+        let radios = this.choicesSentences.map((c,i) => (<Radio key={i} value={i + 1} onChange={this.changedChoiceHandler} >{c}</Radio>))
     
     return(<div>
-        <FormGroup controlId="radioList">
             <RadioGroup name="radioList">
                {radios}
             </RadioGroup>
-        </FormGroup>
     </div>)
      }
     }

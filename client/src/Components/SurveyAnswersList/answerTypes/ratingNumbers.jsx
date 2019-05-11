@@ -23,16 +23,13 @@ class RadioButton extends Component {
         let choices =[];
          for (let index = 0; index < max; index++) {
             
-             choices.push(<Radio key={index} value={index + 1} onChange={this.onChoiceChanged}>{index +1 }</Radio>)
+             choices.push(<Radio key={index} value={index + 1} onChange={this.onChoiceChanged}>{index + 1 }</Radio>)
         }
         return (
-            <FormGroup controlId="radioList">
                 <RadioGroup name="radioList" inline appearance="picker" defaultValue={choices.length} onChange={this.onChoiceChanged}>
                    {choices}
-                  
- 
                 </RadioGroup>
-            </FormGroup>)
+            )
     }
 }
 

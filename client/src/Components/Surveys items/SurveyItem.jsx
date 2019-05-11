@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Card, Image, CardGroup } from 'semantic-ui-react'
+import { Button, Card, Image } from 'semantic-ui-react'
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Alert } from 'rsuite';
 import SurveyFillList from '../../Containers/ShowSurveys/Survey questions List/SurveyFillList';

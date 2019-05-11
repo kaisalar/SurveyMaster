@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-//import Slider from '@material-ui/lab/Slider';
-import './slider.css'
-import { Slider } from 'rsuite';
-const styles = {
-  
-    slider: {
-        padding: '22px 0px',
-        margin: '50px auto',
-        width:'60%'
-    },
-};
+import React, { Component } from "react";
+import styleClass from "./Slider.module.css";
+import "./slider.css";
+import { Slider } from "rsuite";
+// const styles = {
+
+//     slider: {
+//         padding: '22px 0px',
+//         margin: '50px auto',
+//         width:'60%'
+//     },
+// };
 
 // class SimpleSlider extends React.Component {
 //     state = {
@@ -23,14 +23,12 @@ const styles = {
 //     this.props.change({value:value})
 
 //     };
-   
+
 //     componentDidMount() {
 //         console.log("....", this.props.content)
 //         this.setState({ max: this.props.content.max,min:this.props.content.min })
-      
-//     }
-    
 
+//     }
 
 //     render() {
 //         console.log(this.props.content)
@@ -54,27 +52,44 @@ const styles = {
 // import React from "react";
 
 class SliderPage extends Component {
-    state={
-        value: 0,
-        min:0,
-        max:10
-    }
-    onSliderChanged =(e) =>{
-        this.setState({value:e.target.value})
-        let value = {value : Number(e.target.value)}
-        console.log(value)
-        this.props.change(value)
-    }
-    render(){
-        
-        const {min,max,step} = this.props.content;
-        return (
-            <div className="my-5" style={{width: '70%' , margin:'auto'}}>
-            <label htmlFor="customRange1">value: {this.state.value}</label>
-            <input type="range" min={min} max={max} step={step} className="custom-range" onChange={this.onSliderChanged} id="customRange1" />
-        </div>
+  state = {
+    value: 2,
+    min: 0,
+    max: 10,
+    step: 1,
+    defaultValue: 0
+  };
+  onSliderChanged = e => {
+    this.setState({ value: e });
+    let value = { value: e };
+    this.props.change(value);
+  };
+  componentDidMount() {
+    const { min, max, step, defaultValue } = this.props.content;
+    this.setState({
+      min: Number(min),
+      max: max,
+      step: step,
+      defaultValue: Number(defaultValue),
+      value: Number(min)
+    });
+  }
+
+  render() {
+    return (
+      <div className={styleClass.Silder}>
+        <label className="SliderLabel">value: {this.state.value}</label>
+        <Slider
+          progress
+          max={this.state.max}
+          min={this.state.min}
+          step={this.state.step}
+          defaultValue={this.state.defaultValue}
+          onChange={this.onSliderChanged}
+        />
+      </div>
     );
-}
+  }
 }
 
 export default SliderPage;

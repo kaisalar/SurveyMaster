@@ -13,8 +13,7 @@ const TextareaPage = (props) => {
         }
     }
     return (
-         
-        <MDBInput 
+        <MDBInput
         maxLength={props.content.max}
         type="textarea"
         label="write 250 character at least "

@@ -20,15 +20,7 @@ class Dropdownmenu extends Component {
     render(){
         this.choicesSentences = this.props.content.choices;
 
-        let items = this.choicesSentences.map((c, i) => <Dropdown.Item key={i} onSelect={this.onItemSelect}
-            eventKey={this.state.active}>{c}</Dropdown.Item>)
-        const {title,active} = this.state;
-    //     return (<ButtonToolbar>
-    //     <Dropdown style={{height:'auto'}} title={title} activeKey={active}>
-    //      {items}
-    //     </Dropdown>
-
-    // </ButtonToolbar>)
+       
     let elements=[];
         for (let i = 0; i < this.choicesSentences.length; i++) {
             const element = {
@@ -47,8 +39,7 @@ class Dropdownmenu extends Component {
             style={{ width: 224 }}
             data={elements}
             onSelect={this.onItemSelect}
->
-           </SelectPicker>
+/>
             );
         }
 
