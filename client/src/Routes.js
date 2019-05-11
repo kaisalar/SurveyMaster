@@ -37,6 +37,7 @@ class Routes extends Component {
                   <Route path="/fill/:id" component={SurveyFillList} />
                   <Route path="/create" component={SurveyBuilder} />
                   <Route path="/surveys" component={Surveys} />
+                  <Route path="/" component={HomePage} />
                 </Switch>
             
         )}

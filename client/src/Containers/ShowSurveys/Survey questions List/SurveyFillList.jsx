@@ -7,10 +7,11 @@ import {
 } from "../../../store/actions/answersAction";
 import ReactFullpage from "@fullpage/react-fullpage";
 import { connect } from "react-redux";
-import Loader from '../../../Components/UI/Loader/Loader'
+import Loader from "../../../Components/UI/Loader/Loader";
 import { Alert } from "rsuite";
 import styles from "./SurveyFillList.module.css";
-import { MDBBtn } from "mdbreact";
+import "./style.css"
+import { MDBBtn, Tooltip } from "mdbreact";
 /**************** */
 /* using answersAction here  */
 /* whole questions for a single survey*/
@@ -30,10 +31,8 @@ class SurveyFillList extends Component {
     this.setState({
       dataLoaded: newVal
     });
-    console.log(this.state.dataLoaded);
   };
   onSubmitHandler = () => {
-      console.log(this.props.answers)
     this.props.postAnswers(this.props.answers, this.props.id);
     window.setTimeout(() => this.setState({ redirect: true }), 2000);
   };
@@ -48,9 +47,11 @@ class SurveyFillList extends Component {
     //    console.log("new State in SurveyFillList.jsx", this.props)
     const { id, title, surveyPages } = this.props;
     let Content = <Loader />;
+    let tooltips = [];
     if (this.state.dataLoaded) {
       let Qs = surveyPages.map(page => {
         return page.questions.map((question, i) => {
+          tooltips.push(question.title)
           return (
             <Question
               key={i}
@@ -64,9 +65,16 @@ class SurveyFillList extends Component {
           );
         });
       });
-      Qs.push(<div className="section"><MDBBtn onClick={this.onSubmitHandler}>SUBMIT</MDBBtn></div>)
+      Qs.push(
+        <div className="section" key={Qs.length}>
+          <MDBBtn onClick={this.onSubmitHandler}>SUBMIT</MDBBtn>
+        </div>
+      );
+      tooltips.push("Submit")
       Content = (
         <ReactFullpage
+        navigation
+        navigationTooltips = {tooltips}
           render={({}) => {
             return <ReactFullpage.Wrapper>{Qs}</ReactFullpage.Wrapper>;
           }}
@@ -80,8 +88,7 @@ class SurveyFillList extends Component {
         </div>
         {Content}
       </div>
-
-   );
+    );
   }
 }
 const mapStateToProps = state => {
