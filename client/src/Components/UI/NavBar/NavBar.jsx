@@ -11,7 +11,7 @@ class NavbarPage extends Component {
     render() {
         return (
             <div>
-                <ul>
+                <ul className={styles.ul}>
                     <li><label className={styles.logo}>Survey Master</label> </li>
                     <li>
                         <NavLink to="/create" ><Button className={styles.btn}>Create Survey</Button></NavLink>

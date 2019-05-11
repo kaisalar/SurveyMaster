@@ -17,36 +17,36 @@ import _ from 'lodash'
 /*single question to fill */
 /************************ */
 class SurveyPage extends Component {
-    
+
     constructor(props) {
         super(props);
         this.localState = {
-            survey_id: this.props.surveyId,
-          
+            survey_id: String(this.props.surveyId),
+
             info: {
                 questionId: this.props.id,
                 type: "",
-                content: { }
+                content: {}
             }
         }
 
     }
-  
+
     onAnswerChange = (value) => {
         this.localState.info.content = value
         //console.log('value',value)
         this.props.addquestion(this.localState)
     }
     render() {
-        const { answerObjectType, title, number,content } = this.props
+        const { answerObjectType, title, number, content } = this.props
         let answer = null;
         let info = this.localState.info
         switch (answerObjectType) {
-            case Qtype.CHECKBOX :
+            case Qtype.CHECKBOX:
                 {
                     info.type = Atype.ANSWER_MULTIPLE_CHOICE
-              //      console.log('type', this.localState.type)
-                    answer = <CheckBox content={content}  change={this.onAnswerChange}  />
+                    //      console.log('type', this.localState.type)
+                    answer = <CheckBox content={content} change={this.onAnswerChange} />
                     break;
                 }
             case Qtype.TEXT: {
@@ -60,25 +60,25 @@ class SurveyPage extends Component {
                 break;
 
             case Qtype.DROPDOWN:
-                info.type = Atype.ANSWER_SINGLE_NUMBER_VALUE
-                answer = <Dropdown content={content}  change={this.onAnswerChange} />
+                info.type = Atype.ANSWER_MULTIPLE_CHOICE
+                answer = <Dropdown content={content} change={this.onAnswerChange} />
                 break;
             case Qtype.PARAGRAPH: {
                 info.type = Atype.ANSWER_TEXT
 
-                answer = <Paragraph content={content}  change={this.onAnswerChange} />
+                answer = <Paragraph content={content} change={this.onAnswerChange} />
                 break;
             }
             case Qtype.RANGE:
-                info.type =  Atype.ANSWER_RANGE
-                answer = <Range content={content}  change={this.onAnswerChange} />
+                info.type = Atype.ANSWER_RANGE
+                answer = <Range content={content} change={this.onAnswerChange} />
                 break;
             case Qtype.RATING:
-                 info.type =  Atype.ANSWER_SINGLE_NUMBER_VALUE
+                info.type = Atype.ANSWER_SINGLE_NUMBER_VALUE
                 if (content.ratingType === "RATING_NUMBERS")
                     answer = <RatingNumbers content={content} change={this.onAnswerChange} />
-                 else
-                answer = <Rating  content={content} change={this.onAnswerChange} />
+                else
+                    answer = <Rating content={content} change={this.onAnswerChange} />
                 break;
             case Qtype.SLIDER:
                 info.type = Atype.ANSWER_SINGLE_NUMBER_VALUE
@@ -87,7 +87,7 @@ class SurveyPage extends Component {
             default:
                 info.type = Atype.ANSWER_TEXT
 
-                answer = <ShortText content={content}  change={this.onAnswerChange} />
+                answer = <ShortText content={content} change={this.onAnswerChange} />
 
         }
         return (
