@@ -1,3 +1,22 @@
 .rs-radio-wrapper { 
     top: 20px;
 }
+
+.md-form .form-control { 
+    height: 4rem !important;
+    font-size: 2.5rem !important;
+}
+.md-form label { 
+    color: rgba(255, 255, 255, 0.7) !important;
+    font-size: 1.2rem !important;
+}
+.md-form label.active { 
+    font-size: 1rem !important; 
+}
+.md-form textarea.form-control { 
+    height: auto !important;
+    font-size: 2rem !important;
+}
+.md-form .prefix { 
+    top: 1rem !important;
+}

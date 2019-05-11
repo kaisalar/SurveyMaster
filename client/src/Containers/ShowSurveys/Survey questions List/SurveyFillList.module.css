@@ -13,20 +13,22 @@
   margin: auto 50px;
 }
 .layout h1 { 
-  margin: 15px auto;
   text-transform: uppercase
 }
 .SurveyTitle { 
-  margin: 25px auto 50px;
+  position: fixed;
+  width: calc(100% - 100px);
+  margin: 20px auto;
 }
 .SurveyTitle h1 { 
+  text-transform: uppercase;
   color: rgba(0, 0, 0, 0.7);
   text-align: center;
   font-size: 4em;
   font-weight: 200
 }
 body {
-  background: linear-gradient(#1594d6,#3042A1) !important;
-  /* background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(7,60,155,1) 38%, rgba(4,127,199,1) 74%, rgba(0,212,255,1) 100%); */
+  background: linear-gradient(#00d4ff,#3042A1) !important;
+  /* background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(7,60,155,1) 38%, rgba(4,127,199,1) 74%, #00d4ff 100%); */
 
 }

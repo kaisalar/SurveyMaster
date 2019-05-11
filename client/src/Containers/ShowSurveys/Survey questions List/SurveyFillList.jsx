@@ -5,22 +5,33 @@ import {
   previewSurvey,
   postAnswers
 } from "../../../store/actions/answersAction";
+import ReactFullpage from "@fullpage/react-fullpage";
 import { connect } from "react-redux";
-import { MDBBtn } from "mdbreact";
-import { Redirect } from "react-router-dom";
+import Loader from '../../../Components/UI/Loader/Loader'
 import { Alert } from "rsuite";
 import styles from "./SurveyFillList.module.css";
+import { MDBBtn } from "mdbreact";
 /**************** */
 /* using answersAction here  */
 /* whole questions for a single survey*/
 /************* */
 class SurveyFillList extends Component {
   state = {
-    redirect: false
+    redirect: false,
+    dataLoaded: false
   };
   componentDidMount() {
-    this.props.previewSurvey(this.props.match.params.id);
+    this.props.previewSurvey(
+      this.props.match.params.id,
+      this.dataLoadedHandler
+    );
   }
+  dataLoadedHandler = newVal => {
+    this.setState({
+      dataLoaded: newVal
+    });
+    console.log(this.state.dataLoaded);
+  };
   onSubmitHandler = () => {
     this.props.postAnswers(this.props.answers, this.props.id);
     Alert.success("Thanks For your Time , Your Opinion is priceless :)");
@@ -36,88 +47,41 @@ class SurveyFillList extends Component {
   render() {
     //    console.log("new State in SurveyFillList.jsx", this.props)
     const { id, title, surveyPages } = this.props;
-    console.log(this.props);
-    let questions = surveyPages.map(page => {
-      return page.questions;
-    });
-    console.log(questions);
-
-    // return (
-    //   <div className={styles.Newlayout}>
-    //     <div className={styles.SurveyTitle}>
-    //       <h1>{title}</h1>
-    //     </div>
-    //     {/* <ReactFullpage
-    //       render={({ state, fullpageApi }) => {
-    //         return (
-    //           <ReactFullpage.Wrapper>
-    //             <Question
-    //               key={0}
-    //               id={questions[0]._id}
-    //               surveyId={id}
-    //               number={1}
-    //               title={questions[0].title}
-    //               answerObjectType={questions[0].type}
-    //               content={questions[0].content}
-    //             />
-    //           </ReactFullpage.Wrapper>
-    //         );
-    //       }}
-    //     /> */}
-    let answer = this.state.answer;
-    console.log(this.state.answer);
-    axios.post("/filling/", answer).then(response => console.log(response));
-  }
-  getAnswerHandler = event => {
-    this.setState({ answer: event.target.value });
-  };
-  render() {
-    //    console.log("new State in SurveyFillList.jsx", this.props)
-    const { id, title, date, surveyPages } = this.props;
-
+    let Content = <Loader />;
+    if (this.state.dataLoaded) {
+      let Qs = surveyPages.map(page => {
+        return page.questions.map((question, i) => {
+          return (
+            <Question
+              key={i}
+              id={question._id}
+              surveyId={id}
+              number={i + 1}
+              title={question.title}
+              answerObjectType={question.type}
+              content={question.content}
+            />
+          );
+        });
+      });
+      Qs.push(<div className="section"><MDBBtn onClick={this.onSubmitHandler}>SUBMIT</MDBBtn></div>)
+      Content = (
+        <ReactFullpage
+          render={({}) => {
+            return <ReactFullpage.Wrapper>{Qs}</ReactFullpage.Wrapper>;
+          }}
+        />
+      );
+    }
     return (
-      <div className={styles.layout}>
-        {this.state.redirect ? <Redirect to="/" /> : null}
-        <div>
-          <h1>Title :{title}</h1>
-          <h6>ID: {id}</h6>
-          <h5>Date: {date}</h5>
+      <div className={styles.Newlayout}>
+        <div className={styles.SurveyTitle}>
+          <h1>{title}</h1>
         </div>
-        <div>
-          {surveyPages.map(page => {
-            return page.questions.map((question, i) => {
-              console.log(question);
-              return (
-                <Question
-                  key={i}
-                  id={question._id}
-                  surveyId={id}
-                  number={i + 1}
-                  title={question.title}
-                  answerObjectType={question.type}
-                  content={question.content}
-                />
-              );
-            });
-          })}
-        </div>
-        <MDBBtn
-          gradient="blue"
-          style={{ color: "White", borderRadius: "5px" }}
-          onClick={this.onSubmitHandler}
-        >
-          submit
-        </MDBBtn>
-        <div className={styles.SuveyContainer} />
-        <MDBBtn
-          gradient="blue"
-          style={{ color: "White", borderRadius: "5px" }}
-          onClick={this.onSubmitHandler}
-        >
-          submit
-        </MDBBtn>
+        {Content}
       </div>
-    );
+
+   );
   }
 }
 const mapStateToProps = state => {

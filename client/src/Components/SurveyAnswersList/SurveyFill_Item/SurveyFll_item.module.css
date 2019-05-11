@@ -5,9 +5,9 @@
 .QuestionTitle:after { 
     content: ""; /* So that it will show */
     display: block; /* So it can have width */
-    width: 10%; /* Make sure position on these elements is relative (or something besides default) */
+    width: 20%; /* Make sure position on these elements is relative (or something besides default) */
     height: 1px;
-    border-top: 1px solid rgba(255,255,255,0.2);
+    border-top: 3px solid rgba(255,255,255,0.2);
     margin: 0px auto; /* Center the line */
 }
 

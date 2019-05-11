@@ -9,7 +9,7 @@ class App extends Component {
     return (
       <BrowserRouter basename="/">
         <div>
-            <NavBar/>
+            {/* <NavBar/> */}
             <Routes />
           
         </div>
