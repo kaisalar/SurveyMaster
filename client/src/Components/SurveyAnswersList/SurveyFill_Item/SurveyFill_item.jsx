@@ -20,7 +20,6 @@ import LeftAlign from "../../UI/LeftAlign/LeftAlign";
 /*single question to fill */
 /************************ */
 class SurveyPage extends Component {
-<<<<<<< HEAD
 
     constructor(props) {
         super(props);
@@ -109,20 +108,6 @@ class SurveyPage extends Component {
                     </div>
                 </div>
                 <br />
-=======
-  constructor(props) {
-    super(props);
-    this.localState = {
-      survey_id: this.props.surveyId,
-
-      info: {
-        questionId: this.props.id,
-        type: "",
-        content: {}
-      }
-    };
-  }
->>>>>>> b9c2667b6a5d38e12af0189c19bc50d6748b2697
 
   onAnswerChange = value => {
     this.localState.info.content = value;
