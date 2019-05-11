@@ -10,7 +10,6 @@ import { connect } from "react-redux";
 import Loader from "../../../Components/UI/Loader/Loader";
 import styles from "./SurveyFillList.module.css";
 import "./style.css"
-import { MDBBtn } from "mdbreact";
 import SubmitSection from "../../../Components/SubmitSection/SubmitSection";
 /**************** */
 /* using answersAction here  */
