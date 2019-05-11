@@ -14,3 +14,6 @@
 #fp-nav ul li a:hover, .fp-slidesNav ul li a:hover {
     background-color: transparent;
 }
+#fp-nav ul li a span, .fp-slidesNav ul li a span { 
+    background: rgba(0, 0, 0, 0.6)
+}

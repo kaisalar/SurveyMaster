@@ -20,7 +20,7 @@ class Dropdownmenu extends Component {
             value={i + 1}>{c}</Dropdown.Item>)
         const {title,active} = this.state;
         return (<ButtonToolbar>
-        <Dropdown style={{height:'auto'}} title={title} activeKey={active}>
+        <Dropdown title={title} activeKey={active}>
          {items}
         </Dropdown>
     </ButtonToolbar>)

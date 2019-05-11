@@ -8,10 +8,10 @@ import {
 import ReactFullpage from "@fullpage/react-fullpage";
 import { connect } from "react-redux";
 import Loader from "../../../Components/UI/Loader/Loader";
-import { Alert } from "rsuite";
 import styles from "./SurveyFillList.module.css";
 import "./style.css"
-import { MDBBtn, Tooltip } from "mdbreact";
+import { MDBBtn } from "mdbreact";
+import SubmitSection from "../../../Components/SubmitSection/SubmitSection";
 /**************** */
 /* using answersAction here  */
 /* whole questions for a single survey*/
@@ -33,6 +33,7 @@ class SurveyFillList extends Component {
     });
   };
   onSubmitHandler = () => {
+    console.log("test")
     this.props.postAnswers(this.props.answers, this.props.id);
     window.setTimeout(() => this.setState({ redirect: true }), 2000);
   };
@@ -65,17 +66,14 @@ class SurveyFillList extends Component {
           );
         });
       });
-      Qs.push(
-        <div className="section" key={Qs.length}>
-          <MDBBtn onClick={this.onSubmitHandler}>SUBMIT</MDBBtn>
-        </div>
-      );
+  
+      Qs.push(<SubmitSection key={Qs.length} ckicked={this.onSubmitHandler} />);
       tooltips.push("Submit")
       Content = (
         <ReactFullpage
         navigation
         navigationTooltips = {tooltips}
-          render={({}) => {
+          render={() => {
             return <ReactFullpage.Wrapper>{Qs}</ReactFullpage.Wrapper>;
           }}
         />

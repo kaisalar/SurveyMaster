@@ -47,11 +47,9 @@ class RadioButton extends Component{
         let radios = this.choicesSentences.map((c,i) => (<Radio key={i} value={i + 1} onChange={this.changedChoiceHandler} >{c}</Radio>))
     
     return(<div>
-        <FormGroup controlId="radioList">
             <RadioGroup name="radioList">
                {radios}
             </RadioGroup>
-        </FormGroup>
     </div>)
      }
     }

@@ -15,6 +15,7 @@ import styleClass from "./SurveyFll_item.module.css";
 import "./style.css";
 import RatingNumbers from "../answerTypes/ratingNumbers";
 import _ from "lodash";
+import LeftAlign from "../../UI/LeftAlign/LeftAlign";
 /************************ */
 /*single question to fill */
 /************************ */
@@ -45,17 +46,17 @@ class SurveyPage extends Component {
       case Qtype.CHECKBOX: {
         info.type = Atype.ANSWER_MULTIPLE_CHOICE;
         //      console.log('type', this.localState.type)
-        answer = <CheckBox content={content} change={this.onAnswerChange} />;
+        answer = <LeftAlign><CheckBox content={content} change={this.onAnswerChange} /></LeftAlign>;
         break;
       }
       case Qtype.TEXT: {
         info.type = Atype.ANSWER_TEXT;
-        answer = <ShortText content={content} change={this.onAnswerChange} />;
+        answer = <LeftAlign><ShortText content={content} change={this.onAnswerChange} /></LeftAlign>;
         break;
       }
       case Qtype.RADIO_GROUP:
         info.type = Atype.ANSWER_SINGLE_NUMBER_VALUE;
-        answer = <RadioButton content={content} change={this.onAnswerChange} />;
+        answer = <LeftAlign><RadioButton content={content} change={this.onAnswerChange} /></LeftAlign>;
         break;
 
       case Qtype.DROPDOWN:
@@ -65,7 +66,7 @@ class SurveyPage extends Component {
       case Qtype.PARAGRAPH: {
         info.type = Atype.ANSWER_TEXT;
 
-        answer = <Paragraph content={content} change={this.onAnswerChange} />;
+        answer = <LeftAlign><Paragraph content={content} change={this.onAnswerChange} /></LeftAlign>;
         break;
       }
       case Qtype.RANGE:
@@ -87,7 +88,7 @@ class SurveyPage extends Component {
       default:
         info.type = Atype.ANSWER_TEXT;
 
-        answer = <ShortText content={content} change={this.onAnswerChange} />;
+        answer = <LeftAlign><ShortText content={content} change={this.onAnswerChange} /></LeftAlign>;
     }
     return (
       <div className="section">
