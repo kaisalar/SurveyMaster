@@ -6,7 +6,6 @@ const shortText = (props) => {
     let length = 0;
    const onTextchanged = (event)=>{
        length+=1
-        console.log(length)
        if(length < props.content.max)
        props.change({value:event.target.value})
        else {

@@ -3,10 +3,6 @@ import axios from '../../axios-requests';
 export const previewSurvey = (id,dataLoaded) => dispatch => {
      axios.get("/fill/" + id)
      .then(response => {
-        console.log(
-          "Preview Survey from answersAction.js",
-          response.data
-        )
        dispatch({
            type: actionTypes.PREVIEW_SURVEY,
            payload: response.data
@@ -15,7 +11,6 @@ export const previewSurvey = (id,dataLoaded) => dispatch => {
      })
 }
 export const addquestion = (state) => dispatch => {
-  console.log('state action ',state)
    dispatch({
      type: state.info.type,
      content: state.info,
