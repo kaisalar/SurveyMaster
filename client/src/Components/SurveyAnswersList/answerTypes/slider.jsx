@@ -61,6 +61,9 @@ class SliderPage extends Component {
     }
     onSliderChanged =(e) =>{
         this.setState({value:e.target.value})
+        let value = {value : Number(e.target.value)}
+        console.log(value)
+        this.props.change(value)
     }
     render(){
         

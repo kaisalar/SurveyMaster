@@ -32,19 +32,19 @@ import { Radio, RadioGroup,FormGroup } from 'rsuite';
 // }
 class RadioButton extends Component{
     state = {
-        choices: [],
+        value:0,
 
     }
 
     changedChoiceHandler = (value) => {
-         this.setState({ choices: [...this.state.choices, String(value)] }, () => this.props.change(this.state));
+         this.setState({ value: value }, () => this.props.change(this.state));
      console.log(value)
      }
      render() {
    
       this.choicesSentences = this.props.content.choices;
 
-         let radios = this.choicesSentences.map((c,i) => (<Radio key={i} value={c} onChange={this.changedChoiceHandler} >{c}</Radio>))
+         let radios = this.choicesSentences.map((c,i) => (<Radio key={i} value={i} onChange={this.changedChoiceHandler} >{c}</Radio>))
     
     return(<div>
         <FormGroup controlId="radioList">

@@ -1,5 +1,6 @@
 import * as actionTypes from './types';
 import axios from '../../axios-requests';
+import {Alert} from 'rsuite'
 export const previewSurvey = (id,dataLoaded) => dispatch => {
      axios.get("/fill/" + id)
      .then(response => {
@@ -28,7 +29,9 @@ export const postAnswers = (answers,surveyId) => dispatch=> {
 
   //console.log("answersssss" , answers)
    axios.post('/fill/'+surveyId,answers).then(response => {
-    alert("Submitted Successfully");
+        Alert.success(
+          "Thanks For your Time , Your Opinion is priceless :)"
+        );
      
     return dispatch({
      type:actionTypes.POST,

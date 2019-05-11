@@ -35,7 +35,6 @@ class SurveyFillList extends Component {
   onSubmitHandler = () => {
       console.log(this.props.answers)
     this.props.postAnswers(this.props.answers, this.props.id);
-    Alert.success("Thanks For your Time , Your Opinion is priceless :)");
     window.setTimeout(() => this.setState({ redirect: true }), 2000);
   };
   submitAnswers = () => {
