@@ -25,7 +25,7 @@ router.post('/', async (req, res) => {
   const hashedPassword = await bcrypt.hash(req.body.password, salt)
   user.password = hashedPassword
 
-  // Save survey to DB
+  // Save user to DB
   await user.save()
 
   // generate json web token

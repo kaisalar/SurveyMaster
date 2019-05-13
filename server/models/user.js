@@ -13,6 +13,27 @@ class User extends Element {
     this.lastName = props.lastName || ''
     this.email = props.email || 'x@x.x'
     this.password = props.password || ''
+    this.surveys = props.surveys || []
+    /* each survey = {
+      surveyId: string,
+      surveyTitle: string,
+      role: string
+    } */
+  }
+
+  addSurvey(survey, role) {
+    this.surveys.push({
+      surveyId: survey._id,
+      surveyTitle: survey.title,
+      role
+    })
+  }
+
+  generateAuthToken() {
+    return jwt.sign(
+      _.pick(this, ['_id', 'firstName', 'lastName', 'email']),
+      jwtPrivateKey
+    )
   }
 
   async save() {
@@ -33,13 +54,6 @@ class User extends Element {
       user = new User(user)
       return user
     }
-  }
-
-  generateAuthToken() {
-    return jwt.sign(
-      _.pick(this, ['_id', 'firstName', 'lastName', 'email']),
-      jwtPrivateKey
-    )
   }
 
   static validate(user) {

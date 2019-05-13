@@ -17,7 +17,7 @@ async function loadJson(path) {
   let object
   try {
     const data = await files.read(path)
-    object = await JSON.parse(data)
+    if (data) object = await JSON.parse(data)
   } catch (e) {
     console.log(e)
   }

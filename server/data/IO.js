@@ -95,7 +95,14 @@ class IO {
   /// survey section ///
   // saving survey info
   static async saveSurveyInfo(survey) {
-    const data = _.pick(survey, ['_id', 'title', 'date', 'link', 'description'])
+    const data = _.pick(survey, [
+      '_id',
+      'title',
+      'date',
+      'link',
+      'description',
+      'users'
+    ])
     await saveJson(`${SURVEYS_PATH}/${survey._id}.json`, data)
   }
   // saving a new survey
@@ -166,23 +173,34 @@ class IO {
   // saving user
   static async saveUser(user) {
     await saveJson(`${USERS_PATH}/${user._id}.json`, user)
+    let accounts = await loadJson(`${USERS_PATH}/accounts.json`)
+    if (!accounts || !_.isArray(accounts)) accounts = []
+    accounts.push({
+      userId: user._id,
+      email: user.email
+    })
+    await saveJson(`${USERS_PATH}/accounts.json`, accounts)
   }
 
   // load user by id
   static async findUserById(userId) {
-    await loadJson(`${USERS_PATH}/${userId}.json`)
+    return await loadJson(`${USERS_PATH}/${userId}.json`)
   }
 
   // load user by email
   static async findUserByEmail(userEmail) {
-    const files = await getFiles(USERS_PATH)
-    for (const file of files) {
-      const user = await loadJson(file)
-      if (user.email === userEmail) {
-        console.log(user)
-        return user
-      }
+    const accounts = await loadJson(`${USERS_PATH}/accounts.json`)
+    if (accounts) {
+      const account = accounts.find(a => a.email == userEmail)
+      if (account) return IO.findUserById(account.userId)
     }
+    // const files = await getFiles(USERS_PATH)
+    // for (const file of files) {
+    //   const user = await loadJson(file)
+    //   if (user.email === userEmail) {
+    //     return user
+    //   }
+    // }
   }
 }
 async function test() {
