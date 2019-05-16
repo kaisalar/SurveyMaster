@@ -41,7 +41,6 @@ class DynamicBounds extends React.Component {
                     onChange={this.onSliderChange}
                 />
                 </div>
-                
             </div>
         );
     }
