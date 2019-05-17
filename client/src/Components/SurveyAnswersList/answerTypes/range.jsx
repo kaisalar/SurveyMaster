@@ -7,8 +7,8 @@ class DynamicBounds extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            minValue: 20,
-            maxValue: 50,
+            minValue: this.props.content.min,
+            maxValue: this.props.content.max,
         };
     }
     onAfterChanged = (value) =>{
@@ -31,15 +31,16 @@ class DynamicBounds extends React.Component {
     }
     render() {
         return (
-            <div style={{  margin : 'auto',marginBottom:'20px'}}>
-                <label className="min">Min: {this.state.minValue} </label>
+            <div className="RangeContainer">
+                <label className="min">{this.props.content.minLabel}<br />{this.state.minValue} </label>
                 
               
-                <label className="max">Max: {this.state.maxValue}</label>
-               
-                <Range  className='range' defaultValue={[20, 50]}  onAfterChange={this.onAfterChanged} min={this.state.min} max={this.state.max}
+                <label className="max">{this.props.content.maxLabel}<br />{this.state.maxValue}</label>
+                <div>
+                <Range className='range' defaultValue={[Number(this.props.content.minDefaultValue), Number(this.props.content.maxDefaultValue)]}  onAfterChange={this.onAfterChanged} min={this.state.min} max={this.state.max}
                     onChange={this.onSliderChange}
                 />
+                </div>
             </div>
         );
     }

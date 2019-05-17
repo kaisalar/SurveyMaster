@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import HomePage from "./Containers/HomePage/Homepage";
-//import Surveys from "./Containers/ShowSurveys/Surveys List/Surveys";
+// import Surveys from "./Containers/ShowSurveys/Surveys List/Surveys";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-//import SurveyBuilder from "./Containers/SurveyBuilder/SurveyBuilder";
-//import SurveyFillList from './Containers/ShowSurveys/Survey questions List/SurveyFillList'
+// import SurveyBuilder from "./Containers/SurveyBuilder/SurveyBuilder";
+// import SurveyFillList from './Containers/ShowSurveys/Survey questions List/SurveyFillList'
 import asyncComponent from './hoc/asyncComponent'
-//import './Routes.css';
+import './Routes.css';
+// import NavBar from "./Components/UI/NavBar/NavBar";
 const TransitionPages = (props) => {
   return <CSSTransition
     {...props}
@@ -30,19 +31,16 @@ class Routes extends Component {
   render() {
     return (
       <Route
-        render={({ location }) => (
-          <TransitionGroup>
-            <TransitionPages key = {location.key}>
-            <section /*className="fix-container"*/>
-              <Switch location={location}>
-                <Route path="/" exact component={HomePage} />
-                <Route path="/fill/:id" component={SurveyFillList} />
-                <Route path="/create" component={SurveyBuilder} />
-                <Route path="/surveys" component={Surveys} />
-              </Switch>
-            </section>
-            </TransitionPages>
-          </TransitionGroup>
+        render={() => (
+        
+                <Switch>
+                  {/* <Route path="/" component={NavBar}/> */}
+                  <Route path="/fill/:id" component={SurveyFillList} />
+                  <Route path="/create" component={SurveyBuilder} />
+                  <Route path="/surveys" component={Surveys} />
+                  <Route path="/" component={HomePage} />
+                </Switch>
+            
         )}
       />
     );

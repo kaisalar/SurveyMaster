@@ -1,13 +1,34 @@
 .layout {
   width: 75%;
+  Padding: 30px;
   height: 100%;
   border-radius: 5px ;
-  margin: auto;
+  margin: 30px auto;
   margin-bottom: 20px;
   background-color: #f1f1f1;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
   text-align: center;
 }
+.Newlayout { 
+  margin: auto 50px;
+}
+.layout h1 { 
+  text-transform: uppercase
+}
+.SurveyTitle { 
+  position: fixed;
+  width: calc(100% - 100px);
+  margin: 20px auto;
+}
+.SurveyTitle h1 { 
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.7);
+  text-align: center;
+  font-size: 4em;
+  font-weight: 200
+}
 body {
-  background: url(../../../assets/prism.png);
+  background: linear-gradient(#00d4ff,#3042A1);
+  /* background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(7,60,155,1) 38%, rgba(4,127,199,1) 74%, #00d4ff 100%); */
+
 }
