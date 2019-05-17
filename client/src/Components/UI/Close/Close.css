@@ -1,6 +1,19 @@
 .rs-icon-close { 
     transition: color 0.15s ease-in-out;
 }
-.rs-icon-close:hover { 
-    color: red;
+.rs-icon-close.rs-icon-size-lg { 
+    transition: color 0.15s
+}
+.rs-icon-close.rs-icon-size-lg:hover { 
+    color: red
+}
+.rs-btn-default.rs-btn-red:not(.rs-btn-disabled) { 
+    transition: transform 0.15s,box-shadow 0.2s
+}
+.rs-btn-default.rs-btn-red:not(.rs-btn-disabled):hover { 
+    transform: scale(1.1);
+    box-shadow: 0px 0px 10px 1px rgba(255, 0, 0, 0.3)
+}
+.rs-picker-subtle .rs-picker-toggle:hover,.rs-picker-subtle .rs-picker-toggle:focus { 
+    background: #f1f1f1;
 }
