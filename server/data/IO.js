@@ -122,6 +122,7 @@ class IO {
   static async loadSurveyInfoById(surveyId) {
     return await loadJson(`${SURVEYS_PATH}/${surveyId}.json`)
   }
+
   // loading survey info and pages so the user can fill it
   static async loadSurveyToFiliingById(surveyId) {
     const info = await IO.loadSurveyInfoById(surveyId)

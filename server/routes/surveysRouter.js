@@ -12,23 +12,28 @@ const roles = require('../models/roles')
 // @desc   Get All Surveys
 // @access Public
 router.get('/', auth, async (req, res) => {
+  // load user depending on the token in the auth middleware
   const user = await User.findById(req.user._id)
-  const surveys = await Survey.loadSurveys()
+
+  // load that user's surveys
+  const surveys = await user.getSurveysInfo()
+
+  // send the surveys
   res.send(surveys)
 })
 
 // @route  Get api/surveys/:id
 // @desc   Get Survey by his/her id
 // @access Public
-router.get('/:id', async (req, res) => {
+router.get('/:id', auth, async (req, res) => {
   const _id = req.params.id
 
-  const exist = await Survey.isExists(_id)
-  if (!exist) {
+  const user = await User.findById(req.user._id)
+
+  if (!user.hasSurvey(_id))
     return res
       .status(404)
       .send(`The survey with the given id: ${_id} NOT FOUND.`)
-  }
 
   const survey = await Survey.loadSurveyToFiliingById(_id)
 
