@@ -3,8 +3,10 @@ const jwt = require('jsonwebtoken')
 const { jwtPrivateKey } = require('../config')
 const Joi = require('joi')
 const Element = require('./element')
+const Survey = require('./survey')
 const { userSchema } = require('./validationSchemas')
 const IO = require('../data/IO')
+const roles = require('./roles')
 
 class User extends Element {
   constructor(props) {
@@ -27,6 +29,31 @@ class User extends Element {
       surveyTitle: survey.title,
       role
     })
+  }
+
+  async getSurveysInfo() {
+    const surveysIds = this.surveys.map(s => s.surveyId)
+    const surveys = []
+    for (const id of surveysIds) {
+      const survey = await IO.loadSurveyInfoById(id)
+      surveys.push(new Survey(survey))
+    }
+    return surveys
+  }
+
+  hasSurvey(surveyId) {
+    for (const survey of surveys) {
+      if (survey.surveyId === surveyId) return true
+    }
+    return false
+  }
+
+  isAdminOnSurvey(surveyId) {
+    for (const survey of surveys) {
+      if (survey.surveyId === surveyId && survey.role === roles.ROLE_ADMIN)
+        return true
+    }
+    return false
   }
 
   generateAuthToken() {

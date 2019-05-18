@@ -34,4 +34,15 @@ router.post('/', async (req, res) => {
   res.send(_.pick(user, ['_id', 'firstName', 'lastName', 'email']))
 })
 
+// @route  GET api/users
+// @desc   Get the current User
+// @access Private
+router.get('/me', auth, async (req, res) => {
+  // load the user from the DB
+  const user = await User.findById(req.user._id)
+
+  // send the user
+  res.send(_.pick(user, ['_id', 'firstName', 'lastName', 'email', 'surveys']))
+})
+
 module.exports = router
