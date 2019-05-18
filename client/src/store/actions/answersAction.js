@@ -1,6 +1,17 @@
 import * as actionTypes from './types';
 import axios from '../../axios-requests';
 import {Alert} from 'rsuite'
+axios.interceptors.response.use(null, error => {
+  const expectedError =
+    error.response &&
+    error.response.status >= 400 &&
+    error.response.status < 500;
+  if (expectedError) {
+    console.log("Logging Error", error);
+    Alert.error("An unexpected error occured");
+  }
+  return Promise.reject();
+});
 export const previewSurvey = (id,dataLoaded) => dispatch => {
      axios.get("/fill/" + id)
      .then(response => {

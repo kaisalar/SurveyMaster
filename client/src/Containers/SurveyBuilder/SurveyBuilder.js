@@ -3,16 +3,12 @@ import CreateQuestion from "../../Components/CreateQuestion/CreateQuestion";
 import Question from "../../Components/Question/Question";
 import Layout from "../../Components/Layout/Layout";
 import SurveyBuilderWelcome from "../../Components/SurveyBuilderWelcome/SurveyBuilderWelcome";
-import {
-  AddQuestion,
-  SubmitNewSurvey
-} from "../../store/actions/BuilderAction";
+import {AddQuestion,SubmitNewSurvey} from "../../store/actions/BuilderAction";
 import styleClass from "./SurveyBuilder.module.css";
 import "./SurveyBuilder.css";
 import { MDBBtn, MDBRow, MDBCol } from "mdbreact";
 import { connect } from "react-redux";
-import AddQuestionFloating from "../../Components/AddQuestionFloaitng/AddQuestionFloaitng";
-import { Dropdown } from "semantic-ui-react";
+import AddQuestionFloating from "../../Components/AddQuestionFloating/AddQuestionFloating";
 
 class SurveyBuilder extends Component {
   state = {
@@ -36,7 +32,6 @@ class SurveyBuilder extends Component {
     const Qs = this.props.pages[0].questions;
     let Questions = [];
     let sideEditor = null;
-
     let PageContent;
     if (Qs.length > 0) {
       Questions = Qs.map((_, index) => {
@@ -65,30 +60,23 @@ class SurveyBuilder extends Component {
         </React.Fragment>
       );
     } else {
-      PageContent = <SurveyBuilderWelcome clicked={this.props.AddQuestion} />;
+      PageContent = (
+        <SurveyBuilderWelcome clicked={this.props.AddQuestion} />
+      );
     }
 
     return (
-      <MDBRow>
-        {sideEditor}
-        <MDBCol>
-          <AddQuestionFloating text="tsting"/>
-          {/* <Dropdown icon="filter" floating labeled button className="icon">
-            <Dropdown.Menu>
-              <Dropdown.Header icon="tags" content="Filter by tag" />
-              <Dropdown.Divider />
-              <Dropdown.Item icon="attention" text="Important" />
-              <Dropdown.Item icon="comment" text="Announcement" />
-              <Dropdown.Item icon="conversation" text="Discussion" />
-            </Dropdown.Menu>
-          </Dropdown> */}
-          <Layout sideOpened={/*this.state.showSideEditor*/ false}>
-            {PageContent}
-          </Layout>
-        </MDBCol>
-      </MDBRow>
-      // <React.Fragment>
-      // </React.Fragment>
+      <React.Fragment>
+        <AddQuestionFloating text="Add Question"/>
+        <MDBRow>
+          {sideEditor}
+          <MDBCol>
+            <Layout sideOpened={/*this.state.showSideEditor*/ false}>
+              {PageContent}
+            </Layout>
+          </MDBCol>
+        </MDBRow>
+      </React.Fragment>
     );
   }
 }
@@ -101,5 +89,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { AddQuestion, SubmitNewSurvey }
+  { AddQuestion,SubmitNewSurvey }
 )(SurveyBuilder);

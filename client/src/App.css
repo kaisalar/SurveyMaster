@@ -1,4 +1,4 @@
 body, #root { 
     min-height: 100%;
-    overflow:auto
+    overflow:visible
 }   

@@ -15,13 +15,13 @@
   "author": "Mouaz Alkhodari, Kais Alar",
   "license": "MIT",
   "devDependencies": {
-    "nodemon": "^1.14.6",
-    "yarn": "^1.15.2"
+    "nodemon": "^1.19.0",
+    "yarn": "^1.16.0"
   },
   "dependencies": {
     "@fullpage/react-fullpage": "^0.1.14",
     "concurrently": "^3.5.1",
-    "express": "^4.16.2",
+    "express": "^4.17.0",
     "files": "^1.0.0",
     "i": "^0.3.6",
     "npm": "^6.9.0"

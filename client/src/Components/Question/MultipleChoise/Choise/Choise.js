@@ -8,8 +8,6 @@ class Choise extends Component {
   state = {
     mouseHover: false
   };
-  handleFocus = (event) => event.target.select();
-
   mouseHoverOn = () => {
     this.setState({
       mouseHover: true
@@ -47,8 +45,6 @@ class Choise extends Component {
       <div className={styleClass.Choice}>
         <Icon icon={IconType} size="2x" />
         <MDBInput
-          autoFocus = {this.props.Focus}
-          onFocus={this.handleFocus}
           label={this.props.el}
           style={Style}
           value={this.props.el}

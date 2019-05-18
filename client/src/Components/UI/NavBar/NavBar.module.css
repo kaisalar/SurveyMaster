@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Montserrat:400,600,800);
+@import url(https://fonts.googleapis.com/css?family=Montserrat|Cairo|Ubuntu|PT+Sans:400,500,600,800);
 .logo {
   margin-top: 15px;
   margin-left: 15px;
@@ -23,29 +23,38 @@
 
 }
 li {
+  font-weight: 500;
+  font-size: 1.25rem;
+  font-family: 'Ubuntu';
+
   float: left;
   display: contents;
   text-decoration: none;
 }
-a {
-  background-color: #f1f1f1;
+.a {
+  /* background-color: #f1f1f1; */
   text-align: center;
+  color: #FFFBEA;
   padding: 11px 10px 14px 10px;
-  margin: 0 10px;
+  margin: 0 7px;
   border-radius: 5px;
   text-decoration: none;
 }
 .active {
   background-color: rgb(53, 53, 53);
   text-decoration: none;    
+  color: #FFFBEA;
+
 }
-li a:hover:not(.active) {
-  background-color: #111;
+li .a:hover:not(.active) {
+  color: #FFFBEA;
+ 
+  background-color: #3C8BD2;
   padding: 11px 10px 14px 10px;
   border-radius: 5px;
   text-decoration: none;
 }
-li a:hover{
+li .a:hover{
     text-decoration: none;
 }
 .btn{
