@@ -1,15 +1,24 @@
+.RangeContainer { 
+    position: relative;
+}
+.RangeContainer label { 
+    font-size: 1.2rem !important;
+}
+
 .range{
     width:70%;
     border-color: blue;
-    margin: auto;
-    margin-top:20px;
-    vertical-align: middle
+    margin: auto
 }
 .min{
-    float: left;;
+    position: absolute;
+    left: -25%;
+    top: 15%;
     margin:auto 0px auto 10px;
 }
 .max{
- float: right;
- margin: auto 10px auto 0px
+    position: absolute;
+    right: -25%;
+    top: 15%;
+    margin: auto 10px auto 0px
 }

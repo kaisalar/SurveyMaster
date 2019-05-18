@@ -6,7 +6,14 @@
   transition: .3s cubic-bezier(.3, 0, 0, 1.3)
 }
 body{
-  background: url(../../assets/prism.png)
+  background: url(../../assets/prism.png);
+  margin: 10px;
+}
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    /* margin-right: -25px; */
+    margin-left: 15px;
 }
 .card {
   /* background-color: #fff; */
@@ -44,22 +51,6 @@ body{
   margin-top: -130px;
 }
 
-/* h2 {
-  text-align: center;
-  margin-top: 190px;
-  position: absolute;
-  z-index: 9999;
-  font-size: 26px;
-  color: #2196F3;
-  width: 100%;
-  font-family: 'Noto Sans', serif;
-} */
-
-h2 small {
-  font-weight: normal;
-  font-size: 65%;
-  color: rgba(0,0,0,0.5);
-}
 
 .card:hover h2 {
   margin-top: 100px;
