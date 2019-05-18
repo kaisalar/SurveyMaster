@@ -75,6 +75,8 @@ class Form extends Component {
     const { data, errors } = this.state;
 
     return (
+   
+
       <Input
         type={type}
         name={name}
@@ -82,7 +84,8 @@ class Form extends Component {
         label={label}
         onChange={this.handleChange}
         error={errors[name]}
-      />
+        />
+
     );
   }
 }

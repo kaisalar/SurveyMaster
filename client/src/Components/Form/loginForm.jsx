@@ -2,7 +2,6 @@ import React from "react";
 import Joi from "joi-browser";
 import Form from "./form";
 import Layout from '../Layout/Layout'
-
 class SignIn extends Form {
   state = {
     data: { username: "", password: "" },
@@ -25,16 +24,16 @@ class SignIn extends Form {
 
   render() {
     return (
-     
-        <Layout>
+      
+    <Layout className="formLayout">
 
-        <h1>Login</h1>
+        <h1>Sign in</h1>
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("username", "Username")}
           {this.renderInput("password", "Password", "password")}
           {this.renderButton("Login")}
         </form>
-        </Layout>
+    </Layout>
       
     );
   }

@@ -5,15 +5,17 @@ import Layout from "../Layout/Layout";
 
 class SignUp extends Form {
   state = {
-    data: { username: "", password: "", name: "" },
+    data: { firstName: "",lastName:"", password: "", name: "" },
     errors: {}
   };
 
   schema = {
-    username: Joi.string()
+    firstName: Joi.string()
       .required()
-      .email()
-      .label("Username"),
+      .label("First Name"),
+    lastName: Joi.string()
+      .required()
+      .label("First Name"),
     password: Joi.string()
       .required()
       .min(5)
@@ -31,14 +33,14 @@ class SignUp extends Form {
   render() {
     return (
       <div>
-        <Layout>
+        <Layout className="formLayout">
 
-        <h1>Register</h1>
+        <h1>Sign up</h1>
         <form onSubmit={this.handleSubmit}>
-          {this.renderInput("username", "Username")}
+          {this.renderInput("firstName", "First Name")}
+          {this.renderInput("lastName", "Last Name")}
           {this.renderInput("password", "Password", "password")}
-          {this.renderInput("name", "Name")}
-          {this.renderButton("Register")}
+          {this.renderButton("Sign up")}
         </form>
         </Layout>
       </div>
