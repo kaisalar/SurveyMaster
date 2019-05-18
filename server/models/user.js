@@ -6,6 +6,7 @@ const Element = require('./element')
 const Survey = require('./survey')
 const { userSchema } = require('./validationSchemas')
 const IO = require('../data/IO')
+const roles = require('./roles')
 
 class User extends Element {
   constructor(props) {
@@ -43,6 +44,14 @@ class User extends Element {
   hasSurvey(surveyId) {
     for (const survey of surveys) {
       if (survey.surveyId === surveyId) return true
+    }
+    return false
+  }
+
+  isAdminOnSurvey(surveyId) {
+    for (const survey of surveys) {
+      if (survey.surveyId === surveyId && survey.role === roles.ROLE_ADMIN)
+        return true
     }
     return false
   }
