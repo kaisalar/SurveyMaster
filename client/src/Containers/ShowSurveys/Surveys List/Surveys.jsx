@@ -3,6 +3,7 @@ import SurveyItem from '../../../Components/Surveys items/SurveyItem';
 import { MDBRow } from 'mdbreact';
 import {connect} from 'react-redux';
 import {initSurvey,deleteSurvey} from '../../../store/actions/viewAction'
+import { Notification } from 'rsuite';
 class Surveys extends Component {
     
     componentDidMount() {
@@ -10,6 +11,10 @@ class Surveys extends Component {
     }
   
     deleteItemHandler = (id) => {
+    //    Notification.success({
+    //        title:"Success"
+    //        ,description:"deleted"
+    //    })
       this.props.deleteSurvey(id);
       this.setState(this.props.initSurvey());
     }

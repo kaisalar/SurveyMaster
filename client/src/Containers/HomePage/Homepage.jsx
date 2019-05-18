@@ -7,23 +7,23 @@ import {Button} from 'semantic-ui-react'
 class HomePage extends Component {
   
     render() {
-        return (
-            <TransitionGroup>
-                <React.Fragment>
-                    <div className={styles.fixedBar} >
-                      <div className = {styles.Layout}>
+        return (<div>   </div>
+            // <TransitionGroup>
+            //     <React.Fragment>
+            //         <div className={styles.fixedBar} >
+            //           <div className = {styles.Layout}>
 
 
-                        <Link to="/create">
-                                <Button>Create New Survey</Button></Link>
+            //             <Link to="/create">
+            //                     <Button>Create New Survey</Button></Link>
                             
-                        <Link to="/surveys"><Button >Show Surveys</Button></Link>
-                      </div>
-                       </div>
+            //             <Link to="/surveys"><Button >Show Surveys</Button></Link>
+            //           </div>
+            //            </div>
                     
 
-                </React.Fragment>
-            </TransitionGroup>
+            //     </React.Fragment>
+            // </TransitionGroup>
         )
     }
 
