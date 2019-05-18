@@ -11,6 +11,8 @@ import styleClass from "./SurveyBuilder.module.css";
 import "./SurveyBuilder.css";
 import { MDBBtn, MDBRow, MDBCol } from "mdbreact";
 import { connect } from "react-redux";
+import AddQuestionFloating from "../../Components/AddQuestionFloaitng/AddQuestionFloaitng";
+import { Dropdown } from "semantic-ui-react";
 
 class SurveyBuilder extends Component {
   state = {
@@ -33,56 +35,8 @@ class SurveyBuilder extends Component {
   render() {
     const Qs = this.props.pages[0].questions;
     let Questions = [];
-    let sideEditor = null
-    // let sideEditor = (
-    //   <div>
-    //     <div class="menu-wrap">
-    //       <nav class="menu">
-    //         <div class="icon-list">
-    //           <a href="#">
-    //             <i class="fa fa-fw fa-star-o" />
-    //             <span>Favorites</span>
-    //           </a>
-    //           <a href="#">
-    //             <i class="fa fa-fw fa-bell-o" />
-    //             <span>Alerts</span>
-    //           </a>
-    //           <a href="#">
-    //             <i class="fa fa-fw fa-envelope-o" />
-    //             <span>Messages</span>
-    //           </a>
-    //           <a href="#">
-    //             <i class="fa fa-fw fa-comment-o" />
-    //             <span>Comments</span>
-    //           </a>
-    //           <a href="#">
-    //             <i class="fa fa-fw fa-bar-chart-o" />
-    //             <span>Analytics</span>
-    //           </a>
-    //           <a href="#">
-    //             <i class="fa fa-fw fa-newspaper-o" />
-    //             <span>Reading List</span>
-    //           </a>
-    //         </div>
-    //       </nav>
-    //       <button class="close-button" id="close-button">
-    //         Close Menu
-    //       </button>
-    //     </div>
-    //     <button class="menu-button" id="open-button">
-    //       Open Menu
-    //     </button>
-    //   </div>
-    // );
+    let sideEditor = null;
 
-    // this.state.showSideEditor ? (
-    //   <MDBCol size="3">
-    //     <SideEditor
-    //       HideSideEditor={this.HideSideEditorHandler}
-    //       index={this.state.focusedQuestion}
-    //     />
-    //   </MDBCol>
-    // ) : null;
     let PageContent;
     if (Qs.length > 0) {
       Questions = Qs.map((_, index) => {
@@ -118,6 +72,16 @@ class SurveyBuilder extends Component {
       <MDBRow>
         {sideEditor}
         <MDBCol>
+          <AddQuestionFloating text="tsting"/>
+          {/* <Dropdown icon="filter" floating labeled button className="icon">
+            <Dropdown.Menu>
+              <Dropdown.Header icon="tags" content="Filter by tag" />
+              <Dropdown.Divider />
+              <Dropdown.Item icon="attention" text="Important" />
+              <Dropdown.Item icon="comment" text="Announcement" />
+              <Dropdown.Item icon="conversation" text="Discussion" />
+            </Dropdown.Menu>
+          </Dropdown> */}
           <Layout sideOpened={/*this.state.showSideEditor*/ false}>
             {PageContent}
           </Layout>
