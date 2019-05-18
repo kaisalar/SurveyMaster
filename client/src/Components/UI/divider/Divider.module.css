@@ -1,0 +1,17 @@
+body, html { height: 90%; }
+.outer {
+  width: 1px;
+  height: 100%;
+  margin: auto;
+  position: relative;
+  overflow: hidden;
+}
+.inner {
+  position: absolute;
+  width:1px;
+  height: 40%;
+  background: white;
+  top: 30%;
+  box-shadow: 0px 0px 30px 20px grey;
+}
+
