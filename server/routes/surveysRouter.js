@@ -11,7 +11,7 @@ const roles = require('../models/roles')
 
 // @route  Get api/surveys
 // @desc   Get All Surveys
-// @access Public
+// @access Private
 router.get('/', auth, async (req, res) => {
   // load user depending on the token in the auth middleware
   const user = await User.findById(req.user._id)
@@ -25,7 +25,7 @@ router.get('/', auth, async (req, res) => {
 
 // @route  Get api/surveys/:id
 // @desc   Get Survey by his/her id
-// @access Public
+// @access Private
 router.get('/:id', auth, async (req, res) => {
   const surveyId = req.params.id
 
@@ -47,7 +47,7 @@ router.get('/:id', auth, async (req, res) => {
 
 // @route  Get api/surveys/:id/responses
 // @desc   Get All responses For Survey by surveyId
-// @access Public
+// @access Private
 router.get('/:id/responses', auth, async (req, res) => {
   const surveyId = req.params.id
 
@@ -69,7 +69,7 @@ router.get('/:id/responses', auth, async (req, res) => {
 
 // @route  Get api/surveys/:sid/responses/:rid
 // @desc   Get response by surveyId, responseId
-// @access Public
+// @access Private
 router.get('/:sid/responses/:rid', auth, async (req, res) => {
   const surveyId = req.params.sid
   const responseId = req.params.rid
@@ -99,7 +99,7 @@ router.get('/:sid/responses/:rid', auth, async (req, res) => {
 
 // @route  Get api/surveys/:id/report
 // @desc   Get report For Survey by surveyId
-// @access Public
+// @access Private
 router.get('/:id/report', auth, async (req, res) => {
   const surveyId = req.params.id
 
@@ -121,7 +121,7 @@ router.get('/:id/report', auth, async (req, res) => {
 
 // @route  Post api/surveys
 // @desc   Post a Survey
-// @access Public
+// @access Private
 router.post('/', auth, async (req, res) => {
   // Validation
   const { error } = Survey.validate(req.body)
