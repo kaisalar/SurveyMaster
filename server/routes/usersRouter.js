@@ -3,6 +3,7 @@ const { getErrorMessages } = require('../models/validationSchemas')
 const User = require('../models/user')
 const bcrypt = require('bcrypt')
 const express = require('express')
+const auth = require('../middlewares/authorization')
 
 const router = express.Router()
 
