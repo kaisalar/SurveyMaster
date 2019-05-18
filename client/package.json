@@ -13,6 +13,7 @@
     "@material-ui/core": "^3.9.3",
     "@material-ui/lab": "^3.0.0-alpha.30",
     "axios": "^0.18.0",
+    "joi-browser": "^13.4.0",
     "lodash": "^4.17.11",
     "material-ui-slider": "^3.0.0",
     "mdbreact": "^4.13.0",

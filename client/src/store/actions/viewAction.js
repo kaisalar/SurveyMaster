@@ -1,17 +1,17 @@
 import * as ActionType from "./types";
 import axios from "../../axios-requests";
 import {Alert} from 'rsuite'
-// axios.interceptors.response.use(null,error => {
-//   const expectedError= error.response &&
-//     error.response.status >= 400 &&
-//     error.response.status < 500;
-//     if(!expectedError)
-//     {
-//       console.log("Logging Error" ,error);
-//       Alert.error("An unexpected error occured");
-//     }
-//     return Promise.reject();
-// })
+axios.interceptors.response.use(null,error => {
+  const expectedError= error.response &&
+    error.response.status >= 400 &&
+    error.response.status < 500;
+    if(expectedError)
+    {
+      console.log("Logging Error" ,error);
+      Alert.error("An unexpected error occured");
+    }
+    return Promise.reject();
+})
 export const setSurveys = surveys => {
   return {
     type: ActionType.SHOW_SURVEYS,
@@ -36,6 +36,10 @@ export const initSurvey = () => dispatch => {
       dispatch(setSurveys(response.data));
     })
     .catch(error => {
-      console.log(error.response);
+      if(error){
+
+        console.log(error.response.status === 404);
+        Alert.warning("This Survey has been deleted already")
+      }
     });
 };
