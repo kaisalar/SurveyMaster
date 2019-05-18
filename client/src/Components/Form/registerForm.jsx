@@ -1,8 +1,9 @@
 import React from "react";
 import Joi from "joi-browser";
-import Form from "./common/form";
+import Form from "./form";
+import Layout from "../Layout/Layout";
 
-class RegisterForm extends Form {
+class SignUp extends Form {
   state = {
     data: { username: "", password: "", name: "" },
     errors: {}
@@ -30,6 +31,8 @@ class RegisterForm extends Form {
   render() {
     return (
       <div>
+        <Layout>
+
         <h1>Register</h1>
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("username", "Username")}
@@ -37,9 +40,10 @@ class RegisterForm extends Form {
           {this.renderInput("name", "Name")}
           {this.renderButton("Register")}
         </form>
+        </Layout>
       </div>
     );
   }
 }
 
-export default RegisterForm;
+export default SignUp;
