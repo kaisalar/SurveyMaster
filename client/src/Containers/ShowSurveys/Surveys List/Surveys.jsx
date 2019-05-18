@@ -3,7 +3,7 @@ import SurveyItem from '../../../Components/Surveys items/SurveyItem';
 import { MDBRow } from 'mdbreact';
 import {connect} from 'react-redux';
 import {initSurvey,deleteSurvey} from '../../../store/actions/viewAction'
-import { Notification } from 'rsuite';
+import axios from '../../../axios-requests'
 class Surveys extends Component {
     
     componentDidMount() {
