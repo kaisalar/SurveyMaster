@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Joi from "joi-browser";
 import Input from "./input";
 // import Select from "./select";
-import styles from './divider.module.css'
 
 class Form extends Component {
   state = {

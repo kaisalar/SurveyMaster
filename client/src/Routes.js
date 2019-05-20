@@ -2,25 +2,25 @@ import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import HomePage from "./Containers/HomePage/Homepage";
  import Surveys from "./Containers/ShowSurveys/Surveys List/Surveys";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
+// import { TransitionGroup, CSSTransition } from "react-transition-group";
 import SurveyBuilder from "./Containers/SurveyBuilder/SurveyBuilder";
 import SurveyFillList from './Containers/ShowSurveys/Survey questions List/SurveyFillList'
-import asyncComponent from "./hoc/asyncComponent";
+// import asyncComponent from "./hoc/asyncComponent";
 import "./Routes.css";
 import NavBar from "./Components/UI/NavBar/NavBar";
 import SignUp from "./Components/Form/registerForm";
 import SignIn from "./Components/Form/loginForm";
-const TransitionPages = props => {
-  return (
-    <CSSTransition
-      {...props}
-      //  classNames="fadeTranslate"
-      timeout={800}
-      mountOnEnter={true}
-      unmountOnExit={true}
-    />
-  );
-};
+// const TransitionPages = props => {
+//   return (
+//     <CSSTransition
+//       {...props}
+//       //  classNames="fadeTranslate"
+//       timeout={800}
+//       mountOnEnter={true}
+//       unmountOnExit={true}
+//     />
+//   );
+//};
 
 // const SurveyBuilder = asyncComponent(() => {
 //   return import("./Containers/SurveyBuilder/SurveyBuilder");

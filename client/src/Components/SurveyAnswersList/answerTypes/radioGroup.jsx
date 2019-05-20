@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Radio, RadioGroup, FormGroup } from "rsuite";
+import { Radio, RadioGroup} from "rsuite";
 // const styles = {
 //     radioGroupLabel: {
 //         padding: '8px 12px',

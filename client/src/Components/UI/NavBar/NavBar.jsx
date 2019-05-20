@@ -2,7 +2,7 @@
 
 import React, { Component } from "react";
 import {
-    MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavbarToggler, MDBCollapse, MDBDropdown,
+    MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavbarToggler,  MDBDropdown,
     MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon
 } from "mdbreact";
 import { NavLink } from 'react-router-dom'
@@ -22,8 +22,8 @@ class NavbarPage extends Component {
         return (
 
             <MDBNavbar color="transparent" dark expand="md" >
-                <MDBNavbarBrand color="#2BBBAD" >
-                    <strong className="white-text" style={{ fontSize: '1.5rem'}}>Survey Master</strong>
+                <MDBNavbarBrand color="#2BBBAD " >
+                    <strong className={styles.logo} style={{ fontSize: '1.5rem', color:"#2BBBAD !important"}}>Survey Master</strong>
                 </MDBNavbarBrand>
                 <MDBNavbarToggler onClick={this.toggleCollapse} />
                 {/* <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar> */}

@@ -1,6 +1,6 @@
 import { MDBInput } from "mdbreact";
 import React from 'react'
-import { Content } from "rsuite";
+import {Alert} from 'rsuite'
 
 const shortText = (props) => {
     let length = 0;
@@ -9,7 +9,7 @@ const shortText = (props) => {
        if(length < props.content.max)
        props.change({value:event.target.value})
        else {
-           alert("text limit exceeded")
+           Alert.error('text limit exceeded')
        }
     }
     return(

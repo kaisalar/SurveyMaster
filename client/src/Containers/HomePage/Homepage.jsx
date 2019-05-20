@@ -1,10 +1,4 @@
 import React, { Component } from 'react';
-import { TransitionGroup } from 'react-transition-group'
-import { Link } from 'react-router-dom'
-//import wallpaper from "../../assets/18924.jpg";
-import styles from './Homepage.module.css'
-import {Button} from 'semantic-ui-react'
-import Divider from '../../Components/UI/divider/Divider'
 
 class HomePage extends Component {
   
