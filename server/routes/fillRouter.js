@@ -38,6 +38,7 @@ router.post('/:id', async (req, res) => {
     const { error } = Response.validate(req.body)
     if (error) {
         const message = getErrorMessages(error)
+        console.log(error)
         return res.status(400).send(message)
     }
 

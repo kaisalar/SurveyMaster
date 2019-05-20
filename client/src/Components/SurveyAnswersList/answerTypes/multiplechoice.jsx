@@ -3,11 +3,11 @@ import { Checkbox } from 'rsuite';
 
 class InputPage extends Component {
     state = {
-        choices: [],
+        choices:[],
         
     }
     componentWillMount() {
-        this.choicesSentences = ['choice1', 'choice2', 'choice3', 'choice4']
+        this.choicesSentences = this.props.content.choices;
     }
     changedChoiceHandler = (value) => {
         this.setState({ choices: [...this.state.choices,String(value)] },() =>this.props.change(this.state));
@@ -16,7 +16,7 @@ class InputPage extends Component {
       //  this.props.throwState(this.state)
     }
     render() {
-
+       
         let Checkboxes = this.choicesSentences.map((c, i) => <Checkbox key={i} onChange={this.changedChoiceHandler}
             value={i + 1}>{c}</Checkbox>)
         return (
