@@ -36,8 +36,6 @@ const AddQuestionFloating = props => {
         </MDBDropdownToggle>
         <MDBDropdownMenu>
           {items}
-          <MDBDropdownItem divider />
-          <MDBDropdownItem>Separated link</MDBDropdownItem>
         </MDBDropdownMenu>
       </MDBDropdown>
     </div>
