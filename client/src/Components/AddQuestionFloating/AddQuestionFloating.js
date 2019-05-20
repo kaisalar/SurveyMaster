@@ -1,23 +1,60 @@
-import React from 'react';
+import React from "react";
 import { SelectPicker } from "rsuite";
 import data from "../Question/QuestionsData";
-// import './AddQuestionFloating.css';
+import "./AddQuestionFloating.css";
+import {
+  MDBIcon,
+  MDBDropdownItem,
+  MDBDropdownMenu,
+  MDBDropdownToggle,
+  MDBDropdown
+} from "mdbreact";
+import { connect } from "react-redux";
+import * as actions from "../../store/actions/types";
 
 const AddQuestionFloating = props => {
+  let items = data.map((el, i,arr) => {
+    if(i > 0 && arr[i - 1].role !== arr[i].role) { 
+      return <MDBDropdownItem divider />
+    }
+    return (
+      <MDBDropdownItem
+        key={i}
+        onClick={() => {
+          props.AddQuestion(el.value);
+        }}
+      >
+        {el.label}
+      </MDBDropdownItem>
+    );
+  });
   return (
     <div className="floating-select-picker">
-      <SelectPicker
-        // className={styleClass.SelectInput}
-        data={data}
-        appearance="subtle"
-        groupBy="role"
-        // value={Q.type}
-        searchable={false}
-        cleanable={false}
-        // onChange={newVal => this.props.ChangeTypeHandler(index, newVal)}
-      />
+      <MDBDropdown>
+        <MDBDropdownToggle gradient="blue">
+          <MDBIcon icon="plus" />
+        </MDBDropdownToggle>
+        <MDBDropdownMenu>
+          {items}
+          <MDBDropdownItem divider />
+          <MDBDropdownItem>Separated link</MDBDropdownItem>
+        </MDBDropdownMenu>
+      </MDBDropdown>
     </div>
   );
 };
 
-export default AddQuestionFloating;
+const mapDispatchToProps = dispatch => {
+  return {
+    AddQuestion: type =>
+      dispatch({
+        type: actions.ADD_QUESTION,
+        Qtype: type
+      })
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(AddQuestionFloating);

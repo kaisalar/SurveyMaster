@@ -1,0 +1,10 @@
+.survey-title .md-form { 
+    display: block;
+    width: 100%;
+}
+
+.survey-title .md-form .form-control {
+    border: none; 
+    text-align: center;
+    font-size: 3rem;
+}

@@ -1,14 +1,16 @@
 import React, { Component } from "react";
-import CreateQuestion from "../../Components/CreateQuestion/CreateQuestion";
+import SurveyTitle from "../../Components/SurveyTitle/SurveyTitle";
 import Question from "../../Components/Question/Question";
 import Layout from "../../Components/Layout/Layout";
 import SurveyBuilderWelcome from "../../Components/SurveyBuilderWelcome/SurveyBuilderWelcome";
-import {AddQuestion,SubmitNewSurvey} from "../../store/actions/BuilderAction";
+import {AddQuestion,SubmitNewSurvey,ChangeTitle} from "../../store/actions/BuilderAction";
 import styleClass from "./SurveyBuilder.module.css";
 import "./SurveyBuilder.css";
-import { MDBBtn, MDBRow, MDBCol } from "mdbreact";
+import { MDBBtn } from "mdbreact";
 import { connect } from "react-redux";
 import AddQuestionFloating from "../../Components/AddQuestionFloating/AddQuestionFloating";
+import * as Qtypes from "../../Components/Question/QuestionTypes";
+
 
 class SurveyBuilder extends Component {
   state = {
@@ -46,9 +48,9 @@ class SurveyBuilder extends Component {
       PageContent = (
         <React.Fragment>
           <div className={styleClass.SurveyBuilder + " "}>
-            <CreateQuestion clicked={this.props.AddQuestion} />
+            <SurveyTitle value={this.props.title} changed={(e) => this.props.ChangeTitle(e.target.value)}/>
             {Questions}
-            <div className={styleClass.CreateQuestion}>
+            <div className={styleClass.SurveyTitle}>
               <MDBBtn
                 gradient="blue"
                 onClick={() => this.props.SubmitNewSurvey(this.props.create)}
@@ -61,21 +63,16 @@ class SurveyBuilder extends Component {
       );
     } else {
       PageContent = (
-        <SurveyBuilderWelcome clicked={this.props.AddQuestion} />
+        <SurveyBuilderWelcome clicked={() => this.props.AddQuestion(Qtypes.TEXT)} />
       );
     }
 
     return (
       <React.Fragment>
         <AddQuestionFloating text="Add Question"/>
-        <MDBRow>
-          {sideEditor}
-          <MDBCol>
             <Layout sideOpened={/*this.state.showSideEditor*/ false}>
               {PageContent}
             </Layout>
-          </MDBCol>
-        </MDBRow>
       </React.Fragment>
     );
   }
@@ -83,11 +80,12 @@ class SurveyBuilder extends Component {
 const mapStateToProps = state => {
   return {
     create: state.createSurvey,
-    pages: state.createSurvey.pages
+    pages: state.createSurvey.pages,
+    title: state.createSurvey.title
   };
 };
 
 export default connect(
   mapStateToProps,
-  { AddQuestion,SubmitNewSurvey }
+  { AddQuestion,ChangeTitle,SubmitNewSurvey }
 )(SurveyBuilder);
