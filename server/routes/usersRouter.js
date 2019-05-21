@@ -31,8 +31,9 @@ router.post('/', async (req, res) => {
 
   // generate json web token
   const token = user.generateAuthToken()
-  res.setHeader('x-auth-token', token)
-  res.send(_.pick(user, ['_id', 'firstName', 'lastName', 'email']))
+  res.header('x-auth-token', token)
+     .header('access-control-expose-headers', 'x-auth-token')
+     .send(_.pick(user, ['_id', 'firstName', 'lastName', 'email']))
 })
 
 // @route  GET api/users

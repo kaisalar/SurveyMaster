@@ -4,17 +4,17 @@ import * as Qtypes from "../../Components/Question/QuestionTypes"
 import _ from "lodash";
 import{Alert} from 'rsuite';
 
-axios.interceptors.response.use(null, error => {
-  const expectedError =
-    error.response &&
-    error.response.status >= 400 &&
-    error.response.status < 500;
-  if (expectedError) {
-    console.log("Logging Error", error);
-    Alert.error("An unexpected error occured");
-  }
-  return Promise.reject();
-});
+// axios.interceptors.response.use(null, error => {
+//   const expectedError =
+//     error.response &&
+//     error.response.status >= 400 &&
+//     error.response.status < 500;
+//   if (expectedError) {
+//     console.log("Logging Error", error);
+//     Alert.error("An unexpected error occured");
+//   }
+//   return Promise.reject();
+// });
 
 export const AddQuestion = () => dispatch =>
   dispatch({ type: actions.ADD_QUESTION });

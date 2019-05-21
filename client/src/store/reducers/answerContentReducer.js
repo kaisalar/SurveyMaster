@@ -11,8 +11,6 @@ const initialState= {
 const contentReducer = (state = initialState , action)=>{
     let _answers = state.answers;
     let _content = action.content;
- // console.log(action.content)
-      
     switch(action.type){    
       case actionType.ANSWER_TEXT:
       case actionType.ANSWER_MULTIPLE_CHOICE:
@@ -32,24 +30,15 @@ const contentReducer = (state = initialState , action)=>{
                     surveyId: action.id,
                     answers: deleteFirstItem(_answers,_content)
                   };}
-          case actionType.POST:
+          case actionType.POST_FAILED:
             return{
-
+                ...state
             }        
         default:
- //       console.log(JSON.stringify(state));
         return {...state}
     }
 }
 
-// // function getSafe(fn, defaultVal) {
-// //   try {
-// //       console.log('sss',fn())
-// //     return fn();
-// //   } catch (e) {
-// //     return defaultVal;
-// //   }
-// }
 const deleteFirstItem = (array,value) =>{
    array.push(value)
     if(array[0].questionId === 0)

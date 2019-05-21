@@ -2,7 +2,9 @@ import React from "react";
 import Joi from "joi-browser";
 import Form from "./form";
 import styles from './divider.module.css';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { authSignUp} from '../../store/actions/authAction'
+import {connect} from 'react-redux'
 class SignUp extends Form {
   state = {
     data: { firstName: "", lastName: "",email:"", password: ""},
@@ -30,7 +32,9 @@ class SignUp extends Form {
   };
 
   doSubmit = () => {
-    // Call the server
+    const{firstName , lastName ,email,password}= this.state.data
+    this.props.authSignUp(firstName,lastName,email,password)
+    if(this.props.token)
     console.log("Submitted");
   };
 
@@ -41,7 +45,7 @@ class SignUp extends Form {
           <div className="col-md">
             <h1 className={styles.h1}>
         
-              Survey Master helps you attract more responses and a higher response rate than you could with other tools
+              Survey Master offers a tremendous set of tools for designing your survey, sharing your survey online, and reviewing your survey results.
             </h1>
             <div className={styles.outer}>
 
@@ -69,5 +73,7 @@ class SignUp extends Form {
     );
   }
 }
-
-export default SignUp;
+const mapStateToProps = state => ({
+ token : state.token 
+})
+export default connect(mapStateToProps ,{authSignUp})(SignUp);

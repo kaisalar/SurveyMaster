@@ -12,7 +12,7 @@
     "client": "cd client && yarn start",
     "start": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
   },
-  "author": "Mouaz Alkhodari, Kais Alar,Ammar Helali,Kareem Dabbeet , Kinan Almoalem",
+  "author": "Mouaz Alkhodari, Kais Alar,Ammar Al-Helali ,Kinan Almoualem ,Kareem Dabbeet",
   "license": "MIT",
   "devDependencies": {
     "nodemon": "^1.14.6",
