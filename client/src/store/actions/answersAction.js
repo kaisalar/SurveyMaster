@@ -2,7 +2,6 @@ import * as actionTypes from './types';
 import axios from '../../axios-requests';
 import {Alert} from 'rsuite';
 
-
 export const previewSurvey = (id,dataLoaded) => dispatch => {
      axios.get("/fill/" + id)
      .then(response => {

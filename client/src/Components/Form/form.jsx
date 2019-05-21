@@ -6,7 +6,8 @@ import Input from "./input";
 class Form extends Component {
   state = {
     data: {},
-    errors: {}
+    errors: {},
+  
   };
 
   validate = () => {

@@ -11,7 +11,7 @@ class SignUp extends Form {
   state = {
     data: { firstName: "", lastName: "",email:"", password: ""},
     errors: {},
-    token: localStorage.getItem('token')
+    token: localStorage.getItem('token'),
   };
 
   schema = {
@@ -33,10 +33,8 @@ class SignUp extends Form {
       .label("Password"),
   
   };
-componentDidUpdate(prevProps, prevState) {
-  if(prevProps.token !== this.props.token)
-  console.log("I changed")
-}
+
+
   doSubmit = () => {
     const{firstName , lastName ,email,password}= this.state.data
     this.props.authSignUp(firstName,lastName,email,password)
@@ -49,7 +47,6 @@ componentDidUpdate(prevProps, prevState) {
     return (
       <React.Fragment>
         {this.props.loading ?
-           //  this.setState({loading:this.props.loading})
             < Loader />
           : null}
       <div className="container" style={{ margin: '120px 130px' }}>

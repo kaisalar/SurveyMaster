@@ -11,7 +11,6 @@ export const authStart = () => {
 };
 
 export const authSuccess = authToken => {
-  console.log(authToken);
   localStorage.setItem("token", authToken);
   return {
     type: actionTypes.AUTH_SUCCESS,
