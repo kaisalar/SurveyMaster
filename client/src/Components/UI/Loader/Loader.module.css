@@ -5,4 +5,5 @@
     top: 0;
     left: 0;
     background: url('../../../assets/loader.gif') center no-repeat #0E111F;
+      z-index: 100;
 }

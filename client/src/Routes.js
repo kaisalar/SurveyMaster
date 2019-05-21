@@ -45,12 +45,16 @@ class Routes extends Component {
       <Route
         render={() => (
           <Switch>
-            <Route path="/" exact render={()=>(
-              <div>
-                <NavBar/>
-                <HomePage/>
-              </div>
-            )} />
+            <Route
+              path="/"
+              exact
+              render={() => (
+                <div>
+                  <NavBar />
+                  <HomePage />
+                </div>
+              )}
+            />
 
             <Route path="/fill/:id" component={SurveyFillList} />
             <Route
@@ -75,10 +79,10 @@ class Routes extends Component {
             />
             <Route
               path="/signup"
-              render={() => (
+              render={props => (
                 <div>
                   <NavBar />
-                  <SignUp />
+                  <SignUp {...props} />
                 </div>
               )}
             />
@@ -91,7 +95,6 @@ class Routes extends Component {
                 </div>
               )}
             />
-           
           </Switch>
         )}
       />

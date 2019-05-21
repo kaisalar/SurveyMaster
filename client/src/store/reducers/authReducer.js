@@ -1,18 +1,21 @@
 import * as actionTypes from "../actions/types";
 const initialState = {
-  token: null,
+  token: "",
   loading: false
 };
 const authStart = state => {
+  console.log('started')
   return { ...state, loading: true };
 };
 const authSuccess = (state, action) => {
+  console.log('finished')
   return {
     ...state,
-    token: action.authData.token,
-    loading: false
+    token: action.token,
+    loading: false,
   };
 };
+
 
 const authFail = (state, action) => {
   return {

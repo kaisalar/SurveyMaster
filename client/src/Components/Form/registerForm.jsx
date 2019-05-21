@@ -1,14 +1,17 @@
 import React from "react";
 import Joi from "joi-browser";
-import Form from "./form";
-import styles from './divider.module.css';
 import { Link } from 'react-router-dom';
 import { authSignUp} from '../../store/actions/authAction'
 import {connect} from 'react-redux'
+import {Redirect} from 'react-router-dom'
+import Form from "./form";
+import Loader from "../UI/Loader/Loader";
+import styles from './divider.module.css';
 class SignUp extends Form {
   state = {
     data: { firstName: "", lastName: "",email:"", password: ""},
-    errors: {}
+    errors: {},
+    token: localStorage.getItem('token')
   };
 
   schema = {
@@ -30,16 +33,25 @@ class SignUp extends Form {
       .label("Password"),
   
   };
-
+componentDidUpdate(prevProps, prevState) {
+  if(prevProps.token !== this.props.token)
+  console.log("I changed")
+}
   doSubmit = () => {
     const{firstName , lastName ,email,password}= this.state.data
     this.props.authSignUp(firstName,lastName,email,password)
     if(this.props.token)
-    console.log("Submitted");
+    console.log('I have token')
+    // this.props.history.push('/surveys');
   };
 
   render() {
     return (
+      <React.Fragment>
+        {this.props.loading ?
+           //  this.setState({loading:this.props.loading})
+            < Loader />
+          : null}
       <div className="container" style={{ margin: '120px 130px' }}>
         <div className="row">
           <div className="col-md">
@@ -69,11 +81,13 @@ class SignUp extends Form {
           </div>
         </div>
       </div>
+</React.Fragment>
 
-    );
-  }
+);
+}
 }
 const mapStateToProps = state => ({
- token : state.token 
+  token: state.auth.token ,
+  loading:state.auth.loading
 })
 export default connect(mapStateToProps ,{authSignUp})(SignUp);
