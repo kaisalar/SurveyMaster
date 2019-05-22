@@ -13,7 +13,7 @@ body{
     display: flex;
     flex-wrap: wrap;
     /* margin-right: -25px; */
-    margin-left: 15px;
+    /* margin-left: 15px; */
 }
 .card {
   /* background-color: #fff; */

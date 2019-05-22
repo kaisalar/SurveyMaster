@@ -1,0 +1,55 @@
+.floating-select-picker { 
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    z-index: 500;
+}
+
+.floating-select-picker .dropdown .btn { 
+    position: absolute;
+    padding: 0;
+    left: 10px;
+    bottom: 10px;
+    width: 55px;
+    line-height: 55px;
+    height: 55px;
+    border-radius: 50%;
+    color: rgba(255, 255, 255, .7);
+    transition: all 0.1s ease-in-out;
+    animation: pulse2 2s infinite ease-out
+}
+@keyframes pulse2 {
+    0% {
+        -moz-box-shadow: 0 0 0 0 rgba(0, 0, 255, .15);
+        box-shadow: 0 0 0 0 rgba(0, 0, 255, .15)
+    }
+
+    50% {
+        -moz-box-shadow: 0 0 0 40px rgba(0, 0, 0, 0);
+        box-shadow: 0 0 0px 40px rgba(0, 0, 0, 0)
+    }
+
+    100% {
+        -moz-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0)
+    }
+}
+
+.floating-select-picker .dropdown .btn i { 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 55px;
+    font-size: 1.2rem;
+    line-height: 55px;
+    transition: all 0.2s ease-in-out;
+}
+.floating-select-picker .dropdown .btn i:hover { 
+    /* width: 58px;
+    line-height: 58px; */
+    font-size: 1.5rem;
+}
+
+.floating-select-picker .btn:hover,.floating-select-picker .btn:focus { 
+    background-position: 0 0;
+}

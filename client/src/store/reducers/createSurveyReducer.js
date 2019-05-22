@@ -13,20 +13,27 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actions.ADD_QUESTION:
       const newQuestion = {
-        type: Qtypes.TEXT,
+        type: action.Qtype,
         title: "Untitled Question",
         content: {
           choices: ["Option 1"],
-          min: '0',
-          max: '0',
-          step: '0',
-          defaultValue: '0'
+          min: "0",
+          max: "0",
+          step: "0",
+          defaultValue: "0"
         }
       };
       newPages[0].questions.push(newQuestion);
       break;
+    case actions.CHANGE_SURVEY_TITLE:
+      return { 
+        ...state,
+        title: action.val
+      }
     case actions.DELETE_QUESTION:
-    newPages[0].questions = newPages[0].questions.filter((_,index) => index !== action.index)
+      newPages[0].questions = newPages[0].questions.filter(
+        (_, index) => index !== action.index
+      );
       break;
     case actions.CHANGE_QUESTION_TITLE:
       newPages[0].questions[action.index].title = action.val;
@@ -34,7 +41,6 @@ const reducer = (state = initialState, action) => {
     case actions.CHANGE_QUESTION_TYPE:
       newPages[0].questions[action.index].type = action.val;
       break;
-
     case actions.CHANGE_CHOISE_LABEL:
       newPages[0].questions[action.index].content.choices[action.choiceIndex] =
         action.val;
@@ -66,7 +72,7 @@ const reducer = (state = initialState, action) => {
           newPages[0].questions[action.index].content.defaultValue = action.val;
           break;
         default:
-        break;
+          break;
       }
       break;
     default:

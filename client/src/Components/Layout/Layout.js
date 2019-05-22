@@ -5,7 +5,6 @@ const Layout = props => {
     if(props.sideOpened) { 
         classNames = styleClass.Layout + " " + styleClass.SideOpened
     } 
-    console.log(props.className)
     if(props.className){
         classNames = styleClass.formLayout
     }

@@ -14,7 +14,7 @@ select:focus {
     border-bottom: 1px solid #4285f4;
 
 }
-.CreateQuestion {
+.SurveyTitle {
     display: flex;
     align-items: center;
     text-align: center;
@@ -22,7 +22,7 @@ select:focus {
     box-shadow: 0px 0px 5px 3px  rgba(0, 0, 0, .05);
     border-radius: 5px
 }
-.CreateQuestion button { 
+.SurveyTitle button { 
     color: white !important;
     font-size: 1.2rem !important;
     margin: 15px auto !important;

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { MDBInput } from "mdbreact";
 import styleClass from "./Choice.module.css";
 import { IconButton, Icon } from "rsuite";
-import * as Qtypes from "../../QuestionTypes"
+import * as Qtypes from "../../QuestionTypes";
 
 class Choise extends Component {
   state = {
@@ -18,6 +18,7 @@ class Choise extends Component {
       mouseHover: false
     });
   };
+  handleFocus = event => event.target.select();
 
   render() {
     let Style = null;
@@ -28,23 +29,25 @@ class Choise extends Component {
       };
     }
     let IconType = "";
-    switch (this.props.type) { 
-      case Qtypes.CHECKBOX: 
-      IconType = "square-o"
-      break;
-      case Qtypes.RADIO_GROUP: 
-      IconType = "circle-o"
-      break;
-      case Qtypes.DROPDOWN: 
-      IconType = "angle-down"
-      break;
+    switch (this.props.type) {
+      case Qtypes.CHECKBOX:
+        IconType = "square-o";
+        break;
+      case Qtypes.RADIO_GROUP:
+        IconType = "circle-o";
+        break;
+      case Qtypes.DROPDOWN:
+        IconType = "angle-down";
+        break;
       default:
-      IconType = "square-o"
+        IconType = "square-o";
     }
     return (
       <div className={styleClass.Choice}>
         <Icon icon={IconType} size="2x" />
         <MDBInput
+          autoFocus={this.props.Focus}
+          onFocus={this.handleFocus}
           label={this.props.el}
           style={Style}
           value={this.props.el}

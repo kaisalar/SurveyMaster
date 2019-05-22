@@ -92,7 +92,7 @@ class SurveyPage extends Component {
     }
     return (
       <div className="section">
-        <div className={styleClass.QuestionContainer}>
+        <div className={styleClass.QuestionContainer + " question-container"}>
           <div className={styleClass.QuestionTitle}>
             <h3>{title}</h3>
           </div>
