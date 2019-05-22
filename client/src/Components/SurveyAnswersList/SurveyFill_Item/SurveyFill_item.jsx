@@ -14,7 +14,6 @@ import RadioButton from "../answerTypes/radioGroup";
 import styleClass from "./SurveyFll_item.module.css";
 import "./style.css";
 import RatingNumbers from "../answerTypes/ratingNumbers";
-import _ from "lodash";
 import LeftAlign from "../../UI/LeftAlign/LeftAlign";
 /************************ */
 /*single question to fill */
@@ -40,7 +39,7 @@ class SurveyPage extends Component {
     this.props.addquestion(this.localState);
   };
   render() {
-    const { answerObjectType, title, number, content } = this.props;
+    const { answerObjectType, title,content } = this.props;
     let answer = null;
     let info = this.localState.info;
     switch (answerObjectType) {

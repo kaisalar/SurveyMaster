@@ -1,12 +1,17 @@
 import React from "react";
 import Joi from "joi-browser";
+import { Link } from 'react-router-dom';
+import { authSignUp} from '../../store/actions/authAction'
+import {connect} from 'react-redux'
+import {Redirect} from 'react-router-dom'
 import Form from "./form";
+import Loader from "../UI/Loader/Loader";
 import styles from './divider.module.css';
-import { Link } from 'react-router-dom'
 class SignUp extends Form {
   state = {
     data: { firstName: "", lastName: "",email:"", password: ""},
-    errors: {}
+    errors: {},
+    token: localStorage.getItem('token'),
   };
 
   schema = {
@@ -29,19 +34,27 @@ class SignUp extends Form {
   
   };
 
+
   doSubmit = () => {
-    // Call the server
-    console.log("Submitted");
+    const{firstName , lastName ,email,password}= this.state.data
+    this.props.authSignUp(firstName,lastName,email,password)
+    if(this.props.token)
+    console.log('I have token')
+    // this.props.history.push('/surveys');
   };
 
   render() {
     return (
+      <React.Fragment>
+        {this.props.loading ?
+            < Loader />
+          : null}
       <div className="container" style={{ margin: '120px 130px' }}>
         <div className="row">
           <div className="col-md">
             <h1 className={styles.h1}>
         
-              Survey Master helps you attract more responses and a higher response rate than you could with other tools
+              Survey Master offers a tremendous set of tools for designing your survey, sharing your survey online, and reviewing your survey results.
             </h1>
             <div className={styles.outer}>
 
@@ -65,9 +78,13 @@ class SignUp extends Form {
           </div>
         </div>
       </div>
+</React.Fragment>
 
-    );
-  }
+);
 }
-
-export default SignUp;
+}
+const mapStateToProps = state => ({
+  token: state.auth.token ,
+  loading:state.auth.loading
+})
+export default connect(mapStateToProps ,{authSignUp})(SignUp);

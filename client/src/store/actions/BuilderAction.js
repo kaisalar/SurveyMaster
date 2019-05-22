@@ -2,21 +2,10 @@ import axios from "../../axios-requests";
 import * as actions from "../actions/types";
 import * as Qtypes from "../../Components/Question/QuestionTypes";
 import _ from "lodash";
-import { Alert } from "rsuite";
 
-axios.interceptors.response.use(null, error => {
-  const expectedError =
-    error.response &&
-    error.response.status >= 400 &&
-    error.response.status < 500;
-  if (expectedError) {
-    console.log("Logging Error", error);
-    Alert.error("An unexpected error occured");
-  }
-  return Promise.reject();
-});
 export const ChangeTitle = (newVal) => dispatch =>
   dispatch({ type: actions.CHANGE_SURVEY_TITLE,val:newVal });
+
 
 export const AddQuestion = (type) => dispatch =>
   dispatch({ type: actions.ADD_QUESTION,Qtype: type });

@@ -1,8 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat|Cairo|Ubuntu|PT+Sans:400,500,600,800);
 .logo {
-  margin-top: 15px;
   margin-left: 15px;
-  color: rgb(92, 101, 156);
+  color:#ACDBDF  !important;
   float: left;
   text-align: center;
   font-family: "Montserrat";

@@ -6,7 +6,8 @@ import styles from './divider.module.css'
 class SignIn extends Form {
   state = {
     data: { email: "", password: "" },
-    errors: {}
+    errors: {},
+    token: localStorage.getItem('token')
   };
 
   schema = {

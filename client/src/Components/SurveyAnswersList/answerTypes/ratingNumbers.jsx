@@ -1,12 +1,6 @@
 import React, { Component } from 'react'
-import { Radio, RadioGroup, FormGroup } from 'rsuite';
-// const styles = {
-//     radioGroupLabel: {
-//         padding: '8px 12px',
-//         display: 'inline-block',
-//         verticalAlign: 'middle'
-//     }
-// };
+import { Radio, RadioGroup } from 'rsuite';
+
 
 class RadioButton extends Component {
 
