@@ -10,6 +10,7 @@ import "./Routes.css";
 import NavBar from "./Components/UI/NavBar/NavBar";
 import SignUp from "./Components/Form/registerForm";
 import SignIn from "./Components/Form/loginForm";
+import Response from "./Components/Responses/Responses";
 // const TransitionPages = props => {
 //   return (
 //     <CSSTransition
@@ -94,6 +95,17 @@ class Routes extends Component {
                   <SignIn />
                 </div>
               )}
+            />
+            <Route
+              path="/responses/"
+              render={() => {
+                return (
+                  <div>
+                    <NavBar />
+                    <Response />
+                  </div>
+                );
+              }}
             />
           </Switch>
         )}

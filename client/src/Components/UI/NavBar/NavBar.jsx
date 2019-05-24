@@ -37,6 +37,9 @@ class NavbarPage extends Component {
                     <MDBNavItem>
                         <NavLink to="/surveys" className={styles.a} style={{ textDecoration: 'none' }}>Show Surveys</NavLink>
                     </MDBNavItem>
+                    <MDBNavItem>
+                        <NavLink to="/responses" className={styles.a} style={{ textDecoration: 'none' }}>Responses</NavLink>
+                    </MDBNavItem>
                 </MDBNavbarNav>
                 <MDBNavbarNav right>
                     <MDBNavItem>

@@ -4,11 +4,13 @@ import viewReducer from "./viewReducer";
 import createSurveyReducer from "./createSurveyReducer";
 import fillSurveyReducer from "./answersReducer";
 import answerContentReducer from "./answerContentReducer";
+import ResponsesReducer from './ResponsesReducer'
 import authReducer from "./authReducer";
 export default combineReducers({
   viewSurvey: viewReducer,
   createSurvey: createSurveyReducer,
   fillSurvey: fillSurveyReducer,
   questionAnswer: answerContentReducer,
-  auth: authReducer
+  auth: authReducer,
+  // responses: ResponsesReducer,
 });

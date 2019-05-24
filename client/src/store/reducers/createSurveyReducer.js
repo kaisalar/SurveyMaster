@@ -1,5 +1,4 @@
 import * as actions from "../actions/types";
-import * as Qtypes from "../../Components/Question/QuestionTypes";
 const initialState = {
   title: "newSurvey",
   pages: [
