@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+            android:id="@+id/nav_login"
+            android:enabled="true"
+            android:icon="@drawable/login"
+            android:title="Login"
+            app:showAsAction="ifRoom" />
+    <item
+            android:id="@+id/nav_signup"
+            android:enabled="true"
+            android:icon="@drawable/signup"
+            android:title="Sign up"
+            app:showAsAction="ifRoom" />
+</menu>

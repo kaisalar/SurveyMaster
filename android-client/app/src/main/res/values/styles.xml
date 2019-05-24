@@ -5,7 +5,13 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/color3</item>
         <item name="colorPrimaryDark">@color/color4</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/color2</item>
+        <item name="android:fontFamily">@font/cairo_light</item>
+    </style>
+
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@drawable/splash_background</item>
     </style>
 
 </resources>

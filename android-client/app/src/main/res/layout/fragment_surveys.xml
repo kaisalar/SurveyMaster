@@ -1,0 +1,16 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context="com.kaisalar.android_client.views.fragments.SurveysFragment">
+
+
+    <android.support.design.widget.FloatingActionButton
+            android:src="@drawable/ic_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:id="@+id/addNewSurveyButton" android:backgroundTint="@color/color3"
+            android:layout_marginBottom="24dp" app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="24dp" app:layout_constraintEnd_toEndOf="parent"/>
+</android.support.constraint.ConstraintLayout>
