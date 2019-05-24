@@ -7,6 +7,10 @@ module.exports = (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, jwtPrivateKey)
+
+    const user = await User.findById(decoded._id)
+    if (!user) return res.status(400).send('Invalid token. user not found').
+    
     req.user = decoded
     next()
   } catch (err) {
