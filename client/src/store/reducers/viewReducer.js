@@ -2,7 +2,7 @@ import * as ActionTypes from "../actions/types";
 
 const initialState = {
   surveys: [],
-  isFill: false
+  currentUser: null
 };
 const viewReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -11,14 +11,16 @@ const viewReducer = (state = initialState, action) => {
         ...state,
         surveys: action.payload
       };
-    case ActionTypes.FILL:
+    case ActionTypes.CURRENT_USER:
       return {
         ...state,
-        isFill: true
+        currentUser: action.value
       };
     default:
       return {
-        ...state
+        ...state,
+        
+
       };
   }
 };

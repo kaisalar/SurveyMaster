@@ -5,11 +5,9 @@ const initialState = {
   error:null
 };
 const authStart = state => {
-  console.log('started')
   return { ...state, loading: true };
 };
 const authSuccess = (state, action) => {
-  console.log('finished')
   return {
     ...state,
     token: action.token,
@@ -19,7 +17,6 @@ const authSuccess = (state, action) => {
 
 
 const authFail = (state, action) => {
-  console.log("failed")
   return {
     ...state,
     error: action.error,
@@ -35,7 +32,7 @@ const authReducer = (state = initialState, action) => {
     case actionTypes.AUTH_FAIL:
       return authFail(state, action);
     default: 
-    return {...state}
+    return {...state,token:localStorage.getItem('token')}
   }
 };
 export default authReducer;

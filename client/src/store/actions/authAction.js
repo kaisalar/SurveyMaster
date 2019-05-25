@@ -1,6 +1,7 @@
 import * as actionTypes from "./types";
 import axios from "../../axios-requests";
 import { Alert } from "rsuite";
+axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");;
 
 axios.interceptors.response.use(null, error => {
   const expectedError =
@@ -16,7 +17,6 @@ axios.interceptors.response.use(null, error => {
   return Promise.reject(error);
 });
 
-axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");;
 export const authStart = () => {
   return {
     type: actionTypes.AUTH_START

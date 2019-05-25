@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {BrowserRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
+import {currentUser} from './store/actions/viewAction'
 import jwtDecode from "jwt-decode";
 import Routes from './Routes'
 import './App.css'
@@ -10,29 +11,25 @@ class App extends Component {
   state={}
   componentDidMount() {
     try {
-      const jwt = localStorage.getItem("item");
-      const user = jwtDecode(jwt);
-      console.log("user",user);
+      const jwt = localStorage.getItem("token");
+        const user = jwtDecode(jwt);
+      this.props.currentUser(user)
       this.setState({ user });
     } catch (ex) {}
   }
   render() {
-    console.log(this.state, this.props, window.location.href);
     return (
-      <BrowserRouter basename="/" >
-        <div>
-        {
-        <Routes users={this.state.users} />
-        
-        }  
-    
-        </div>
+      <BrowserRouter >
+        <Routes />
       </BrowserRouter>
     );
   }
 }
-const mapStateToProps = state => ({
-  isFill: state.viewSurvey.isFill 
-});
-export default connect(mapStateToProps)(App);
+// const mapStateToProps = state => ({
+//   isFill: state.viewSurvey.isFill 
+// });
+export default connect(
+  null,
+  { currentUser}
+)(App);
 

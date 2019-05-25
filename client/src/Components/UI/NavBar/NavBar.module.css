@@ -39,6 +39,13 @@ li {
   border-radius: 5px;
   text-decoration: none;
 }
+
+.h2{
+  color:#7E9C9E;
+  font-weight: bold;
+  font-size: 16px;
+  margin:auto !important;
+}
 .active {
   background-color: rgb(53, 53, 53);
   text-decoration: none;    

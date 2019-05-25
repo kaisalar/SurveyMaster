@@ -7,7 +7,6 @@ import {
 } from "../../../store/actions/answersAction";
 import ReactFullpage from "@fullpage/react-fullpage";
 import { connect } from "react-redux";
-import { isFill} from '../../../store/actions/viewAction'
 import Loader from "../../../Components/UI/Loader/Loader";
 import styles from "./SurveyFillList.module.css";
 import "./style.css"
@@ -101,5 +100,5 @@ const mapStateToProps = state => {
 };
 export default connect(
   mapStateToProps,
-  { previewSurvey, postAnswers ,isFill}
+  { previewSurvey, postAnswers }
 )(SurveyFillList);

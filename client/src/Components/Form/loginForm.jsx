@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { authSignIn } from '../../store/actions/authAction'
 import {Alert} from 'rsuite'
+import { currentUser } from '../../store/actions/viewAction'
 import Form from "./form";
 import styles from './divider.module.css'
+import { decodeUser } from "../../store/actions/jwtDecode";
 class SignIn extends Form {
   state = {
     data: { email: "", password: "" },
@@ -29,10 +31,14 @@ class SignIn extends Form {
   doSubmit = async () => {
     const { email, password } = this.state.data
     await this.props.authSignIn(email, password)
-    if(this.props.error){
-      Alert.error(this.props.error)
-    }
-   else this.props.history.push('/surveys')
+    const user = decodeUser();
+    console.log(user)
+    this.props.currentUser(user)
+  //   if(this.props.error){
+  //     Alert.error(this.props.error)
+  //   }
+  //  else
+    this.props.history.push('/surveys')
   };
 
   render() {
@@ -57,7 +63,7 @@ class SignIn extends Form {
                   <h1 style={{ marginLeft: '10px' }}>Sign In</h1>
                   {this.renderInput("email", "Email")}
                   {this.renderInput("password", "Password", "password")}
-                  {this.renderButton("Login")}
+                  {this.renderButton("Sign in")}
                 </form>
                 <label style={{ float: "right", cursor: 'default' }}>Don't have an account?   <Link to="/signup">Sign Up</Link>  </label>
               </div>
@@ -77,4 +83,4 @@ const mapStateToProps = state => ({
   error: state.auth.error
 })
 
-export default connect(mapStateToProps, { authSignIn })(SignIn);
+export default connect(mapStateToProps, { authSignIn, currentUser })(SignIn);
