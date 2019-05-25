@@ -1,7 +1,8 @@
 import * as ActionTypes from "../actions/types";
 
 const initialState = {
-  surveys: []
+  surveys: [],
+  isFill: false
 };
 const viewReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -10,8 +11,11 @@ const viewReducer = (state = initialState, action) => {
         ...state,
         surveys: action.payload
       };
-    
-
+    case ActionTypes.FILL:
+      return {
+        ...state,
+        isFill: true
+      };
     default:
       return {
         ...state

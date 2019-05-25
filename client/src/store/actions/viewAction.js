@@ -1,17 +1,7 @@
 import * as ActionType from "./types";
 import axios from "../../axios-requests";
 import {Alert} from 'rsuite'
-// axios.interceptors.response.use(null,error => {
-//   const expectedError= error.response &&
-//     error.response.status >= 400 &&
-//     error.response.status < 500;
-//     if(expectedError)
-//     {
-//       console.log("Logging Error" ,error);
-//       Alert.error("An unexpected error occured");
-//     }
-//     return Promise.reject();
-// })
+axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");; 
 export const setSurveys = surveys => {
   return {
     type: ActionType.SHOW_SURVEYS,
@@ -22,12 +12,15 @@ export const setSurveys = surveys => {
 export const deleteSurvey = id => dispatch => {
   axios.delete("api/surveys/" + id)
        .then(response => {
-              
+              console.log(response.data)
               dispatch(initSurvey());
-              }).catch(err =>err.response && err.response.status === 404)
-              Alert.warning("This survey has been already deleted")
-              ;
-};
+              }).catch(err =>{
+                console.log(err.response)
+                if(err.response && err.response.status === 404)
+                Alert.warning("This survey has been already deleted")
+              })
+              
+}
 ////////////////////////
 export const initSurvey = () => dispatch => {
   axios
@@ -37,9 +30,14 @@ export const initSurvey = () => dispatch => {
     })
     .catch(error => {
       if(error){
-
-        console.log(error.response.status === 404);
-        Alert.warning("This Survey has been deleted already")
+        if(error.response.status === 400)
+        Alert.warning("You don't have authentication to access your surveys,please sign in again")
       }
     });
 };
+export const isFill = (value) =>dispatch => {
+    return{
+      value: value,
+      type: ActionType.FILL
+    }
+}

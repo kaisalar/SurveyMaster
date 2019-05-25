@@ -7,6 +7,7 @@ import {
 } from "../../../store/actions/answersAction";
 import ReactFullpage from "@fullpage/react-fullpage";
 import { connect } from "react-redux";
+import { isFill} from '../../../store/actions/viewAction'
 import Loader from "../../../Components/UI/Loader/Loader";
 import styles from "./SurveyFillList.module.css";
 import "./style.css"
@@ -34,6 +35,7 @@ class SurveyFillList extends Component {
   onSubmitHandler = () => {
     console.log("test")
     this.props.postAnswers(this.props.answers, this.props.id);
+
     window.setTimeout(() => this.setState({ redirect: true }), 2000);
   };
   submitAnswers = () => {
@@ -99,5 +101,5 @@ const mapStateToProps = state => {
 };
 export default connect(
   mapStateToProps,
-  { previewSurvey, postAnswers }
+  { previewSurvey, postAnswers ,isFill}
 )(SurveyFillList);

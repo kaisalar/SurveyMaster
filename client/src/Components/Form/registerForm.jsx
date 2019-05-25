@@ -6,22 +6,24 @@ import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
 import Form from "./form";
 import Loader from "../UI/Loader/Loader";
+import {Alert} from 'rsuite'
 import styles from './divider.module.css';
 class SignUp extends Form {
   state = {
     data: { firstName: "", lastName: "",email:"", password: ""},
     errors: {},
-    token: localStorage.getItem('token'),
+    token:{},
+    SignUperror:this.props.error,
   };
 
   schema = {
     firstName: Joi.string()
       .required()
-      .min(5)
+      .min(3)
       .label("First Name"),
     lastName: Joi.string()
       .required()
-      .min(5)
+      .min(3)
       .label("Last Name"),
     email: Joi.string()
       .required()
@@ -29,18 +31,25 @@ class SignUp extends Form {
       .label("Email"),
     password: Joi.string()
       .required()
+      .regex(/^[a-zA-Z0-9]{3,30}$/)
       .min(8)
       .label("Password"),
   
   };
 
 
-  doSubmit = () => {
+  doSubmit =async () => {
+    this.setState({SignUperror : this.props.error,token:this.props.token})
     const{firstName , lastName ,email,password}= this.state.data
-    this.props.authSignUp(firstName,lastName,email,password)
-    if(this.props.token)
-    console.log('I have token')
-    // this.props.history.push('/surveys');
+   await this.props.authSignUp(firstName,lastName,email,password)
+    if(this.props.token){
+      this.props.history.push('/surveys');
+    }
+    if(this.props.error)
+    Alert.warning(
+      "The user is already exist,Login or register a new one",
+      3000
+    );
   };
 
   render() {

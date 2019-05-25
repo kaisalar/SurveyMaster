@@ -34,12 +34,14 @@ import SignIn from "./Components/Form/loginForm";
 //   return import("./Containers/ShowSurveys/Surveys List/Surveys");
 // });
 class Routes extends Component {
+  
   constructor(props){
     super(props);
     this.viewNavBar = true
+    this.state={}
   }
-  state = {
-  };
+  
+  
   render() {
     return (
       <Route
@@ -50,7 +52,7 @@ class Routes extends Component {
               exact
               render={() => (
                 <div>
-                  <NavBar />
+                  <NavBar user={this.props.user} />
                   <HomePage />
                 </div>
               )}
@@ -62,7 +64,7 @@ class Routes extends Component {
               render={() => {
                 return (
                   <div>
-                    <NavBar />
+                    <NavBar user={this.props.user} />
                     <SurveyBuilder />
                   </div>
                 );
@@ -72,7 +74,7 @@ class Routes extends Component {
               path="/surveys"
               render={() => (
                 <div>
-                  <NavBar />
+                  <NavBar user={this.props.user} />
                   <Surveys />
                 </div>
               )}
@@ -81,17 +83,17 @@ class Routes extends Component {
               path="/signup"
               render={props => (
                 <div>
-                  <NavBar />
+                  <NavBar user={this.props.user} />
                   <SignUp {...props} />
                 </div>
               )}
             />
             <Route
               path="/signIn"
-              render={() => (
+              render={props => (
                 <div>
-                  <NavBar />
-                  <SignIn />
+                  <NavBar user={this.state.user} />
+                  <SignIn {...props} />
                 </div>
               )}
             />

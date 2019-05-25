@@ -1,7 +1,8 @@
 import * as actionTypes from "../actions/types";
 const initialState = {
-  token: "",
-  loading: false
+  token: localStorage.getItem('token'),
+  loading: false,
+  error:null
 };
 const authStart = state => {
   console.log('started')
@@ -18,6 +19,7 @@ const authSuccess = (state, action) => {
 
 
 const authFail = (state, action) => {
+  console.log("failed")
   return {
     ...state,
     error: action.error,
