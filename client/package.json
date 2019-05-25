@@ -12,9 +12,11 @@
   "dependencies": {
     "axios": "^0.18.0",
     "joi-browser": "^13.4.0",
+    "jwt-decode": "^2.2.0",
     "lodash": "^4.17.11",
     "material-ui-slider": "^3.0.0",
     "mdbreact": "^4.14.0",
+    "moment": "^2.24.0",
     "rc-slider": "^8.6.11",
     "react": "^16.8.6",
     "react-copy-to-clipboard": "^5.0.1",

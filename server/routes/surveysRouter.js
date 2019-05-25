@@ -15,7 +15,7 @@ const roles = require('../models/roles')
 router.get('/', auth, async (req, res) => {
   // load user depending on the token in the auth middleware
   const user = await User.findById(req.user._id)
-
+  console.log(user);
   // load that user's surveys
   const surveys = await user.getSurveysInfo();
 
@@ -59,10 +59,9 @@ router.get('/:id/responses', auth, async (req, res) => {
     return res
       .status(404)
       .send(`The survey with the given id: ${surveyId} NOT FOUND.`)
-
   // load the responses
   const responses = await Response.loadSurveyResponsesInfo(surveyId)
-
+  
   // send the responses
   res.send(responses)
 })

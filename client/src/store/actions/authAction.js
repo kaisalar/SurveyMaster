@@ -18,7 +18,6 @@ axios.interceptors.response.use(null, error => {
 
 axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");;
 export const authStart = () => {
-  console.log("auth started");
   return {
     type: actionTypes.AUTH_START
   };

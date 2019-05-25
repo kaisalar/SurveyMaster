@@ -2,7 +2,7 @@ const files = require('files')
 
 async function saveJson(path, object) {
   const dir = await files.dir(path)
-  console.log(dir)
+  //console.log(dir)
   await files.mkdir(dir)
   const data = JSON.stringify(object)
   await files.write(path, data)
@@ -18,6 +18,7 @@ async function loadJson(path) {
   try {
     const data = await files.read(path)
     if (data) object = await JSON.parse(data)
+    else throw `${path} file has an error in loading data`
   } catch (e) {
     console.log(e)
   }
