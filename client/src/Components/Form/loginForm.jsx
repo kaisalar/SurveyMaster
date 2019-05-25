@@ -34,10 +34,10 @@ class SignIn extends Form {
     const user = decodeUser();
     console.log(user)
     this.props.currentUser(user)
-  //   if(this.props.error){
-  //     Alert.error(this.props.error)
-  //   }
-  //  else
+    if(this.props.error){
+      Alert.error(this.props.error)
+    }
+   else
     this.props.history.push('/surveys')
   };
 
