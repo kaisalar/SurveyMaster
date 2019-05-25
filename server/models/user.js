@@ -42,7 +42,7 @@ class User extends Element {
   }
 
   hasSurvey(surveyId) {
-    for (const survey of surveys) {
+    for (const survey of this.surveys) {
       if (survey.surveyId === surveyId) return true
     }
     return false
