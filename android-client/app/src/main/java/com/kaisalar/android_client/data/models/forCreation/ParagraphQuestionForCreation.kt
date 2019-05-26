@@ -10,6 +10,10 @@ class ParagraphQuestionForCreation : QuestionForCreation {
         this.content = Content(content)
     }
 
+    constructor(title: String, description: String) : super(title, description) {
+        content = Content("", 0, 0)
+    }
+
     inner class Content {
         var placeholder: String
         var min: Int

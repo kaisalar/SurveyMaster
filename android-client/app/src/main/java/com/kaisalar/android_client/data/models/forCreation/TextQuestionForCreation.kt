@@ -1,5 +1,6 @@
 package com.kaisalar.android_client.data.models.forCreation
 
+import com.kaisalar.android_client.data.constants.INPUT_TEXT
 import com.kaisalar.android_client.data.constants.QUESTION_TEXT
 
 class TextQuestionForCreation : QuestionForCreation {
@@ -8,6 +9,10 @@ class TextQuestionForCreation : QuestionForCreation {
 
     constructor(title: String, description: String, content: Content) : super(title, description) {
         this.content = Content(content)
+    }
+
+    constructor(title: String, description: String) : super(title, description) {
+        content = Content("", INPUT_TEXT, 0, 0)
     }
 
     inner class Content {

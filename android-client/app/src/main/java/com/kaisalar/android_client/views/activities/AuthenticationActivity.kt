@@ -30,6 +30,10 @@ class AuthenticationActivity : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        moveTaskToBack(true)
+    }
+
     private fun showFragment(fragment: Fragment) {
         val t = supportFragmentManager.beginTransaction()
         t.replace(R.id.authContainer, fragment)

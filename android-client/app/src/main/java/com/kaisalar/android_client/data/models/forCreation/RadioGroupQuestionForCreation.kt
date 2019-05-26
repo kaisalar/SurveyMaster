@@ -6,4 +6,6 @@ class RadioGroupQuestionForCreation : MultipleChoiceQuestionForCreation {
     val type = QUESTION_RADIO_GROUP
 
     constructor(title: String, description: String, content: Content) : super(title, description, content)
+
+    constructor(title: String, description: String) : super(title, description)
 }

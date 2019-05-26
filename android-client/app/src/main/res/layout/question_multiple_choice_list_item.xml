@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="wrap_content"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools">
+    <android.support.v7.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="16dp">
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <android.support.design.widget.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/questionMultipleChoiceTitleTextLayout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="16dp" app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="16dp" android:hint="Title"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:layout_constraintTop_toBottomOf="@+id/multipleChoiceQuestionTopLabel"
+                    android:layout_marginTop="8dp">
+
+                <android.support.design.widget.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/questionMultipleChoiceTitleEditText"/>
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp" app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/questionMultipleChoiceTitleTextLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:hint="Description (Optional)" android:id="@+id/questionMultipleChoiceDescriptionTextLayout"
+                    android:layout_marginBottom="16dp" app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintVertical_bias="0.0">
+
+                <android.support.design.widget.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/questionMultipleChoiceDescriptionEditText"/>
+            </android.support.design.widget.TextInputLayout>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/multipleChoiceQuestionTopLabel"
+                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="16dp" android:layout_marginTop="16dp" tools:text="#1 Text Question"/>
+            <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp" app:srcCompat="@drawable/ic_delete"
+                    android:id="@+id/multipleChoiceQuestionDeleteButton" android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/multipleChoiceQuestionTopLabel"
+                    android:scaleType="centerInside" android:background="@android:color/transparent"/>
+            <android.support.v7.widget.RecyclerView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/questionMultipleChoiceDescriptionTextLayout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="8dp" android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="8dp"
+                    android:id="@+id/multipleChoiceQuestionChoicesRecyclerView"/>
+            <Button
+                    android:text="Add New Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/multipleChoiceQuestionAddNewChoiceButton" android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toBottomOf="@+id/multipleChoiceQuestionChoicesRecyclerView" app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="16dp" style="@style/Widget.AppCompat.Button.Borderless"
+                    android:backgroundTint="@color/color3"/>
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
+</android.support.constraint.ConstraintLayout>

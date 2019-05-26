@@ -6,13 +6,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context="com.kaisalar.android_client.views.activities.CreateNewSurveyActivity">
+    <android.support.design.widget.BottomNavigationView android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:background="#FFF"
+                                                        app:layout_constraintBottom_toBottomOf="parent"
+                                                        app:layout_constraintStart_toStartOf="parent"
+                                                        app:layout_constraintEnd_toEndOf="parent"
+                                                        app:menu="@menu/create_survey_nav_bar_items"
+                                                        android:id="@+id/createSurveyNavBar">
 
-    <android.support.design.widget.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true" app:srcCompat="@drawable/ic_add"
-            android:id="@+id/addNewQuestionButton"
-            android:backgroundTint="@color/color3" android:layout_marginBottom="24dp"
-            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginEnd="24dp"
-            app:layout_constraintEnd_toEndOf="parent"/>
+    </android.support.design.widget.BottomNavigationView>
+    <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/createSurveyNavBar" android:id="@+id/createSurveyContainer">
+
+    </FrameLayout>
+
 </android.support.constraint.ConstraintLayout>

@@ -6,4 +6,6 @@ class CheckBoxQuestionForCreation : MultipleChoiceQuestionForCreation {
     val type = QUESTION_CHECKBOX
 
     constructor(title: String, description: String, content: Content) : super(title, description, content)
+
+    constructor(title: String, description: String) : super(title, description)
 }

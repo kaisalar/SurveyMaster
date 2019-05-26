@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@color/color3"/>
-    <corners android:radius="24dp"/>
-    <padding android:top="8dp" android:bottom="8dp" android:left="8dp" android:right="8dp" />
-</shape>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="false" android:drawable="@drawable/basic_button_light"/>
+    <item android:state_pressed="true" android:drawable="@drawable/basic_button_dark"/>
+</selector>

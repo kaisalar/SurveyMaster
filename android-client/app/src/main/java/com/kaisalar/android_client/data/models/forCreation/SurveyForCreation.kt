@@ -8,9 +8,14 @@ class SurveyForCreation {
     constructor(title: String, description: String) {
         this.title = title
         this.description = description
+        this.pages.add(PageForCreation("", ""))
     }
 
     fun addPage(page: PageForCreation) {
         this.pages.add(page)
+    }
+
+    fun addQuestion(question: QuestionForCreation) {
+        this.pages[0].addQuestion(question)
     }
 }

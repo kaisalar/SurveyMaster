@@ -7,6 +7,9 @@ open class MultipleChoiceQuestionForCreation : QuestionForCreation {
         this.content = Content(content)
     }
 
+    constructor(title: String, description: String) : super(title, description)  {
+        this.content = Content(mutableListOf())
+    }
     open inner class Content {
         var choices = mutableListOf<String>()
 

@@ -1,51 +1,42 @@
 package com.kaisalar.android_client.views.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.kaisalar.android_client.R
-import com.kaisalar.android_client.data.services.AuthService
-import com.kaisalar.android_client.utils.AuthTokenHandler
-import com.kaisalar.android_client.views.activities.MainActivity
+import com.kaisalar.android_client.data.services.SurveyService
+import com.kaisalar.android_client.views.activities.CreateNewSurveyActivity
 import com.kaisalar.android_client.views.dialogs.LoadingDialog
-import com.kaisalar.android_client.views.toasts.ConnectionErrorToast
-import kotlinx.android.synthetic.main.fragment_login.*
+import com.kaisalar.android_client.views.toasts.DoneToast
+import com.kaisalar.android_client.views.toasts.ErrorToast
+import kotlinx.android.synthetic.main.fragment_create_survey_submit.*
 
-class LoginFragment : Fragment() {
+class CreateSurveySubmitFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false)
+        return inflater.inflate(R.layout.fragment_create_survey_submit, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        loginButton.setOnClickListener {
-
+        createSurveySubmitButton.setOnClickListener {
             val loadingDialog = LoadingDialog.getInstance(context!!)
             loadingDialog.show()
-
-            AuthService.getInstance(context!!).authUser(
-                email = loginEmailEditText.text.toString(),
-                password = loginPasswordEditText.text.toString(),
+            SurveyService.getInstance(context!!).postSurvey(
+                survey = CreateNewSurveyActivity.survey,
                 onSuccess = {
-                    // Store the token
-                    AuthTokenHandler.putAuthToken(context!!, it)
-
-                    val intent = Intent(context, MainActivity::class.java)
-                    startActivity(intent)
-
                     loadingDialog.dismiss()
+                    DoneToast.getInstance(context!!).show("Survey Created Successfully")
                 },
                 onFailure = {
                     loadingDialog.dismiss()
-                    ConnectionErrorToast.getInstance(context!!).show()
+                    ErrorToast.getInstance(context!!).show(it)
                 }
             )
         }
@@ -53,6 +44,7 @@ class LoginFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        loginEmailEditText.requestFocus()
+        createSurveyTitleTextView.text = CreateNewSurveyActivity.survey.title
+        createSurveyDiscriptionTextView.text = CreateNewSurveyActivity.survey.description
     }
 }
