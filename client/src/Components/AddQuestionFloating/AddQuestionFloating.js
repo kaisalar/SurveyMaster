@@ -15,7 +15,7 @@ import * as actions from "../../store/actions/types";
 const AddQuestionFloating = props => {
   let items = data.map((el, i,arr) => {
     if(i > 0 && arr[i - 1].role !== arr[i].role) { 
-      return <MDBDropdownItem divider />
+      return <MDBDropdownItem key={i} divider />
     }
     return (
       <MDBDropdownItem

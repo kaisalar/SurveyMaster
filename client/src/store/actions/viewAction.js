@@ -1,17 +1,7 @@
 import * as ActionType from "./types";
 import axios from "../../axios-requests";
-import {Alert} from 'rsuite'
-// axios.interceptors.response.use(null,error => {
-//   const expectedError= error.response &&
-//     error.response.status >= 400 &&
-//     error.response.status < 500;
-//     if(expectedError)
-//     {
-//       console.log("Logging Error" ,error);
-//       Alert.error("An unexpected error occured");
-//     }
-//     return Promise.reject();
-// })
+import { Alert } from "rsuite";
+axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");
 export const setSurveys = surveys => {
   return {
     type: ActionType.SHOW_SURVEYS,
@@ -20,13 +10,17 @@ export const setSurveys = surveys => {
 };
 ////////////////////////
 export const deleteSurvey = id => dispatch => {
-  axios.delete("api/surveys/" + id)
-       .then(response => {
-              
-              dispatch(initSurvey());
-              }).catch(err =>err.response && err.response.status === 404)
-              Alert.warning("This survey has been already deleted")
-              ;
+  axios
+    .delete("api/surveys/" + id)
+    .then(response => {
+      console.log(response.data);
+      dispatch(initSurvey());
+    })
+    .catch(err => {
+      console.log(err.response);
+      if (err.response && err.response.status === 404)
+        Alert.warning("This survey has been already deleted");
+    });
 };
 ////////////////////////
 export const initSurvey = () => dispatch => {
@@ -36,10 +30,17 @@ export const initSurvey = () => dispatch => {
       dispatch(setSurveys(response.data));
     })
     .catch(error => {
-      if(error){
-
-        console.log(error.response.status === 404);
-        Alert.warning("This Survey has been deleted already")
-      }
+      if (error)
+      console.log(error.response.data)
+        Alert.warning(
+          "You don't have authentication to access your surveys,please sign in again"
+        );
     });
+};
+export const currentUser = value => dispatch => {
+  console.log('currentUser')
+  dispatch( {
+    value: value,
+    type: ActionType.CURRENT_USER
+  });
 };

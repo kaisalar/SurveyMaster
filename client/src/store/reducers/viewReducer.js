@@ -1,7 +1,8 @@
 import * as ActionTypes from "../actions/types";
 
 const initialState = {
-  surveys: []
+  surveys: [],
+  currentUser: null
 };
 const viewReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -10,11 +11,16 @@ const viewReducer = (state = initialState, action) => {
         ...state,
         surveys: action.payload
       };
-    
-
+    case ActionTypes.CURRENT_USER:
+      return {
+        ...state,
+        currentUser: action.value
+      };
     default:
       return {
-        ...state
+        ...state,
+        
+
       };
   }
 };

@@ -2,6 +2,7 @@ import axios from "../../axios-requests";
 import * as actions from "../actions/types";
 import * as Qtypes from "../../Components/Question/QuestionTypes";
 import _ from "lodash";
+import {Alert} from 'rsuite'
 
 export const ChangeTitle = (newVal) => dispatch =>
   dispatch({ type: actions.CHANGE_SURVEY_TITLE,val:newVal });
@@ -49,7 +50,7 @@ export const SubmitNewSurvey = survey => dispatch => {
   axios
     .post("/api/surveys", survey)
     .then(response => {
-      alert("Submitted Successfully");
+      Alert.success("Submitted Successfully");
       console.log(response);
     })
     .catch(err => console.log(err));
