@@ -8,7 +8,8 @@
 
 }
 body{
-  background: url(../../assets/prism.png);
+  /* background: url(../../assets/prism.png); */
+  background: #393E46 !important;
   margin: 10px;
 }
 .row {

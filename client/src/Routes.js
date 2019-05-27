@@ -45,17 +45,7 @@ class Routes extends Component {
             </div>
           )}
         />
-        <Route
-          path="/create"
-          render={() => {
-            return (
-              <div>
-                <NavBar />
-                <SurveyBuilder />
-              </div>
-            );
-          }}
-        />
+      
         <Redirect to="/" />
       </Switch>
     );

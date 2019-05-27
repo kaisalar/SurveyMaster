@@ -24,7 +24,8 @@ export const authStart = () => {
 };
 
 export const authSuccess = authToken => {
-  localStorage.setItem("token", authToken);
+   localStorage.setItem("token", authToken);
+
   return {
     type: actionTypes.AUTH_SUCCESS,
     token: authToken
@@ -45,6 +46,7 @@ export const authSignUp = (
   password
 ) => async dispatch => {
   try {
+   
     dispatch(authStart());
     const authData = {
       firstName: firstName,
@@ -52,7 +54,9 @@ export const authSignUp = (
       email: email,
       password: password
     };
+    // console.log(JSON.stringify(authData))
     const response = await axios.post("/api/users", authData);
+    
     return dispatch(authSuccess(response.headers["x-auth-token"]));
   } catch (err) {
     console.log(err.response.data)
@@ -60,9 +64,9 @@ export const authSignUp = (
   }
 };
 
-export const authSignIn = (email, password) => async dispatch => {
-  try {
-    const authData = {
+export const authSignIn = (email, password) => async (dispatch) => {
+  try {    
+    const authData = {  
       email: email  ,
       password: password
     };
@@ -76,3 +80,7 @@ export const authSignIn = (email, password) => async dispatch => {
 };
 
 
+/*
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJkMzdkZmEyNS1mOTA5LTQxMTAtYjIzYS0zODg5NjRhNjc1ODkiLCJmaXJzdE5hbWUiOiJmbGFuIiwibGFzdE5hbWUiOiJ0ZXN0IiwiZW1haWwiOiJhbW1hcjEyQGhlbGFsYWFhaS5jb20iLCJpYXQiOjE1NTg5NDI1MDl9.CV2STTQmNEnCwLA2WI5xX5Mm-AQ7TsRVY6V-0-SMzOE
+
+*/

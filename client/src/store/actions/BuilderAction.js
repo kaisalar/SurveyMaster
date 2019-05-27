@@ -3,7 +3,9 @@ import * as actions from "../actions/types";
 import * as Qtypes from "../../Components/Question/QuestionTypes";
 import _ from "lodash";
 import {Alert} from 'rsuite'
-
+const header = {
+  "x-auth-token": localStorage.getItem("token")
+};
 export const ChangeTitle = (newVal) => dispatch =>
   dispatch({ type: actions.CHANGE_SURVEY_TITLE,val:newVal });
 
@@ -48,7 +50,7 @@ export const SubmitNewSurvey = survey => dispatch => {
   // survey.pages[0].questions = finalSurveyQuestions
   console.log(survey);
   axios
-    .post("/api/surveys", survey)
+    .post("/api/surveys", survey,{headers:header})
     .then(response => {
       Alert.success("Submitted Successfully");
       console.log(response);

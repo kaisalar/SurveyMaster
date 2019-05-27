@@ -2,6 +2,10 @@ import * as ActionType from "./types";
 import axios from "../../axios-requests";
 import { Alert } from "rsuite";
 axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");
+
+  const header = {
+    "x-auth-token": localStorage.getItem("token")
+  };
 export const setSurveys = surveys => {
   return {
     type: ActionType.SHOW_SURVEYS,
@@ -25,7 +29,7 @@ export const deleteSurvey = id => dispatch => {
 ////////////////////////
 export const initSurvey = () => dispatch => {
   axios
-    .get("api/surveys")
+    .get("api/surveys",{headers:header})
     .then(response => {
       dispatch(setSurveys(response.data));
     })
