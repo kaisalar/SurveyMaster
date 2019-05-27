@@ -65,11 +65,11 @@ class Routes extends Component {
           <Route path="/fill/:id" component={SurveyFillList} />
           <Route
             path="/create"
-            render={() => {
+            render={(props) => {
               return (
                 <div>
                   <NavBar />
-                  <SurveyBuilder />
+                  <SurveyBuilder {...props}/>
                 </div>
               );
             }}
