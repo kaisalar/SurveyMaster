@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken')
 const { jwtPrivateKey } = require('../config')
 const Joi = require('joi')
 const Element = require('./element')
-const Survey = require('./survey')
+//const Survey = require('./survey')
 const { userSchema } = require('./validationSchemas')
 const IO = require('../data/IO')
 const roles = require('./roles')
@@ -30,13 +30,19 @@ class User extends Element {
       role
     })
   }
-
+  deleteSurveyById(surveyId){
+    let id = this.surveys.findIndex((survey,index) => survey.surveyId == surveyId);
+    this.surveys.splice(id,1);
+    }
+  // return info just in json opject 
+  // if you want to use iit as survey you need to make new survey for each item
   async getSurveysInfo() {
     const surveysIds = this.surveys.map(s => s.surveyId)
     const surveys = []
     for (const id of surveysIds) {
       const survey = await IO.loadSurveyInfoById(id)
-      surveys.push(new Survey(survey))
+      if(survey)
+        surveys.push(survey);
     }
     return surveys
   }
@@ -49,7 +55,7 @@ class User extends Element {
   }
 
   isAdminOnSurvey(surveyId) {
-    for (const survey of surveys) {
+    for (const survey of this.surveys) {
       if (survey.surveyId === surveyId && survey.role === roles.ROLE_ADMIN)
         return true
     }
@@ -67,7 +73,7 @@ class User extends Element {
     await IO.saveUser(this)
   }
 
-  static async findById(userId) {
+  static async findUserById(userId) {
     let user = await IO.findUserById(userId)
     if (user) {
       user = new User(user)

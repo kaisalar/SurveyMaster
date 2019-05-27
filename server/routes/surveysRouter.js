@@ -14,8 +14,7 @@ const roles = require('../models/roles')
 // @access Private
 router.get('/', auth, async (req, res) => {
   // load user depending on the token in the auth middleware
-  const user = await User.findById(req.user._id)
-  console.log(user);
+  const user = await User.findUserById(req.user._id)
   // load that user's surveys
   const surveys = await user.getSurveysInfo()
 
@@ -29,8 +28,13 @@ router.get('/', auth, async (req, res) => {
 router.get('/:id', auth, async (req, res) => {
   const surveyId = req.params.id
 
+  if(! await Survey.isExists(surveyId)){
+    return res
+      .status(404)
+      .send(`The survey with the given id: ${surveyId} NOT FOUND.`)
+  }
   // load the user by it's token
-  const user = await User.findById(req.user._id)
+  const user = await User.findUserById(req.user._id)
 
   // check if the logged in user has this survey
   if (!user.hasSurvey(surveyId))
@@ -52,7 +56,7 @@ router.get('/:id/responses', auth, async (req, res) => {
   const surveyId = req.params.id
 
   // load the user by it's token
-  const user = await User.findById(req.user._id)
+  const user = await User.findUserById(req.user._id)
 
   // check if the logged in user has this survey
   if (!user.hasSurvey(surveyId))
@@ -74,7 +78,7 @@ router.get('/:sid/responses/:rid', auth, async (req, res) => {
   const responseId = req.params.rid
 
   // load the user by it's token
-  const user = await User.findById(req.user._id)
+  const user = await User.findUserByID(req.user._id)
 
   // check if the logged in user has this survey
   if (!user.hasSurvey(surveyId))
@@ -103,7 +107,7 @@ router.get('/:id/report', auth, async (req, res) => {
   const surveyId = req.params.id
 
   // load the user by it's token
-  const user = await User.findById(req.user._id)
+  const user = await User.findUserById(req.user._id)
 
   // check if the logged in user has this survey
   if (!user.hasSurvey(surveyId))
@@ -112,7 +116,7 @@ router.get('/:id/report', auth, async (req, res) => {
       .send(`The survey with the given id: ${surveyId} NOT FOUND.`)
 
   // generate the report
-  const report = await Survey.generatReport(_id)
+  const report = await Survey.generatReport(surveyId)
 
   // send the report
   res.send(report)
@@ -134,7 +138,7 @@ router.post('/', auth, async (req, res) => {
     ...req.body
   })
 
-  const user = await User.findById(req.user._id)
+  const user = await User.findUserById(req.user._id)
 
   // Add the user to the survey
   survey.addUser(user, roles.ROLE_ADMIN)
@@ -152,10 +156,18 @@ router.post('/', auth, async (req, res) => {
 // @access (Admin)
 router.delete('/:id', [auth, admin], async (req, res) => {
   const _id = req.params.id
-
+  if(! await Survey.isExists(_id)){
+    return res
+      .status(404)
+      .send(`The survey with the given id: ${_id} NOT FOUND.`)
+  }
+  const survey = await Survey.loadSurveyToFiliingById(_id);
+  if(!survey)
+    return res
+        .status(404)
+        .send(`The survey with the given id: ${_id} NOT FOUND.`)
   // Delete survey
-  const survey = Survey.remove(_id)
-
+  survey.remove();
   res.send(`Survey with id: ${_id} have been removed.`)
 })
 
