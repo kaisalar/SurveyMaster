@@ -25,3 +25,4 @@ export const CHANGE_STEP_VALUE = 'CHANGE_STEP_VALUE';
 export const AUTH_START = "AUTH_START";
 export const AUTH_SUCCESS = "AUTH_SUCCESS";
 export const AUTH_FAIL = "AUTH_FAIL";
+export const CURRENT_USER = "CURRENT_USER";

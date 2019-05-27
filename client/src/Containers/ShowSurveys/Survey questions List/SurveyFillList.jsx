@@ -34,6 +34,7 @@ class SurveyFillList extends Component {
   onSubmitHandler = () => {
     console.log("test")
     this.props.postAnswers(this.props.answers, this.props.id);
+
     window.setTimeout(() => this.setState({ redirect: true }), 2000);
   };
   submitAnswers = () => {

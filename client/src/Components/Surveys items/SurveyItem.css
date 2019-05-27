@@ -3,7 +3,9 @@
 
 
 .transition {
-  transition: .3s cubic-bezier(.3, 0, 0, 1.3)
+  transition: .3s cubic-bezier(.3, 0, 0, 1.3);
+ 
+
 }
 body{
   background: url(../../assets/prism.png);

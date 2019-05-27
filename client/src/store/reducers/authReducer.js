@@ -1,14 +1,13 @@
 import * as actionTypes from "../actions/types";
 const initialState = {
-  token: "",
-  loading: false
+  token: localStorage.getItem('token'),
+  loading: false,
+  error:null
 };
 const authStart = state => {
-  console.log('started')
   return { ...state, loading: true };
 };
 const authSuccess = (state, action) => {
-  console.log('finished')
   return {
     ...state,
     token: action.token,
@@ -33,7 +32,7 @@ const authReducer = (state = initialState, action) => {
     case actionTypes.AUTH_FAIL:
       return authFail(state, action);
     default: 
-    return {...state}
+    return {...state,token:localStorage.getItem('token')}
   }
 };
 export default authReducer;

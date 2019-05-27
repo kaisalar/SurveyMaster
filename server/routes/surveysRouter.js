@@ -16,7 +16,7 @@ router.get('/', auth, async (req, res) => {
   // load user depending on the token in the auth middleware
   const user = await User.findUserById(req.user._id)
   // load that user's surveys
-  const surveys = await user.getSurveysInfo()
+  const surveys = await user.getSurveysInfo();
 
   // send the surveys
   res.send(surveys)
