@@ -78,7 +78,7 @@ class CreatedQuestionsAdapter(
         private val titleTextLayout = itemView.findViewById<TextInputLayout>(R.id.questionTextTitleTextLayout)
         private val descriptionEditText = itemView.findViewById<TextInputEditText>(R.id.questionTextDescriptionEditText)
         private val descriptionTextLayout = itemView.findViewById<TextInputLayout>(R.id.questionTextDescriptionTextLayout)
-        private val topLable = itemView.findViewById<TextView>(R.id.textQuestionTopLabel)
+        private val topLable = itemView.findViewById<TextView>(R.id.answerTextNumberTextView)
         private val deleteButton = itemView.findViewById<ImageButton>(R.id.textQuestionDeleteButton)
 
         fun bindQuestion(question: TextQuestionForCreation, position: Int) {

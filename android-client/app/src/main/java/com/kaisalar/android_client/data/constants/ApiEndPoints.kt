@@ -8,3 +8,5 @@ const val AUTH_USER_URL = "${BASE_URL}auth"
 
 // Survey Service
 const val POST_SURVEY_URL = "${BASE_URL}surveys"
+const val GET_SURVEYS_URL = "${BASE_URL}surveys"
+const val DELETE_SURVEYS_URL = "${BASE_URL}surveys"

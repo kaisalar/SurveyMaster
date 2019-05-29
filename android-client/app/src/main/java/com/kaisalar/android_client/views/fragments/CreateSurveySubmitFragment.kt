@@ -33,6 +33,7 @@ class CreateSurveySubmitFragment : Fragment() {
                 onSuccess = {
                     loadingDialog.dismiss()
                     DoneToast.getInstance(context!!).show("Survey Created Successfully")
+                    activity?.onBackPressed()
                 },
                 onFailure = {
                     loadingDialog.dismiss()

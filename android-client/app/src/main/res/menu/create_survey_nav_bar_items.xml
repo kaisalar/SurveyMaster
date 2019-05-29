@@ -4,18 +4,18 @@
             android:id="@+id/nav_create_info"
             android:enabled="true"
             android:icon="@drawable/ic_basic_info"
-            android:title="Basic Info"
+            android:title="1. Basic Info"
             app:showAsAction="ifRoom" />
     <item
             android:id="@+id/nav_create_questions"
             android:enabled="true"
             android:icon="@drawable/ic_questions"
-            android:title="Questions"
+            android:title="2. Questions"
             app:showAsAction="ifRoom" />
     <item
             android:id="@+id/nav_create_submit"
             android:enabled="true"
             android:icon="@drawable/ic_submit"
-            android:title="Submit"
+            android:title="3. Submit"
             app:showAsAction="ifRoom" />
 </menu>

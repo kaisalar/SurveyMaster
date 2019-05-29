@@ -21,8 +21,6 @@ class AuthService(val context: Context) {
     private val requestQueue = Volley.newRequestQueue(context)
 
     fun createNewUser(user: UserForCreation, onSuccess: (String) -> Unit, onFailure: (String) -> Unit) {
-        val requestBody = Klaxon().toJsonString(user)
-
         val request = object : StringRequest(
             Method.POST,
             CREATE_USER_URL,
@@ -38,6 +36,7 @@ class AuthService(val context: Context) {
             }
 
             override fun getBody(): ByteArray {
+                val requestBody = Klaxon().toJsonString(user)
                 return requestBody.toByteArray()
             }
 
@@ -52,7 +51,6 @@ class AuthService(val context: Context) {
 
     fun authUser(email: String, password: String, onSuccess: (String) -> Unit, onFailure: (String) -> Unit) {
         class LoginInfo(val email: String, val password: String)
-        val requestBody = Klaxon().toJsonString(LoginInfo(email, password))
 
         val request = object : StringRequest(
             Method.POST,
@@ -61,7 +59,7 @@ class AuthService(val context: Context) {
                 onSuccess(it)
             },
             Response.ErrorListener {
-                onFailure(it.message!!)
+                onFailure("")
             }
         ) {
             override fun getBodyContentType(): String {
@@ -69,6 +67,7 @@ class AuthService(val context: Context) {
             }
 
             override fun getBody(): ByteArray {
+                val requestBody = Klaxon().toJsonString(LoginInfo(email, password))
                 return requestBody.toByteArray()
             }
         }
