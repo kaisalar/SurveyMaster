@@ -9,7 +9,7 @@ const types = require('./types')
 const TextAnswer = require('./answers/textAnswer')
 const MultipleChoiceAnswer = require('./answers/multipleChoiceAnswer')
 const SingleNumberValueAnswer = require('./answers/singleNumberValueAnswer')
-console.log(IO)
+const User = require('./user');
 class Survey extends Element {
   constructor(props) {
     super(props)
@@ -74,6 +74,10 @@ class Survey extends Element {
   // load one survey to fill
   // loading info and pages
   static async loadSurveyToFiliingById(surveyId) {
+    if(! await Survey.isExists(surveyId)){
+      throw new Error(`survey ${surveyId} not found`);
+      return;
+    }
     return new Survey(await IO.loadSurveyToFiliingById(surveyId))
   }
   // loading all survey
@@ -89,7 +93,12 @@ class Survey extends Element {
     await IO.removeSurveyById(surveyId)
   }
   async remove() {
-    await this.remove(this._id)
+      for(const simiuser of this.users){
+        let user = await User.findUserById(simiuser.userId);
+        user.deleteSurveyById(this._id);
+        await user.save();
+      }
+    await IO.removeSurveyById(this._id);
   }
   static async generatReport(surveyId) {
     // fetching all responses and questions for current survey
