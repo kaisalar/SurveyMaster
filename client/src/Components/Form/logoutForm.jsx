@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import  { Component } from 'react';
 import { Alert } from 'rsuite';
 class Signout extends Component {
     componentDidMount() {

@@ -104,28 +104,29 @@ class Survey extends Element {
     // fetching all responses and questions for current survey
     const responses = await Response.loadSurveyResponses(surveyId)
     const questions = await Survey.loadQustions(surveyId)
-    const report = {}
-    // init report whith needed valuse
-
+    const tempReport = {}
+    // init tempReport whith needed valuse
+    console.log(responses,questions);
     for (const question of questions) {
       const { _id, content, type } = question
-      report[_id] = {}
+      tempReport[_id] = {}
       //console.log(question);
       switch (type) {
         // text and single value init in the response
         case types.QUESTION_CHECKBOX:
         case types.QUESTION_DROPDOWN:
         case types.QUESTION_RADIO_GROUP:
-          for (const choice of content.choices) report[_id][choice] = 0
+          for (const choice of content.choices) tempReport[_id][choice] = 0
           break
         case types.QUESTION_RANGE:
         case types.QUESTION_SLIDER:
         case types.QUESTION_RATING:
           //TODO: need to add step instead of 1
-          for (let i = content.min; i <= content.max; i += 1) report[_id][i] = 0
+          for (let i = parseInt(content.min) ; i <= parseInt(content.max) ; i += 1) tempReport[_id][i] = 0
           break
       }
     }
+    console.log(tempReport);
     for (const response of responses) {
       for (const answer of response.answers) {
         //    console.log(answer);
@@ -134,10 +135,10 @@ class Survey extends Element {
           case types.ANSWER_RANGE:
             // TODO need TO add Step instead of 1
             for (let i = content.minValue; i <= content.maxValue; i += 1)
-              report[questionId][i]++
+              tempReport[questionId][i]++
             break
           case types.ANSWER_MULTIPLE_CHOICE:
-            for (const choice of content.choices) report[questionId][choice]++
+            for (const choice of content.choices) tempReport[questionId][choice]++
             break
 
           // same content.value can be used here ^_^
@@ -145,12 +146,16 @@ class Survey extends Element {
           //case types.ANSWER_SINGLE_NUMBER_VALUE:
           // or if dont have any type:
           default:
-            if (!report[questionId][content.value])
-              report[questionId][content.value] = 0
-            report[questionId][content.value]++
+            if (!tempReport[questionId][content.value])
+              tempReport[questionId][content.value] = 0
+            tempReport[questionId][content.value]++
             break
         }
       }
+    }
+    let report = {surveyId:surveyId,answers:[]};
+    for (const question of questions) {
+      report.answers.push({...(_.pick(question,"_id","type","title","description")),content:tempReport[question._id]});
     }
     return report
   }
@@ -167,10 +172,10 @@ class Survey extends Element {
   }
 }
 async function test() {
-  const report = await Survey.generatReport(
-    'ad03a182-672a-4c6d-b79c-a0f55b605449'
-  )
-  console.log(report)
+  // const report = await Survey.generatReport(
+  //   'ad03a182-672a-4c6d-b79c-a0f55b605449'
+  // )
+  // console.log(report)
 }
-// test();
+test();
 module.exports = Survey
