@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Switch,Redirect,withRouter } from "react-router-dom";
+import { Route, Switch,Redirect,withRouter,Link } from "react-router-dom";
 import { connect } from "react-redux";
 import HomePage from "./Containers/HomePage/Homepage";
 import Surveys from "./Containers/ShowSurveys/Surveys List/Surveys";
@@ -10,6 +10,7 @@ import SignUp from "./Components/Form/registerForm";
 import SignIn from "./Components/Form/loginForm";
 import Signout from "./Components/Form/logoutForm";
 import "./Routes.css";
+import Responses from "./Containers/Responses/Responses";
 class Routes extends Component {
   render() {
     // console.log(this.props.isAuthenticated);
@@ -70,6 +71,17 @@ class Routes extends Component {
                 <div>
                   <NavBar />
                   <SurveyBuilder {...props}/>
+                </div>
+              );
+            }}
+          />
+           <Route
+            path="/surveys/:id"
+            render={(props) => {
+              return (
+                <div>
+                  <NavBar />
+                  <Responses {...props}/>
                 </div>
               );
             }}

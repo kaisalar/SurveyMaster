@@ -10,7 +10,7 @@ export const ChangeTitle = (newVal) => dispatch =>
 
 export const AddQuestion = (type) => dispatch =>
   dispatch({ type: actions.ADD_QUESTION,Qtype: type });
-export const SubmitNewSurvey = survey => dispatch => {
+export const SubmitNewSurvey = (survey,Redirect) => dispatch => {
   survey.pages[0].questions = survey.pages[0].questions.map(el => {
     let newQ = _.pick(el, ["title", "type", "content"]);
     switch (newQ.type) {
@@ -55,6 +55,6 @@ export const SubmitNewSurvey = survey => dispatch => {
     .then(response => {
       Alert.success("Submitted Successfully");
       console.log(response);
-    })
+    }).then(Redirect)
     .catch(err => console.log(err));
 };
