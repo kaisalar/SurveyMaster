@@ -15,6 +15,7 @@ class Dropdownmenu extends Component {
     }
 
     render() {
+        console.log(this.props.content)
         this.choicesSentences = this.props.content.choices;
 
 
@@ -23,7 +24,7 @@ class Dropdownmenu extends Component {
             const element = {
                 label: this.choicesSentences[i],
                 value: this.choicesSentences[i],
-                role: 'Master'
+             
             };
             elements.push(element)
         }

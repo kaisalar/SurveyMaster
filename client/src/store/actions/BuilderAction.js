@@ -25,6 +25,7 @@ export const SubmitNewSurvey = (survey,Redirect) => dispatch => {
 
         break;
       case Qtypes.SLIDER:
+      case Qtypes.RANGE:
         newQ.content = _.pick(newQ.content, [
           "min",
           "max",
@@ -32,11 +33,12 @@ export const SubmitNewSurvey = (survey,Redirect) => dispatch => {
           "defaultValue"
         ]);
         break;
-      case Qtypes.RANGE:
-        newQ.content = _.pick(newQ.content, ["min", "max", "step"]);
-        break;
       case Qtypes.RATING:
-        newQ.content = _.pick(newQ.content, ["max"]);
+          newQ.content = _.pick(newQ.content, [
+            "min",
+            "max",
+            "defaultValue"
+          ]);
         break;
       default:
         newQ.content = {};

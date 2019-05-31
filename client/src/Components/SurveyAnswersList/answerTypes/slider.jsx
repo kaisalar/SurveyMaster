@@ -9,7 +9,8 @@ class SliderPage extends Component {
     min: 0,
     max: 10,
     step: 1,
-    defaultValue: 0
+    defaultValue: 0,
+    loaded:false
   };
   onSliderChanged = e => {
     this.setState({ value: e });
@@ -23,15 +24,17 @@ class SliderPage extends Component {
       max: max,
       step: step,
       defaultValue: Number(defaultValue),
-      value: Number(min)
-    });
+      value: Number(min),
+      loaded:true
+    },() => console.log(this.state));
+    
   }
 
   render() {
     return (
       <div className={styleClass.Silder}>
         <label className="SliderLabel">value: {this.state.value}</label>
-        <Slider
+      {this.state.loaded &&  <Slider
           progress
           max={this.state.max}
           min={this.state.min}
@@ -39,6 +42,7 @@ class SliderPage extends Component {
           defaultValue={this.state.defaultValue}
           onChange={this.onSliderChanged}
         />
+      }
       </div>
     );
   }
