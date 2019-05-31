@@ -89,19 +89,6 @@ body{
   margin-top: 320px;
 
 }
-.ui.right.floated.image> i { 
-  float: right;
-  padding: 4px 6px;
-  color: red;
-  font-size: 15px;
-  cursor: pointer;
-  transition: all 0.1s ease-in-out;
-}
-.ui.right.floated.image> i:hover { 
-  transform: scale(1.2);
-  box-shadow: 0 0 3px 1px rgba(255, 0, 0, 0.2);
-  border-radius: 50%;
-}
 .ui.basic.button { 
     border-radius: 5px;
 }
@@ -135,6 +122,6 @@ body{
   
 }
 .card.close-hover{
-  box-shadow: 0px 0px 20px 5px rgba(255, 50, 50, .3) !important;
-  border: 2px solid rgba(255, 50, 50, .6) !important;
+  box-shadow: 0px 0px 30px 8px rgba(255, 50, 50, .3) !important;
+  border: 2px solid rgba(255, 50, 50, .4) !important;
 }
