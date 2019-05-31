@@ -60,7 +60,7 @@ class SignUp extends Form {
         {this.props.loading ?
           < Loader />
           : null}
-        <div className="container" style={{ margin: '120px 130px' }}>
+        <div className="container" style={{marginTop: '50px' }}>
           <div className="row">
             <div className="col-md">
               <h1 className={styles.h1}>
