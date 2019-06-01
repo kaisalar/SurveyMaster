@@ -4,7 +4,13 @@
     left: 10px;
     z-index: 500;
 }
-
+.floating-select-picker .dropdown-menu { 
+    background-color: #FFEAFE;
+}
+.dropdown-item:focus, .dropdown-item:hover { 
+    background-color: rgba(0,0,0,0.08) !important;
+    outline: 5px auto #553C8B
+}
 .floating-select-picker .dropdown .btn { 
     position: absolute;
     padding: 0;
@@ -14,7 +20,7 @@
     line-height: 55px;
     height: 55px;
     border-radius: 50%;
-    color: rgba(255, 255, 255, .7);
+    color: #CCC1FF;
     transition: all 0.1s ease-in-out;
     animation: pulse2 2s infinite ease-out
 }
@@ -52,4 +58,7 @@
 
 .floating-select-picker .btn:hover,.floating-select-picker .btn:focus { 
     background-position: 0 0;
+}
+.floating-select-picker .dropdown .btn { 
+    /* background-color: #553c8b !important; */
 }

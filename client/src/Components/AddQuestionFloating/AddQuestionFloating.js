@@ -43,7 +43,7 @@ const AddQuestionFloating = props => {
   return (
     <div className="floating-select-picker">
       <MDBDropdown>
-        <MDBDropdownToggle gradient="blue">
+        <MDBDropdownToggle>
           <MDBIcon icon="plus" />
         </MDBDropdownToggle>
         <MDBDropdownMenu>{items}</MDBDropdownMenu>

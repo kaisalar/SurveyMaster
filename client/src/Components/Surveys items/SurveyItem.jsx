@@ -66,7 +66,7 @@ class CardExample extends Component {
             className={cardClass}
             fluid
             style={{
-              borderBottom: "4px solid" + this.getRandomColor(),
+              // borderBottom: "4px solid" + this.getRandomColor(),
               minWidth: "300px",
               maxWidth: "300px",
               minHeight: "200px"

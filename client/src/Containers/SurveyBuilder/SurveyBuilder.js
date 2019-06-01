@@ -54,7 +54,6 @@ class SurveyBuilder extends Component {
             {Questions}
             <div className={styleClass.SurveyTitle}>
               <MDBBtn
-                gradient="blue"
                 onClick={() => this.props.SubmitNewSurvey(this.props.create, window.setTimeout(() => this.props.history.push(`/surveys`),1000))}
               >
                 SUBMIT

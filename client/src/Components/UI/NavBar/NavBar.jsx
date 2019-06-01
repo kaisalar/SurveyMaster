@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import {Dropdown} from 'rsuite'
 import styles from './NavBar.module.css'
+import './NavBar.css'
 
 const Styles = {
     logo: { fontSize: '1.5rem', color: "#2BBBAD !important" },

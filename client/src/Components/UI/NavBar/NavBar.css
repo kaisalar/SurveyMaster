@@ -1,0 +1,12 @@
+.btn.btn-outline-info {
+  border: 2px solid #9ea9f0 !important;
+}
+.btn.btn-outline-info a {
+  color: #9ea9f0 !important;
+}
+a:focus {
+  color: #9ea9f0 !important;
+}
+.navbar { 
+  background-color: #FFEAFE;
+}
