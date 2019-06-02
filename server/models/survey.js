@@ -16,7 +16,7 @@ class Survey extends Element {
     this.title = props.title || ''
     this.description = props.description || ''
     this.date = props.date || Date.now()
-    this.link = props.link || ''
+    this.link = props.link || `fill/${this._id}`
     this.pages = []
     if (props.pages && _.isArray(props.pages)) {
       props.pages.forEach(p => {
@@ -154,6 +154,7 @@ class Survey extends Element {
       }
     }
     let report = {surveyId:surveyId,answers:[]};
+
     for (const question of questions) {
       report.answers.push({...(_.pick(question,"_id","type","title","description")),content:tempReport[question._id]});
     }
