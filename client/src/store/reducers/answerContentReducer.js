@@ -5,7 +5,8 @@ const initialState= {
         questionId:0,
         type:"",
         content:{}
-    }]    
+    }],
+   
 }
 
 const contentReducer = (state = initialState , action)=>{
@@ -30,10 +31,7 @@ const contentReducer = (state = initialState , action)=>{
                     surveyId: action.id,
                     answers: deleteFirstItem(_answers,_content)
                   };}
-          case actionType.POST_FAILED:
-            return{
-                ...state
-            }        
+            
         default:
         return {...state}
     }

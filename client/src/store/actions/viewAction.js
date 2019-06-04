@@ -35,8 +35,8 @@ export const initSurvey = () => dispatch => {
       dispatch(setSurveys(response.data));
     })
     .catch(error => {
-      if (error)
-      console.log(error.response.data)
+     
+     
         Alert.warning(
           "You don't have authentication to access your surveys,please sign in again"
         );

@@ -6,14 +6,15 @@ const initialState = {
   date: 0,
   pages: [
 
-  ]
+  ],
+  error:null
 };
 
 const answerReducer = (state = initialState, action) => {
     
   switch (action.type) {
     case actionTypes.PREVIEW_SURVEY:
-  //    console.log("answers reducer", action.payload);
+    // console.log("answers reducer", action.payload);
       return {
         ...state,
         _id: action.payload._id,
@@ -23,8 +24,13 @@ const answerReducer = (state = initialState, action) => {
         pages: action.payload.pages
       };
 
-    //   case actionTypes.SUBMET_SURVEY:
-
+  
+    case actionTypes.POST_FAILED:
+      console.log("failed", action.payload)
+      return {
+        ...state,
+        error: action.payload
+      }    
     default:
       return {
         ...state

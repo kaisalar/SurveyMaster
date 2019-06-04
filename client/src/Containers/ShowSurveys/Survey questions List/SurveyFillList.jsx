@@ -33,9 +33,9 @@ class SurveyFillList extends Component {
   };
   onSubmitHandler = () => {
     console.log(JSON.stringify(this.props.answers))
-    this.props.postAnswers(this.props.answers, this.props.id);
-
-    window.setTimeout(() => this.props.history.push('/surveys'), 2000);
+    this.props.postAnswers(this.props.answers, this.props.id); 
+   
+    
   };
   submitAnswers = () => {
     let answer = this.state.answer;
@@ -90,12 +90,14 @@ class SurveyFillList extends Component {
   }
 }
 const mapStateToProps = state => {
+ 
   return {
     surveyPages: state.fillSurvey.pages,
     id: state.fillSurvey._id,
     date: state.fillSurvey.date,
     title: state.fillSurvey.title,
-    answers: state.questionAnswer
+    answers: state.questionAnswer,
+    error: state.fillSurvey.error
   };
 };
 export default connect(
