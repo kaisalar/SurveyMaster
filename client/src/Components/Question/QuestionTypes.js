@@ -1,6 +1,5 @@
 export const TEXT = "QUESTION_TEXT";
 export const PARAGRAPH = "QUESTION_PARAGRAPH";
-export const MULTIPLE_CHOISE = "Multiple Choise";
 export const RADIO_GROUP = "QUESTION_RADIO_GROUP"
 export const CHECKBOX = "QUESTION_CHECKBOX"
 export const DROPDOWN = "QUESTION_DROPDOWN";

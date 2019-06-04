@@ -1,0 +1,1 @@
+[{"_id":"5d60b6ad-97fa-4068-b140-7084da160be2","title":"","description":"","questions":[{"_id":"b6d90dc1-ef4d-49ae-9ba7-01a995175497","title":"Untitled Question","description":"","type":"QUESTION_RATING","content":{"ratingType":"RATING_NUMBERS","min":"1","max":"10","minLabel":"minimum","maxLabel":"maximum","defaultValue":"1"}}]}]
