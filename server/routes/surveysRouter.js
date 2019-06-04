@@ -78,7 +78,7 @@ router.get('/:sid/responses/:rid', auth, async (req, res) => {
   const responseId = req.params.rid
 
   // load the user by it's token
-  const user = await User.findUserByID(req.user._id)
+  const user = await User.findUserById(req.user._id)
 
   // check if the logged in user has this survey
   if (!user.hasSurvey(surveyId))
