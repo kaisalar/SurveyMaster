@@ -34,7 +34,7 @@ class SurveyPage extends Component {
 
     }
     onAnswerChange = value => {
-      if(value!=null)
+      
     this.localState.info.content = value;
     //console.log('value',value)
     this.props.addquestion(this.localState);

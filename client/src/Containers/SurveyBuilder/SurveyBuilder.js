@@ -65,24 +65,7 @@ class SurveyBuilder extends Component {
             {Questions}
             <div className={styleClass.SurveyTitle}>
               <MDBBtn
-<<<<<<< HEAD
                 onClick={() => this.props.SubmitNewSurvey(this.props.create, window.setTimeout(() => this.props.history.push(`/surveys`),2000))}
-=======
-               disabled = { this.state.submitting}
-                onClick={() => {
-                  this.setState(
-                    { submitting: true },
-                    this.props.SubmitNewSurvey(
-                      this.props.create,
-                      this.SubmittingHandler,
-                      window.setTimeout(
-                        () => this.props.history.push(`/surveys`),
-                        1000
-                      )
-                    )
-                  );
-                }}
->>>>>>> 76209ffa471bd74e4e74f8f24d4af3f5ac77fca6
               >
                 SUBMIT
               </MDBBtn>

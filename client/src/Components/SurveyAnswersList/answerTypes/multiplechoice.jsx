@@ -12,7 +12,6 @@ class InputPage extends Component {
     changedChoiceHandler = (value) => {
         this.setState({ choices: this.editChoice(value)},
         () => {
-            if(this.state.choices.length > 0)
             this.props.change(this.state)
             console.log(this.state.choices)
         }
