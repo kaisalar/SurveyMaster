@@ -20,30 +20,30 @@ class Routes extends Component {
           path="/"
           exact
           render={() => (
-            <div>
-              <NavBar />
+            <React.Fragment>
+              <NavBar transparent={true}/>
               <HomePage />
-            </div>
+            </React.Fragment>
           )}
         />
 
         <Route
           path="/signup"
           render={props => (
-            <div>
+            <React.Fragment>
               <NavBar />
               <SignUp {...props} />
-            </div>
+            </React.Fragment>
           )}
         />
         <Route
           path="/signin"
           exact
           render={props => (
-            <div>
+            <React.Fragment>
               <NavBar />
               <SignIn {...props} />
-            </div>
+            </React.Fragment>
           )}
         />
       
@@ -57,10 +57,10 @@ class Routes extends Component {
             path="/"
             exact
             render={() => (
-              <div>
+              <React.Fragment>
                 <NavBar />
                 <HomePage />
-              </div>
+              </React.Fragment>
             )}
           />
           <Route path="/fill/:id" component={SurveyFillList} />
@@ -68,10 +68,10 @@ class Routes extends Component {
             path="/create"
             render={(props) => {
               return (
-                <div>
+                <React.Fragment>
                   <NavBar />
                   <SurveyBuilder {...props}/>
-                </div>
+                </React.Fragment>
               );
             }}
           />
@@ -79,36 +79,36 @@ class Routes extends Component {
             path="/surveys/:id"
             render={(props) => {
               return (
-                <div>
+                <React.Fragment>
                   <NavBar />
                   <Responses {...props}/>
-                </div>
+                </React.Fragment>
               );
             }}
           />
           <Route
             path="/surveys"
             render={() => (
-              <div>
+              <React.Fragment>
                 <NavBar />
                 <Surveys />
-              </div>
+              </React.Fragment>
             )}
           />
           <Route
             path="/signout"
             render={() => (
-              <div>
+              <React.Fragment>
                 <NavBar />
                 <Signout />
-              </div>
+              </React.Fragment>
             )}
           />
         </Switch>
       );
-    return (<div>
+    return (<React.Fragment>
       {routes}
-    </div>);
+    </React.Fragment>);
   }
 }
 const mapStateToProps = state => {

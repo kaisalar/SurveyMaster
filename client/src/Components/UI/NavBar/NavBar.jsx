@@ -35,8 +35,10 @@ class NavbarPage extends Component {
 
     render() {
         let user = this.props.currentUser
+        let Class = this.props.transparent ? "transparent" : null;
+        console.log(this.props)
         return (
-            <MDBNavbar color="transparent" dark expand="md" >
+            <MDBNavbar className={Class} dark expand="md" >
                 <MDBNavbarBrand color="#2BBBAD " >
                     <strong className={styles.logo} style={Styles.logo}>Survey Master</strong>
                 </MDBNavbarBrand>
@@ -105,7 +107,9 @@ class NavbarPage extends Component {
 }
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.token,
-    currentUser: state.viewSurvey.currentUser
+    currentUser: state.viewSurvey.currentUser,
+    transparent: true
+
 })
 
 export default connect(mapStateToProps)(NavbarPage);
