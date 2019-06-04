@@ -5,7 +5,7 @@
     z-index: 500;
 }
 .floating-select-picker .dropdown-menu { 
-    background-color: #FFEAFE;
+    background-color: #f1f1f1;
 }
 .dropdown-item:focus, .dropdown-item:hover { 
     background-color: rgba(0,0,0,0.08) !important;
