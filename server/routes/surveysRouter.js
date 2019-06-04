@@ -87,7 +87,7 @@ router.get('/:sid/responses/:rid', auth, async (req, res) => {
       .send(`The survey with the given id: ${surveyId} NOT FOUND.`)
 
   // load the response
-  const response = await Response.loadSurveyResponseById(surveyId, responseId)
+  const response = await Survey.loadSurveyResponseById(surveyId, responseId)
 
   // check if the response exists
   if (!response) {

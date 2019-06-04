@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import { Button, Card, Image } from "semantic-ui-react";
+import { Button, Card } from "semantic-ui-react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Link } from "react-router-dom";
 import { Alert } from "rsuite";
 import Close from "../UI/Close/Close";
 import SurveyFillList from "../../Containers/ShowSurveys/Survey questions List/SurveyFillList";
 import "./SurveyItem.css";
-import images from "../../assets/characters/elliot.png";
 import * as moment from "moment";
 import Responses from "../../Containers/Responses/Responses";
 /* single item for View all Surveys List in surveys.jsx*/
@@ -57,7 +56,7 @@ class CardExample extends Component {
   };
 
   render() {
-    const { id, description, title, date } = this.props;
+    const { description, title, date } = this.props;
     const cardClass = this.state.hovered ? "card close-hover" : "card"
     return (
       <React.Fragment>

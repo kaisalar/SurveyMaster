@@ -1,5 +1,4 @@
 import * as actions from "../actions/types";
-import * as Qtypes from "../../Components/Question/QuestionTypes";
 const initialState = {
   title: "newSurvey",
   pages: [
@@ -17,10 +16,10 @@ const reducer = (state = initialState, action) => {
         title: "Untitled Question",
         content: {
           choices: ["Option 1"],
-          min: "0",
-          max: "0",
-          step: "0",
-          defaultValue: "0"
+          min: "1",
+          max: "10",
+          step: "",
+          defaultValue: ""
         }
       };
       newPages[0].questions.push(newQuestion);

@@ -24,7 +24,7 @@ export const deleteSurvey = id => dispatch => {
     });
 };
 ////////////////////////
-export const initSurvey = () => dispatch => {
+export const initSurvey = () => dispatch => { 
  
   const header = {
     "x-auth-token": localStorage.getItem("token")
@@ -35,8 +35,11 @@ export const initSurvey = () => dispatch => {
       dispatch(setSurveys(response.data));
     })
     .catch(error => {
+<<<<<<< HEAD
      
      
+=======
+>>>>>>> 76209ffa471bd74e4e74f8f24d4af3f5ac77fca6
         Alert.warning(
           "You don't have authentication to access your surveys,please sign in again"
         );

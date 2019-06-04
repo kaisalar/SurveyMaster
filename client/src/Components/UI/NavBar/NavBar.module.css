@@ -33,7 +33,7 @@ li {
 .a {
   /* background-color: #f1f1f1; */
   text-align: center;
-  color: #553c8b;
+  color: #9ea9f0;
   padding: 11px 10px 14px 10px;
   margin: 0 7px;
   text-decoration: none;
@@ -41,7 +41,7 @@ li {
   transition: all 0.2s ease-in-out
 }
 li .a:hover:not(.active) {
-  color: #FFFBEA;
+  color: #553c8b;
   font-weight: bold;
   border-bottom: 2px solid #553c8b;
 }

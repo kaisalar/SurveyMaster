@@ -10,8 +10,9 @@ export const ChangeTitle = (newVal) => dispatch =>
 
 export const AddQuestion = (type) => dispatch =>
   dispatch({ type: actions.ADD_QUESTION,Qtype: type });
-export const SubmitNewSurvey = (survey,Redirect) => dispatch => {
-  survey.pages[0].questions = survey.pages[0].questions.map(el => {
+export const SubmitNewSurvey = (survey,submittig,Redirect) => dispatch => {
+  let SC = _.cloneDeep(survey)
+  SC.pages[0].questions = SC.pages[0].questions.map(el => {
     let newQ = _.pick(el, ["title", "type", "content"]);
     switch (newQ.type) {
       case Qtypes.TEXT:
@@ -32,6 +33,9 @@ export const SubmitNewSurvey = (survey,Redirect) => dispatch => {
           "step",
           "defaultValue"
         ]);
+        console.log(newQ)
+        newQ.content = newQ.content.step === "" ? _.omit(newQ.content,["step"]) : newQ.content
+        newQ.content = newQ.content.defaultValue === "" ? _.omit(newQ.content,["defaultValue"]) : newQ.content
         break;
       case Qtypes.RATING:
           newQ.content = _.pick(newQ.content, [
@@ -39,6 +43,7 @@ export const SubmitNewSurvey = (survey,Redirect) => dispatch => {
             "max",
             "defaultValue"
           ]);
+        newQ.content = newQ.content.defaultValue === "" ? _.omit(newQ.content,["defaultValue"]) : newQ.content
         break;
       default:
         newQ.content = {};
@@ -51,12 +56,12 @@ export const SubmitNewSurvey = (survey,Redirect) => dispatch => {
   };
 
   // survey.pages[0].questions = finalSurveyQuestions
-  console.log(survey);
+  console.log(SC.pages[0].questions[0],survey.pages[0].questions[0]);
   axios
-    .post("/api/surveys", survey,{headers:header})
+    .post("/api/surveys", SC,{headers:header})
     .then(response => {
       Alert.success("Submitted Successfully");
       console.log(response);
-    }).then(Redirect)
+    }).then(submittig(false)).then(Redirect)
     .catch(err => console.log(err));
 };

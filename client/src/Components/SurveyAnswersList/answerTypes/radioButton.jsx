@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Radio, RadioGroup,FormGroup } from 'rsuite';
+import { Radio, RadioGroup } from 'rsuite';
 
 class RadioButton extends Component{
     state = {

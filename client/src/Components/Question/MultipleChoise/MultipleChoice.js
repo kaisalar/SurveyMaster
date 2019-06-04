@@ -3,7 +3,6 @@ import Choise from "./Choise/Choise";
 import { connect } from "react-redux";
 import * as actions from "../../../store/actions/types";
 import styleClass from "./MultipleChoise.module.css";
-import { MDBBtn } from "mdbreact";
 import { IconButton, Icon } from "rsuite";
 
 class multipleChoice extends Component {
@@ -21,7 +20,7 @@ class multipleChoice extends Component {
       Choices = choices.map((el, id) => {
         return (
           <Choise
-            Focus={id == choices.length - 1}
+            Focus={id === choices.length - 1}
             key={id}
             index={index}
             id={id}
