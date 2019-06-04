@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import {
-    MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavbarToggler, MDBDropdown,
-    MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon, MDBBtn
+    MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavbarToggler,
 } from "mdbreact";
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import {Dropdown} from 'rsuite'
 import styles from './NavBar.module.css'
 import './NavBar.css'
 

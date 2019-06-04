@@ -1,5 +1,4 @@
 import jwtDecode from "jwt-decode";
-import {currentUser} from '../actions/viewAction'
 
 export const decodeUser = () => {
     try {

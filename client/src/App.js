@@ -5,7 +5,6 @@ import {currentUser} from './store/actions/viewAction'
 import jwtDecode from "jwt-decode";
 import Routes from './Routes'
 import './App.css'
-import NavBar from './Components/UI/NavBar/NavBar'
 
 class App extends Component {
   state={}

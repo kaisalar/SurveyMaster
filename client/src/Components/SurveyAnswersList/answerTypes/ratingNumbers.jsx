@@ -14,7 +14,6 @@ class RadioButton extends Component {
     
     render() {
         let max = this.props.content.max
-        let step  = this.props.content.step
         let defaultValue = this.props.content.defaultValue
 
         let min = this.props.content.min

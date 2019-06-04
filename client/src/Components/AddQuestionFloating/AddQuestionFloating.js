@@ -1,5 +1,4 @@
 import React from "react";
-import { SelectPicker } from "rsuite";
 import data from "../Question/QuestionsData";
 import "./AddQuestionFloating.css";
 import {
