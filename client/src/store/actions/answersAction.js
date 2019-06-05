@@ -23,6 +23,7 @@ export const addquestion = (state) => dispatch => {
 
 export const postAnswers = (answers,surveyId) => dispatch=> {
    axios.post('/fill/'+surveyId,answers).then(response => {
+   
     Alert.success(
           "Thanks For your Time , Your Opinion is priceless :)"
         );     
@@ -31,6 +32,7 @@ export const postAnswers = (answers,surveyId) => dispatch=> {
      payload:response.data
    })
   }).catch(error=>{
+  
     Alert.error("There Was Error While Submitting  your response") 
    return  dispatch({
      type: actionTypes.POST_FAILED,

@@ -11,6 +11,10 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".views.activities.ResponseActivity">
+        </activity>
+        <activity android:name=".views.activities.SurveyActivity">
+        </activity>
         <activity android:name=".views.activities.CreateNewSurveyActivity">
         </activity>
         <activity android:name=".views.activities.AuthenticationActivity">

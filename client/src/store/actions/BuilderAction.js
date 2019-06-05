@@ -2,6 +2,7 @@ import axios from "../../axios-requests";
 import * as actions from "../actions/types";
 import * as Qtypes from "../../Components/Question/QuestionTypes";
 import _ from "lodash";
+import {Alert} from 'rsuite'
 
 export const ChangeTitle = (newVal) => dispatch =>
   dispatch({ type: actions.CHANGE_SURVEY_TITLE,val:newVal });
@@ -9,7 +10,7 @@ export const ChangeTitle = (newVal) => dispatch =>
 
 export const AddQuestion = (type) => dispatch =>
   dispatch({ type: actions.ADD_QUESTION,Qtype: type });
-export const SubmitNewSurvey = survey => dispatch => {
+export const SubmitNewSurvey = (survey,Redirect) => dispatch => {
   survey.pages[0].questions = survey.pages[0].questions.map(el => {
     let newQ = _.pick(el, ["title", "type", "content"]);
     switch (newQ.type) {
@@ -24,6 +25,7 @@ export const SubmitNewSurvey = survey => dispatch => {
 
         break;
       case Qtypes.SLIDER:
+      case Qtypes.RANGE:
         newQ.content = _.pick(newQ.content, [
           "min",
           "max",
@@ -31,11 +33,12 @@ export const SubmitNewSurvey = survey => dispatch => {
           "defaultValue"
         ]);
         break;
-      case Qtypes.RANGE:
-        newQ.content = _.pick(newQ.content, ["min", "max", "step"]);
-        break;
       case Qtypes.RATING:
-        newQ.content = _.pick(newQ.content, ["max"]);
+          newQ.content = _.pick(newQ.content, [
+            "min",
+            "max",
+            "defaultValue"
+          ]);
         break;
       default:
         newQ.content = {};
@@ -43,14 +46,17 @@ export const SubmitNewSurvey = survey => dispatch => {
     }
     return newQ;
   });
+  const header = {
+    "x-auth-token": localStorage.getItem("token")
+  };
 
   // survey.pages[0].questions = finalSurveyQuestions
   console.log(survey);
   axios
-    .post("/api/surveys", survey)
+    .post("/api/surveys", survey,{headers:header})
     .then(response => {
-      alert("Submitted Successfully");
+      Alert.success("Submitted Successfully");
       console.log(response);
-    })
+    }).then(Redirect)
     .catch(err => console.log(err));
 };

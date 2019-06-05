@@ -5,5 +5,6 @@ class SurveyForGetting(
     val title: String,
     val description: String,
     val link: String,
+    val date: Long,
     val users: List<UserForSurvey>
 )

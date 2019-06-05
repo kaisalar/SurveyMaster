@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+            android:id="@+id/nav_survey_responses"
+            android:enabled="true"
+            android:icon="@drawable/ic_responses"
+            android:title="Responses"
+            app:showAsAction="ifRoom" />
+    <item
+            android:id="@+id/nav_survey_statistics"
+            android:enabled="true"
+            android:icon="@drawable/ic_stats"
+            android:title="Statistics"
+            app:showAsAction="ifRoom" />
+</menu>

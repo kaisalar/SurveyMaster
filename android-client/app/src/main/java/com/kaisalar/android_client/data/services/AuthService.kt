@@ -28,7 +28,9 @@ class AuthService(val context: Context) {
                 onSuccess(it)
             },
             Response.ErrorListener {
-                onFailure(it.message!!)
+                if (it.message != null)
+                    onFailure(it.message!!)
+                onFailure("")
             }
         ) {
             override fun getBodyContentType(): String {

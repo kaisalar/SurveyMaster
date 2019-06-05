@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Redirect } from 'react-router-dom'
+
 import SurveyTitle from "../../Components/SurveyTitle/SurveyTitle";
 import Question from "../../Components/Question/Question";
 import Layout from "../../Components/Layout/Layout";
@@ -53,7 +55,7 @@ class SurveyBuilder extends Component {
             <div className={styleClass.SurveyTitle}>
               <MDBBtn
                 gradient="blue"
-                onClick={() => this.props.SubmitNewSurvey(this.props.create)}
+                onClick={() => this.props.SubmitNewSurvey(this.props.create, window.setTimeout(() => this.props.history.push(`/surveys`),1000))}
               >
                 SUBMIT
               </MDBBtn>

@@ -1,0 +1,36 @@
+<android.support.v4.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/responsesRefreshLayout"
+        android:background="@color/color1"
+        tools:context="com.kaisalar.android_client.views.fragments.SurveyResponsesFragment">
+
+    <android.support.constraint.ConstraintLayout android:layout_width="match_parent"
+                                                 android:layout_height="match_parent">
+        <include android:layout_width="wrap_content" android:layout_height="wrap_content"
+                 layout="@layout/loading_responses"
+                 app:layout_constraintBottom_toBottomOf="@+id/responsesRecyclerView" android:layout_marginTop="8dp"
+                 app:layout_constraintTop_toTopOf="@+id/responsesRecyclerView" app:layout_constraintEnd_toEndOf="parent"
+                 android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="@+id/responsesRecyclerView"
+                 android:layout_marginStart="8dp" android:id="@+id/loadingHelperLayout" android:visibility="gone"/>
+        <include
+                android:id="@+id/connectionErrorHelperLayout"
+                android:visibility="gone"
+                layout="@layout/connection_error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/responsesRecyclerView" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toTopOf="@+id/responsesRecyclerView"
+                app:layout_constraintEnd_toEndOf="@+id/responsesRecyclerView"
+                app:layout_constraintStart_toStartOf="@+id/responsesRecyclerView" android:layout_marginStart="8dp"/>
+
+        <android.support.v7.widget.RecyclerView android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:id="@+id/responsesRecyclerView"
+                                                tools:layout_editor_absoluteY="122dp"
+                                                tools:layout_editor_absoluteX="105dp"/>
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v4.widget.SwipeRefreshLayout>

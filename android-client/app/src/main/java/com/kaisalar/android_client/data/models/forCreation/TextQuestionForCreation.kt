@@ -12,7 +12,7 @@ class TextQuestionForCreation : QuestionForCreation {
     }
 
     constructor(title: String, description: String) : super(title, description) {
-        content = Content("", INPUT_TEXT, 1, 1)
+        content = Content("", INPUT_TEXT, 1, 255)
     }
 
     inner class Content {

@@ -32,9 +32,10 @@ class SurveyFillList extends Component {
     });
   };
   onSubmitHandler = () => {
-    console.log("test")
+    console.log(JSON.stringify(this.props.answers))
     this.props.postAnswers(this.props.answers, this.props.id);
-    window.setTimeout(() => this.setState({ redirect: true }), 2000);
+
+    window.setTimeout(() => this.props.history.push('/surveys'), 2000);
   };
   submitAnswers = () => {
     let answer = this.state.answer;

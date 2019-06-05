@@ -11,7 +11,7 @@ class ParagraphQuestionForCreation : QuestionForCreation {
     }
 
     constructor(title: String, description: String) : super(title, description) {
-        content = Content("", 0, 0)
+        content = Content("", 1, 255)
     }
 
     inner class Content {

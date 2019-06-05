@@ -12,8 +12,6 @@ import kotlinx.android.synthetic.main.activity_create_new_survey.*
 
 class CreateNewSurveyActivity : AppCompatActivity() {
 
-
-
     companion object {
         var survey = SurveyForCreation("", "")
     }
@@ -45,15 +43,6 @@ class CreateNewSurveyActivity : AppCompatActivity() {
             true
         }
 
-
-//        addNewQuestionButton.setOnClickListener { onAddNewQuestion(it) }
-//
-//        val layoutManager = LinearLayoutManager(this)
-//
-//        createSurveyQuestionsRecyclerView.apply {
-//            this.adapter = questionsAdapter
-//            this.layoutManager = layoutManager
-//        }
     }
 
     private fun showFragment(fragment: Fragment) {

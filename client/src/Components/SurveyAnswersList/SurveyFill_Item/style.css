@@ -17,22 +17,23 @@
     box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.1);
 }
 
-question-container .md-form .form-control { 
+.question-container .md-form .form-control { 
     height: 4rem !important;
     font-size: 2.5rem !important;
+    color: rgba(255, 255, 255, 0.8);
 }
-.fp-tableCell question-container .md-form label { 
+.fp-tableCell .question-container .md-form label { 
     color: rgba(255, 255, 255, 0.7) !important;
     font-size: 1.2rem !important;
 }
-question-container .md-form label.active { 
+.question-container .md-form label.active { 
     font-size: 1rem !important; 
 }
-question-container .md-form textarea.form-control { 
+.question-container .md-form textarea.form-control { 
     height: auto !important;
     font-size: 2rem !important;
 }
-question-container .md-form .prefix { 
+.question-container .md-form .prefix { 
     top: 1rem !important;
 }
 .rs-radio-group-picker { 

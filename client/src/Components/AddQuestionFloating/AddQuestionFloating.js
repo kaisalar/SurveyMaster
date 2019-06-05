@@ -13,9 +13,21 @@ import { connect } from "react-redux";
 import * as actions from "../../store/actions/types";
 
 const AddQuestionFloating = props => {
-  let items = data.map((el, i,arr) => {
-    if(i > 0 && arr[i - 1].role !== arr[i].role) { 
-      return <MDBDropdownItem divider />
+  let items = data.map((el, i, arr) => {
+    if (i > 0 && arr[i - 1].role !== arr[i].role) {
+      return (
+        <React.Fragment>
+          <MDBDropdownItem key={i} divider />
+          <MDBDropdownItem
+            key={i}
+            onClick={() => {
+              props.AddQuestion(el.value);
+            }}
+          >
+            {el.label}
+          </MDBDropdownItem>
+        </React.Fragment>
+      );
     }
     return (
       <MDBDropdownItem
@@ -34,9 +46,7 @@ const AddQuestionFloating = props => {
         <MDBDropdownToggle gradient="blue">
           <MDBIcon icon="plus" />
         </MDBDropdownToggle>
-        <MDBDropdownMenu>
-          {items}
-        </MDBDropdownMenu>
+        <MDBDropdownMenu>{items}</MDBDropdownMenu>
       </MDBDropdown>
     </div>
   );

@@ -39,6 +39,13 @@ li {
   border-radius: 5px;
   text-decoration: none;
 }
+
+.h2{
+  color:#7E9C9E;
+  font-weight: bold;
+  font-size: 16px;
+  margin:auto !important;
+}
 .active {
   background-color: rgb(53, 53, 53);
   text-decoration: none;    
@@ -48,7 +55,7 @@ li {
 li .a:hover:not(.active) {
   color: #FFFBEA;
  
-  background-color: #3C8BD2;
+  background-color: rgba(172, 219, 223, 0.623);
   padding: 11px 10px 14px 10px;
   border-radius: 5px;
   text-decoration: none;

@@ -14,13 +14,19 @@ class RadioButton extends Component {
     
     render() {
         let max = this.props.content.max
+        let step  = this.props.content.step
+        let defaultValue = this.props.content.defaultValue
+
+        let min = this.props.content.min
+        console.log(min,max,defaultValue)
+    
         let choices =[];
-         for (let index = 0; index < max; index++) {
+         for (let index = Number(min); index <= max; index++) {
             
-             choices.push(<Radio key={index} value={index + 1} onChange={this.onChoiceChanged}>{index + 1 }</Radio>)
+             choices.push(<Radio key={index} value={index }   onChange={this.onChoiceChanged}>{index }</Radio>)
         }
         return (
-                <RadioGroup name="radioList" inline appearance="picker" defaultValue={choices.length} onChange={this.onChoiceChanged}>
+                <RadioGroup name="radioList" inline appearance="picker" defaultValue={Number(defaultValue)} onChange={this.onChoiceChanged}>
                    {choices}
                 </RadioGroup>
             )

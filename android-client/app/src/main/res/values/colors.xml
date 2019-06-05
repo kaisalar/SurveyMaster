@@ -10,10 +10,15 @@
     <!--<color name="color3">#096386</color>-->
     <!--<color name="color4">#0c084c</color>-->
 
-    <color name="color1">#ececec</color>
-    <color name="color2">#9fd3c7</color>
-    <color name="color3">#385170</color>
-    <color name="color4">#142d4c</color>
+    <!--<color name="color1">#ececec</color>-->
+    <!--<color name="color2">#9fd3c7</color>-->
+    <!--<color name="color3">#385170</color>-->
+    <!--<color name="color4">#142d4c</color>-->
+
+    <color name="color1">#f1f1f1</color>
+    <color name="color2">#ccc1ff</color>
+    <color name="color3">#9ea9f0</color>
+    <color name="color4">#553c8b</color>
     <color name="red">#ef5350</color>
     <color name="gray">#bdbdbd</color>
 </resources>

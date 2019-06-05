@@ -9,12 +9,15 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import com.kaisalar.android_client.R
+import com.kaisalar.android_client.data.constants.FILL_URL
 import com.kaisalar.android_client.data.models.forGetting.SurveyForGetting
-import com.kaisalar.android_client.views.adapters.SurveysAdpater.Holder
+import com.kaisalar.android_client.utils.DateUtils
+import com.kaisalar.android_client.views.adapters.SurveysAdapter.Holder
 
-class SurveysAdpater(
+class SurveysAdapter(
     val context: Context,
     private val surveys: List<SurveyForGetting>,
+    val onClick: (SurveyForGetting) -> Unit,
     val onShareClick: (String) -> Unit,
     val onCopyClick: (String) -> Unit,
     val onDeleteClick: (String) -> Unit
@@ -35,24 +38,34 @@ class SurveysAdpater(
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private val titleTextView = itemView.findViewById<TextView>(R.id.answerTextNumberTextView)
+        private val titleTextView = itemView.findViewById<TextView>(R.id.responseNumber)
         private val descriptionTextView = itemView.findViewById<TextView>(R.id.surveyDescriptionTextView)
-//        private val dateTextView = itemView.findViewById<TextView>(R.id.surveyDateTextView)
+        private val dateTextView = itemView.findViewById<TextView>(R.id.surveyDateTextView)
         private val shareButton = itemView.findViewById<Button>(R.id.surveyShareButton)
         private val copyButton = itemView.findViewById<Button>(R.id.surveyCopyButton)
         private val deleteButton = itemView.findViewById<ImageButton>(R.id.surveyDeleteButton)
 
         fun bindSurvey(survey: SurveyForGetting) {
             titleTextView.text = survey.title
-            descriptionTextView.text = survey.description
+            if (!survey.description.isBlank()) {
+                descriptionTextView.text = survey.description
+            } else {
+                descriptionTextView.visibility = View.GONE
+            }
+            dateTextView.text = DateUtils.convertTimeMillis(survey.date)
             shareButton.setOnClickListener {
-                onShareClick(survey.link)
+                val link = "$FILL_URL/${survey._id}"
+                onShareClick(link)
             }
             copyButton.setOnClickListener {
-                onCopyClick(survey.link)
+                val link = "$FILL_URL/${survey._id}"
+                onCopyClick(link)
             }
             deleteButton.setOnClickListener {
                 onDeleteClick(survey._id)
+            }
+            itemView.setOnClickListener {
+                onClick(survey)
             }
         }
     }

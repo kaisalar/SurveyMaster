@@ -10,7 +10,7 @@ import * as Qtype from "../../Question/QuestionTypes";
 import * as Atype from "../../../store/actions/types";
 import { connect } from "react-redux";
 import { addquestion } from "../../../store/actions/answersAction";
-import RadioButton from "../answerTypes/radioGroup";
+import RadioButton from "../answerTypes/radioButton";
 import styleClass from "./SurveyFll_item.module.css";
 import "./style.css";
 import RatingNumbers from "../answerTypes/ratingNumbers";
@@ -55,12 +55,13 @@ class SurveyPage extends Component {
         break;
       }
       case Qtype.RADIO_GROUP:
-        info.type = Atype.ANSWER_SINGLE_NUMBER_VALUE;
+        console.log(content)
+        info.type = Atype.ANSWER_MULTIPLE_CHOICE;
         answer = <LeftAlign><RadioButton content={content} change={this.onAnswerChange} /></LeftAlign>;
         break;
 
       case Qtype.DROPDOWN:
-        info.type = Atype.ANSWER_SINGLE_NUMBER_VALUE;
+        info.type = Atype.ANSWER_MULTIPLE_CHOICE;
         answer = <Dropdown content={content} change={this.onAnswerChange} />;
         break;
       case Qtype.PARAGRAPH: {
@@ -75,10 +76,12 @@ class SurveyPage extends Component {
         break;
       case Qtype.RATING:
         info.type = Atype.ANSWER_SINGLE_NUMBER_VALUE;
-        if (content.ratingType === "RATING_NUMBERS")
+        if (content.ratingType === "RATING_NUMBERS"){
+            console.log(content)
           answer = (
             <RatingNumbers content={content} change={this.onAnswerChange} />
-          );
+            );
+          }
         else answer = <Rating content={content} change={this.onAnswerChange} />;
         break;
       case Qtype.SLIDER:

@@ -3,19 +3,21 @@ import { Radio, RadioGroup,FormGroup } from 'rsuite';
 
 class RadioButton extends Component{
     state = {
-        value:0,
+        choices:[],
 
     }
-
     changedChoiceHandler = (value) => {
-        console.log(value)
-         this.setState({ value: value }, () => this.props.change(this.state));
-     }
+        this.setState({ choices: [...this.state.choices,String(value)] },() =>this.props.change(this.state));
+        // let Choices = Object.assign([],this.state.choices)
+        // console.log(Choices)
+      //  this.props.throwState(this.state)
+    }
+
      render() {
-   
+   console.log(this.props.content)
       this.choicesSentences = this.props.content.choices;
 
-        let radios = this.choicesSentences.map((c,i) => (<Radio key={i} value={i + 1} onChange={this.changedChoiceHandler} >{c}</Radio>))
+        let radios = this.choicesSentences.map((c,i) => (<Radio key={i} value={c} onChange={this.changedChoiceHandler} >{c}</Radio>))
     
     return(<div>
             <RadioGroup name="radioList">

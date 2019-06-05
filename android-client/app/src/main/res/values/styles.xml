@@ -3,7 +3,7 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/color3</item>
+        <item name="colorPrimary">@color/color4</item>
         <item name="colorPrimaryDark">@color/color4</item>
         <item name="colorAccent">@color/color2</item>
         <item name="android:fontFamily">@font/cairo_light</item>

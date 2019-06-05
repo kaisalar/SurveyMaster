@@ -8,7 +8,6 @@ module.exports = async (req, res, next) => {
     const decoded = jwt.verify(token, jwtPrivateKey)
     
     const user = await User.findUserById(decoded._id)
-    console.log(user);
     if (!user) return res.status(400).send('Invalid token. user not found');
     
     req.user = decoded;

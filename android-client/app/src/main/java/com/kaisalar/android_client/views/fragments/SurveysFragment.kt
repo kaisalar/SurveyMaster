@@ -1,5 +1,8 @@
 package com.kaisalar.android_client.views.fragments
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -7,21 +10,25 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.kaisalar.android_client.R
+import com.kaisalar.android_client.data.constants.EXTRA_SURVEY_ID
+import com.kaisalar.android_client.data.constants.EXTRA_SURVEY_TITLE
 import com.kaisalar.android_client.data.models.forGetting.SurveyForGetting
 import com.kaisalar.android_client.data.services.SurveyService
 import com.kaisalar.android_client.views.activities.CreateNewSurveyActivity
-import com.kaisalar.android_client.views.adapters.SurveysAdpater
+import com.kaisalar.android_client.views.activities.SurveyActivity
+import com.kaisalar.android_client.views.adapters.SurveysAdapter
 import com.kaisalar.android_client.views.dialogs.LoadingDialog
 import com.kaisalar.android_client.views.toasts.DoneToast
 import com.kaisalar.android_client.views.toasts.ErrorToast
 import kotlinx.android.synthetic.main.fragment_surveys.*
 
+
+
 class SurveysFragment : Fragment() {
 
     private lateinit var surveyService: SurveyService
     private val surveysList = mutableListOf<SurveyForGetting>()
-    private lateinit var globalAdapter: SurveysAdpater
+    private lateinit var globalAdapter: SurveysAdapter
 
     private val HELPER_NONE = 0
     private val HELPER_LOADING = 1
@@ -32,25 +39,32 @@ class SurveysFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_surveys, container, false)
+        return inflater.inflate(com.kaisalar.android_client.R.layout.fragment_surveys, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         surveyService = SurveyService.getInstance(context!!)
 
-        surveysRefreshLayout.setColorSchemeColors(resources.getColor(R.color.color2))
+        surveysRefreshLayout.setColorSchemeColors(resources.getColor(com.kaisalar.android_client.R.color.color2))
 
         addNewSurveyButton.setOnClickListener {
             val intent = Intent(context, CreateNewSurveyActivity::class.java)
             startActivity(intent)
         }
 
-        val adapter = SurveysAdpater(
+        val adapter = SurveysAdapter(
             context = context!!,
             surveys = surveysList,
-            onShareClick = {},
-            onCopyClick = {},
+            onClick = {
+                onSurveyClick(it)
+            },
+            onShareClick = {
+                shareSurvey(it)
+            },
+            onCopyClick = {
+                copySurveyLink(it)
+            },
             onDeleteClick = {
                 deleteSurvey(it)
             }
@@ -88,7 +102,6 @@ class SurveysFragment : Fragment() {
 
     private fun init() {
         showHelperLayout(HELPER_LOADING)
-        loadingHelperLayout.visibility = View.VISIBLE
         surveyService.getSurveys(
             onSuccess = {
                 surveysList.clear()
@@ -139,5 +152,29 @@ class SurveysFragment : Fragment() {
                 ErrorToast.getInstance(context!!).show(it)
             }
         )
+    }
+
+    private fun shareSurvey(surveyLink: String) {
+        val shareIntent = Intent()
+        shareIntent.apply {
+            this.action = Intent.ACTION_SEND
+            this.type = "text/plain"
+            this.putExtra(Intent.EXTRA_TEXT, surveyLink)
+        }
+        startActivity(Intent.createChooser(shareIntent, "Share your survey"))
+    }
+
+    private fun copySurveyLink(surveyLink: String) {
+        val clipboard = context?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clip: ClipData = ClipData.newPlainText("Survey Link", surveyLink)
+        clipboard.primaryClip = clip
+        DoneToast.getInstance(context!!).show("Link copied to clipboard")
+    }
+
+    private fun onSurveyClick(survey: SurveyForGetting) {
+        val intent = Intent(context, SurveyActivity::class.java)
+        intent.putExtra(EXTRA_SURVEY_ID, survey._id)
+        intent.putExtra(EXTRA_SURVEY_TITLE, survey.title)
+        startActivity(intent)
     }
 }
