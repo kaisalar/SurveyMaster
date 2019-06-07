@@ -109,8 +109,7 @@ class Survey extends Element {
     for (const question of surveyQuestions) questions[question._id] = question;
 
     for (const answer of response.answers) {
-      answer.title = questions[answer.questionId].title;
-      answer.type = questions[answer.questionId].type;
+      answer.question = questions[answer.questionId];
     }
     return response;
   }

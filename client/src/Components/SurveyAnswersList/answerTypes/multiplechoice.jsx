@@ -8,7 +8,7 @@ class InputPage extends Component {
     }
     componentWillMount() {
         this.choicesSentences = this.props.content.choices;
-        this.props.change(this.state)
+      //  this.props.change(this.state)
     }
     changedChoiceHandler = (value) => {
         this.setState({ choices: this.editChoice(value)},
