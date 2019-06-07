@@ -88,6 +88,7 @@ class Response extends Element {
         return await this.loadSurveyResponses(this._id);
     }
     static validate(response) {
+        console.log(response);
         const result = Joi.validate(response, responseSchema)
         return result
     }

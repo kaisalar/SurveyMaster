@@ -181,7 +181,7 @@ const textAnswerSchema = {
   type: types.ANSWER_TEXT,
   content: Joi.object()
     .keys({
-      value: Joi.string().required()
+      value: Joi.string().required().allow('')
     })
     .required()
 }
