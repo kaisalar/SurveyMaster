@@ -1,7 +1,8 @@
 import * as ActionTypes from "../actions/types";
 
 const initialState = {
-  data: []
+  data: [],
+  response: null
 };
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -10,6 +11,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         data: action.payload
       };
+    case ActionTypes.LOAD_RESPONSE: 
+    return {
+      ...state,
+      response: action.payload
+    }
     default:
       return {
         ...state,

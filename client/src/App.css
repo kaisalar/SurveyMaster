@@ -2,3 +2,9 @@ body, #root {
     min-height: 100%;
     overflow:visible
 }   
+body {
+    background-color: #ccc1ff !important;
+  }
+.row { 
+    margin: 0 !important;
+}
