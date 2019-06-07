@@ -102,13 +102,14 @@ class Survey extends Element {
   }
   static async loadSurveyResponseById(surveyId, responseId){
     let response = await Response.loadSurveyResponseById(surveyId,responseId);
-    let questions = await Survey.loadQustions(surveyId);
-    const questionsTitles = {}
+    let surveyQuestions = await Survey.loadQustions(surveyId);
+    const questions = {}
     // init tempReport whith needed valuse
-    for (const question of questions) questionsTitles[question._id] = question.title;
+    for (const question of surveyQuestions) questionsTitles[question._id] = question;
 
     for (const answer of response.answers) {
-      answer.title = questionsTitles[answer.questionId];
+      answer.title = questionsTitles[answer.questionId].title;
+      answer.type = questionsTitles[answer.questionId].type;
     }
     return response;
   }
