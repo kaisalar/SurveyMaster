@@ -17,6 +17,7 @@ class Survey extends Element {
     this.description = props.description || ''
     this.date = props.date || Date.now()
     this.link = props.link || `fill/${this._id}`
+    this.color = props.color || '#6610f2'
     this.pages = []
     if (props.pages && _.isArray(props.pages)) {
       props.pages.forEach(p => {

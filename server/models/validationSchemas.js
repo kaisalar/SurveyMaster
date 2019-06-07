@@ -268,6 +268,9 @@ const surveySchema = {
   title: Joi.string()
     .max(1024)
     .required(),
+  color: Joi.string()
+    .hex()
+    .optional(),
   description: Joi.string()
     .allow('')
     .max(1024)
