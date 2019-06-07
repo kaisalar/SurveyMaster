@@ -3,11 +3,12 @@ import { Checkbox } from 'rsuite';
 
 class InputPage extends Component {
     state = {
-        choices:[],
+        choices: [],
    
     }
     componentWillMount() {
         this.choicesSentences = this.props.content.choices;
+        this.props.change(this.state)
     }
     changedChoiceHandler = (value) => {
         this.setState({ choices: this.editChoice(value)},

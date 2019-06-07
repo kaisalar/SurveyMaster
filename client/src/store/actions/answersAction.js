@@ -14,6 +14,7 @@ export const previewSurvey = (id,dataLoaded) => dispatch => {
 }
 
 export const addquestion = (state) => dispatch => {
+  console.log(state)
    dispatch({
      type: state.info.type,
      content: state.info,
@@ -34,7 +35,6 @@ export const postAnswers = (answers,surveyId) => dispatch=> {
      payload:response.data
    })
   }).catch(error=>{
-  
     Alert.error("There Was Error While Submitting  your response") 
    return  dispatch({
      type: actionTypes.POST_FAILED,

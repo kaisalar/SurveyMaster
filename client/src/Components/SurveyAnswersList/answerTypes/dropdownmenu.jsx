@@ -12,6 +12,7 @@ class Dropdownmenu extends Component {
 
     }
     componentDidMount() {
+        this.props.change({choices:[]})
     }
 
     render() {

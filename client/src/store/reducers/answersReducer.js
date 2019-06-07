@@ -24,13 +24,7 @@ const answerReducer = (state = initialState, action) => {
         pages: action.payload.pages
       };
 
-  
-    case actionTypes.POST_FAILED:
-      console.log("failed", action.payload)
-      return {
-        ...state,
-        error: action.payload
-      }    
+   
     default:
       return {
         ...state

@@ -3,7 +3,7 @@ import { Radio, RadioGroup } from 'rsuite';
 
 class RadioButton extends Component{
     state = {
-        choices:[],
+        choices:[]
 
     }
     changedChoiceHandler = (value) => {
@@ -12,6 +12,10 @@ class RadioButton extends Component{
         // console.log(Choices)
       //  this.props.throwState(this.state)
     }
+    componentDidMount() {
+      this.props.change(this.state)
+    }
+    
 
      render() {
    console.log(this.props.content)

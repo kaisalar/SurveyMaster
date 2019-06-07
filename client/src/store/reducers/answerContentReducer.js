@@ -12,6 +12,8 @@ const initialState= {
 const contentReducer = (state = initialState , action)=>{
     let _answers = state.answers;
     let _content = action.content;
+    console.log("Content" , _content)
+    console.log("type",action.type)
     switch(action.type){    
       case actionType.ANSWER_TEXT:
       case actionType.ANSWER_MULTIPLE_CHOICE:
@@ -19,6 +21,7 @@ const contentReducer = (state = initialState , action)=>{
       case actionType.ANSWER_SINGLE_NUMBER_VALUE:
             let isContain = _answers.includes(_content);
             if(isContain){
+             console.log("I'm in Content")
               _answers[_answers.indexOf(_content)].content = _content.content
               return {
                 ...state,
@@ -26,14 +29,26 @@ const contentReducer = (state = initialState , action)=>{
                 answers: _answers
               };
             }
-            else {return {
+            else {
+        
+              return {
+
                     ...state,
                     surveyId: action.id,
                     answers: deleteFirstItem(_answers,_content)
                   };}
-            
+
+    // case actionType.PREVIEW_SURVEY:
+    // _answers = 
+    //                return {
+    //       ...state,
+    //         answers:
+    //     }   
         default:
-        return {...state}
+      
+        return {
+          ...state,
+                }
     }
 }
 

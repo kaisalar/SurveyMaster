@@ -13,5 +13,9 @@ const shortText = (props) => {
        }
     }
     return(
-    <MDBInput maxLength={props.content.max} label="Here you should write your answer" onChange={onTextchanged}/>)}
+        <div>
+            {/* {props.change({ value: event.target.value })} */}
+            <MDBInput maxLength={props.content.max} label="Here you should write your answer" onChange={onTextchanged} />)}
+        </div>)
+}
 export default shortText

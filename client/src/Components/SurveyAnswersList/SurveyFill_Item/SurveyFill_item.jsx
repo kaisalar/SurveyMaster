@@ -21,17 +21,19 @@ import LeftAlign from "../../UI/LeftAlign/LeftAlign";
 class SurveyPage extends Component {
 
     constructor(props) {
+      
         super(props);
         this.localState = {
             survey_id: String(this.props.surveyId),
 
             info: {
                 questionId: this.props.id,
-                type: "",
+              type:"",
                 content: {}
             }
         }
-
+        
+     
     }
     onAnswerChange = value => {
       
@@ -45,35 +47,42 @@ class SurveyPage extends Component {
     let info = this.localState.info;
     switch (answerObjectType) {
       case Qtype.CHECKBOX: {
+        /// done
         info.type = Atype.ANSWER_MULTIPLE_CHOICE;
-        //      console.log('type', this.localState.type)
         answer = <LeftAlign><CheckBox content={content} change={this.onAnswerChange} /></LeftAlign>;
+        this.props.addquestion(this.localState);
         break;
       }
       case Qtype.TEXT: {
+        ///done 
         info.type = Atype.ANSWER_TEXT;
         answer = <LeftAlign><ShortText content={content} change={this.onAnswerChange} /></LeftAlign>;
+        this.props.addquestion(this.localState);
         break;
       }
       case Qtype.RADIO_GROUP:
+        ///done
         console.log(content)
         info.type = Atype.ANSWER_MULTIPLE_CHOICE;
         answer = <LeftAlign><RadioButton content={content} change={this.onAnswerChange} /></LeftAlign>;
+        this.props.addquestion(this.localState);
         break;
 
       case Qtype.DROPDOWN:
         info.type = Atype.ANSWER_MULTIPLE_CHOICE;
         answer = <Dropdown content={content} change={this.onAnswerChange} />;
+        this.props.addquestion(this.localState);
         break;
       case Qtype.PARAGRAPH: {
         info.type = Atype.ANSWER_TEXT;
-
         answer = <LeftAlign><Paragraph content={content} change={this.onAnswerChange} /></LeftAlign>;
+        this.props.addquestion(this.localState);
         break;
       }
       case Qtype.RANGE:
         info.type = Atype.ANSWER_RANGE;
         answer = <Range content={content} change={this.onAnswerChange} />;
+        this.props.addquestion(this.localState);
         break;
       case Qtype.RATING:
         info.type = Atype.ANSWER_SINGLE_NUMBER_VALUE;
@@ -84,16 +93,19 @@ class SurveyPage extends Component {
             );
           }
         else answer = <Rating content={content} change={this.onAnswerChange} />;
+        this.props.addquestion(this.localState);
         break;
       case Qtype.SLIDER:
         info.type = Atype.ANSWER_SINGLE_NUMBER_VALUE;
         answer = <Slider content={content} change={this.onAnswerChange} />;
+        this.props.addquestion(this.localState);
         break;
       default:
         info.type = Atype.ANSWER_TEXT;
 
         answer = <LeftAlign><ShortText content={content} change={this.onAnswerChange} /></LeftAlign>;
-    }
+        this.props.addquestion(this.localState);
+      }
     return (
       <div className="section">
         <div className={styleClass.QuestionContainer + " question-container"}>
