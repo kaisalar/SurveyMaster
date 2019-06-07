@@ -105,11 +105,11 @@ class Survey extends Element {
     let surveyQuestions = await Survey.loadQustions(surveyId);
     const questions = {}
     // init tempReport whith needed valuse
-    for (const question of surveyQuestions) questionsTitles[question._id] = question;
+    for (const question of surveyQuestions) questions[question._id] = question;
 
     for (const answer of response.answers) {
-      answer.title = questionsTitles[answer.questionId].title;
-      answer.type = questionsTitles[answer.questionId].type;
+      answer.title = questions[answer.questionId].title;
+      answer.type = questions[answer.questionId].type;
     }
     return response;
   }
