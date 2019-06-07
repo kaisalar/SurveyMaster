@@ -10,7 +10,17 @@
     border-top: 3px solid rgba(255,255,255,0.2);
     margin: 0px auto; /* Center the line */
 }
-
+.QuestionTitle.isResponse h3{ 
+    color: #553c8b;
+}
+.QuestionTitle.isResponse h3:after { 
+    content: "";
+    display: block; /* So it can have width */
+    width: 20%; /* Make sure position on these elements is relative (or something besides default) */
+    height: 1px;
+    border-top: 3px solid rgba(85, 60, 139,0.5);
+    margin: 0px auto; /* Center the line */
+}
 .QuestionTitle h3 {
   font-size: 3rem;
   line-height: 5rem;

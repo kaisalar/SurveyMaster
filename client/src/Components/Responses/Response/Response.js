@@ -22,6 +22,7 @@ class Response extends Component {
           title={question.title}
           answerObjectType={question.type}
           content={question.content}
+          isResponse
         />
       ));
       response = <div className="list">{data}</div>

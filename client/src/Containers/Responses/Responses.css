@@ -11,6 +11,6 @@
     border: 2px solid rgba(0, 0, 0,0.1);    
     box-shadow: 0 0 20px 10px rgba(0,0, 0, 0.15);
     height: 78vh;
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: #f1f1f1;
     border-radius: 5px;
 }

@@ -40,6 +40,8 @@ class SurveyPage extends Component {
     this.props.addquestion(this.localState);
   };
   render() {
+    let titleClass = styleClass.QuestionTitle;
+    if (this.props.isResponse) titleClass += (" " + styleClass.isResponse)
     const { answerObjectType, title,content } = this.props;
     let answer = null;
     let info = this.localState.info;
@@ -99,7 +101,7 @@ class SurveyPage extends Component {
     return (
       <div className="section">
         <div className={styleClass.QuestionContainer + " question-container"}>
-          <div className={styleClass.QuestionTitle}>
+          <div className={titleClass}>
             <h3>{title}</h3>
           </div>
           <div className={styleClass.Answer}><React.Fragment>{answer}</React.Fragment></div>
