@@ -181,7 +181,7 @@ const textAnswerSchema = {
   type: types.ANSWER_TEXT,
   content: Joi.object()
     .keys({
-      value: Joi.string().required().allow('')
+      value: Joi.string().optional()
     })
     .required()
 }
@@ -191,9 +191,7 @@ const multipleChoiceAnswerSchema = {
   type: types.ANSWER_MULTIPLE_CHOICE,
   content: Joi.object()
     .keys({
-      choices: Joi.array()
-        .items(Joi.string())
-        .required()
+      choices: Joi.array().items(Joi.string()).optional()
     })
     .required()
 }
@@ -203,7 +201,7 @@ const singleNumberValueAnswerSchema = {
   type: types.ANSWER_SINGLE_NUMBER_VALUE,
   content: Joi.object()
     .keys({
-      value: Joi.number().required()
+      value: Joi.number().optional()
     })
     .required()
 }
@@ -213,8 +211,8 @@ const rangeAnswerSchema = {
   type: types.ANSWER_RANGE,
   content: Joi.object()
     .keys({
-      minValue: Joi.number().required(),
-      maxValue: Joi.number().required()
+      minValue: Joi.number().optional(),
+      maxValue: Joi.number().optional()
     })
     .required()
 }
