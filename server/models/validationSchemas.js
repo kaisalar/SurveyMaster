@@ -181,7 +181,7 @@ const textAnswerSchema = {
   type: types.ANSWER_TEXT,
   content: Joi.object()
     .keys({
-      value: Joi.string().required()
+      value: Joi.string().required().allow('')
     })
     .required()
 }
@@ -268,6 +268,9 @@ const surveySchema = {
   title: Joi.string()
     .max(1024)
     .required(),
+  color: Joi.string()
+    .hex()
+    .optional(),
   description: Joi.string()
     .allow('')
     .max(1024)

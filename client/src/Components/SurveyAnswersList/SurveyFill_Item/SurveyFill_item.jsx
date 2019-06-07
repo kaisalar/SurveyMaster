@@ -42,9 +42,12 @@ class SurveyPage extends Component {
     this.props.addquestion(this.localState);
   };
   render() {
+    let titleClass = styleClass.QuestionTitle;
+    if (this.props.isResponse) titleClass += (" " + styleClass.isResponse)
     const { answerObjectType, title,content } = this.props;
     let answer = null;
     let info = this.localState.info;
+    console.log(answerObjectType)
     switch (answerObjectType) {
       case Qtype.CHECKBOX: {
         /// done
@@ -64,6 +67,7 @@ class SurveyPage extends Component {
         ///done
         console.log(content)
         info.type = Atype.ANSWER_MULTIPLE_CHOICE;
+        console.log("im in mc")
         answer = <LeftAlign><RadioButton content={content} change={this.onAnswerChange} /></LeftAlign>;
         this.props.addquestion(this.localState);
         break;
@@ -109,10 +113,10 @@ class SurveyPage extends Component {
     return (
       <div className="section">
         <div className={styleClass.QuestionContainer + " question-container"}>
-          <div className={styleClass.QuestionTitle}>
+          <div className={titleClass}>
             <h3>{title}</h3>
           </div>
-          <div className={styleClass.Answer}>{answer}</div>
+          <div className={styleClass.Answer}><React.Fragment>{answer}</React.Fragment></div>
         </div>
       </div>
     );

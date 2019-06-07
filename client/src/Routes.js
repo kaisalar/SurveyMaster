@@ -19,7 +19,7 @@ class Routes extends Component {
         <Route
           path="/"
           exact
-          render={() => (
+          render={ () => (
             <React.Fragment>
               <NavBar transparent={true}/>
               <HomePage />

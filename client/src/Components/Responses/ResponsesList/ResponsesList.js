@@ -1,5 +1,6 @@
 import React from "react";
 import ResponseItem from "./ResponseItem/ResponseItem";
+import "./ResponsesList.css";
 
 const ResponseList = props => {
   let Content = null;
@@ -13,7 +14,12 @@ const ResponseList = props => {
       />
     ));
   }
-  return <React.Fragment>{Content}</React.Fragment>;
+  return (
+    <div className="responses-list">
+      <h2>Responses List</h2>
+      <div className="list">{Content}</div>
+    </div>
+  );
 };
 
 export default ResponseList;

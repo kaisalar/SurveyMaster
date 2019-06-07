@@ -1,0 +1,9 @@
+
+.response { 
+    color: #553C8B;
+    text-align: center;    
+}
+
+.response.no-data h2 { 
+    font-size: 3rem;    
+}

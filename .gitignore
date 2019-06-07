@@ -1,3 +1,7 @@
+<<<<<<< HEAD
 /node_modules
 /iOS
+=======
+/node_modules 
+>>>>>>> 46b4ddb608ec22ade6bb8afe22d4810c3e288bd1
 package-lock.json 

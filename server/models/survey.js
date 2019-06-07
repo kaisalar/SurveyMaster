@@ -17,6 +17,7 @@ class Survey extends Element {
     this.description = props.description || ''
     this.date = props.date || Date.now()
     this.link = props.link || `fill/${this._id}`
+    this.color = props.color || '#6610f2'
     this.pages = []
     if (props.pages && _.isArray(props.pages)) {
       props.pages.forEach(p => {
@@ -102,13 +103,14 @@ class Survey extends Element {
   }
   static async loadSurveyResponseById(surveyId, responseId){
     let response = await Response.loadSurveyResponseById(surveyId,responseId);
-    let questions = await Survey.loadQustions(surveyId);
-    const questionsTitles = {}
+    let surveyQuestions = await Survey.loadQustions(surveyId);
+    const questions = {}
     // init tempReport whith needed valuse
-    for (const question of questions) questionsTitles[question._id] = question.title;
+    for (const question of surveyQuestions) questions[question._id] = question;
 
     for (const answer of response.answers) {
-      answer.title = questionsTitles[answer.questionId];
+      answer.title = questions[answer.questionId].title;
+      answer.type = questions[answer.questionId].type;
     }
     return response;
   }
