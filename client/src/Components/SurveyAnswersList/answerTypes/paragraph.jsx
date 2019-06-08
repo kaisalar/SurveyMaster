@@ -1,5 +1,6 @@
 import React from 'react'
 import { MDBInput } from "mdbreact";
+import reactStars from 'react-stars';
 
 const TextareaPage = (props) => {
   let length = 0;
@@ -12,15 +13,25 @@ const TextareaPage = (props) => {
             alert("text limit exceeded")
         }
     }
-    return (
-        <MDBInput
+    let  content = props.isResponse ? (<MDBInput
+        type="textarea"
+        label="write 250 character at least "
+        rows="5"
+        icon="pencil-alt"
+        disabled
+        value={props.answer.value}
+        />) : (<MDBInput
         maxLength={props.content.max}
         type="textarea"
         label="write 250 character at least "
         rows="5"
         icon="pencil-alt"
         onChange = {onInputChanged}
-        />
+        />)
+    return (
+        <React.Fragment>
+            {content}
+        </React.Fragment>
     )
 }
 

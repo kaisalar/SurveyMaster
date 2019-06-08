@@ -52,5 +52,21 @@
     line-height: 3rem;
     font-size: 2rem;
 }
+  
+.question-container.is-response  h3 {
+    color: #553c8b;
+  }
 
+.question-container.is-response h3:after {
+    content: "";
+    display: block; /* So it can have width */
+    width: 20%; /* Make sure position on these elements is relative (or something besides default) */
+    height: 1px;
+    border-top: 3px solid rgba(85, 60, 139, 0.5);
+    margin: 0px auto; /* Center the line */
+  }
+  
+  .question-container.is-response .md-form .form-control {
+    color: rgba(85, 60, 139, 0.8);
+  }
 /* .rs-radio-wrapper .rs-radio-inner:after */

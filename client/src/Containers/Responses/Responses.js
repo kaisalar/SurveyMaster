@@ -8,7 +8,7 @@ import './Responses.css'
 
 class Responses extends Component {
   state = {
-    dataLoaded: false
+    dataLoaded: false,
   };
   componentDidMount() {
     this.props.previewResponses(
@@ -16,16 +16,21 @@ class Responses extends Component {
       this.dataLoadedHandler
     );
   }
-
   dataLoadedHandler = newVal => {
     this.setState({
       dataLoaded: newVal
     });
   };
+
+  focusedIndexHandler = newVal => { 
+    this.setState({
+      focusedIndex: newVal
+    })
+  }
   render() {
     let ResponsesList = null;
-    let data = this.props.response ? this.props.response.answers : null
-    if (this.state.dataLoaded)  ResponsesList = <ResponesList list={this.props.data} itemClicked={(Rid) => this.props.getFullResponse(this.props.match.params.id,Rid)}/>
+    let data = this.props.response ? this.props.response.answers : null;
+    if (this.state.dataLoaded)  ResponsesList = <ResponesList list={this.props.data} ListItemClicked={(Rid) => this.props.getFullResponse(this.props.match.params.id,Rid)}/>
         return (
     <div className="responses">
       <MDBRow>

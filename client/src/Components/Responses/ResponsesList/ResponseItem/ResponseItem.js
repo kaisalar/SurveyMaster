@@ -4,8 +4,10 @@ import './ResponseItem.css'
 
 
 const ResponseItem= props => {
+    let styleClass = "response-item"
+    if (props.focused) styleClass += " focus"
     return(
-        <div className="response-item" onClick={props.clicked}>
+        <div className={styleClass} onClick={props.clicked}>
             <div>{moment(props.date).format('DD-MM-YYYY')}</div>
         </div>
     );
