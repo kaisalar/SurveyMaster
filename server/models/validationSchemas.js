@@ -68,6 +68,7 @@ const multipleChoiceQuestionSchema = {
     .required()
 }
 
+
 const radioGroupQuestionSchema = {
   ...multipleChoiceQuestionSchema,
   type: types.QUESTION_RADIO_GROUP
@@ -158,7 +159,10 @@ const rangeQuestionSchema = {
     })
     .required()
 }
-
+const fileUploadQuestionSchema = {
+  ...questionSchema,
+  type: types.QUESTION_UPLOADFILE
+}
 const Questions = {
   textQuestionSchema: textQuestionSchema,
   paragraphQuestionSchema: paragraphQuestionSchema,
@@ -167,7 +171,8 @@ const Questions = {
   dropDownQuestionSchema: dropDownQuestionSchema,
   sliderQuestionSchema: sliderQuestionSchema,
   ratingQuestionSchema: ratingQuestionSchema,
-  rangeQuestionSchema: rangeQuestionSchema
+  rangeQuestionSchema: rangeQuestionSchema,
+  fileUploadQuestionSchema: fileUploadQuestionSchema
 }
 
 const answerSchema = {
@@ -216,12 +221,21 @@ const rangeAnswerSchema = {
     })
     .required()
 }
-
+const fileBase64AnswerSchema = {
+  ...answerSchema,
+  type: types.ANSWER_File_Base64,
+  content: Joi.object()
+    .keys({
+      value: Joi.string().base64().optional().allow(''),
+    })
+    .required()
+}
 const Answers = {
   textAnswerSchema: textAnswerSchema,
   multipleChoiceAnswerSchema: multipleChoiceAnswerSchema,
   singleNumberValueAnswerSchema: singleNumberValueAnswerSchema,
-  rangeAnswerSchema: rangeAnswerSchema
+  rangeAnswerSchema: rangeAnswerSchema,
+  fileBase64AnswerSchema: fileBase64AnswerSchema
 }
 
 const pageSchema = {
