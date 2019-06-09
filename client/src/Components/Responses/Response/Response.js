@@ -5,8 +5,7 @@ class Response extends Component {
   render() {
     let data = null,response = null,responseClass = "response no-data"
     if (this.props.data) {
-      console.log(this.props.data)
-      data = this.props.data.map((el, i) => (
+        data = this.props.data.map((el, i) => (
         <SurveyFillitem
           key={i}
           id={el.question._id}

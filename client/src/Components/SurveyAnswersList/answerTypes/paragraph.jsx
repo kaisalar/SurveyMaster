@@ -1,6 +1,5 @@
 import React from 'react'
 import { MDBInput } from "mdbreact";
-import reactStars from 'react-stars';
 
 const TextareaPage = (props) => {
   let length = 0;
