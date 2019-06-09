@@ -7,12 +7,9 @@ class RadioButton extends Component {
     choices: []
   };
   changedChoiceHandler = value => {
-    this.setState({ choices: [...this.state.choices, String(value)] }, () =>
+    this.setState({ choices: [String(value)] }, () =>
       this.props.change(this.state)
     );
-    // let Choices = Object.assign([],this.state.choices)
-    // console.log(Choices)
-    //  this.props.throwState(this.state)
   };
   componentDidMount() {
     this.props.change(this.state);
@@ -38,7 +35,7 @@ class RadioButton extends Component {
       </RadioGroup>
     ) : (
       <RadioGroup name="radioList">{radios}</RadioGroup>
-    );  
+    );
     return <React.Fragment>{radioGroup}</React.Fragment>;
   }
 }
