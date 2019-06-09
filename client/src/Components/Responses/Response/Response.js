@@ -1,28 +1,20 @@
 import React, { Component } from "react";
 import "./Response.css";
-import SurveyFill_item from "../../SurveyAnswersList/SurveyFill_Item/SurveyFill_item";
+import SurveyFillitem from "../../SurveyAnswersList/SurveyFill_Item/SurveyFill_item";
 class Response extends Component {
-  //   state = {
-  //     dataLoaded: false
-  //   };
-  //   dataLoadedHandler = newVal => {
-  //       this.setState({
-  //           dataLoaded: newVal
-  //       })
-  //   }
-
   render() {
     let data = null,response = null,responseClass = "response no-data"
     if (this.props.data) {
-      data = this.props.data.map((question, i) => (
-        <SurveyFill_item
+        data = this.props.data.map((el, i) => (
+        <SurveyFillitem
           key={i}
-          id={question._id}
+          id={el.question._id}
           number={i + 1}
-          title={question.title}
-          answerObjectType={question.type}
-          content={question.content}
+          title={el.question.title}
+          answerObjectType={el.question.type}
+          content={el.question.content}
           isResponse
+          answer={el.content}
         />
       ));
       response = <div className="list">{data}</div>
@@ -33,7 +25,6 @@ class Response extends Component {
             <h2>{this.props.data ? "Response" : "Click on Any Response To Load Data"}</h2>
             {response}
         </div>
-    
         );
   }
 }

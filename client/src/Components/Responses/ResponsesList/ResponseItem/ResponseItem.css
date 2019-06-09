@@ -1,15 +1,15 @@
 .response-item { 
-    font-size: 2rem;
-    line-height: 4rem;
+    font-size: 1.5rem;
+    line-height: 3rem;
     display: flex;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     cursor: pointer;
     transition: all 0.15s ease-in-out
 }
-.response-item:hover,.response-item:focus { 
+.response-item:hover,.response-item.focus { 
     border: 2px solid #D6CDFF;
     border-left: 15px solid rgba(0, 0, 0, 0.2); 
-    line-height: 4.5rem;
+    line-height: 3.5rem;
     background-color: #553c8b;
     color: #f1f1f1;
     border-radius: 5px;
@@ -21,7 +21,7 @@
     margin: auto 15px;
     border:  5px solid rgba(0, 0, 0, 0.5);
     border-radius: 50%;
-}.response-item:hover:before { 
+}.response-item:hover:before,.response-item.focus:before { 
     border-color: #f1f1f1;
 
 }

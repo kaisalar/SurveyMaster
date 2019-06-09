@@ -14,7 +14,6 @@ export const previewSurvey = (id,dataLoaded) => dispatch => {
 }
 
 export const addquestion = (state) => dispatch => {
-  console.log(state)
    dispatch({
      type: state.info.type,
      content: state.info,

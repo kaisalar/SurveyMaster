@@ -12,8 +12,6 @@ const initialState= {
 const contentReducer = (state = initialState , action)=>{
     let _answers = state.answers;
     let _content = action.content;
-    console.log("Content" , _content)
-    console.log("type",action.type)
     switch(action.type){    
       case actionType.ANSWER_TEXT:
       case actionType.ANSWER_MULTIPLE_CHOICE:
@@ -21,7 +19,6 @@ const contentReducer = (state = initialState , action)=>{
       case actionType.ANSWER_SINGLE_NUMBER_VALUE:
             let isContain = _answers.includes(_content);
             if(isContain){
-             console.log("I'm in Content")
               _answers[_answers.indexOf(_content)].content = _content.content
               return {
                 ...state,

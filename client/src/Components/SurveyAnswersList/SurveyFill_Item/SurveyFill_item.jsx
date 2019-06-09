@@ -42,33 +42,30 @@ class SurveyPage extends Component {
     this.props.addquestion(this.localState);
   };
   render() {
-    let titleClass = styleClass.QuestionTitle;
-    if (this.props.isResponse) titleClass += (" " + styleClass.isResponse)
+    let titleClass = styleClass.QuestionContainer + " question-container ";
+    if (this.props.isResponse) titleClass +=  "is-response"
     const { answerObjectType, title,content } = this.props;
     let answer = null;
     let info = this.localState.info;
-    console.log(answerObjectType)
     switch (answerObjectType) {
       case Qtype.CHECKBOX: {
         /// done
         info.type = Atype.ANSWER_MULTIPLE_CHOICE;
-        answer = <LeftAlign><CheckBox content={content} change={this.onAnswerChange} /></LeftAlign>;
+        answer = <LeftAlign><CheckBox isResponse={this.props.isResponse} answer={this.props.answer} content={content} change={this.onAnswerChange} /></LeftAlign>;
         this.props.addquestion(this.localState);
         break;
       }
       case Qtype.TEXT: {
         ///done 
         info.type = Atype.ANSWER_TEXT;
-        answer = <LeftAlign><ShortText content={content} change={this.onAnswerChange} /></LeftAlign>;
+        answer = <LeftAlign><ShortText isResponse={this.props.isResponse} answer={this.props.answer} content={content} change={this.onAnswerChange} /></LeftAlign>;
         this.props.addquestion(this.localState);
         break;
       }
       case Qtype.RADIO_GROUP:
         ///done
-        console.log(content)
         info.type = Atype.ANSWER_MULTIPLE_CHOICE;
-        console.log("im in mc")
-        answer = <LeftAlign><RadioButton content={content} change={this.onAnswerChange} /></LeftAlign>;
+        answer = <LeftAlign><RadioButton isResponse={this.props.isResponse} answer={this.props.answer} content={content} change={this.onAnswerChange} /></LeftAlign>;
         this.props.addquestion(this.localState);
         break;
 
@@ -79,7 +76,7 @@ class SurveyPage extends Component {
         break;
       case Qtype.PARAGRAPH: {
         info.type = Atype.ANSWER_TEXT;
-        answer = <LeftAlign><Paragraph content={content} change={this.onAnswerChange} /></LeftAlign>;
+        answer = <LeftAlign><Paragraph isResponse={this.props.isResponse} answer={this.props.answer} content={content} change={this.onAnswerChange} /></LeftAlign>;
         this.props.addquestion(this.localState);
         break;
       }
@@ -91,7 +88,6 @@ class SurveyPage extends Component {
       case Qtype.RATING:
         info.type = Atype.ANSWER_SINGLE_NUMBER_VALUE;
         if (content.ratingType === "RATING_NUMBERS"){
-            console.log(content)
           answer = (
             <RatingNumbers content={content} change={this.onAnswerChange} />
             );
@@ -112,8 +108,8 @@ class SurveyPage extends Component {
       }
     return (
       <div className="section">
-        <div className={styleClass.QuestionContainer + " question-container"}>
-          <div className={titleClass}>
+        <div className={titleClass}>
+          <div className={styleClass.QuestionTitle}>
             <h3>{title}</h3>
           </div>
           <div className={styleClass.Answer}><React.Fragment>{answer}</React.Fragment></div>
