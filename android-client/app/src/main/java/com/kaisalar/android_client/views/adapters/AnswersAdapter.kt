@@ -9,7 +9,7 @@ import android.widget.TextView
 import com.kaisalar.android_client.R
 import com.kaisalar.android_client.data.models.forGetting.*
 
-class AnswersAdapter(val context: Context, private val questions: List<QuestionForGetting>, private val answers: List<AnswerForGetting>)
+class AnswersAdapter(val context: Context,  private val answers: List<AnswerForGetting>)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.answer_list_item, parent, false)
@@ -62,7 +62,7 @@ class AnswersAdapter(val context: Context, private val questions: List<QuestionF
         private val answerValue = itemView.findViewById<TextView>(R.id.answerValue)
 
         fun bind(answer: TextAnswerForGetting, position: Int) {
-            answerQuestion.text = getQuestionTitle(answer.questionId)
+            answerQuestion.text = answer.question.title
             answerNumber.text = "#${position + 1}"
             answerValue.text = answer.content.value
         }
@@ -74,7 +74,7 @@ class AnswersAdapter(val context: Context, private val questions: List<QuestionF
         private val answerValue = itemView.findViewById<TextView>(R.id.answerValue)
 
         fun bind(answer: MultipleChoiceAnswerForGetting, position: Int) {
-            answerQuestion.text = getQuestionTitle(answer.questionId)
+            answerQuestion.text = answer.question.title
             answerNumber.text = "#${position + 1}"
             val strBuilder = StringBuilder()
             if (answer.content.choices.count() == 1) strBuilder.append("- ${answer.content.choices[0]}")
@@ -96,7 +96,7 @@ class AnswersAdapter(val context: Context, private val questions: List<QuestionF
         private val answerValue = itemView.findViewById<TextView>(R.id.answerValue)
 
         fun bind(answer: SingleNumberValueAnswerForGetting, position: Int) {
-            answerQuestion.text = getQuestionTitle(answer.questionId)
+            answerQuestion.text = answer.question.title
             answerNumber.text = "#${position + 1}"
             answerValue.text = answer.content.value.toString()
         }
@@ -108,15 +108,9 @@ class AnswersAdapter(val context: Context, private val questions: List<QuestionF
         private val answerValue = itemView.findViewById<TextView>(R.id.answerValue)
 
         fun bind(answer: RangeAnswerForGetting, position: Int) {
-            answerQuestion.text = getQuestionTitle(answer.questionId)
+            answerQuestion.text = answer.question.title
             answerNumber.text = "#${position + 1}"
             answerValue.text = "${answer.content.minValue} -> ${answer.content.maxValue}"
         }
-    }
-
-    fun getQuestionTitle(questionId: String): String {
-        val question = questions.find { q -> q._id == questionId }
-        if (question != null) return question.title
-        return ""
     }
 }

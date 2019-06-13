@@ -1,6 +1,10 @@
 package com.kaisalar.android_client.data.models.forGetting
 
-class SignelNumberValueAnswerContent(val value: Number)
+class SingleNumberValueAnswerContent(val value: Number)
 
-class SingleNumberValueAnswerForGetting(questionId: String, type: String, val content: SignelNumberValueAnswerContent)
-    : AnswerForGetting(questionId, type)
+class SingleNumberValueAnswerForGetting(
+    questionId: String,
+    type: String,
+    val content: SingleNumberValueAnswerContent,
+    question: QuestionForGetting
+) : AnswerForGetting(questionId, type, question)

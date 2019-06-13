@@ -32,8 +32,7 @@ class ResponseActivity : AppCompatActivity() {
 
         val adapter = AnswersAdapter(
             context = this,
-            answers = answers,
-            questions = questions
+            answers = answers
         )
         globalAdapter = adapter
 

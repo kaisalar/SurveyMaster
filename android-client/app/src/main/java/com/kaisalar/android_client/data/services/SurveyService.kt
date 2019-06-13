@@ -5,6 +5,7 @@ import android.util.Log
 import android.widget.Toast
 import com.android.volley.NetworkResponse
 import com.android.volley.Response
+import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -204,6 +205,43 @@ class SurveyService(val context: Context) {
                     }
                 }
                 return Response.success(answers, cacheEntry)
+            }
+        }
+
+        requestQueue.add(request)
+    }
+
+    fun getSurveyReport(surveyId: String, onSuccess: (ReportForGetting) -> Unit, onFailure: (String) -> Unit) {
+        val url = surveyReportUrl(surveyId)
+        val request = object : JsonRequest<ReportForGetting> (
+            Method.GET,
+            url,
+            null,
+            Response.Listener<ReportForGetting> {
+                onSuccess(it)
+            },
+            Response.ErrorListener {
+                val result = when (it.networkResponse?.statusCode) {
+                    400 -> "Bad Request"
+                    401 -> "Access Denied"
+                    404 -> "Not Found"
+                    else -> "Connection Error"
+                }
+                onFailure(result)
+            }
+        ) {
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+                val token = AuthTokenHandler.getAuthToken(context)
+                if (token != null)
+                    headers["x-auth-token"] = AuthTokenHandler.getAuthToken(context)!!
+                return headers
+            }
+
+            override fun parseNetworkResponse(response: NetworkResponse?): Response<ReportForGetting> {
+                val json = String(response?.data!!)
+                val report = Klaxon().parse<ReportForGetting>(json)
+                return Response.success(report, cacheEntry)
             }
         }
 

@@ -1,6 +1,6 @@
 package com.kaisalar.android_client.data.constants
 
-const val BASE_URL = "http://192.168.43.226:5000/"
+const val BASE_URL = "http://192.168.1.102:5000/"
 const val API_URL = "${BASE_URL}api/"
 
 // Auth Service
@@ -18,6 +18,10 @@ fun surveyResponsesUrl(surveyId: String) : String {
 
 fun surveyResponseUrl(surveyId: String, responseId: String) : String {
     return "$GET_SURVEYS_URL/$surveyId/responses/$responseId"
+}
+
+fun surveyReportUrl(surveyId: String) : String {
+    return "$GET_SURVEYS_URL/$surveyId/report"
 }
 
 // Fill
