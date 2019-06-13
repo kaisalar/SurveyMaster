@@ -98,6 +98,7 @@ class IO {
     const data = _.pick(survey, [
       '_id',
       'title',
+      'color',
       'date',
       'link',
       'description',

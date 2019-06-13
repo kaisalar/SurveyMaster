@@ -68,6 +68,7 @@ const multipleChoiceQuestionSchema = {
     .required()
 }
 
+
 const radioGroupQuestionSchema = {
   ...multipleChoiceQuestionSchema,
   type: types.QUESTION_RADIO_GROUP
@@ -158,7 +159,10 @@ const rangeQuestionSchema = {
     })
     .required()
 }
-
+const fileUploadQuestionSchema = {
+  ...questionSchema,
+  type: types.QUESTION_UPLOADFILE
+}
 const Questions = {
   textQuestionSchema: textQuestionSchema,
   paragraphQuestionSchema: paragraphQuestionSchema,
@@ -167,7 +171,8 @@ const Questions = {
   dropDownQuestionSchema: dropDownQuestionSchema,
   sliderQuestionSchema: sliderQuestionSchema,
   ratingQuestionSchema: ratingQuestionSchema,
-  rangeQuestionSchema: rangeQuestionSchema
+  rangeQuestionSchema: rangeQuestionSchema,
+  fileUploadQuestionSchema: fileUploadQuestionSchema
 }
 
 const answerSchema = {
@@ -181,7 +186,7 @@ const textAnswerSchema = {
   type: types.ANSWER_TEXT,
   content: Joi.object()
     .keys({
-      value: Joi.string().required()
+      value: Joi.string().optional().allow('')
     })
     .required()
 }
@@ -191,9 +196,7 @@ const multipleChoiceAnswerSchema = {
   type: types.ANSWER_MULTIPLE_CHOICE,
   content: Joi.object()
     .keys({
-      choices: Joi.array()
-        .items(Joi.string())
-        .required()
+      choices: Joi.array().items(Joi.string()).optional()
     })
     .required()
 }
@@ -203,7 +206,7 @@ const singleNumberValueAnswerSchema = {
   type: types.ANSWER_SINGLE_NUMBER_VALUE,
   content: Joi.object()
     .keys({
-      value: Joi.number().required()
+      value: Joi.number().optional()
     })
     .required()
 }
@@ -213,17 +216,26 @@ const rangeAnswerSchema = {
   type: types.ANSWER_RANGE,
   content: Joi.object()
     .keys({
-      minValue: Joi.number().required(),
-      maxValue: Joi.number().required()
+      minValue: Joi.number().optional(),
+      maxValue: Joi.number().optional()
     })
     .required()
 }
-
+const fileBase64AnswerSchema = {
+  ...answerSchema,
+  type: types.ANSWER_File_Base64,
+  content: Joi.object()
+    .keys({
+      value: Joi.string().base64().optional().allow(''),
+    })
+    .required()
+}
 const Answers = {
   textAnswerSchema: textAnswerSchema,
   multipleChoiceAnswerSchema: multipleChoiceAnswerSchema,
   singleNumberValueAnswerSchema: singleNumberValueAnswerSchema,
-  rangeAnswerSchema: rangeAnswerSchema
+  rangeAnswerSchema: rangeAnswerSchema,
+  fileBase64AnswerSchema: fileBase64AnswerSchema
 }
 
 const pageSchema = {
@@ -268,6 +280,9 @@ const surveySchema = {
   title: Joi.string()
     .max(1024)
     .required(),
+  color: Joi.string()
+    .hex()
+    .optional(),
   description: Joi.string()
     .allow('')
     .max(1024)

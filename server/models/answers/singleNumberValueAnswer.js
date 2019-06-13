@@ -8,7 +8,7 @@ class SingleNumberValueAnswer extends Answer {
         super(props)
         this.type = types.ANSWER_SINGLE_NUMBER_VALUE
         this.content = {
-            value: props.content.value || 0
+            value: props.content.value || 1e9
         }
     }
 

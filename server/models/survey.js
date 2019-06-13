@@ -17,6 +17,7 @@ class Survey extends Element {
     this.description = props.description || ''
     this.date = props.date || Date.now()
     this.link = props.link || `fill/${this._id}`
+    this.color = props.color || '#6610f2'
     this.pages = []
     if (props.pages && _.isArray(props.pages)) {
       props.pages.forEach(p => {
@@ -100,13 +101,27 @@ class Survey extends Element {
       }
     await IO.removeSurveyById(this._id);
   }
+  static async loadSurveyResponseById(surveyId, responseId){
+    let response = await Response.loadSurveyResponseById(surveyId,responseId);
+    let surveyQuestions = await Survey.loadQustions(surveyId);
+    const questions = {}
+    // init tempReport whith needed valuse
+    for (const question of surveyQuestions) questions[question._id] = question;
+
+    for (const answer of response.answers) {
+      answer.question = questions[answer.questionId];
+    }
+    return response;
+  }
+  async loadSurveyResponseById(responseId){
+    return await Survey.loadSurveyResponseById(this._id,responseId);
+  }
   static async generatReport(surveyId) {
     // fetching all responses and questions for current survey
     const responses = await Response.loadSurveyResponses(surveyId)
     const questions = await Survey.loadQustions(surveyId)
     const tempReport = {}
     // init tempReport whith needed valuse
-    console.log(responses,questions);
     for (const question of questions) {
       const { _id, content, type } = question
       tempReport[_id] = {}
@@ -126,7 +141,6 @@ class Survey extends Element {
           break
       }
     }
-    console.log(tempReport);
     for (const response of responses) {
       for (const answer of response.answers) {
         //    console.log(answer);
@@ -161,7 +175,7 @@ class Survey extends Element {
     return report
   }
   async generatReport() {
-    await this.generatReport(this._id)
+    await Survey.generatReport(this._id)
   }
   static validate(survey) {
     const result = Joi.validate(survey, surveySchema)
