@@ -2,7 +2,7 @@ const { port } = require('./config')
 const cors = require('cors')
 const express = require('express')
 const app = express()
-
+const IO = require('./data/IO');
 const surveysRouter = require('./routes/surveysRouter')
 const fillRouter = require('./routes/fillRouter')
 const usersRouter = require('./routes/usersRouter')

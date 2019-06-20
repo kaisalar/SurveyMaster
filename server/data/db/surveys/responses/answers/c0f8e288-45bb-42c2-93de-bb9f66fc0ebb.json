@@ -1,1 +1,1 @@
-[{"_id":"16fef93a-fed1-4f8f-8f66-a7670a6b854e","questionId":"fcdaf622-378d-4228-b97b-df5a3536cccf","type":"ANSWER_SINGLE_NUMBER_VALUE","content":{"value":28}}]
+{"iv":"fFXdzhSaeNnFG8Qk+AdSmA==","v":1,"iter":10000,"ks":128,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"oO868JwsJps=","ct":"4pVqFXmpGbi7ZmYSEdBqN+1TFdfl1pQQB2OzRj9TcfgXjPOfFzs3+LA2acPHW8/qX59EnT9TTFREXqWVaUYIMQd1WYZGCtDWQqSiBuKP3d9JnMZuWEbXwEdto2xJ7kbDB+EKRIg/mGJhHyZEUdKVdl7nvO5Ohedhg61E4+6o9t14zxCMTzwio6I8ZTm69eJ+b356xHqxQDv1BuG/ZgsLDIYjrDkODcw="}
