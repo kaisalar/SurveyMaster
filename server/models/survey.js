@@ -10,6 +10,8 @@ const TextAnswer = require('./answers/textAnswer')
 const MultipleChoiceAnswer = require('./answers/multipleChoiceAnswer')
 const SingleNumberValueAnswer = require('./answers/singleNumberValueAnswer')
 const User = require('./user');
+const axios = require('axios');
+const Language = require('../models/langauges');
 class Survey extends Element {
   constructor(props) {
     super(props)
@@ -30,8 +32,71 @@ class Survey extends Element {
             userEmail: string,
             role: string
         } */
+    this.baseLanguage = props.BaseLanguage || 'en';
+    this.translatedLanguages = props.translatedLanguages || [];
+    /* each language = {
+            languageId
+            code: string, // short name "en"
+            name: string 
+          }
+     */
   }
+  // languages section 
+  static allAvailableLanguages() {
+    return Language.allAvailableLanguages();
+  }
+  addLanguage(lang) {
+    this.translatedLanguages.push(lang);
+  }
+  async hasLanguage(languageId) {
+    for (let langs of this.translatedLanguages) {
+      if (langs._id == languageId) {
+        return await (IO.isSurveyLangExists(this._id, languageId));
+      }
+    }
+    return false;
+  }
+  async loadTranslatedSurveyByLanguageId() {
 
+  }
+  async translateSurvey(language) {
+    console.log('translate calld:', language);
+    let translatedSurvey = new Survey(this);
+    //survey info
+    translatedSurvey.title = await Language.translate(translatedSurvey.title, language.code);
+    translatedSurvey.description = await Language.translate(translatedSurvey.description, language.code);
+
+    for (const page of translatedSurvey.pages) {
+      // page info 
+      page.title = await Language.translate(page.title, language.code);
+      page.description = await Language.translate(page.description, language.code);
+      for (const question of page.questions) {
+        // question info 
+        question.title = await Language.translate(question.title, language.code);
+        translatedSurvey.description = await Language.translate(question.description, language.code);
+
+        // question content
+        switch (question.type) {
+          case types.QUESTION_CHECKBOX:
+          case types.QUESTION_DROPDOWN:
+          case types.QUESTION_RADIO_GROUP:
+            for (let i = 0; i < question.content.choices.length; i++) {
+              question.content.choices[i] = await Language.translate(question.content.choices[i], language.code);
+            }
+            break;
+          case types.QUESTION_RANGE:
+          case types.QUESTION_RATING:
+          case types.QUESTION_SLIDER:
+            question.content.minLabel = await Language.translate(question.content.minLabel, language.code);
+            question.content.maxLabel = await Language.translate(question.content.maxLabel, language.code);
+        }
+      }
+    }
+    this.addLanguage(language);
+    //must save 
+    return translatedSurvey;
+  }
+  // pages section
   addPage(page) {
     if (!(page instanceof Page)) {
       page = new Page(page)
@@ -75,16 +140,18 @@ class Survey extends Element {
   // load one survey to fill
   // loading info and pages
   static async loadSurveyToFiliingById(surveyId) {
-    if(! await Survey.isExists(surveyId)){
+    if (! await Survey.isExists(surveyId)) {
       throw new Error(`survey ${surveyId} not found`);
-      return;
     }
     return new Survey(await IO.loadSurveyToFiliingById(surveyId))
   }
   // loading all survey
   // must used to loading survey for an specific user
-  static async loadSurveys() {
-    return await IO.getSurveys()
+  static async loadSurveys(query) {
+    return await IO.getSurveys(query)
+  }
+  static async loadSurveyInfoById(surveyId) {
+    return IO.loadSurveyInfoById(surveyId);
   }
   // check if an survey exsisit by its id
   static async isExists(surveyId) {
@@ -94,15 +161,15 @@ class Survey extends Element {
     await IO.removeSurveyById(surveyId)
   }
   async remove() {
-      for(const simiuser of this.users){
-        let user = await User.findUserById(simiuser.userId);
-        user.deleteSurveyById(this._id);
-        await user.save();
-      }
+    for (const simiuser of this.users) {
+      let user = await User.findUserById(simiuser.userId);
+      user.deleteSurveyById(this._id);
+      await user.save();
+    }
     await IO.removeSurveyById(this._id);
   }
-  static async loadSurveyResponseById(surveyId, responseId){
-    let response = await Response.loadSurveyResponseById(surveyId,responseId);
+  static async loadSurveyResponseById(surveyId, responseId) {
+    let response = await Response.loadSurveyResponseById(surveyId, responseId);
     let surveyQuestions = await Survey.loadQustions(surveyId);
     const questions = {}
     // init tempReport whith needed valuse
@@ -113,8 +180,8 @@ class Survey extends Element {
     }
     return response;
   }
-  async loadSurveyResponseById(responseId){
-    return await Survey.loadSurveyResponseById(this._id,responseId);
+  async loadSurveyResponseById(responseId) {
+    return await Survey.loadSurveyResponseById(this._id, responseId);
   }
   static async generatReport(surveyId) {
     // fetching all responses and questions for current survey
@@ -137,7 +204,7 @@ class Survey extends Element {
         case types.QUESTION_SLIDER:
         case types.QUESTION_RATING:
           //TODO: need to add step instead of 1
-          for (let i = parseInt(content.min) ; i <= parseInt(content.max) ; i += 1) tempReport[_id][i] = 0
+          for (let i = parseInt(content.min); i <= parseInt(content.max); i += 1) tempReport[_id][i] = 0
           break
       }
     }
@@ -167,10 +234,10 @@ class Survey extends Element {
         }
       }
     }
-    let report = {surveyId:surveyId,answers:[]};
+    let report = { surveyId: surveyId, answers: [] };
 
     for (const question of questions) {
-      report.answers.push({...(_.pick(question,"_id","type","title","description")),content:tempReport[question._id]});
+      report.answers.push({ ...(_.pick(question, "_id", "type", "title", "description")), content: tempReport[question._id] });
     }
     return report
   }

@@ -1,13 +1,15 @@
-const { port } = require('./config')
+const { port, yandixKey } = require('./config')
 const cors = require('cors')
 const express = require('express')
 const app = express()
-const IO = require('./data/IO');
 const surveysRouter = require('./routes/surveysRouter')
 const fillRouter = require('./routes/fillRouter')
 const usersRouter = require('./routes/usersRouter')
 const authRouter = require('./routes/authenticationRouter')
-
+const translate = require('@vitalets/google-translate-api');
+translate('{ABCD:hello}',{to:'ar'}).then(res=>{
+  console.log(res);
+})
 app.use(express.json())
 app.use(cors())
 
@@ -20,7 +22,6 @@ app.use('/api/auth', authRouter)
 app.get('/api', (req, res) => {
   res.send({ data: 'hello from api' })
 })
-
 app.listen(port, () => {
   console.log(`We are live on ${port}`)
 })

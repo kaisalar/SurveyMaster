@@ -108,7 +108,9 @@ class IO {
       'date',
       'link',
       'description',
-      'users'
+      'users',
+      'baseLanguage',
+      'translatedLanguages'
     ])
     await saveJson(`${SURVEYS_PATH}/${survey._id}.json`, data)
   }
@@ -144,7 +146,10 @@ class IO {
     return { ...info, responses, pages }
   }
   static async isSurveyExists(surveyId) {
-    return exists(`${SURVEYS_PATH}/${surveyId}.json`)
+    return await exists(`${SURVEYS_PATH}/${surveyId}.json`)
+  }
+  static async isSurveyLangExists(surveyId,languageId){
+    return await exists(`${SURVEYS_PATH}/${surveyId}_${languageId}.json`);
   }
   static async getSurveys(query) {
     const surveys = []

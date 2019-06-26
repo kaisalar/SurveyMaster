@@ -293,7 +293,12 @@ const surveySchema = {
     .optional(),
   pages: Joi.array()
     .items(pageSchema)
-    .required()
+    .required(),
+  baseLanguage: Joi.string()
+    .optional(),
+    translatedLanguages:Joi.array()
+    .items(Joi.object())
+    .optional()
 }
 
 const userSchema = {
