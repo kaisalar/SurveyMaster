@@ -8,7 +8,7 @@ const { getErrorMessages } = require('../models/validationSchemas')
 const auth = require('../middlewares/authorization')
 const admin = require('../middlewares/admin')
 const roles = require('../models/roles')
-const Language = require('../models/langauges');
+const Language = require('../models/languages');
 // @route  Get api/surveys
 // @desc   Get All Surveys
 // @access Private
@@ -170,63 +170,97 @@ router.delete('/:id', [auth, admin], async (req, res) => {
   survey.remove();
   res.send(`Survey with id: ${_id} have been removed.`)
 })
-router.get('/:id/langauges', [auth, admin], async (req, res) => {
+
+
+// @route  GET api/surveys/:id/languages
+// @desc   get all available languages to translate
+// @access (admin)
+router.get('/:id/languages', [auth, admin], async (req, res) => {
   const surveyId = req.params.id
+
   if (! await Survey.isExists(surveyId)) {
     return res
       .status(404)
       .send(`The survey with the given id: ${surveyId} NOT FOUND.`)
   }
+
   const survey = await Survey.loadSurveyInfoById(surveyId);
+
   if (!survey)
     return res
       .status(404)
       .send(`The survey with the given id: ${surveyId} NOT FOUND.`)
+
+  // ?????????
   survey.translatedLanguages = [];
-  survey.langs = Languages.getAllAvailableLanguages();
+
+  survey.langs = Language.getAllAvailableLanguages();
+
   res.send(survey);
 });
-router.get('/:sid/langauges/:lid', [auth, admin], async (req, res) => {
+
+// @route  GET api/surveys/:sid/languages/:lid
+// @desc   get 
+// @access (admin)
+// router.get('/:sid/languages/:lid', [auth, admin], async (req, res) => {
+router.get('/:sid/languages/:lid', async (req, res) => {
   const surveyId = req.params.sid
   const languageId = req.params.lid;
+
   if (! await Survey.isExists(surveyId)) {
     return res
       .status(404)
       .send(`The survey with the given id: ${surveyId} NOT FOUND.`)
   }
-  const survey = await Survey.loadSurveyInfoById(surveyId);
+
+  const survey = new Survey( await Survey.loadSurveyInfoById(surveyId) )
   if (!survey)
     return res
       .status(404)
       .send(`The survey with the given id: ${surveyId} NOT FOUND.`)
+
   if(!survey.translatedLanguages)
     survey.translatedLanguages = [];
-  if(!survey.hasLanguage(languageId)){
+
+  if(! await survey.hasLanguage(languageId)){
     return res.status(404)
               .send(`survey with id: ${surveyId} dont has any translated Language of Id:${languageId}`);
   }
+
+  // implementation missing (loadTranslatedSurveyByLanguageId(LanguageId))
   const translatedSurvey = survey.loadTranslatedSurveyByLanguageId(languageId);
+
   if(!survey.hasLanguage(languageId)){
     return res.status(404)
               .send(`survey with id: ${surveyId} dont has any translated Language of Id:${languageId}`);
   }
+
   res.send(translatedSurvey);
 });
-router.post('/:sid/langauges/:lcode', auth, async (req, res) => {
+
+// router.post('/:sid/languages/:lcode', auth, async (req, res) => {
+router.post('/:sid/languages/:lcode', async (req, res) => {
   const surveyId = req.params.sid
   const languageCode = req.params.lcode;
   const language = Language.getLanguage(languageCode);
+
   if (! await Survey.isExists(surveyId)) {
     return res
       .status(404)
       .send(`The survey with the given id: ${surveyId} NOT FOUND.`)
   }
+
   const survey = new Survey(await Survey.loadSurveyToFiliingById(surveyId));
+  
   if (!survey)
     return res
       .status(404)
       .send(`The survey with the given id: ${surveyId} NOT FOUND.`)
-  const translatedSurvey = await survey.translateSurvey(language);
-  res.send(translatedSurvey);
+  
+  survey.translateSurvey(language,(translatedSurvey)=>{
+    res.send(translatedSurvey);
+  });
+
 });
+
 module.exports = router

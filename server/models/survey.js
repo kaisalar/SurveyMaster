@@ -11,7 +11,8 @@ const MultipleChoiceAnswer = require('./answers/multipleChoiceAnswer')
 const SingleNumberValueAnswer = require('./answers/singleNumberValueAnswer')
 const User = require('./user');
 const axios = require('axios');
-const Language = require('../models/langauges');
+const Language = require('./languages');
+
 class Survey extends Element {
   constructor(props) {
     super(props)
@@ -41,61 +42,163 @@ class Survey extends Element {
           }
      */
   }
+
   // languages section 
   static allAvailableLanguages() {
     return Language.allAvailableLanguages();
   }
+
   addLanguage(lang) {
     this.translatedLanguages.push(lang);
   }
+
   async hasLanguage(languageId) {
-    for (let langs of this.translatedLanguages) {
+    for (const langs in this.translatedLanguages) {
       if (langs._id == languageId) {
         return await (IO.isSurveyLangExists(this._id, languageId));
+        // const t =  await IO.isSurveyLangExists(this._id, languageId)
+        // console.log(t)
+        // return true
       }
     }
     return false;
   }
-  async loadTranslatedSurveyByLanguageId() {
 
+  async loadTranslatedSurveyByLanguageId() {
+    
   }
-  async translateSurvey(language) {
+
+  translateSurvey(language,callback) {
     console.log('translate calld:', language);
     let translatedSurvey = new Survey(this);
+    
+    let c = 0;
     //survey info
-    translatedSurvey.title = await Language.translate(translatedSurvey.title, language.code);
-    translatedSurvey.description = await Language.translate(translatedSurvey.description, language.code);
-
+    // title,des
+    c+=2;
     for (const page of translatedSurvey.pages) {
-      // page info 
-      page.title = await Language.translate(page.title, language.code);
-      page.description = await Language.translate(page.description, language.code);
+      // title,des
+      c+=2;
       for (const question of page.questions) {
         // question info 
-        question.title = await Language.translate(question.title, language.code);
-        translatedSurvey.description = await Language.translate(question.description, language.code);
+        c+=2;
+        // question content
+        switch (question.type) {
+          case types.QUESTION_CHECKBOX:
+          case types.QUESTION_DROPDOWN:
+          case types.QUESTION_RADIO_GROUP:
+            c+=question.content.choices.length;
+            break;
+          case types.QUESTION_RANGE:
+          case types.QUESTION_RATING:
+          case types.QUESTION_SLIDER:
+            c+=2;
+        }
+      }
+    }
+    console.log("ccc:",c);
+    Language.translate(translatedSurvey.title, language.code,(word)=>{
+      translatedSurvey.title = word;
+      c--;
+      console.log("sT",c);
+      if(c==0){
+        callback(translatedSurvey);
+      }
+    });
+    Language.translate(translatedSurvey.description, language.code,(word)=>{
+      translatedSurvey.description = word;
+      c--;
+      console.log("sD",c);
+      if(c==0){
+        callback(translatedSurvey);
+      }
+    });
 
+    for (const page of translatedSurvey.pages) {
+
+      // page info 
+      Language.translate(page.title, language.code,(word)=>{
+        page.title = word;
+        c--;
+        console.log("pT",c);
+        if(c==0){
+          callback(translatedSurvey);
+        }
+      });
+      Language.translate(page.description, language.code,(word)=>{
+        page.description = word;
+        c--;
+        console.log("pD",c);
+        if(c==0){
+          callback(translatedSurvey);
+        }
+      });
+
+      for (const question of page.questions) {
+
+        // question info 
+        Language.translate(question.title, language.code, (word) => {
+          question.title = word
+          c--;
+          console.log("qT",question,c);
+          if(c==0){
+            callback(translatedSurvey);
+          }
+        });
+        Language.translate(question.description, language.code,(word)=>{
+          translatedSurvey.description = word;
+          c--;
+          console.log("qD",question,c);
+          if(c==0){
+            callback(translatedSurvey);
+          }
+        });
         // question content
         switch (question.type) {
           case types.QUESTION_CHECKBOX:
           case types.QUESTION_DROPDOWN:
           case types.QUESTION_RADIO_GROUP:
             for (let i = 0; i < question.content.choices.length; i++) {
-              question.content.choices[i] = await Language.translate(question.content.choices[i], language.code);
+              Language.translate(question.content.choices[i], language.code,(word)=>{
+                question.content.choices[i] = word;
+                c--;
+                console.log("choices",i,c);
+                if(c==0){
+                  callback(translatedSurvey);
+                }
+              });
             }
             break;
+
           case types.QUESTION_RANGE:
           case types.QUESTION_RATING:
           case types.QUESTION_SLIDER:
-            question.content.minLabel = await Language.translate(question.content.minLabel, language.code);
-            question.content.maxLabel = await Language.translate(question.content.maxLabel, language.code);
+            Language.translate(question.content.minLabel, language.code,(word)=>{
+              question.content.minLabel = word;
+              c--;
+              console.log("min",c);
+              if(c==0){
+                callback(translatedSurvey);
+              }
+            });
+            Language.translate(question.content.maxLabel, language.code ,(word)=>{
+              question.content.maxLabel = word;
+              c--;
+              console.log("max",c);
+              if(c==0){
+                callback(translatedSurvey);
+              }
+            });
         }
       }
     }
+
     this.addLanguage(language);
-    //must save 
-    return translatedSurvey;
+
+    // TODO: must save 
+    //callback(translatedSurvey);
   }
+
   // pages section
   addPage(page) {
     if (!(page instanceof Page)) {
@@ -116,16 +219,20 @@ class Survey extends Element {
   async save() {
     await IO.saveNewSurvey(this)
   }
+
   // saving just survey Info
   async saveInfo() {
     await IO.saveSurveyInfo(this)
   }
+
   static async loadPages(surveyId) {
     return await IO.loadSurveyPagesById(surveyId)
   }
+
   async loadPages() {
     this.loadPages(this._id)
   }
+
   static async loadQustions(surveyId) {
     const pages = await Survey.loadPages(surveyId)
     const questions = []
@@ -134,9 +241,11 @@ class Survey extends Element {
     }
     return questions
   }
+
   async loadQustions() {
     this.loadQustions(this_id)
   }
+
   // load one survey to fill
   // loading info and pages
   static async loadSurveyToFiliingById(surveyId) {
@@ -145,21 +254,26 @@ class Survey extends Element {
     }
     return new Survey(await IO.loadSurveyToFiliingById(surveyId))
   }
+
   // loading all survey
   // must used to loading survey for an specific user
   static async loadSurveys(query) {
     return await IO.getSurveys(query)
   }
+
   static async loadSurveyInfoById(surveyId) {
     return IO.loadSurveyInfoById(surveyId);
   }
+
   // check if an survey exsisit by its id
   static async isExists(surveyId) {
     return await IO.isSurveyExists(surveyId)
   }
+
   static async remove(surveyId) {
     await IO.removeSurveyById(surveyId)
   }
+
   async remove() {
     for (const simiuser of this.users) {
       let user = await User.findUserById(simiuser.userId);
@@ -168,6 +282,7 @@ class Survey extends Element {
     }
     await IO.removeSurveyById(this._id);
   }
+
   static async loadSurveyResponseById(surveyId, responseId) {
     let response = await Response.loadSurveyResponseById(surveyId, responseId);
     let surveyQuestions = await Survey.loadQustions(surveyId);
@@ -180,9 +295,11 @@ class Survey extends Element {
     }
     return response;
   }
+
   async loadSurveyResponseById(responseId) {
     return await Survey.loadSurveyResponseById(this._id, responseId);
   }
+
   static async generatReport(surveyId) {
     // fetching all responses and questions for current survey
     const responses = await Response.loadSurveyResponses(surveyId)
@@ -253,11 +370,14 @@ class Survey extends Element {
     return result
   }
 }
+
 async function test() {
   // const report = await Survey.generatReport(
   //   '38bf2a5f-b1a8-478e-aa91-0b0d8469e103'
   // )
   // console.log(report)
 }
-test();
+
+// test();
+
 module.exports = Survey

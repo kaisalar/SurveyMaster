@@ -6,10 +6,20 @@ const surveysRouter = require('./routes/surveysRouter')
 const fillRouter = require('./routes/fillRouter')
 const usersRouter = require('./routes/usersRouter')
 const authRouter = require('./routes/authenticationRouter')
-const translate = require('@vitalets/google-translate-api');
-translate('{ABCD:hello}',{to:'ar'}).then(res=>{
-  console.log(res);
-})
+// const translate = require('@vitalets/google-translate-api');
+const Language = require('./models/languages')
+// translate('{ABCD:how are you ?}', { to:'ar' }).then(res=> {
+//   console.log(res);
+// })
+
+async function tes() {
+  Language.translate("paintball", "ar",(word)=>{
+    const resalut = word;
+    console.log(resalut);
+  })
+}
+tes()
+
 app.use(express.json())
 app.use(cors())
 

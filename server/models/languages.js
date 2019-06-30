@@ -1,6 +1,7 @@
 const Element = require('./element');
 const axios = require('axios');
-const {yandixKey} =require('../config');
+const {yandexKey} =require('../config');
+
 availableLangs = [
     { code:"af", name:"Afrikaans" },
     { code:"am", name:"Amharic" },
@@ -96,35 +97,50 @@ availableLangs = [
     { code:"yi", name:"Yiddish" },
     { code:"zh", name:"Chinese"}
 ]
+
 class Language extends Element{
     constructor(props){
         super(props);
-        this._id+= props.code || '';
+        this._id += props.code || '';
         this.code = props.code;
         this.name = props.name;
     }
+
     static getAllAvailableLanguages(){
         return availableLangs;
     }
+
     static getLanguage(code){
         for(let lang of availableLangs){
             if(lang.code==code)return new Language(lang);
         }
         return -1;
     }
-    static async translate(text, code){
+
+    static async translate(text, code,callback){
         console.log(text,code);
-        if(!text || !code)return;
-        if(text.length == 0)return;
+
+        if(!text || !code) {
+            callback("");
+            return;
+        }
+        if(text.length == 0) {
+            callback("");
+            return;
+        }
         try{
-        
-        let res = await axios.post(`https://translate.yandex.net/api/v1.5/tr.json/translate?key=${yandixKey}&text=${text}&lang=${code}`);
+        let res = await axios.post(`https://translate.yandex.net/api/v1.5/tr.json/translate?key=${yandexKey}&text=${text}&lang=${code}`); 
+       
+        // 
         console.log(res.data);
-        return res.data.text[0];
+        
+        callback(res.data.text[0]);
         }
         catch(e){
+          //  console.log("123123123",e);
             throw e;
         }
     }
 }
+
 module.exports = Language;
