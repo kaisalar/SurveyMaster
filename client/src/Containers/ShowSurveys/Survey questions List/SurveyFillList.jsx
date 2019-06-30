@@ -3,14 +3,17 @@ import axios from "../../../axios-requests";
 import Question from "../../../Components/SurveyAnswersList/SurveyFill_Item/SurveyFill_item";
 import {
   previewSurvey,
-  postAnswers
+  postAnswers,
+  translate
 } from "../../../store/actions/answersAction";
 import ReactFullpage from "@fullpage/react-fullpage";
 import { connect } from "react-redux";
 import Loader from "../../../Components/UI/Loader/Loader";
 import styles from "./SurveyFillList.module.css";
-import "./style.css"
+import "./style.css";
 import SubmitSection from "../../../Components/SubmitSection/SubmitSection";
+import { Button } from "rsuite";
+import { MDBBtn } from 'mdbreact';
 /**************** */
 /* using answersAction here  */
 /* whole questions for a single survey*/
@@ -32,10 +35,8 @@ class SurveyFillList extends Component {
     });
   };
   onSubmitHandler = () => {
-    console.log(JSON.stringify(this.props.answers))
-    this.props.postAnswers(this.props.answers, this.props.id); 
-   
-    
+    console.log(JSON.stringify(this.props.answers));
+    this.props.postAnswers(this.props.answers, this.props.id);
   };
   submitAnswers = () => {
     let answer = this.state.answer;
@@ -52,7 +53,7 @@ class SurveyFillList extends Component {
     if (this.state.dataLoaded) {
       let Qs = surveyPages.map(page => {
         return page.questions.map((question, i) => {
-          tooltips.push(question.title)
+          tooltips.push(question.title);
           return (
             <Question
               key={i}
@@ -66,13 +67,13 @@ class SurveyFillList extends Component {
           );
         });
       });
-  
+
       Qs.push(<SubmitSection key={Qs.length} ckicked={this.onSubmitHandler} />);
-      tooltips.push("Submit")
+      tooltips.push("Submit");
       Content = (
         <ReactFullpage
-        navigation
-        navigationTooltips = {tooltips}
+          navigation
+          navigationTooltips={tooltips}
           render={() => {
             return <ReactFullpage.Wrapper>{Qs}</ReactFullpage.Wrapper>;
           }}
@@ -84,13 +85,24 @@ class SurveyFillList extends Component {
         <div className={styles.SurveyTitle}>
           <h1>{title}</h1>
         </div>
+        <MDBBtn
+          onClick={() => {
+            console.log("hello1");
+            this.dataLoadedHandler(false);
+            this.props.translate(
+              this.props.match.params.id,
+              this.dataLoadedHandler
+            );
+          }}
+        >
+          Translaste
+        </MDBBtn>
         {Content}
       </div>
     );
   }
 }
 const mapStateToProps = state => {
- 
   return {
     surveyPages: state.fillSurvey.pages,
     id: state.fillSurvey._id,
@@ -102,5 +114,5 @@ const mapStateToProps = state => {
 };
 export default connect(
   mapStateToProps,
-  { previewSurvey, postAnswers }
+  { previewSurvey, postAnswers, translate }
 )(SurveyFillList);

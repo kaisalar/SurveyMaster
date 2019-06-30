@@ -8,6 +8,5 @@ module.exports = async (req, res, next) => {
     return res
       .status(403)
       .send('Access denied. this user is not an admin on this survey')
-
   next()
 }

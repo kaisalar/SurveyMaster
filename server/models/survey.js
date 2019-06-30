@@ -33,45 +33,16 @@ class Survey extends Element {
             userEmail: string,
             role: string
         } */
-    this.baseLanguage = props.BaseLanguage || 'en';
-    this.translatedLanguages = props.translatedLanguages || [];
-    /* each language = {
-            languageId
-            code: string, // short name "en"
-            name: string 
-          }
-     */
-  }
+    }
 
   // languages section 
   static allAvailableLanguages() {
     return Language.allAvailableLanguages();
   }
 
-  addLanguage(lang) {
-    this.translatedLanguages.push(lang);
-  }
-
-  async hasLanguage(languageId) {
-    for (const langs in this.translatedLanguages) {
-      if (langs._id == languageId) {
-        return await (IO.isSurveyLangExists(this._id, languageId));
-        // const t =  await IO.isSurveyLangExists(this._id, languageId)
-        // console.log(t)
-        // return true
-      }
-    }
-    return false;
-  }
-
-  async loadTranslatedSurveyByLanguageId() {
-    
-  }
-
   translateSurvey(language,callback) {
-    console.log('translate calld:', language);
+
     let translatedSurvey = new Survey(this);
-    
     let c = 0;
     //survey info
     // title,des
@@ -96,11 +67,9 @@ class Survey extends Element {
         }
       }
     }
-    console.log("ccc:",c);
     Language.translate(translatedSurvey.title, language.code,(word)=>{
       translatedSurvey.title = word;
       c--;
-      console.log("sT",c);
       if(c==0){
         callback(translatedSurvey);
       }
@@ -108,7 +77,6 @@ class Survey extends Element {
     Language.translate(translatedSurvey.description, language.code,(word)=>{
       translatedSurvey.description = word;
       c--;
-      console.log("sD",c);
       if(c==0){
         callback(translatedSurvey);
       }
@@ -120,7 +88,6 @@ class Survey extends Element {
       Language.translate(page.title, language.code,(word)=>{
         page.title = word;
         c--;
-        console.log("pT",c);
         if(c==0){
           callback(translatedSurvey);
         }
@@ -128,7 +95,6 @@ class Survey extends Element {
       Language.translate(page.description, language.code,(word)=>{
         page.description = word;
         c--;
-        console.log("pD",c);
         if(c==0){
           callback(translatedSurvey);
         }
@@ -140,7 +106,6 @@ class Survey extends Element {
         Language.translate(question.title, language.code, (word) => {
           question.title = word
           c--;
-          console.log("qT",question,c);
           if(c==0){
             callback(translatedSurvey);
           }
@@ -148,7 +113,6 @@ class Survey extends Element {
         Language.translate(question.description, language.code,(word)=>{
           translatedSurvey.description = word;
           c--;
-          console.log("qD",question,c);
           if(c==0){
             callback(translatedSurvey);
           }
@@ -162,7 +126,6 @@ class Survey extends Element {
               Language.translate(question.content.choices[i], language.code,(word)=>{
                 question.content.choices[i] = word;
                 c--;
-                console.log("choices",i,c);
                 if(c==0){
                   callback(translatedSurvey);
                 }
@@ -176,7 +139,6 @@ class Survey extends Element {
             Language.translate(question.content.minLabel, language.code,(word)=>{
               question.content.minLabel = word;
               c--;
-              console.log("min",c);
               if(c==0){
                 callback(translatedSurvey);
               }
@@ -184,7 +146,6 @@ class Survey extends Element {
             Language.translate(question.content.maxLabel, language.code ,(word)=>{
               question.content.maxLabel = word;
               c--;
-              console.log("max",c);
               if(c==0){
                 callback(translatedSurvey);
               }
@@ -192,8 +153,6 @@ class Survey extends Element {
         }
       }
     }
-
-    this.addLanguage(language);
 
     // TODO: must save 
     //callback(translatedSurvey);

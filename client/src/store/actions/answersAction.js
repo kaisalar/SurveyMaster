@@ -12,6 +12,17 @@ export const previewSurvey = (id,dataLoaded) => dispatch => {
        dataLoaded(true);
      })
 }
+export const translate = (id,dataLoaded) => dispatch => {
+  console.log("hello");
+  axios.get("/api/surveys/" + id + '/languages/ar')
+  .then(response => {
+    dispatch({
+        type: actionTypes.PREVIEW_SURVEY,
+        payload: response.data
+    });
+    dataLoaded(true);
+  })
+}
 
 export const addquestion = (state) => dispatch => {
    dispatch({

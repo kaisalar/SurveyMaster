@@ -118,8 +118,6 @@ class Language extends Element{
     }
 
     static async translate(text, code,callback){
-        console.log(text,code);
-
         if(!text || !code) {
             callback("");
             return;
@@ -130,14 +128,9 @@ class Language extends Element{
         }
         try{
         let res = await axios.post(`https://translate.yandex.net/api/v1.5/tr.json/translate?key=${yandexKey}&text=${text}&lang=${code}`); 
-       
-        // 
-        console.log(res.data);
-        
         callback(res.data.text[0]);
         }
         catch(e){
-          //  console.log("123123123",e);
             throw e;
         }
     }
