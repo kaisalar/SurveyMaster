@@ -109,8 +109,6 @@ class IO {
       'link',
       'description',
       'users',
-      'baseLanguage',
-      'translatedLanguages'
     ])
     await saveJson(`${SURVEYS_PATH}/${survey._id}.json`, data)
   }
@@ -147,9 +145,6 @@ class IO {
   }
   static async isSurveyExists(surveyId) {
     return await exists(`${SURVEYS_PATH}/${surveyId}.json`)
-  }
-  static async isSurveyLangExists(surveyId,languageId){
-    return await exists(`${SURVEYS_PATH}/${surveyId}_${languageId}.json`);
   }
   static async getSurveys(query) {
     const surveys = []
@@ -199,7 +194,9 @@ class IO {
   static async findUserById(userId) {
     return await loadJson(`${USERS_PATH}/${userId}.json`)
   }
-
+  static async loadAccounts(){
+    return await loadJson(`${USERS_PATH}/accounts.json`)
+  }
   // load user by email
   static async findUserByEmail(userEmail) {
     const accounts = await loadJson(`${USERS_PATH}/accounts.json`)
@@ -217,7 +214,9 @@ class IO {
   }
 
 }
-// async function test() {
-// }
-// test();
+async function test() {
+  let accounts = await IO.loadAccounts();
+  console.log(accounts);
+}
+test();
 module.exports = IO

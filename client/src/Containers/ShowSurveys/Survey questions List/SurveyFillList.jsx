@@ -3,8 +3,7 @@ import axios from "../../../axios-requests";
 import Question from "../../../Components/SurveyAnswersList/SurveyFill_Item/SurveyFill_item";
 import {
   previewSurvey,
-  postAnswers,
-  translate
+  postAnswers
 } from "../../../store/actions/answersAction";
 import ReactFullpage from "@fullpage/react-fullpage";
 import { connect } from "react-redux";
@@ -14,6 +13,7 @@ import "./style.css";
 import SubmitSection from "../../../Components/SubmitSection/SubmitSection";
 import { Button } from "rsuite";
 import { MDBBtn } from 'mdbreact';
+import TranslateFloating from "../../../Components/AddQuestionFloating/TranslateFloating";
 /**************** */
 /* using answersAction here  */
 /* whole questions for a single survey*/
@@ -45,6 +45,15 @@ class SurveyFillList extends Component {
   getAnswerHandler = event => {
     this.setState({ answer: event.target.value });
   };
+  chooseLanguage = (code) => {
+    console.log("hello");
+    this.dataLoadedHandler(false);
+    this.props.previewSurvey(
+      this.props.match.params.id,
+      this.dataLoadedHandler,
+      code
+    );
+  }
   render() {
     //    console.log("new State in SurveyFillList.jsx", this.props)
     const { id, title, surveyPages } = this.props;
@@ -85,18 +94,9 @@ class SurveyFillList extends Component {
         <div className={styles.SurveyTitle}>
           <h1>{title}</h1>
         </div>
-        <MDBBtn
-          onClick={() => {
-            console.log("hello1");
-            this.dataLoadedHandler(false);
-            this.props.translate(
-              this.props.match.params.id,
-              this.dataLoadedHandler
-            );
-          }}
-        >
-          Translaste
-        </MDBBtn>
+        <TranslateFloating
+          chooseLanguage={this.chooseLanguage}>
+        </TranslateFloating>
         {Content}
       </div>
     );
@@ -114,5 +114,5 @@ const mapStateToProps = state => {
 };
 export default connect(
   mapStateToProps,
-  { previewSurvey, postAnswers, translate }
+  { previewSurvey, postAnswers}
 )(SurveyFillList);

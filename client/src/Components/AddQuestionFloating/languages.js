@@ -1,8 +1,4 @@
-const Element = require('./element');
-const axios = require('axios');
-const {yandexKey} =require('../config');
-
-availableLangs = [
+export default  [
     { code:"af", name:"Afrikaans" },
     { code:"am", name:"Amharic" },
     { code:"ar", name:"Arabic" },
@@ -97,44 +93,3 @@ availableLangs = [
     { code:"yi", name:"Yiddish" },
     { code:"zh", name:"Chinese"}
 ]
-
-class Language extends Element{
-    constructor(props){
-        super(props);
-        this._id += props.code || '';
-        this.code = props.code;
-        this.name = props.name;
-    }
-
-    static getAllAvailableLanguages(){
-        return availableLangs;
-    }
-
-    static getLanguage(code){
-        for(let lang of availableLangs){
-            if(lang.code==code)return new Language(lang);
-        }
-        return -1;
-    }
-
-    static async translate(text, code,callback){
-        if(!text || !code) {
-            callback("");
-            return;
-        }
-        if(text.length == 0) {
-            callback("");
-            return;
-        }
-        try{
-        let res = await axios.post(`https://translate.yandex.net/api/v1.5/tr.json/translate?key=${yandexKey}&text=${text}&lang=${code}`); 
-        callback(res.data.text[0]);
-        }
-        catch(e){
-            console.log(e);
-            throw e;
-        }
-    }
-}
-
-module.exports = Language;

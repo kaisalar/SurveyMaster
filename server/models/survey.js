@@ -33,125 +33,129 @@ class Survey extends Element {
             userEmail: string,
             role: string
         } */
-    }
+  }
 
   // languages section 
   static allAvailableLanguages() {
     return Language.allAvailableLanguages();
   }
 
-  translateSurvey(language,callback) {
-
-    let translatedSurvey = new Survey(this);
-    let c = 0;
-    //survey info
-    // title,des
-    c+=2;
-    for (const page of translatedSurvey.pages) {
+  translateSurvey(language, callback) {
+    try {
+      console.log('start translate', language);
+      let translatedSurvey = new Survey(this);
+      let c = 0;
+      //survey info
       // title,des
-      c+=2;
-      for (const question of page.questions) {
-        // question info 
-        c+=2;
-        // question content
-        switch (question.type) {
-          case types.QUESTION_CHECKBOX:
-          case types.QUESTION_DROPDOWN:
-          case types.QUESTION_RADIO_GROUP:
-            c+=question.content.choices.length;
-            break;
-          case types.QUESTION_RANGE:
-          case types.QUESTION_RATING:
-          case types.QUESTION_SLIDER:
-            c+=2;
+      c += 2;
+      for (const page of translatedSurvey.pages) {
+        // title,des
+        c += 2;
+        for (const question of page.questions) {
+          // question info 
+          c += 2;
+          // question content
+          switch (question.type) {
+            case types.QUESTION_CHECKBOX:
+            case types.QUESTION_DROPDOWN:
+            case types.QUESTION_RADIO_GROUP:
+              c += question.content.choices.length;
+              break;
+            case types.QUESTION_RANGE:
+            case types.QUESTION_RATING:
+            case types.QUESTION_SLIDER:
+              c += 2;
+          }
         }
       }
-    }
-    Language.translate(translatedSurvey.title, language.code,(word)=>{
-      translatedSurvey.title = word;
-      c--;
-      if(c==0){
-        callback(translatedSurvey);
-      }
-    });
-    Language.translate(translatedSurvey.description, language.code,(word)=>{
-      translatedSurvey.description = word;
-      c--;
-      if(c==0){
-        callback(translatedSurvey);
-      }
-    });
-
-    for (const page of translatedSurvey.pages) {
-
-      // page info 
-      Language.translate(page.title, language.code,(word)=>{
-        page.title = word;
+      Language.translate(translatedSurvey.title, language.code, (word) => {
+        translatedSurvey.title = word;
         c--;
-        if(c==0){
+        if (c == 0) {
           callback(translatedSurvey);
         }
       });
-      Language.translate(page.description, language.code,(word)=>{
-        page.description = word;
+      Language.translate(translatedSurvey.description, language.code, (word) => {
+        translatedSurvey.description = word;
         c--;
-        if(c==0){
+        if (c == 0) {
           callback(translatedSurvey);
         }
       });
 
-      for (const question of page.questions) {
+      for (const page of translatedSurvey.pages) {
 
-        // question info 
-        Language.translate(question.title, language.code, (word) => {
-          question.title = word
+        // page info 
+        Language.translate(page.title, language.code, (word) => {
+          page.title = word;
           c--;
-          if(c==0){
+          if (c == 0) {
             callback(translatedSurvey);
           }
         });
-        Language.translate(question.description, language.code,(word)=>{
-          translatedSurvey.description = word;
+        Language.translate(page.description, language.code, (word) => {
+          page.description = word;
           c--;
-          if(c==0){
+          if (c == 0) {
             callback(translatedSurvey);
           }
         });
-        // question content
-        switch (question.type) {
-          case types.QUESTION_CHECKBOX:
-          case types.QUESTION_DROPDOWN:
-          case types.QUESTION_RADIO_GROUP:
-            for (let i = 0; i < question.content.choices.length; i++) {
-              Language.translate(question.content.choices[i], language.code,(word)=>{
-                question.content.choices[i] = word;
+
+        for (const question of page.questions) {
+
+          // question info 
+          Language.translate(question.title, language.code, (word) => {
+            question.title = word
+            c--;
+            if (c == 0) {
+              callback(translatedSurvey);
+            }
+          });
+          Language.translate(question.description, language.code, (word) => {
+            translatedSurvey.description = word;
+            c--;
+            if (c == 0) {
+              callback(translatedSurvey);
+            }
+          });
+          // question content
+          switch (question.type) {
+            case types.QUESTION_CHECKBOX:
+            case types.QUESTION_DROPDOWN:
+            case types.QUESTION_RADIO_GROUP:
+              for (let i = 0; i < question.content.choices.length; i++) {
+                Language.translate(question.content.choices[i], language.code, (word) => {
+                  question.content.choices[i] = word;
+                  c--;
+                  if (c == 0) {
+                    callback(translatedSurvey);
+                  }
+                });
+              }
+              break;
+
+            case types.QUESTION_RANGE:
+            case types.QUESTION_RATING:
+            case types.QUESTION_SLIDER:
+              Language.translate(question.content.minLabel, language.code, (word) => {
+                question.content.minLabel = word;
                 c--;
-                if(c==0){
+                if (c == 0) {
                   callback(translatedSurvey);
                 }
               });
-            }
-            break;
-
-          case types.QUESTION_RANGE:
-          case types.QUESTION_RATING:
-          case types.QUESTION_SLIDER:
-            Language.translate(question.content.minLabel, language.code,(word)=>{
-              question.content.minLabel = word;
-              c--;
-              if(c==0){
-                callback(translatedSurvey);
-              }
-            });
-            Language.translate(question.content.maxLabel, language.code ,(word)=>{
-              question.content.maxLabel = word;
-              c--;
-              if(c==0){
-                callback(translatedSurvey);
-              }
-            });
+              Language.translate(question.content.maxLabel, language.code, (word) => {
+                question.content.maxLabel = word;
+                c--;
+                if (c == 0) {
+                  callback(translatedSurvey);
+                }
+              });
+          }
         }
       }
+    }catch(e){
+      throw e;
     }
 
     // TODO: must save 

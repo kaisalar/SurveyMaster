@@ -18,7 +18,7 @@ async function tes() {
     console.log(resalut);
   })
 }
-tes()
+// tes()
 
 app.use(express.json())
 app.use(cors())

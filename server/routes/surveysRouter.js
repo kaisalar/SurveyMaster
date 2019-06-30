@@ -172,40 +172,4 @@ router.delete("/:id", [auth, admin], async (req, res) => {
   res.send(`Survey with id: ${_id} have been removed.`);
 });
 
-// @route  GET api/surveys/:id/languages
-// @desc   get all available languages to translate
-// @access (admin)
-router.get("/languages", auth, async (req, res) => {
-  survey.translatedLanguages = [];
-
-  survey.langs = Language.getAllAvailableLanguages();
-
-  res.send(survey);
-});
-
-// @route  GET api/surveys/:sid/languages/:lid
-// @desc   get
-// @access (admin)
-router.get("/:sid/languages/:lcode", async (req, res) => {
-  const surveyId = req.params.sid;
-  const languageCode = req.params.lcode;
-  const language = Language.getLanguage(languageCode);
-  if (!(await Survey.isExists(surveyId))) {
-    return res
-      .status(404)
-      .send(`The survey with the given id: ${surveyId} NOT FOUND.`);
-  }
-
-  const survey = new Survey(await Survey.loadSurveyToFiliingById(surveyId));
-
-  if (!survey)
-    return res
-      .status(404)
-      .send(`The survey with the given id: ${surveyId} NOT FOUND.`);
-
-  survey.translateSurvey(language, translatedSurvey => {
-    res.send(translatedSurvey);
-  });
-});
-
 module.exports = router;

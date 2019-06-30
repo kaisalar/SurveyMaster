@@ -3,7 +3,7 @@ const sjcl = require('./sjcl.js');
 const { sjclKey } = require('../config');
 async function saveJson(path, object) {
   const dir = await files.dir(path)
-  //console.log(dir)
+  console.log(dir)
   await files.mkdir(dir)
   const _data = JSON.stringify(object)
   const data = sjcl.encrypt(sjclKey,_data);
