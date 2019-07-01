@@ -12,9 +12,10 @@ async function saveJson(path, object) {
 
 async function loadJson(path) {
   const dir = await files.dir(path)
-  if (!exists(path)) {
+  if (!await exists(path)) {
     await files.mkdir(dir)
     console.log('not found file and created:', path)
+    return;
   }
   let object
   try {
