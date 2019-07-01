@@ -6,6 +6,7 @@ const surveysRouter = require('./routes/surveysRouter')
 const fillRouter = require('./routes/fillRouter')
 const usersRouter = require('./routes/usersRouter')
 const authRouter = require('./routes/authenticationRouter')
+const surveyUsersRouter = require('./routes/surveyUsersRouter');
 // const translate = require('@vitalets/google-translate-api');
 const Language = require('./models/languages')
 // translate('{ABCD:how are you ?}', { to:'ar' }).then(res=> {
@@ -13,7 +14,7 @@ const Language = require('./models/languages')
 // })
 
 async function tes() {
-  Language.translate("paintball", "ar",(word)=>{
+  Language.translate("رز", "ar-en", (word) => {
     const resalut = word;
     console.log(resalut);
   })
@@ -28,7 +29,7 @@ app.use('/api/users', usersRouter)
 app.use('/api/surveys', surveysRouter)
 app.use('/fill', fillRouter)
 app.use('/api/auth', authRouter)
-
+app.use('/api/surveyUsers', surveyUsersRouter);
 app.get('/api', (req, res) => {
   res.send({ data: 'hello from api' })
 })

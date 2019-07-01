@@ -30,10 +30,10 @@ class User extends Element {
       role
     })
   }
-  deleteSurveyById(surveyId){
-    let id = this.surveys.findIndex((survey,index) => survey.surveyId == surveyId);
-    this.surveys.splice(id,1);
-    }
+  deleteSurveyById(surveyId) {
+    let id = this.surveys.findIndex((survey, index) => survey.surveyId == surveyId);
+    this.surveys.splice(id, 1);
+  }
   // return info just in json opject 
   // if you want to use iit as survey you need to make new survey for each item
   async getSurveysInfo() {
@@ -41,7 +41,7 @@ class User extends Element {
     const surveys = []
     for (const id of surveysIds) {
       const survey = await IO.loadSurveyInfoById(id)
-      if(survey)
+      if (survey)
         surveys.push(survey);
     }
     return surveys

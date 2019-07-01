@@ -154,7 +154,7 @@ class Survey extends Element {
           }
         }
       }
-    }catch(e){
+    } catch (e) {
       throw e;
     }
 
@@ -177,7 +177,16 @@ class Survey extends Element {
       role
     })
   }
-
+  hasUser(userId) {
+    for (const user of this.users) {
+      if (user.userId === userId) return true
+    }
+    return false
+  }
+  deleteUserById(userId) {
+    let id = this.users.findIndex((survey, index) => survey.surveyId == surveyId);
+    this.surveys.splice(id, 1);
+  }
   // saving survey info and pages
   async save() {
     await IO.saveNewSurvey(this)

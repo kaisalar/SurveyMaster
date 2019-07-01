@@ -88,7 +88,8 @@ router.get("/:sid/languages/:lcode", async (req, res) => {
             res.send(translatedSurvey);
         });
     }
-    catch(e){
+    catch (e) {
+        console.log(e);
         res.status(400).send("can't translate to this language right now");
     }
 });

@@ -92,7 +92,7 @@ class IO {
         responses.push(await this.loadEntirResponseById(surveyId, response._id))
       }
     }
-    catch (e){
+    catch (e) {
       console.log(e);
     }
     return responses
@@ -183,10 +183,13 @@ class IO {
     await saveJson(`${USERS_PATH}/${user._id}.json`, user)
     let accounts = await loadJson(`${USERS_PATH}/accounts.json`)
     if (!accounts || !_.isArray(accounts)) accounts = []
-    accounts.push({
-      userId: user._id,
-      email: user.email
-    })
+    let index = accounts.findIndex((account) => account._id === user._id);
+    if (index && index != -1) {
+      accounts.push({
+        userId: user._id,
+        email: user.email
+      })
+    }
     await saveJson(`${USERS_PATH}/accounts.json`, accounts)
   }
 
@@ -194,7 +197,7 @@ class IO {
   static async findUserById(userId) {
     return await loadJson(`${USERS_PATH}/${userId}.json`)
   }
-  static async loadAccounts(){
+  static async loadAccounts() {
     return await loadJson(`${USERS_PATH}/accounts.json`)
   }
   // load user by email
@@ -202,7 +205,7 @@ class IO {
     const accounts = await loadJson(`${USERS_PATH}/accounts.json`)
     if (accounts) {
       const account = accounts.find(a => a.email == userEmail)
-      if (account) return IO.findUserById(account.userId)
+      if (account) return new (await IO.findUserById(account.userId));
     }
     // const files = await getFiles(USERS_PATH)
     // for (const file of files) {

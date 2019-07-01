@@ -18,7 +18,7 @@ router.get("/", auth, async (req, res) => {
   const user = await User.findUserById(req.user._id);
   // load that user's surveys
   const surveys = await user.getSurveysInfo();
-
+  surveys.reverse();
   // send the surveys
   res.send(surveys);
 });
@@ -28,7 +28,7 @@ router.get("/", auth, async (req, res) => {
 // @access Private
 router.get("/:id", [auth], async (req, res) => {
   const surveyId = req.params.id;
-
+  //38bf2a5f-b1a8-478e-aa91-0b0d8469e103
   if (!(await Survey.isExists(surveyId))) {
     return res
       .status(404)
