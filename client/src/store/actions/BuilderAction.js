@@ -7,11 +7,13 @@ import {Alert} from 'rsuite'
 export const ChangeTitle = (newVal) => dispatch =>
   dispatch({ type: actions.CHANGE_SURVEY_TITLE,val:newVal });
 
-
+export const ChangeColor = (newVal) => dispatch => dispatch({type: actions.CHANGE_BG,color: newVal})
 export const AddQuestion = (type) => dispatch =>
   dispatch({ type: actions.ADD_QUESTION,Qtype: type });
 export const SubmitNewSurvey = (survey,submittig,Redirect) => dispatch => {
   let SC = _.cloneDeep(survey)
+  SC.color = SC.color.toString()
+  console.log(SC.color)
   SC.pages[0].questions = SC.pages[0].questions.map(el => {
     let newQ = _.pick(el, ["title", "type", "content"]);
     switch (newQ.type) {
@@ -54,9 +56,6 @@ export const SubmitNewSurvey = (survey,submittig,Redirect) => dispatch => {
   const header = {
     "x-auth-token": localStorage.getItem("token")
   };
-
-  // survey.pages[0].questions = finalSurveyQuestions
-  console.log(SC.pages[0].questions[0],survey.pages[0].questions[0]);
   axios
     .post("/api/surveys", SC,{headers:header})
     .then(response => {

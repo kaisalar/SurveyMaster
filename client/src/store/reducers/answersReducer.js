@@ -7,7 +7,8 @@ const initialState = {
   pages: [
 
   ],
-  error:null
+  error:null,
+  color: '#553C8B'
 };
 
 const answerReducer = (state = initialState, action) => {
@@ -21,7 +22,8 @@ const answerReducer = (state = initialState, action) => {
         title: action.payload.title,
         description: action.payload.description,
         date: action.payload.date,
-        pages: action.payload.pages
+        pages: action.payload.pages,
+        color: action.payload.color
       };
 
    

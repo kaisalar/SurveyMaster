@@ -290,8 +290,9 @@ const surveySchema = {
           .max(1024)
           .required(),
      color: Joi.string()
-          .hex()
+          .regex(/^#[A-Fa-f0-9]{6}/)
           .optional(),
+          
      description: Joi.string()
           .allow('')
           .max(1024)

@@ -1,11 +1,20 @@
+.dark .btn.btn-outline-info {
+  border: 2px solid rgba(0, 0, 0, 0.2) !important;
+  color: white !important;
+  background-color: #553c8b;
+}
+.dark .btn.btn-outline-info:hover, .dark .btn.btn-outline-info:focus {
+color: #553c8b !important;
+border-color: #553c8b !important;
+}
 .btn.btn-outline-info {
-  border: 2px solid #9ea9f0 !important;
+  background-color: transparent !important
 }
 .btn.btn-outline-info a {
-  color: #9ea9f0 !important;
+  color: #9ea9f0 ;
 }
 a:focus {
-  color: #553c8b !important;
+  color: #553c8b ;
 }
 .navbar { 
   background-color: #f1f1f1;

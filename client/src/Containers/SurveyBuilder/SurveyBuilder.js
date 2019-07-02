@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import SurveyTitle from "../../Components/SurveyTitle/SurveyTitle";
 import Question from "../../Components/Question/Question";
 import Layout from "../../Components/Layout/Layout";
@@ -7,7 +6,8 @@ import SurveyBuilderWelcome from "../../Components/SurveyBuilderWelcome/SurveyBu
 import {
   AddQuestion,
   SubmitNewSurvey,
-  ChangeTitle
+  ChangeTitle,
+  ChangeColor
 } from "../../store/actions/BuilderAction";
 import styleClass from "./SurveyBuilder.module.css";
 import "./SurveyBuilder.css";
@@ -15,14 +15,21 @@ import { MDBBtn } from "mdbreact";
 import { connect } from "react-redux";
 import AddQuestionFloating from "../../Components/AddQuestionFloating/AddQuestionFloating";
 import * as Qtypes from "../../Components/Question/QuestionTypes";
+import ColorPicker from '../../Components/Colorpicker/Colorpicker'
 
 class SurveyBuilder extends Component {
   state = {
     showSideEditor: false,
     focusedQuestion: 0,
-    submitting: false
+    submitting: false,
   };
-
+  componentWillUnmount() { 
+    document.body.style.backgroundColor = '#CCC1FF'
+  }
+  colorChanged = (newColor) => { 
+    document.body.style.backgroundColor = newColor
+    this.props.ChangeColor(newColor)
+  }
   showSideEditorHandler = index => {
     this.setState({
       showSideEditor: true,
@@ -65,20 +72,20 @@ class SurveyBuilder extends Component {
             {Questions}
             <div className={styleClass.SurveyTitle}>
               <MDBBtn
-              disabled = { this.state.submitting}
-              onClick={() => {
-                this.setState(
-                  { submitting: true },
-                  this.props.SubmitNewSurvey(
-                    this.props.create,
-                    this.SubmittingHandler,
-                    window.setTimeout(
-                      () => this.props.history.push(`/surveys`),
-                      2000
+                disabled={this.state.submitting}
+                onClick={() => {
+                  this.setState(
+                    { submitting: true },
+                    this.props.SubmitNewSurvey(
+                      this.props.create,
+                      this.SubmittingHandler,
+                      window.setTimeout(
+                        () => this.props.history.push(`/surveys`),
+                        2000
+                      )
                     )
-                  )
-                );
-              }}
+                  );
+                }}
               >
                 SUBMIT
               </MDBBtn>
@@ -97,6 +104,7 @@ class SurveyBuilder extends Component {
     return (
       <React.Fragment>
         <AddQuestionFloating text="Add Question" />
+        <ColorPicker clicked={this.colorChanged}></ColorPicker>
         <Layout>{PageContent}</Layout>
       </React.Fragment>
     );
@@ -112,5 +120,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { AddQuestion, ChangeTitle, SubmitNewSurvey }
+  { AddQuestion, ChangeTitle,ChangeColor, SubmitNewSurvey }
 )(SurveyBuilder);

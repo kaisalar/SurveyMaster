@@ -2,6 +2,14 @@ import React, { Component } from "react";
 import "./Homepage.css";
 
 class HomePage extends Component {
+  componentDidMount() {
+    document.body.classList.add("dark")
+  }
+  componentWillUnmount() { 
+    document.body.classList.remove("dark")
+
+  }
+  
   render() {
     return (
       <div className="home-page">

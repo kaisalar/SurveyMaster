@@ -5,10 +5,12 @@ const initialState = {
     {
       questions: []
     }
-  ]
+  ],
+  color: '#553c8b'
 };
 const reducer = (state = initialState, action) => {
   let newPages = [...state.pages];
+  let newColor = [...state.color]
   switch (action.type) {
     case actions.ADD_QUESTION:
       const newQuestion = {
@@ -74,12 +76,17 @@ const reducer = (state = initialState, action) => {
           break;
       }
       break;
+      case actions.CHANGE_BG: 
+      newColor = action.color;
+      break
+      
     default:
       break;
   }
   return {
     ...state,
-    pages: newPages
+    pages: newPages,
+    color: newColor
   };
 };
 // const handleContentOfType = Question => {

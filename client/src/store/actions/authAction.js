@@ -71,6 +71,7 @@ export const authSignIn = (email, password) => async (dispatch) => {
       password: password
     };
     dispatch(authStart());
+    console.log("AuthDAta",authData)
     const response = await axios.post("/api/auth", authData);
     return dispatch(authSuccess(response.data));
   } catch (err) {

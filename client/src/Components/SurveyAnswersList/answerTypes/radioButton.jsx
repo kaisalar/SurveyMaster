@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Radio, RadioGroup } from "rsuite";
-import _ from "lodash";
 
 class RadioButton extends Component {
   state = {
