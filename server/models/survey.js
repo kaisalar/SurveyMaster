@@ -258,6 +258,8 @@ class Survey extends Element {
   static async loadSurveyResponseById(surveyId, responseId) {
     let response = await Response.loadSurveyResponseById(surveyId, responseId);
     let surveyQuestions = await Survey.loadQustions(surveyId);
+    response.survey = await Survey.loadSurveyInfoById(surveyId);
+
     const questions = {}
     // init tempReport whith needed valuse
     for (const question of surveyQuestions) questions[question._id] = question;
