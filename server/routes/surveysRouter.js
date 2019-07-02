@@ -18,7 +18,7 @@ router.get("/", auth, async (req, res) => {
   const user = await User.findUserById(req.user._id);
   // load that user's surveys
   const surveys = await user.getSurveysInfo();
-  surveys.reverse();
+  // surveys.reverse();
   // send the surveys
   res.send(surveys);
 });
