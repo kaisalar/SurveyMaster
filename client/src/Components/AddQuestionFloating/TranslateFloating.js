@@ -2,7 +2,6 @@ import React from "react";
 import languages from "./languages";
 import "./AddQuestionFloating.css";
 import {
-  MDBIcon,
   MDBDropdownItem,
   MDBDropdownMenu,
   MDBDropdownToggle,

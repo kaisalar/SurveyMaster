@@ -11,8 +11,6 @@ import Loader from "../../../Components/UI/Loader/Loader";
 import styles from "./SurveyFillList.module.css";
 import "./style.css";
 import SubmitSection from "../../../Components/SubmitSection/SubmitSection";
-import { Button } from "rsuite";
-import { MDBBtn } from 'mdbreact';
 import TranslateFloating from "../../../Components/AddQuestionFloating/TranslateFloating";
 /**************** */
 /* using answersAction here  */
@@ -56,7 +54,10 @@ class SurveyFillList extends Component {
   }
   render() {
     //    console.log("new State in SurveyFillList.jsx", this.props)
-    const { id, title, surveyPages } = this.props;
+    document.body.style.backgroundColor = this.props.color;
+
+    const { id, title, surveyPages,color } = this.props;
+    console.log(color)
     let Content = <Loader />;
     let tooltips = [];
     if (this.state.dataLoaded) {
@@ -109,7 +110,8 @@ const mapStateToProps = state => {
     date: state.fillSurvey.date,
     title: state.fillSurvey.title,
     answers: state.questionAnswer,
-    error: state.fillSurvey.error
+    error: state.fillSurvey.error,
+    color: state.fillSurvey.color
   };
 };
 export default connect(

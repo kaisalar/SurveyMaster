@@ -9,6 +9,14 @@ class Form extends Component {
     errors: {},
   
   };
+  componentDidMount() {
+    document.body.classList.add("dark");
+  }
+  componentWillUnmount() {
+    document.body.classList.remove("dark");
+
+  }
+  
 
   validate = () => {
     const options = { abortEarly: false };

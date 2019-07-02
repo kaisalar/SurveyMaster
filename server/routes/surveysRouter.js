@@ -8,7 +8,6 @@ const { getErrorMessages } = require("../models/validationSchemas");
 const auth = require("../middlewares/authorization");
 const admin = require("../middlewares/admin");
 const roles = require("../models/roles");
-const Language = require("../models/languages");
 
 // @route  Get api/surveys
 // @desc   Get All Surveys
@@ -131,6 +130,7 @@ router.post("/", auth, async (req, res) => {
   const { error } = Survey.validate(req.body);
   if (error) {
     const message = getErrorMessages(error);
+    console.log(message);
     return res.status(400).send(message);
   }
 
@@ -138,7 +138,7 @@ router.post("/", auth, async (req, res) => {
   const survey = new Survey({
     ...req.body
   });
-
+  console.log(survey);
   const user = await User.findUserById(req.user._id);
 
   // Add the user to the survey

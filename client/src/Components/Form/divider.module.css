@@ -19,7 +19,7 @@
   margin-top:40px;
   z-index: 1000;
   font-family: 'Roboto Mono';
-  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
  
 }
 .h2{
@@ -43,7 +43,7 @@
   height: auto;
   float: right;
   background-color: #f1f1f1;
-  box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.753);
+  box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
 }
 @media screen and (max-width: 750px) {

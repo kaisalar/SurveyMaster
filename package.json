@@ -19,13 +19,13 @@
     "yarn": "^1.16.0"
   },
   "dependencies": {
-    "@fullpage/react-fullpage": "^0.1.14",
     "@vitalets/google-translate-api": "^2.8.0",
     "concurrently": "^3.5.1",
     "express": "^4.17.0",
     "files": "^1.0.0",
     "google-translate-api": "^2.3.0",
     "i": "^0.3.6",
-    "npm": "^6.9.0"
+    "npm": "^6.9.0",
+    "react-color": "^2.17.3"
   }
 }

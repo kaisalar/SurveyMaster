@@ -28,3 +28,4 @@ export const AUTH_FAIL = "AUTH_FAIL";
 export const CURRENT_USER = "CURRENT_USER";
 export const LOAD_RESPONSES_LIST = "LOAD_RESPONSES_LIST";
 export const LOAD_RESPONSE = "LOAD_RESPONSE";
+export const CHANGE_BG = "CHANGE_BG";
