@@ -1,7 +1,6 @@
 const Element = require('./element');
 const axios = require('axios');
 const { yandexKey } = require('../config');
-const request = require('request');
 availableLangs = [
     { code: "af", name: "Afrikaans" },
     { code: "am", name: "Amharic" },

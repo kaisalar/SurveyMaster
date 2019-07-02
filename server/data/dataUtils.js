@@ -25,7 +25,6 @@ async function loadJson(path) {
     else throw `${path} file has an error in loading data`
   } catch (e) {
     console.log(e)
-    throw e;
   }
   return object
 }
