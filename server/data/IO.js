@@ -90,17 +90,13 @@ class IO {
      static async loadSurveyResponsesById(surveyId) {
           let responses = []
           try {
-               let responsesInfo = await this.loadSurveyResponsesInfoById(
-                    surveyId
-               )
-               if (!responsesInfo) responsesInfo = []
-               for (let response of responsesInfo) {
-                    responses.push(
-                         await this.loadEntirResponseById(
-                              surveyId,
-                              response._id
-                         )
-                    )
+               let responsesInfo = await this.loadSurveyResponsesInfoById(surveyId)
+               if (!responsesInfo || !_.isArray(responses)) responsesInfo = []
+               // devDeugger("1", responses);
+               for (let _response of responsesInfo) {
+                    const response = await this.loadEntirResponseById(surveyId, _response._id)
+                    if (response)
+                         responses.push(response)
                }
           } catch (e) {
                devDeugger(e)
