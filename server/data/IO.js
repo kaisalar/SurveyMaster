@@ -195,7 +195,6 @@ class IO {
           let accounts = await loadJson(`${USERS_PATH}/accounts.json`)
           if (!accounts || !_.isArray(accounts)) accounts = []
           let index = accounts.findIndex(account => account.userId === user._id)
-          devDeugger("index", index)
           if (index && index == -1) {
                accounts.push({
                     userId: user._id,
@@ -204,7 +203,16 @@ class IO {
           }
           await saveJson(`${USERS_PATH}/accounts.json`, accounts)
      }
-
+     static async removeUserById(userId) {
+          await removeFile(`${USERS_PATH}/${userId}.json`);
+          let accounts = await IO.loadAccounts();
+          if (!accounts || !_.isArray(accounts)) accounts = [];
+          let index = accounts.findIndex(account => account.userId === user._id)
+          if (index && index != -1) {
+               accounts.splice(index, 1);
+          }
+          await saveJson(`${USERS_PATH}/accounts.json`, accounts);
+     }
      // load user by id
      static async findUserById(userId) {
           return await loadJson(`${USERS_PATH}/${userId}.json`)

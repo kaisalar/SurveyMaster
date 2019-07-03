@@ -29,6 +29,7 @@ async function loadJson(path) {
     const data = sjcl.decrypt(sjclKey, _data);
     if (!data) throw `${path} file has an error in loading data`
     object = await JSON.parse(data)
+    devDeugger("object loaded", object);
   } catch (e) {
     devDeugger("IO loading ERROR", e)
   }

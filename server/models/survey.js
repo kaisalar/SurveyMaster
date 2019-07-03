@@ -193,8 +193,8 @@ class Survey extends Element {
     return false
   }
   deleteUserById(userId) {
-    let id = this.users.findIndex((survey, index) => survey.surveyId == surveyId);
-    this.surveys.splice(id, 1);
+    let id = this.users.findIndex((survey, index) => survey.userId == userId);
+    this.users.splice(id, 1);
   }
   // saving survey info and pages
   async save() {
@@ -243,7 +243,7 @@ class Survey extends Element {
   }
 
   static async loadSurveyInfoById(surveyId) {
-    return new Survey(IO.loadSurveyInfoById(surveyId));
+    return new Survey(await IO.loadSurveyInfoById(surveyId));
   }
 
   // check if an survey exsisit by its id
