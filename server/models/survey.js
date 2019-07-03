@@ -304,7 +304,7 @@ class Survey extends Element {
           for (let i = parseInt(content.min); i <= parseInt(content.max); i += 1) tempReport[_id][i] = 0
           break
         default:
-          tempReport[questionId][content.value] = 0
+          tempReport[_id][content.value] = 0
       }
     }
     for (const response of responses) {
