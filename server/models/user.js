@@ -61,6 +61,13 @@ class User extends Element {
     }
     return false
   }
+  isCreatorOnSurvey(surveyId) {
+    for (const survey of this.surveys) {
+      if (survey.surveyId === surveyId && survey.role === roles.ROLE_CREATOR)
+        return true
+    }
+    return false
+  }
 
   generateAuthToken() {
     return jwt.sign(

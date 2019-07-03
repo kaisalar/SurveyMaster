@@ -4,7 +4,7 @@ const Survey = require('../models/survey');
 const User = require('../models/user');
 const router = express.Router()
 const auth = require('../middlewares/authorization');
-const admin = require('../middlewares/admin');
+const creator = require('../middlewares/creator');
 
 // @route  get api/surveyUsers
 // @desc   get all users of specfic survey
@@ -70,10 +70,10 @@ router.post('/:sid', [auth, admin], async (req, res) => {
     }
 })
 
-// @route  post api/surveyUsers/:id
-// @desc   post new user for survey
+// @route  delete api/surveyUsers/:id
+// @desc   delete some user from the survey
 // @access private, admin
-router.delete('/:sid/uid', async (req, res) => {
+router.delete('/:sid/uid', [auth, creator], async (req, res) => {
     const surveyID = req.params.sid;
     const userID = req.params.uid;
     if (!Survey.isExists(surveyID)) {

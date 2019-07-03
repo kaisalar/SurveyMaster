@@ -53,38 +53,38 @@ class Response extends Element {
         }
     }
     // saving new Response
-    static async saveNewResponse(response){
+    static async saveNewResponse(response) {
         await IO.saveEntireResponse(response);
     }
-    async save(){
+    async save() {
         await Response.saveNewResponse(this);
     }
     // saving new Response Info
-    static async saveResponseInfo(response){
+    static async saveResponseInfo(response) {
         await IO.saveResponseInfo(response);
     }
     // loading all survey responses info  by sruvey Id
-    static async loadSurveyResponsesInfo(surveyId){
+    static async loadSurveyResponsesInfo(surveyId) {
         return await IO.loadSurveyResponsesInfoById(surveyId);
     }
     // loading all survey responses info to current Survey 
-    async loadSurveyResponsesInfo(){
+    async loadSurveyResponsesInfo() {
         return await this.loadSurveyResponsesInfo(this._id);
     }
     // loading entire one specific response By Surey Id and response Id
-    static async loadSurveyResponseById(surveyId, responseId){
+    static async loadSurveyResponseById(surveyId, responseId) {
         return new Response(await IO.loadEntirResponseById(surveyId, responseId));
     }
     // loading entire one specific response to current Survey by response Id
-    async loadSurveyResponseById(responseId){
+    async loadSurveyResponseById(responseId) {
         return await this.loadSurveyResponseById(this._id, responseId);
     }
     // loading all Responses to an Survey By survey Id 
-    static async loadSurveyResponses(surveyId){ 
+    static async loadSurveyResponses(surveyId) {
         return await IO.loadSurveyResponsesById(surveyId);
     }
     // loading all Responses to current Survey 
-    async loadSurveyResponses(){
+    async loadSurveyResponses() {
         return await this.loadSurveyResponses(this._id);
     }
     static validate(response) {

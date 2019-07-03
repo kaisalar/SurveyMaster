@@ -18,7 +18,6 @@ router.post('/', async (req, res) => {
   // Check if the user informations
   let user = await User.findByEmail(req.body.email)
   if (!user) return res.status(400).send('Invalid email or password.')
-  //DA Was HERE XD
 
   const validPassword = await bcrypt.compare(req.body.password, user.password)
   if (!validPassword) return res.status(400).send('Invalid email or password.')

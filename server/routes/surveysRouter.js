@@ -6,7 +6,7 @@ const Survey = require("../models/survey");
 const Response = require("../models/response");
 const { getErrorMessages } = require("../models/validationSchemas");
 const auth = require("../middlewares/authorization");
-const admin = require("../middlewares/admin");
+const creator = require("../middlewares/creator");
 const roles = require("../models/roles");
 
 // @route  Get api/surveys
@@ -130,7 +130,6 @@ router.post("/", auth, async (req, res) => {
   const { error } = Survey.validate(req.body);
   if (error) {
     const message = getErrorMessages(error);
-    console.log(message);
     return res.status(400).send(message);
   }
 
@@ -138,12 +137,12 @@ router.post("/", auth, async (req, res) => {
   const survey = new Survey({
     ...req.body
   });
-  console.log(survey);
+
   const user = await User.findUserById(req.user._id);
 
   // Add the user to the survey
-  survey.addUser(user, roles.ROLE_ADMIN);
-  user.addSurvey(survey, roles.ROLE_ADMIN);
+  survey.addUser(user, roles.ROLE_CREATOR);
+  user.addSurvey(survey, roles.ROLE_CREATOR);
 
   // Save survey to DB
   await survey.save();
@@ -155,7 +154,7 @@ router.post("/", auth, async (req, res) => {
 // @route  Delete api/surveys/:id
 // @desc   Delete a Survey by id
 // @access (Admin)
-router.delete("/:id", [auth, admin], async (req, res) => {
+router.delete("/:id", [auth, creator], async (req, res) => {
   const _id = req.params.id;
   if (!(await Survey.isExists(_id))) {
     return res
@@ -171,5 +170,34 @@ router.delete("/:id", [auth, admin], async (req, res) => {
   survey.remove();
   res.send(`Survey with id: ${_id} have been removed.`);
 });
+
+
+// @route  get api/surveys/:id/responses.xlsx
+// @desc   return excel file for survey responses 
+// @access (Admin)
+// router.get("/:id/responsesExcel", auth, async (req, res) => {
+router.get("/:id/responses.xlsx", async (req, res) => {
+  const surveyId = req.params.id;
+  if (!(await Survey.isExists(surveyId))) {
+    return res
+      .status(404)
+      .send(`The survey with the given id: ${surveyId} NOT FOUND.`);
+  }
+  const survey = await Survey.loadSurveyInfoById(surveyId);
+  if (!survey)
+    return res
+      .status(404)
+      .send(`The survey with the given id: ${surveyId} NOT FOUND.`);
+  // Delete survey
+  try {
+    const file = await Survey.generateResponsesExcelFile(surveyId);
+    file.write(`${surveyId}.${survey.title}.Responses.xlsx`, res);
+  }
+  catch (e) {
+    console.log(e);
+    res.status(400).send("bad connection try Again later");
+  }
+});
+
 
 module.exports = router;

@@ -6,12 +6,10 @@ const Response = require('./response')
 const { surveySchema } = require('./validationSchemas')
 const IO = require('../data/IO')
 const types = require('./types')
-const TextAnswer = require('./answers/textAnswer')
-const MultipleChoiceAnswer = require('./answers/multipleChoiceAnswer')
-const SingleNumberValueAnswer = require('./answers/singleNumberValueAnswer')
 const User = require('./user');
-const axios = require('axios');
 const Language = require('./languages');
+var excel = require('excel4node');
+
 
 class Survey extends Element {
   constructor(props) {
@@ -258,8 +256,6 @@ class Survey extends Element {
   static async loadSurveyResponseById(surveyId, responseId) {
     let response = await Response.loadSurveyResponseById(surveyId, responseId);
     let surveyQuestions = await Survey.loadQustions(surveyId);
-    response.survey = await Survey.loadSurveyInfoById(surveyId);
-
     const questions = {}
     // init tempReport whith needed valuse
     for (const question of surveyQuestions) questions[question._id] = question;
@@ -343,13 +339,57 @@ class Survey extends Element {
     const result = Joi.validate(this, surveySchema)
     return result
   }
+  // files Genrating //
+  async generateResponsesExcelFile(surveyId) {
+    return await Survey.generateResponsesExcelFile(this._id);
+  }
+  // generate excel file for responses 
+  static async generateResponsesExcelFile(surveyId) {
+    // fetching all responses and questions for current survey
+    const responses = await Response.loadSurveyResponses(surveyId);
+    const questions = await Survey.loadQustions(surveyId)
+    const surveyInfo = await Survey.loadSurveyInfoById(surveyId);
+    const questionIndexes = {};
+    // Create a new instance of a Workbook class
+    let wb = new excel.Workbook();
+    let ws = wb.addWorksheet(surveyInfo.title);
+    let headerStyle = wb.createStyle({
+      font: {
+        size: 14,
+        bold: true,
+        underline: true
+      }
+    });
+    let cillStyle = wb.createStyle({ font: { size: 12 } });
+    questions.forEach((question, index) => {
+      // console.log(question);
+      ws.cell(1, index + 1)
+        .string(question.title)
+        .style(headerStyle);
+      questionIndexes[question._id] = index + 1;
+    });
+    responses.forEach((response, index) => {
+      for (let answer of response.answers) {
+        let content = answer.content.value;
+        switch (answer.type) {
+          case types.ANSWER_RANGE:
+            content = `${answer.content.minValue} -> ${answer.content.maxValue}`;
+          case types.ANSWER_MULTIPLE_CHOICE:
+            content = answer.content.choices.join('-');
+        }
+        ws.cell(index + 2, questionIndexes[answer.questionId])
+          .string(content)
+          .style(cillStyle);
+      }
+    })
+    // wb.write('Excel.xlsx');
+    return wb;
+  }
 }
 
 async function test() {
-  // const report = await Survey.generatReport(
-  //   '38bf2a5f-b1a8-478e-aa91-0b0d8469e103'
-  // )
-  // console.log(report)
+  const wb = await Survey.generateResponsesExcelFile('4cade2af-5a56-404f-97a0-89a6720ecc18');
+  wb.write('Excel.xlsx');
 }
 
 // test();
