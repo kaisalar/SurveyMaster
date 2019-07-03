@@ -19,6 +19,7 @@ import { Redirect } from 'react-router-dom';
 /************* */
 class SurveyFillList extends Component {
     state = {
+        redirect: false,
         lcode: null,
         dataLoaded: false,
     };
@@ -47,9 +48,10 @@ class SurveyFillList extends Component {
         this.setState({ answer: event.target.value });
     };
     chooseLanguage = code => {
-        console.log('hello');
-        this.setState({ lcode: code });
-        console.log(code);
+        // console.log('hello');
+        // this.setState({ lcode: code });
+        window.location = `/fill/${this.props.id}/${code}`;
+        // console.log(code);
         // this.dataLoadedHandler(false);
         // this.props.previewSurvey(
         //     this.props.match.params.id,
@@ -62,7 +64,7 @@ class SurveyFillList extends Component {
         document.body.style.backgroundColor = this.props.color;
 
         const { id, title, surveyPages, color } = this.props;
-        console.log(color);
+        //console.log(color);
         let Content = <Loader />;
         let tooltips = [];
         if (this.state.dataLoaded) {
@@ -108,6 +110,7 @@ class SurveyFillList extends Component {
                     }}
                 />
             );
+            this.setState({ lcode: null });
         }
         return (
             <div className={styles.Newlayout}>
