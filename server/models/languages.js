@@ -1,7 +1,7 @@
 const Element = require('./element');
 const axios = require('axios');
 const { yandexKey } = require('../config');
-const request = require('request');
+const devDeugger = require('../debugger');
 availableLangs = [
     { code: "af", name: "Afrikaans" },
     { code: "am", name: "Amharic" },
@@ -118,24 +118,31 @@ class Language extends Element {
     }
 
     static async translate(text, code, callback) {
-        if (!text || !code) {
+        try {
+            if (!text || !code) {
+                callback("");
+                return;
+            }
+            if (text.length == 0) {
+                callback("");
+                return;
+            }
+            let URL = `https://translate.yandex.net/api/v1.5/tr.json/translate?key=${yandexKey}&text=${text}&lang=${code}`
+            devDeugger(URL);
+            axios.post(URL)
+                .then((res) => {
+                    devDeugger(res.data.text[0]);
+                    callback(res.data.text[0]);
+                })
+                .catch(e => {
+                    devDeugger(e);
+                    throw e;
+                })
+        } catch (e) {
+            devDeugger("ERROR in translate:", e);
             callback("");
-            return;
         }
-        if (text.length == 0) {
-            callback("");
-            return;
-        }
-        console.log(text);
-        let URL = `https://translate.yandex.net/api/v1.5/tr.json/translate?key=${yandexKey}&text=${text}&lang=${code}`
-        console.log(URL);
-        axios.post(URL)
-            .then((res) => {
-                callback(res.data.text[0]);
-            })
-            .catch(e => {
-                throw e;
-            })
+
     }
 }
 

@@ -9,8 +9,7 @@ const types = require('./types')
 const User = require('./user');
 const Language = require('./languages');
 var excel = require('excel4node');
-
-
+const devDeugger = require('../debugger')
 class Survey extends Element {
   constructor(props) {
     super(props)
@@ -40,7 +39,7 @@ class Survey extends Element {
 
   translateSurvey(language, callback) {
     try {
-      console.log('start translate', language);
+      devDeugger('start translate', language);
       let translatedSurvey = new Survey(this);
       let c = 0;
       //survey info
@@ -66,9 +65,11 @@ class Survey extends Element {
           }
         }
       }
+      devDeugger("translate count words:", c);
       Language.translate(translatedSurvey.title, language.code, (word) => {
         translatedSurvey.title = word;
         c--;
+        devDeugger(c);
         if (c == 0) {
           callback(translatedSurvey);
         }
@@ -76,6 +77,7 @@ class Survey extends Element {
       Language.translate(translatedSurvey.description, language.code, (word) => {
         translatedSurvey.description = word;
         c--;
+        devDeugger(c);
         if (c == 0) {
           callback(translatedSurvey);
         }
@@ -87,6 +89,7 @@ class Survey extends Element {
         Language.translate(page.title, language.code, (word) => {
           page.title = word;
           c--;
+          devDeugger(c);
           if (c == 0) {
             callback(translatedSurvey);
           }
@@ -94,6 +97,7 @@ class Survey extends Element {
         Language.translate(page.description, language.code, (word) => {
           page.description = word;
           c--;
+          devDeugger(c);
           if (c == 0) {
             callback(translatedSurvey);
           }
@@ -105,6 +109,7 @@ class Survey extends Element {
           Language.translate(question.title, language.code, (word) => {
             question.title = word
             c--;
+            devDeugger(c);
             if (c == 0) {
               callback(translatedSurvey);
             }
@@ -112,6 +117,7 @@ class Survey extends Element {
           Language.translate(question.description, language.code, (word) => {
             translatedSurvey.description = word;
             c--;
+            devDeugger(c);
             if (c == 0) {
               callback(translatedSurvey);
             }
@@ -125,6 +131,7 @@ class Survey extends Element {
                 Language.translate(question.content.choices[i], language.code, (word) => {
                   question.content.choices[i] = word;
                   c--;
+                  devDeugger(c);
                   if (c == 0) {
                     callback(translatedSurvey);
                   }
@@ -138,6 +145,7 @@ class Survey extends Element {
               Language.translate(question.content.minLabel, language.code, (word) => {
                 question.content.minLabel = word;
                 c--;
+                devDeugger(c);
                 if (c == 0) {
                   callback(translatedSurvey);
                 }
@@ -145,6 +153,7 @@ class Survey extends Element {
               Language.translate(question.content.maxLabel, language.code, (word) => {
                 question.content.maxLabel = word;
                 c--;
+                devDeugger(c);
                 if (c == 0) {
                   callback(translatedSurvey);
                 }
@@ -153,7 +162,9 @@ class Survey extends Element {
         }
       }
     } catch (e) {
-      throw e;
+      devDeugger(c, e);
+      if (c == 0)
+        throw e;
     }
 
     // TODO: must save 
@@ -232,7 +243,7 @@ class Survey extends Element {
   }
 
   static async loadSurveyInfoById(surveyId) {
-    return IO.loadSurveyInfoById(surveyId);
+    return new Survey(IO.loadSurveyInfoById(surveyId));
   }
 
   // check if an survey exsisit by its id
@@ -279,7 +290,6 @@ class Survey extends Element {
     for (const question of questions) {
       const { _id, content, type } = question
       tempReport[_id] = {}
-      //console.log(question);
       switch (type) {
         // text and single value init in the response
         case types.QUESTION_CHECKBOX:
@@ -297,7 +307,6 @@ class Survey extends Element {
     }
     for (const response of responses) {
       for (const answer of response.answers) {
-        //    console.log(answer);
         const { questionId, content, type } = answer
         switch (type) {
           case types.ANSWER_RANGE:
@@ -362,7 +371,6 @@ class Survey extends Element {
     });
     let cillStyle = wb.createStyle({ font: { size: 12 } });
     questions.forEach((question, index) => {
-      // console.log(question);
       ws.cell(1, index + 1)
         .string(question.title)
         .style(headerStyle);

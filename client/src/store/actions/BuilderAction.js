@@ -2,17 +2,22 @@ import axios from "../../axios-requests";
 import * as actions from "../actions/types";
 import * as Qtypes from "../../Components/Question/QuestionTypes";
 import _ from "lodash";
-import {Alert} from 'rsuite'
+import { Alert } from 'rsuite'
 
 export const ChangeTitle = (newVal) => dispatch =>
-  dispatch({ type: actions.CHANGE_SURVEY_TITLE,val:newVal });
+  dispatch({ type: actions.CHANGE_SURVEY_TITLE, val: newVal });
 
-export const ChangeColor = (newVal) => dispatch => dispatch({type: actions.CHANGE_BG,color: newVal})
+export const ChangeColor = (newVal) => dispatch => {
+  console.log(newVal);
+  dispatch({ type: actions.CHANGE_BG, color: newVal })
+}
 export const AddQuestion = (type) => dispatch =>
-  dispatch({ type: actions.ADD_QUESTION,Qtype: type });
-export const SubmitNewSurvey = (survey,submittig,Redirect) => dispatch => {
+  dispatch({ type: actions.ADD_QUESTION, Qtype: type });
+export const SubmitNewSurvey = (survey, submittig, Redirect) => dispatch => {
   let SC = _.cloneDeep(survey)
-  SC.color = SC.color.toString()
+  console.log(SC.color);
+  if (_.isArray(SC.color))
+    SC.color = SC.color.join('')
   console.log(SC.color)
   SC.pages[0].questions = SC.pages[0].questions.map(el => {
     let newQ = _.pick(el, ["title", "type", "content"]);
@@ -36,16 +41,16 @@ export const SubmitNewSurvey = (survey,submittig,Redirect) => dispatch => {
           "defaultValue"
         ]);
         console.log(newQ)
-        newQ.content = newQ.content.step === "" ? _.omit(newQ.content,["step"]) : newQ.content
-        newQ.content = newQ.content.defaultValue === "" ? _.omit(newQ.content,["defaultValue"]) : newQ.content
+        newQ.content = newQ.content.step === "" ? _.omit(newQ.content, ["step"]) : newQ.content
+        newQ.content = newQ.content.defaultValue === "" ? _.omit(newQ.content, ["defaultValue"]) : newQ.content
         break;
       case Qtypes.RATING:
-          newQ.content = _.pick(newQ.content, [
-            "min",
-            "max",
-            "defaultValue"
-          ]);
-        newQ.content = newQ.content.defaultValue === "" ? _.omit(newQ.content,["defaultValue"]) : newQ.content
+        newQ.content = _.pick(newQ.content, [
+          "min",
+          "max",
+          "defaultValue"
+        ]);
+        newQ.content = newQ.content.defaultValue === "" ? _.omit(newQ.content, ["defaultValue"]) : newQ.content
         break;
       default:
         newQ.content = {};
@@ -57,7 +62,7 @@ export const SubmitNewSurvey = (survey,submittig,Redirect) => dispatch => {
     "x-auth-token": localStorage.getItem("token")
   };
   axios
-    .post("/api/surveys", SC,{headers:header})
+    .post("/api/surveys", SC, { headers: header })
     .then(response => {
       Alert.success("Submitted Successfully");
       console.log(response);

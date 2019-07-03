@@ -6,13 +6,13 @@ const {
      exists,
      removeFile
 } = require('./dataUtils')
+const devDeugger = require('../debugger');
 
 const SURVEYS_PATH = 'data/db/surveys'
 const RESPONSES_PATH = 'data/db/surveys/responses'
 const PAGES_PATH = 'data/db/surveys/pages'
 const ANSWERS_PATH = 'data/db/surveys/responses/answers'
 const USERS_PATH = 'data/db/users'
-
 class IO {
      /// pages section ///
 
@@ -103,7 +103,7 @@ class IO {
                     )
                }
           } catch (e) {
-               console.log(e)
+               devDeugger(e)
           }
           return responses
      }
@@ -191,10 +191,12 @@ class IO {
      // saving user
      static async saveUser(user) {
           await saveJson(`${USERS_PATH}/${user._id}.json`, user)
+
           let accounts = await loadJson(`${USERS_PATH}/accounts.json`)
           if (!accounts || !_.isArray(accounts)) accounts = []
-          let index = accounts.findIndex(account => account._id === user._id)
-          if (index && index != -1) {
+          let index = accounts.findIndex(account => account.userId === user._id)
+          devDeugger("index", index)
+          if (index && index == -1) {
                accounts.push({
                     userId: user._id,
                     email: user.email
@@ -232,7 +234,7 @@ class IO {
 }
 async function test() {
      let accounts = await IO.loadAccounts()
-     console.log(accounts)
+     devDeugger(accounts)
 }
 test()
 module.exports = IO

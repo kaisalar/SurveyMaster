@@ -27,7 +27,7 @@ const reducer = (state = initialState, action) => {
       newPages[0].questions.push(newQuestion);
       break;
     case actions.CHANGE_SURVEY_TITLE:
-      return { 
+      return {
         ...state,
         title: action.val
       }
@@ -49,7 +49,7 @@ const reducer = (state = initialState, action) => {
     case actions.ADD_CHOICE:
       newPages[0].questions[action.index].content.choices.push(
         "Option " +
-          (newPages[0].questions[action.index].content.choices.length + 1)
+        (newPages[0].questions[action.index].content.choices.length + 1)
       );
       break;
     case actions.DELETE_CHOICE:
@@ -76,10 +76,11 @@ const reducer = (state = initialState, action) => {
           break;
       }
       break;
-      case actions.CHANGE_BG: 
+    case actions.CHANGE_BG:
+      console.log(action.color);
       newColor = action.color;
       break
-      
+
     default:
       break;
   }

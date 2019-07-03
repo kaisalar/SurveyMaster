@@ -1,29 +1,20 @@
-const { port, yandixKey } = require('./config')
+const { port } = require('./config')
 const cors = require('cors')
 const express = require('express')
 const app = express()
+const devDebugger = require('./debugger');
+const morgan = require('morgan');
+devDebugger("DEVUG=app:developer");
+
 const surveysRouter = require('./routes/surveysRouter')
 const fillRouter = require('./routes/fillRouter')
 const usersRouter = require('./routes/usersRouter')
 const authRouter = require('./routes/authenticationRouter')
 const surveyUsersRouter = require('./routes/surveyUsersRouter');
-// const translate = require('@vitalets/google-translate-api');
-const Language = require('./models/languages')
-// translate('{ABCD:how are you ?}', { to:'ar' }).then(res=> {
-//   console.log(res);
-// })
-
-async function tes() {
-  Language.translate("رز", "ar-en", (word) => {
-    const resalut = word;
-    console.log(resalut);
-  })
-}
-// tes()
 
 app.use(express.json())
 app.use(cors())
-
+app.use(morgan('tiny'));
 // Routes
 app.use('/api/users', usersRouter)
 app.use('/api/surveys', surveysRouter)

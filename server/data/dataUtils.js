@@ -1,50 +1,66 @@
 const files = require('files')
 const sjcl = require('./sjcl.js');
 const { sjclKey } = require('../config');
+const devDeugger = require('../debugger');
 async function saveJson(path, object) {
   const dir = await files.dir(path)
-  console.log(dir)
-  await files.mkdir(dir)
-  const _data = JSON.stringify(object)
-  const data = sjcl.encrypt(sjclKey, _data);
-  await files.write(path, data)
+  devDeugger("savefile: " + (path))
+  try {
+    await files.mkdir(dir)
+    const _data = JSON.stringify(object)
+    const data = sjcl.encrypt(sjclKey, _data);
+    await files.write(path, data)
+  } catch (e) {
+    devDeugger("IO saving ERROR", e);
+  }
 }
 
 async function loadJson(path) {
-  const dir = await files.dir(path)
-  if (!await exists(path)) {
-    await files.mkdir(dir)
-    console.log('not found file and created:', path)
-    return;
-  }
   let object
   try {
+    const dir = await files.dir(path)
+    devDeugger("loadfile: " + (path))
+    if (!await exists(path)) {
+      await files.mkdir(dir)
+      devDeugger('not found file and created:', path)
+      return;
+    }
     const _data = await files.read(path)
     const data = sjcl.decrypt(sjclKey, _data);
-    if (data) object = await JSON.parse(data)
-    else throw `${path} file has an error in loading data`
+    if (!data) throw `${path} file has an error in loading data`
+    object = await JSON.parse(data)
   } catch (e) {
-    console.log(e)
+    devDeugger("IO loading ERROR", e)
   }
   return object
 }
 async function getFiles(path) {
-  const dir = await files.dir(path)
-  if (!(await exists(path))) {
-    await files.mkdir(path)
+  try {
+    devDeugger("getfiles: " + (path))
+    if (!(await exists(path))) {
+      await files.mkdir(path)
+    }
+    return await files
+      .list(path)
+      .filter(file => files.stat(file).isFile())
+      .map(files.abs)
+  } catch (e) {
+    devDeugger("IO getting dfiles ERROR", e);
   }
-  return await files
-    .list(path)
-    .filter(file => files.stat(file).isFile())
-    .map(files.abs)
 }
 
 async function exists(path) {
   return await files.exists(path)
 }
 async function removeFile(path) {
-  if (exists(path)) {
-    await files.remove(path)
+  try {
+    devDeugger("remove file:" + await files.mkdir(path));
+    if (exists(path)) {
+      await files.remove(path)
+    }
+  } catch (e) {
+    devDeugger("IO revove ERROR", e);
+    throw e
   }
 }
 module.exports = {

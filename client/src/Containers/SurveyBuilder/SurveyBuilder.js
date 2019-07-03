@@ -23,11 +23,12 @@ class SurveyBuilder extends Component {
     focusedQuestion: 0,
     submitting: false,
   };
-  componentWillUnmount() { 
+  componentWillUnmount() {
     document.body.style.backgroundColor = '#CCC1FF'
   }
-  colorChanged = (newColor) => { 
+  colorChanged = (newColor) => {
     document.body.style.backgroundColor = newColor
+    console.log(newColor);
     this.props.ChangeColor(newColor)
   }
   showSideEditorHandler = index => {
@@ -120,5 +121,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { AddQuestion, ChangeTitle,ChangeColor, SubmitNewSurvey }
+  { AddQuestion, ChangeTitle, ChangeColor, SubmitNewSurvey }
 )(SurveyBuilder);

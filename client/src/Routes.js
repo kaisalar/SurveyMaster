@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Switch,Redirect,withRouter } from "react-router-dom";
+import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import HomePage from "./Containers/HomePage/Homepage";
 import Surveys from "./Containers/ShowSurveys/Surveys List/Surveys";
@@ -19,9 +19,9 @@ class Routes extends Component {
         <Route
           path="/"
           exact
-          render={ () => (
+          render={() => (
             <React.Fragment>
-              <NavBar transparent={true}/>
+              <NavBar transparent={true} />
               <HomePage />
             </React.Fragment>
           )}
@@ -46,11 +46,11 @@ class Routes extends Component {
             </React.Fragment>
           )}
         />
-      
+
         <Redirect to="/" />
       </Switch>
     );
-    if (this.props.isAuthenticated)    
+    if (this.props.isAuthenticated)
       routes = (
         <Switch>
           <Route
@@ -63,25 +63,30 @@ class Routes extends Component {
               </React.Fragment>
             )}
           />
-          <Route path="/fill/:id" component={SurveyFillList} />
+          <Route exact path="/fill/:id/:lcode" render={(props) => (
+            <SurveyFillList {...props} ></SurveyFillList>
+          )} />
+          <Route exact path="/fill/:id" render={(props) => (
+            <SurveyFillList {...props} ></SurveyFillList>
+          )} />
           <Route
             path="/create"
             render={(props) => {
               return (
                 <React.Fragment>
                   <NavBar />
-                  <SurveyBuilder {...props}/>
+                  <SurveyBuilder {...props} />
                 </React.Fragment>
               );
             }}
           />
-           <Route
+          <Route
             path="/surveys/:id"
             render={(props) => {
               return (
                 <React.Fragment>
                   <NavBar />
-                  <Responses {...props}/>
+                  <Responses {...props} />
                 </React.Fragment>
               );
             }}

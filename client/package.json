@@ -1,50 +1,50 @@
 {
-  "name": "client",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "build": "react-scripts build",
-    "start": "react-scripts start",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  },
-  "proxy": "http://localhost:5000/",
-  "dependencies": {
-    "@fullpage/react-fullpage": "^0.1.14",
-    "axios": "^0.18.0",
-    "joi-browser": "^13.4.0",
-    "jwt-decode": "^2.2.0",
-    "lodash": "^4.17.11",
-    "mdbreact": "^4.14.0",
-    "moment": "^2.24.0",
-    "rc-slider": "^8.6.11",
-    "react": "^16.8.6",
-    "react-copy-to-clipboard": "^5.0.1",
-    "react-dom": "^16.8.6",
-    "react-redux": "^6.0.0",
-    "react-router": "^5.0.0",
-    "react-router-dom": "^5.0.0",
-    "react-scripts": "^3.0.1",
-    "react-stars": "^2.2.5",
-    "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0",
-    "rsuite": "^3.8.4",
-    "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^0.87.1"
-  },
-  "devDependencies": {
-    "yarn": "^1.16.0"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+    "name": "client",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "build": "react-scripts build",
+        "start": "react-scripts start",
+        "test": "react-scripts test --env=jsdom",
+        "eject": "react-scripts eject"
+    },
+    "proxy": "https://survey-master-v1.herokuapp.com/",
+    "dependencies": {
+        "@fullpage/react-fullpage": "^0.1.14",
+        "axios": "^0.19.0",
+        "joi-browser": "^13.4.0",
+        "jwt-decode": "^2.2.0",
+        "lodash": "^4.17.11",
+        "mdbreact": "^4.14.0",
+        "moment": "^2.24.0",
+        "rc-slider": "^8.6.11",
+        "react": "^16.8.6",
+        "react-copy-to-clipboard": "^5.0.1",
+        "react-dom": "^16.8.6",
+        "react-redux": "^6.0.0",
+        "react-router": "^5.0.0",
+        "react-router-dom": "^5.0.0",
+        "react-scripts": "^3.0.1",
+        "react-stars": "^2.2.5",
+        "redux": "^4.0.1",
+        "redux-thunk": "^2.3.0",
+        "rsuite": "^3.8.4",
+        "semantic-ui-css": "^2.4.1",
+        "semantic-ui-react": "^0.87.1"
+    },
+    "devDependencies": {
+        "yarn": "^1.16.0"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    }
 }
