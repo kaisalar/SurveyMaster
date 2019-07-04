@@ -109,42 +109,32 @@ class CardExample extends Component {
                                         basic
                                         color="blue"
                                         onClick={this.onShareClick}
-                                        className="cell1"
                                     >
                                         Share{' '}
                                         <i className="fas fa-paper-plane" />
                                     </Button>
                                 </CopyToClipboard>
                                 <Link to={'/surveys/' + this.props.id}>
-                                    <Button
-                                        basic
-                                        color="violet"
-                                        className="cell1"
-                                    >
+                                    <Button basic color="violet">
                                         responses{' '}
                                         <i className="fas fa-paperclip" />
-                                    </Button>
-                                </Link>
-                                <Link
-                                    to={'/surveys/' + this.props.id + '/report'}
-                                >
-                                    <Button
-                                        className="cell2"
-                                        basic
-                                        color="pink"
-                                    >
-                                        report{' '}
-                                        <i className="fas fa-chart-pie" />
                                     </Button>
                                 </Link>
                                 <Button
                                     basic
                                     onClick={this.exportHandler}
                                     color="green"
-                                    className="cell2"
                                 >
-                                    export <i class="fas fa-file-excel" />
+                                    export <i className="fas fa-file-excel" />
                                 </Button>
+                                <Link
+                                    to={'/surveys/' + this.props.id + '/report'}
+                                >
+                                    <Button basic color="teal">
+                                        Reports{' '}
+                                        <i className="fas fa-chart-pie" />
+                                    </Button>
+                                </Link>
                             </div>
                         </Card.Content>
                     </Card>

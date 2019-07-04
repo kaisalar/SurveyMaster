@@ -12,3 +12,6 @@ body.dark {
 .row {
   margin: 0 !important;
 }
+.rs-picker-disabled .rs-picker-toggle, .rs-picker-disabled .rs-picker-toggle-custom { 
+  cursor: auto;
+}

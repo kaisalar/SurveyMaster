@@ -1,31 +1,21 @@
-@import url(
-    https://fonts.googleapis.com/css?family=Noto+Sans:400,
-    700,
-    400italic,
-    700italic
-);
-
-.cell1 {
-    width: 92%;
-    grid-column: 1;
-}
-.cell2 {
-    width: 92%;
-    grid-column: 2;
-}
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic);
 .ui.two.buttons {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
 }
 .ui.two.buttons .ui.button {
-    margin: 5px !important;
-    width: 92%;
-    grid-column: auto;
+  margin: 5px !important;
+  width: calc(100% - 10px);
+  grid-column: 1/1;
 }
 .ui.basic.violet.button:hover {
     background-color: #6435c9 !important;
     color: white !important;
+}
+.ui.basic.teal.button:hover { 
+  background-color: #00b5ad!important;
+  color: white !important;
 }
 .transition {
     transition: 0.3s cubic-bezier(0.3, 0, 0, 1.3);

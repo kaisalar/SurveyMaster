@@ -25,7 +25,7 @@ class Report extends Component {
     };
     render() {
         const {
-            survey: { title, color },
+            survey: { title },
             answers,
         } = this.props;
 

@@ -13,27 +13,19 @@ class colorPicker extends React.Component {
       "#F79F1F",
       "#5758BB",
       "#1B1464",
-      "#6F1E51",
-      "#26de81"
+      "#6F1E51"
     ];
   }
   render() {
-    let acolors = this.colors.map((_, i) => {
-      const content =
-        i === this.colors.length - 1 ? <i className="fas fa-hashtag" /> : null;
-      return (
-        <span
-          key={i}
-          style={{ backgroundColor: this.colors[i] }}
-          onClick={() => {
-            console.log(this.colors[i]);
-            this.props.clicked(this.colors[i]);
-          }}
-        >
-          {content}
-        </span>
-      );
-    });
+    let acolors = this.colors.map((_, i) => (
+      <span
+        key={i}
+        style={{ backgroundColor: this.colors[i] }}
+        onClick={() => {
+          this.props.clicked(this.colors[i]);
+        }}
+      />
+    ));
     return (
       <div className="floaing-color-picker-container">
         <div className="floating-color-picker">
