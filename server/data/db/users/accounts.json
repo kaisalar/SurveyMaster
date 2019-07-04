@@ -1,12 +1,1 @@
-{
-    "iv": "jVxFIAWuD5iuHGGWtpbgQQ==",
-    "v": 1,
-    "iter": 10000,
-    "ks": 128,
-    "ts": 64,
-    "mode": "ccm",
-    "adata": "",
-    "cipher": "aes",
-    "salt": "Y1TTsc5JKiM=",
-    "ct": "LwjO/7V7rU3pFSqEs5CI40gRWUUsqkdX9n5v4eToo8fSOYekWPAtS76l7RWNu7gcZAsb1xg/c296eQ7prfk/wy8oaiwEArxCPY9ZLmhtfwXw6KcyauDaGNRGD0WTdj/VWvYWoSt4/xdKWsZeNPDFE2F+FeBZUW8K9tLKzZSfi0KNmXsVwnwkrRKlimkD/6WJy6HJ6ElDhwaQMlWatQflJj04JfZPkNlU"
-}
+{"iv":"jVxFIAWuD5iuHGGWtpbgQQ==","v":1,"iter":10000,"ks":128,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"Y1TTsc5JKiM=","ct":"LwjO/7V7rU3pFSqEs5CI40gRWUUsqkdX9n5v4eToo8fSOYekWPAtS76l7RWNu7gcZAsb1xg/c296eQ7prfk/wy8oaiwEArxCPY9ZLmhtfwXw6KcyauDaGNRGD0WTdj/VWvYWoSt4/xdKWsZeNPDFE2F+FeBZUW8K9tLKzZSfi0KNmXsVwnwkrRKlimkD/6WJy6HJ6ElDhwaQMlWatQflJj04JfZPkNlU"}
