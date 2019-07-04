@@ -50,6 +50,16 @@
   display: block;
   transition: all .2s ease-in-out
 }
+.dropup-content span:last-child {
+  background: linear-gradient(
+    225deg,
+    #4b7bec,
+    #a55eea,
+    #2bcbba,
+    #fed330,
+    #fc5c65
+  ) !important;
+}
 
 /* Change color of dropup links on hover */
 .dropup-content span:hover {

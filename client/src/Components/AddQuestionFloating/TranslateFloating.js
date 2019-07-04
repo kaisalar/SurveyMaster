@@ -9,7 +9,7 @@ import {
 } from "mdbreact";
 
 const TranslateFloating = props => {
-  let items = languages.map((el, i, arr) => {
+  let items = languages.map((el, i) => {
     return (
       <MDBDropdownItem
         key={i}
@@ -25,8 +25,7 @@ const TranslateFloating = props => {
     <div className="floating-select-picker">
       <MDBDropdown>
         <MDBDropdownToggle>
-          Translate 
-          {/* <MDBIcon icon="plus" /> */}
+          <i class="fas fa-language" />{" "}
         </MDBDropdownToggle>
         <MDBDropdownMenu>{items}</MDBDropdownMenu>
       </MDBDropdown>

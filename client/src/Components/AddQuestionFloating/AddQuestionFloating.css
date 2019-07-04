@@ -12,6 +12,7 @@
     outline: 5px auto #553C8B
 }
 .floating-select-picker .dropdown .btn { 
+    background-color: rgba(255, 255, 2155, 0.5) !important;
     position: absolute;
     padding: 0;
     left: 10px;
@@ -20,14 +21,14 @@
     line-height: 55px;
     height: 55px;
     border-radius: 50%;
-    color: #CCC1FF;
+    color: #212529;
     transition: all 0.1s ease-in-out;
     animation: pulse2 2s infinite ease-out
 }
 @keyframes pulse2 {
     0% {
-        -moz-box-shadow: 0 0 0 0 rgba(0, 0, 255, .15);
-        box-shadow: 0 0 0 0 rgba(0, 0, 255, .15)
+        -moz-box-shadow: 0 0 0 0 rgba(0, 0, 0, .15);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, .15)
     }
 
     50% {
@@ -58,7 +59,4 @@
 
 .floating-select-picker .btn:hover,.floating-select-picker .btn:focus { 
     background-position: 0 0;
-}
-.floating-select-picker .dropdown .btn { 
-    /* background-color: #553c8b !important; */
 }

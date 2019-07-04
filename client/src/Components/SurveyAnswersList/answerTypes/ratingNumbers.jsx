@@ -31,18 +31,32 @@ class RadioButton extends Component {
                 </Radio>
             );
         }
-        return (
-            <RadioGroup
-                name="radioList"
-                inline
-                appearance="picker"
-                defaultValue={Number(defaultValue)}
-                onChange={this.onChoiceChanged}
-            >
-                {choices}
-            </RadioGroup>
-        );
-    }
+     let content = this.props.isResponse ? (
+      <RadioGroup
+        name="radioList"
+        inline
+        appearance="picker"
+        defaultValue={this.props.answer.value}
+      >
+        {choices}
+      </RadioGroup>
+    ) : (
+      <RadioGroup
+        name="radioList"
+        inline
+        appearance="picker"
+        defaultValue={Number(defaultValue)}
+        onChange={this.onChoiceChanged}
+      >
+        {choices}
+      </RadioGroup>
+    );
+    return (
+    <React.Fragment>
+        {content}
+    </React.Fragment>
+    );
+  }
 }
 
 export default RadioButton;
