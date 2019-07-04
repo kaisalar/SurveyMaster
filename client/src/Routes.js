@@ -11,6 +11,7 @@ import SignIn from "./Components/Form/loginForm";
 import Signout from "./Components/Form/logoutForm";
 import "./Routes.css";
 import Responses from "./Containers/Responses/Responses";
+import Report from "./Containers/Report/Report";
 class Routes extends Component {
   render() {
     // console.log(this.props.isAuthenticated);
@@ -63,12 +64,16 @@ class Routes extends Component {
               </React.Fragment>
             )}
           />
+          <Route exact path="/survey/:id/report" render={(props) => (
+            <Report {...props}></Report>
+          )} />
           <Route exact path="/fill/:id/:lcode" render={(props) => (
             <SurveyFillList {...props} ></SurveyFillList>
           )} />
           <Route exact path="/fill/:id" render={(props) => (
             <SurveyFillList {...props} ></SurveyFillList>
           )} />
+
           <Route
             path="/create"
             render={(props) => {

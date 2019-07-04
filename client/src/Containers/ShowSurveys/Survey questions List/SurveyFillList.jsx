@@ -63,7 +63,7 @@ class SurveyFillList extends Component {
         //    console.log("new State in SurveyFillList.jsx", this.props)
         document.body.style.backgroundColor = this.props.color;
 
-        const { id, title, surveyPages, color } = this.props;
+        const { id, title, surveyPages } = this.props;
         //console.log(color);
         let Content = <Loader />;
         let tooltips = [];
