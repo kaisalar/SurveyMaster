@@ -285,39 +285,63 @@ class Survey extends Element {
     // fetching all responses and questions for current survey
     const responses = await Response.loadSurveyResponses(surveyId)
     const questions = await Survey.loadQustions(surveyId)
+    const surveyInfo = await Survey.loadSurveyInfoById(surveyId);
     const tempReport = {}
     // init tempReport whith needed valuse
     for (const question of questions) {
       const { _id, content, type } = question
       tempReport[_id] = {}
+      tempReport[_id].content = {}
       switch (type) {
         // text and single value init in the response
         case types.QUESTION_CHECKBOX:
         case types.QUESTION_DROPDOWN:
         case types.QUESTION_RADIO_GROUP:
-          for (const choice of content.choices) tempReport[_id][choice] = 0
+          tempReport[_id].type = types.ANSWER_MULTIPLE_CHOICE
+          for (const choice of content.choices) {
+            tempReport[_id].content[choice] = 0
+          }
           break
-        case types.QUESTION_RANGE:
         case types.QUESTION_SLIDER:
         case types.QUESTION_RATING:
+          tempReport[_id].type = types.ANSWER_SINGLE_NUMBER_VALUE
+          for (let i = parseInt(content.min); i <= parseInt(content.max); i += 1) {
+            tempReport[_id].content[i] = 0
+          }
+          break;
+        case types.QUESTION_RANGE:
           //TODO: need to add step instead of 1
-          for (let i = parseInt(content.min); i <= parseInt(content.max); i += 1) tempReport[_id][i] = 0
+          tempReport[_id].type = types.ANSWER_RANGE
+          for (let i = parseInt(content.min); i <= parseInt(content.max); i += 1) {
+            tempReport[_id].content[i] = 0
+          }
           break
         default:
-          tempReport[_id][content.value] = 0
+          tempReport[_id].type = types.ANSWER_TEXT
       }
+
     }
+    devDeugger(tempReport);
     for (const response of responses) {
       for (const answer of response.answers) {
         const { questionId, content, type } = answer
+        devDeugger(answer);
         switch (type) {
           case types.ANSWER_RANGE:
             // TODO need TO add Step instead of 1
+            if (!content.min || !content.maxValue || content.minValue > content.maxValue) {
+              devDeugger(answer, "break");
+              break;
+            }
             for (let i = content.minValue; i <= content.maxValue; i += 1)
-              tempReport[questionId][i]++
+              tempReport[questionId].content[i]++
             break
           case types.ANSWER_MULTIPLE_CHOICE:
-            for (const choice of content.choices) tempReport[questionId][choice]++
+            if (!content.choices || !_.isArray(content.choices)) {
+              devDeugger(answer, "break");
+              break;
+            }
+            for (const choice of content.choices) tempReport[questionId].content[choice]++
             break
 
           // same content.value can be used here ^_^
@@ -325,15 +349,21 @@ class Survey extends Element {
           //case types.ANSWER_SINGLE_NUMBER_VALUE:
           // or if dont have any type:
           default:
-            tempReport[questionId][content.value]++
+            if (!content.value || content.value == "" || content.value == 1e9) {
+              devDeugger(answer, "break");
+              break;
+            }
+            tempReport[questionId].content[content.value] = 0
+            tempReport[questionId].content[content.value]++
             break
         }
       }
     }
-    let report = { surveyId: surveyId, answers: [] };
+    devDeugger(tempReport);
+    let report = { survey: _.pick(surveyInfo, "title", "description", "color"), surveyId: surveyId, answers: [] };
 
     for (const question of questions) {
-      report.answers.push({ ...(_.pick(question, "_id", "type", "title", "description")), content: tempReport[question._id] });
+      report.answers.push({ ...(_.pick(question, "_id", "type", "title", "description")), content: tempReport[question._id].content, answerType: tempReport[question._id].type });
     }
     return report
   }
