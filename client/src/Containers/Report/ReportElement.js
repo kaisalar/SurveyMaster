@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Chart from 'react-apexcharts';
 import { chartsTypes } from '../../store/actions/types';
 
-import LeftAlign from '../../Components/UI/LeftAlign/LeftAlign';
 // import "ReportElement.css"
 class ReportElement extends Component {
     constructor(props) {
@@ -24,7 +23,7 @@ class ReportElement extends Component {
                 chart: {
                     id: 'basic-bar',
                     width: '100%',
-                    background: "#00000009",
+                    background: '#00000009',
                 },
                 xaxis: {
                     categories: this.loadingCatigoureis(this.props.data.content)
@@ -38,13 +37,13 @@ class ReportElement extends Component {
                 chartsTypes[this.props.data.answerType] === 'pie'
                     ? this.loadingCatigoureis(this.props.data.content).values
                     : [
-                        {
-                            name: 'series-1',
-                            data: this.loadingCatigoureis(
-                                this.props.data.content
-                            ).values,
-                        },
-                    ],
+                          {
+                              name: 'series-1',
+                              data: this.loadingCatigoureis(
+                                  this.props.data.content
+                              ).values,
+                          },
+                      ],
         };
         console.log(this.state);
     }
@@ -65,7 +64,15 @@ class ReportElement extends Component {
     render() {
         // let titleClass = styleClass.QuestionContainer + ' question-container ';
         return (
-            <div className="section" style={{ margin: "6vh auto auto 28vw", overflow: "hidden", width: "80%", textAlign: "center" }} >
+            <div
+                className="section"
+                style={{
+                    margin: '6vh auto auto 28vw',
+                    overflow: 'hidden',
+                    width: '80%',
+                    textAlign: 'center',
+                }}
+            >
                 <Chart
                     options={this.state.options}
                     series={this.state.series}
