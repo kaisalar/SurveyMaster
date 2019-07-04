@@ -1,5 +1,12 @@
-<<<<<<< HEAD
-{"iv":"ERaDSwMWzE6e3Zx2GulFAg==","v":1,"iter":10000,"ks":128,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"Y1TTsc5JKiM=","ct":"7zj3zn3Rsi1E7VPpNMhHCqT64vZ0G83+vlEZCgboje0KvtTZRyVkcOqlxRV6J4lJvbXW3X6QkGUnSKw2SIjvRzLg44qCKciTc8V02fSTMPJdLF8x8Q05CUtMTmwr"}
-=======
-{"iv":"jVxFIAWuD5iuHGGWtpbgQQ==","v":1,"iter":10000,"ks":128,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"Y1TTsc5JKiM=","ct":"LwjO/7V7rU3pFSqEs5CI40gRWUUsqkdX9n5v4eToo8fSOYekWPAtS76l7RWNu7gcZAsb1xg/c296eQ7prfk/wy8oaiwEArxCPY9ZLmhtfwXw6KcyauDaGNRGD0WTdj/VWvYWoSt4/xdKWsZeNPDFE2F+FeBZUW8K9tLKzZSfi0KNmXsVwnwkrRKlimkD/6WJy6HJ6ElDhwaQMlWatQflJj04JfZPkNlU"}
->>>>>>> 41286499c58ffd5f35039072f41f09116768fa5a
+{
+    "iv": "jVxFIAWuD5iuHGGWtpbgQQ==",
+    "v": 1,
+    "iter": 10000,
+    "ks": 128,
+    "ts": 64,
+    "mode": "ccm",
+    "adata": "",
+    "cipher": "aes",
+    "salt": "Y1TTsc5JKiM=",
+    "ct": "LwjO/7V7rU3pFSqEs5CI40gRWUUsqkdX9n5v4eToo8fSOYekWPAtS76l7RWNu7gcZAsb1xg/c296eQ7prfk/wy8oaiwEArxCPY9ZLmhtfwXw6KcyauDaGNRGD0WTdj/VWvYWoSt4/xdKWsZeNPDFE2F+FeBZUW8K9tLKzZSfi0KNmXsVwnwkrRKlimkD/6WJy6HJ6ElDhwaQMlWatQflJj04JfZPkNlU"
+}
