@@ -16,6 +16,7 @@ class CardExample extends Component {
 
     this.URL = "/fill/" + this.props.id;
     this.B_URL = "http://localhost:3000";
+    this.SERVER_URL = "http://localhost:5000";
     this.images = ["elliot", "images", "jenny", "kristy", "matthew"];
   }
   state = {
@@ -47,6 +48,10 @@ class CardExample extends Component {
       2000
     );
   };
+  exportHandler = () => {
+    window.open(this.SERVER_URL + "/api/surveys/" + this.props.id + "/responses.xlsx")
+  }
+
   onResponseClick = () => {
     Alert.success("Link is coding....", 3000);
     window.setTimeout(
@@ -82,13 +87,12 @@ class CardExample extends Component {
                   : "testing surveys on Survey Master to give you a new Survey"}
               </Card.Description>
             </Card.Content>
-            <Card.Content extra style={{ paddingRight: "30px" }}>
+            <Card.Content extra>
               <div className="ui two buttons">
                 <CopyToClipboard text={this.B_URL + this.URL}>
                   <Button
                     basic
-                    color="green"
-                    style={{ color: "white", marginLeft: "-3px" }}
+                    color="blue"
                     onClick={this.onShareClick}
                   >
                     Share <i className="fas fa-paper-plane" />
@@ -97,12 +101,17 @@ class CardExample extends Component {
                 <Link to={"/surveys/" + this.props.id}>
                   <Button
                     basic
-                    color="blue"
-                    style={{ color: "white", marginLeft: "5px" }}
-                  >
+                    color="violet">
                     responses <i className="fas fa-paperclip" />
                   </Button>
                 </Link>
+                  <Button
+                    basic
+                    onClick={this.exportHandler}
+                    color="green"
+                  >
+                    export <i class="fas fa-file-excel"></i>
+                  </Button>
               </div>
             </Card.Content>
           </Card>

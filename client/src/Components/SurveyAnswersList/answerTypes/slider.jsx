@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styleClass from "./Slider.module.css";
 import "./slider.css";
 import { Slider } from "rsuite";
+import { connect } from "net";
 
 class SliderPage extends Component {
   state = {
@@ -26,13 +27,22 @@ class SliderPage extends Component {
       defaultValue: Number(defaultValue),
       value: Number(min),
       loaded:true
-    },() => console.log(this.state));
+    });
     
   }
 
   render() {
-    return (
-      <div className={styleClass.Silder}>
+    let content = this.props.isResponse ?  <div className={styleClass.Silder}>
+    <label className="SliderLabel">value: {this.props.answer.value}</label>
+  {this.state.loaded &&  <Slider
+      progress
+      disabled
+      max={Number(this.props.content.max)}
+      min={Number(this.props.content.min)}
+      defaultValue={Number(this.props.answer.value)}
+    />
+  }
+  </div> :  <div className={styleClass.Silder}>
         <label className="SliderLabel">value: {this.state.value}</label>
       {this.state.loaded &&  <Slider
           progress
@@ -44,6 +54,10 @@ class SliderPage extends Component {
         />
       }
       </div>
+    return (
+     <React.Fragment>
+       {content}
+     </React.Fragment>
     );
   }
 }
