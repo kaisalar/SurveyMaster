@@ -408,13 +408,22 @@ class Survey extends Element {
     });
     responses.forEach((response, index) => {
       for (let answer of response.answers) {
-        let content = answer.content.value;
+        let content = "";
         switch (answer.type) {
           case types.ANSWER_RANGE:
-            content = `${answer.content.minValue} -> ${answer.content.maxValue}`;
+            if (answer.content.minValue <= answer.content.maxValue)
+              content = `${answer.content.minValue} -> ${answer.content.maxValue}`;
+            break;
           case types.ANSWER_MULTIPLE_CHOICE:
-            content = answer.content.choices.join('-');
+            if (answer.content.choices)
+              content = answer.content.choices.join('-');
+            break;
+          default:
+            if (answer.content.value != 1e9 && answer.content.value != '')
+              content = `${answer.content.value}`;
+            break;
         }
+        console.log(answer, answer.type);
         ws.cell(index + 2, questionIndexes[answer.questionId])
           .string(content)
           .style(cillStyle);

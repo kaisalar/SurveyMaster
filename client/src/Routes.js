@@ -64,7 +64,7 @@ class Routes extends Component {
               </React.Fragment>
             )}
           />
-          <Route exact path="/survey/:id/report" render={(props) => (
+          <Route exact path="/surveys/:id/report" render={(props) => (
             <Report {...props}></Report>
           )} />
           <Route exact path="/fill/:id/:lcode" render={(props) => (
