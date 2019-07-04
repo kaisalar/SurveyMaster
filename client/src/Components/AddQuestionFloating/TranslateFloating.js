@@ -25,7 +25,7 @@ const TranslateFloating = props => {
     <div className="floating-select-picker">
       <MDBDropdown>
         <MDBDropdownToggle>
-          <i class="fas fa-language" />{" "}
+          <i className="fas fa-language" />{" "}
         </MDBDropdownToggle>
         <MDBDropdownMenu>{items}</MDBDropdownMenu>
       </MDBDropdown>

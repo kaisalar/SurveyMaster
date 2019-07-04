@@ -110,8 +110,15 @@ class CardExample extends Component {
                     onClick={this.exportHandler}
                     color="green"
                   >
-                    export <i class="fas fa-file-excel"></i>
+                    export <i className="fas fa-file-excel"></i>
                   </Button>
+                  <Link to={"/surveys/" + this.props.id + '/report'}>
+                  <Button
+                    basic
+                    color="teal">
+                    Reports <i className="fas fa-chart-pie"></i>
+                  </Button>
+                </Link>
               </div>
             </Card.Content>
           </Card>

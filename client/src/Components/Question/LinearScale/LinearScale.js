@@ -83,7 +83,6 @@ const mapDispatchToProps = dispatch => {
         val: newVal
       }),
     ChangeMaxHandler: (index, newVal) => {
-      console.log("nax");
       dispatch({
         type: actions.CHANGE_LINEAR_CONTENT,
         content: actions.CHANGE_MAX_VALUE,

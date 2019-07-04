@@ -33,14 +33,12 @@ export const SubmitNewSurvey = (survey, submittig, Redirect) => dispatch => {
 
         break;
       case Qtypes.SLIDER:
-      case Qtypes.RANGE:
         newQ.content = _.pick(newQ.content, [
           "min",
           "max",
           "step",
           "defaultValue"
         ]);
-        console.log(newQ)
         newQ.content = newQ.content.step === "" ? _.omit(newQ.content, ["step"]) : newQ.content
         newQ.content = newQ.content.defaultValue === "" ? _.omit(newQ.content, ["defaultValue"]) : newQ.content
         break;
@@ -52,6 +50,14 @@ export const SubmitNewSurvey = (survey, submittig, Redirect) => dispatch => {
         ]);
         newQ.content = newQ.content.defaultValue === "" ? _.omit(newQ.content, ["defaultValue"]) : newQ.content
         break;
+        case Qtypes.RANGE:
+          newQ.content = _.pick(newQ.content, [
+            "min",
+            "max",
+            "step",
+          ]);
+          newQ.content = newQ.content.step === "" ? _.omit(newQ.content, ["step"]) : newQ.content
+          break;
       default:
         newQ.content = {};
         break;

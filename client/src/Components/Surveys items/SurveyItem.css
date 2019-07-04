@@ -7,11 +7,15 @@
 }
 .ui.two.buttons .ui.button {
   margin: 5px !important;
-  width: auto;
+  width: calc(100% - 10px);
   grid-column: 1/1;
 }
 .ui.basic.violet.button:hover { 
   background-color: #6435c9!important;
+  color: white !important;
+}
+.ui.basic.teal.button:hover { 
+  background-color: #00b5ad!important;
   color: white !important;
 }
 .transition {

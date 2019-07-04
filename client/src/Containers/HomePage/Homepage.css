@@ -25,6 +25,8 @@ body {
   background-position: center right;
 }
 .home-page .content {
+  position: relative;
+  z-index: 5;
   padding: 50px;
   max-width: 60%;
   margin: 0;

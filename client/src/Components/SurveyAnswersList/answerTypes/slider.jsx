@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import styleClass from "./Slider.module.css";
 import "./slider.css";
 import { Slider } from "rsuite";
-import { connect } from "net";
 
 class SliderPage extends Component {
   state = {
