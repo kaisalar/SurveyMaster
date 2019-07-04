@@ -193,8 +193,8 @@ class Survey extends Element {
     return false
   }
   deleteUserById(userId) {
-    let id = this.users.findIndex((survey, index) => survey.surveyId == surveyId);
-    this.surveys.splice(id, 1);
+    let id = this.users.findIndex((survey, index) => survey.userId == userId);
+    this.users.splice(id, 1);
   }
   // saving survey info and pages
   async save() {
@@ -243,7 +243,7 @@ class Survey extends Element {
   }
 
   static async loadSurveyInfoById(surveyId) {
-    return new Survey(IO.loadSurveyInfoById(surveyId));
+    return new Survey(await IO.loadSurveyInfoById(surveyId));
   }
 
   // check if an survey exsisit by its id
@@ -303,6 +303,8 @@ class Survey extends Element {
           //TODO: need to add step instead of 1
           for (let i = parseInt(content.min); i <= parseInt(content.max); i += 1) tempReport[_id][i] = 0
           break
+        default:
+          tempReport[_id][content.value] = 0
       }
     }
     for (const response of responses) {
@@ -323,8 +325,6 @@ class Survey extends Element {
           //case types.ANSWER_SINGLE_NUMBER_VALUE:
           // or if dont have any type:
           default:
-            if (!tempReport[questionId][content.value])
-              tempReport[questionId][content.value] = 0
             tempReport[questionId][content.value]++
             break
         }

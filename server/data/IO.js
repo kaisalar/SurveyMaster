@@ -90,17 +90,13 @@ class IO {
      static async loadSurveyResponsesById(surveyId) {
           let responses = []
           try {
-               let responsesInfo = await this.loadSurveyResponsesInfoById(
-                    surveyId
-               )
-               if (!responsesInfo) responsesInfo = []
-               for (let response of responsesInfo) {
-                    responses.push(
-                         await this.loadEntirResponseById(
-                              surveyId,
-                              response._id
-                         )
-                    )
+               let responsesInfo = await this.loadSurveyResponsesInfoById(surveyId)
+               if (!responsesInfo || !_.isArray(responses)) responsesInfo = []
+               // devDeugger("1", responses);
+               for (let _response of responsesInfo) {
+                    const response = await this.loadEntirResponseById(surveyId, _response._id)
+                    if (response)
+                         responses.push(response)
                }
           } catch (e) {
                devDeugger(e)
@@ -195,7 +191,6 @@ class IO {
           let accounts = await loadJson(`${USERS_PATH}/accounts.json`)
           if (!accounts || !_.isArray(accounts)) accounts = []
           let index = accounts.findIndex(account => account.userId === user._id)
-          devDeugger("index", index)
           if (index && index == -1) {
                accounts.push({
                     userId: user._id,
@@ -204,7 +199,16 @@ class IO {
           }
           await saveJson(`${USERS_PATH}/accounts.json`, accounts)
      }
-
+     static async removeUserById(userId) {
+          await removeFile(`${USERS_PATH}/${userId}.json`);
+          let accounts = await IO.loadAccounts();
+          if (!accounts || !_.isArray(accounts)) accounts = [];
+          let index = accounts.findIndex(account => account.userId === user._id)
+          if (index && index != -1) {
+               accounts.splice(index, 1);
+          }
+          await saveJson(`${USERS_PATH}/accounts.json`, accounts);
+     }
      // load user by id
      static async findUserById(userId) {
           return await loadJson(`${USERS_PATH}/${userId}.json`)

@@ -58,5 +58,20 @@ router.get('/me', auth, async (req, res) => {
   // send the user
   res.send(_.pick(user, ['_id', 'firstName', 'lastName', 'email', 'surveys']))
 })
-
+router.delete('/:uid', [auth], async (req, res) => {
+  try {
+    const userId = req.params.uid;
+    devDebugger("delete to api/users/:" + userId);
+    const user = await User.findUserById(userId);
+    if (!user) {
+      devDebugger("user not found" + userId);
+      res.status(400).send("user not found" + userId);
+    }
+    await user.removeUser();
+    res.send(user);
+  } catch (e) {
+    devDebugger("bad connection");
+    res.status(400).send("bad connection");
+  }
+})
 module.exports = router

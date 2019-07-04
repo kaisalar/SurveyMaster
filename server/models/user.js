@@ -7,7 +7,7 @@ const Element = require('./element')
 const { userSchema } = require('./validationSchemas')
 const IO = require('../data/IO')
 const roles = require('./roles')
-
+const devDebugger = require('../debugger')
 class User extends Element {
   constructor(props) {
     super(props)
@@ -56,14 +56,14 @@ class User extends Element {
 
   isAdminOnSurvey(surveyId) {
     for (const survey of this.surveys) {
-      if (survey.surveyId === surveyId && survey.role === roles.ROLE_ADMIN)
-        return true
+      if (survey.surveyId == surveyId && survey.role == roles.ROLE_ADMIN)
+        return true;
     }
     return false
   }
   isCreatorOnSurvey(surveyId) {
     for (const survey of this.surveys) {
-      if (survey.surveyId === surveyId && survey.role === roles.ROLE_CREATOR)
+      if (survey.surveyId == surveyId && survey.role == roles.ROLE_CREATOR)
         return true
     }
     return false
@@ -79,7 +79,12 @@ class User extends Element {
   async save() {
     await IO.saveUser(this)
   }
-
+  async removeUser() {
+    await User.removeUser(this._id);
+  }
+  static async removeUser(userId) {
+    await IO.removeUserById(userId);
+  }
   static async findUserById(userId) {
     let user = await IO.findUserById(userId)
     if (user) {
