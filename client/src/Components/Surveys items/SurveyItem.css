@@ -140,6 +140,10 @@
     background-color: #16ab39 !important;
     color: white !important;
 }
+.ui.basic.pink.button:hover {
+    background-color: #ec4aa0 !important;
+    color: white !important;
+}
 .ui.basic.blue.button:hover {
     background-color: #2185d0 !important;
     color: white !important;

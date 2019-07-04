@@ -131,10 +131,10 @@ class CardExample extends Component {
                                     <Button
                                         className="cell2"
                                         basic
-                                        color="olive"
+                                        color="pink"
                                     >
                                         report{' '}
-                                        <i className="fas fa-paperclip" />
+                                        <i className="fas fa-chart-pie" />
                                     </Button>
                                 </Link>
                                 <Button

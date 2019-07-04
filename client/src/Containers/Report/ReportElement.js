@@ -3,6 +3,7 @@ import Chart from 'react-apexcharts';
 import { chartsTypes } from '../../store/actions/types';
 
 import LeftAlign from '../../Components/UI/LeftAlign/LeftAlign';
+// import "ReportElement.css"
 class ReportElement extends Component {
     constructor(props) {
         super(props);
@@ -17,11 +18,13 @@ class ReportElement extends Component {
                     margin: 20,
                     offsetY: 20,
                     style: {
-                        fontSize: '25px',
+                        fontSize: '3vh',
                     },
                 },
                 chart: {
                     id: 'basic-bar',
+                    width: '100%',
+                    background: "#00000009",
                 },
                 xaxis: {
                     categories: this.loadingCatigoureis(this.props.data.content)
@@ -62,26 +65,14 @@ class ReportElement extends Component {
     render() {
         // let titleClass = styleClass.QuestionContainer + ' question-container ';
         return (
-            <div className="section">
-                <div
-                //className={titleClass}
-                >
-                    <div
-                    // className={styleClass.Answer}
-                    >
-                        <React.Fragment>
-                            <LeftAlign>
-                                <Chart
-                                    options={this.state.options}
-                                    series={this.state.series}
-                                    // labels={this.labels}
-                                    type={chartsTypes[this.state.answerType]}
-                                    width="500"
-                                />
-                            </LeftAlign>
-                        </React.Fragment>
-                    </div>
-                </div>
+            <div className="section" style={{ margin: "6vh auto auto 28vw", overflow: "hidden", width: "80%", textAlign: "center" }} >
+                <Chart
+                    options={this.state.options}
+                    series={this.state.series}
+                    // labels={this.labels}
+                    type={chartsTypes[this.state.answerType]}
+                    width="500"
+                />
             </div>
         );
     }

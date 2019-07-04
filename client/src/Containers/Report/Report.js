@@ -54,17 +54,18 @@ class Report extends Component {
         let redirect = null;
         return (
             <div
-                //className={styles.Newlayout}
-                style={{ margin: '25px' }}
+            //className={styles.Newlayout}
+            // style={{ margin: '25px' }}
             >
                 {redirect}
                 <div
-                    // className={styles.SurveyTitle}
-                    style={{ margin: "0  auto" }}
+                    style={{ padding: "2vw 0 0 50%", fontSize: "4vh" }}
                 >
                     <h1>{title}</h1>
                 </div>
-                {Content}
+                <div>
+                    {Content}
+                </div>
             </div>
         );
     }

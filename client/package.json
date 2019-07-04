@@ -35,6 +35,7 @@
         "semantic-ui-react": "^0.87.2"
     },
     "devDependencies": {
+        "@fortawesome/fontawesome-free": "^5.9.0",
         "yarn": "^1.16.0"
     },
     "browserslist": {
