@@ -402,6 +402,11 @@ class Survey extends Element {
                             devDeugger(answer, 'break');
                             break;
                         }
+                        if (
+                            tempReport[questionId].content[content.value] ==
+                            null
+                        )
+                            tempReport[questionId].content[content.value] = 0;
                         tempReport[questionId].content[content.value]++;
                         break;
                 }
