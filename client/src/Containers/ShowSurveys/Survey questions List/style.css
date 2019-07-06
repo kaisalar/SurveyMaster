@@ -1,0 +1,19 @@
+#fp-nav ul,fp-slidesNav ul { 
+    background-color: transparent;
+    box-shadow: 0px 0px;
+    overflow: unset;
+    height: auto;
+}
+#fp-nav ul li,.fp-slidesNav ul li { 
+    float: none;
+}
+#fp-nav ul li a, .fp-slidesNav ul li a{
+    padding: 0;
+    margin: 0;
+}
+#fp-nav ul li a:hover, .fp-slidesNav ul li a:hover {
+    background-color: transparent;
+}
+#fp-nav ul li a span, .fp-slidesNav ul li a span { 
+    background: rgba(0, 0, 0, 0.6)
+}

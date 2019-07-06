@@ -1,0 +1,72 @@
+.rs-radio, .rs-checkbox { 
+    transition: box-shadow 0.2s ease-in-out;
+}
+.rs-radio-wrapper, .rs-checkbox-wrapper { 
+    top: 20px !important;
+}
+.rs-radio label, .rs-checkbox label,.rs-radio-group-picker .rs-radio-checker>label { 
+    display: block;
+    color: rgba(255, 255, 255, 0.5);
+    transition: color 0.2s,text-shadow 0.2s;
+}
+.rs-radio-checked label, .rs-checkbox-checked label, .rs-radio-group-picker .rs-radio-checked .rs-radio-checker>label { 
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.8);
+}
+.rs-radio-checked, .rs-checkbox-checked { 
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.1);
+}
+
+.question-container .md-form .form-control { 
+    height: 4rem !important;
+    font-size: 2.5rem !important;
+    color: rgba(255, 255, 255, 0.8);
+}
+.fp-tableCell .question-container .md-form label { 
+    color: rgba(255, 255, 255, 0.7) !important;
+    font-size: 1.2rem !important;
+}
+.question-container .md-form label.active { 
+    font-size: 1rem !important; 
+}
+.question-container .md-form textarea.form-control { 
+    height: auto !important;
+    font-size: 2rem !important;
+}
+.question-container .md-form .prefix { 
+    top: 1rem !important;
+}
+.rs-radio-group-picker { 
+    height: 5rem;
+    display: block;
+    text-align: center
+}
+.rs-radio-group-picker .rs-radio-inline+.rs-radio-inline { 
+    margin: 0;
+}
+.rs-radio-group-picker .rs-radio-inline,.rs-radio-group-picker .rs-radio-checker { 
+    height: 100%;
+    min-width: 4rem;
+}
+.rs-radio-group-picker .rs-radio-checker>label { 
+    line-height: 3rem;
+    font-size: 2rem;
+}
+  
+.question-container.is-response  h3 {
+    color: #553c8b;
+  }
+
+.question-container.is-response h3:after {
+    content: "";
+    display: block; /* So it can have width */
+    width: 20%; /* Make sure position on these elements is relative (or something besides default) */
+    height: 1px;
+    border-top: 3px solid rgba(85, 60, 139, 0.5);
+    margin: 0px auto; /* Center the line */
+  }
+  
+  .question-container.is-response .md-form .form-control {
+    color: rgba(85, 60, 139, 0.8);
+  }
+/* .rs-radio-wrapper .rs-radio-inner:after */

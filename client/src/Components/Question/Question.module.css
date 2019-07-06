@@ -1,0 +1,34 @@
+.Question { 
+    display: flex;
+}
+.Question div  { 
+    flex-grow: 1;
+}
+.SelectInput { 
+    margin: 1.7rem 20px;
+    flex-grow: 0 !important
+}
+.QuestionContainer { 
+    position: relative;
+    margin: 10px auto;
+    padding: 10px 10px;
+    box-shadow: 0px 0px 5px 2px rgba(0, 0, 255, .05);
+    border-radius: 5px;
+    transition: box-shadow 0.15s ease-in-out;
+    border: 2px solid transparent;
+}
+.QuestionContainer:hover { 
+    box-shadow: 0px 0px 5px 5px rgba(0, 0, 255, .1)
+}
+
+.QuestionContainer.red { 
+    box-shadow: 0px 0px 10px 5px rgba(255, 0, 0, .3);
+    border: 2px solid rgba(255, 50, 50, 0.4) ;
+}
+.Answer { 
+    padding: 0 10%;
+}
+.Question .BigText { 
+    font-size: 25px;
+    margin-left: 30px;
+}

@@ -1,0 +1,19 @@
+.SubmitContainer { 
+    text-align: center;
+}
+
+.SubmitContainer h2,.SubmitContainer h4 { 
+    color: white;
+}
+.SubmitContainer h2 { 
+    font-size: 3.5rem;
+    font-weight: 300;
+    line-height: 6rem
+}
+.SubmitContainer h4 { 
+    font-size: 2rem
+}
+.SubmitContainer button { 
+    font-size: 1.5rem;    
+    background-color: rgba(255,255,255,0.7) !important
+}

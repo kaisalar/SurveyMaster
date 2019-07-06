@@ -1,0 +1,64 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat|Cairo|Ubuntu|Oswald|Roboto+Mono|PT+Sans:400,500,600,800);
+.inner {
+  position: fixed;
+  left: 50%;
+  width: 1px;
+  height: 80%;
+  background: rgba(255, 255, 255, 0.836);
+  top: 13%;
+  box-shadow: 0px 0px 10px 3px rgba(134, 134, 134, 0.353);
+}
+.h1 {
+  text-align: center;
+  font-weight: normal;
+  margin-top: 40px !important ;
+  margin-right: 30px;
+  color: #EEEEEE;
+  text-transform: capitalize;
+  font-size: 3em;
+  margin-top:40px;
+  z-index: 1000;
+  font-family: 'Roboto Mono';
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+ 
+}
+.h2{
+    color:#ACDBDF;
+}
+.h3{
+  bottom: 10% ;
+  font-size: 25px;
+  text-align: right;
+     position: absolute;
+  margin-left: 10%;
+   color:#ACDBDF;
+}
+.welcome{
+  font-family: 'Oswald';
+
+}
+.formLayout {
+  width: 100%;
+  padding: 20px;
+  height: auto;
+  float: right;
+  background-color: #f1f1f1;
+  box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+@media screen and (max-width: 750px) {
+  .inner {
+    display: none;
+  }
+
+  .formLayout {
+    width: 100%;
+    padding: 20px;
+    height: auto;
+    position: relative;
+    margin: auto 40px;
+    background-color: #f1f1f1;
+    box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.753);
+    border-radius: 10px;
+  }
+}

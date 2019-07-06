@@ -1,0 +1,29 @@
+.layout {
+  width: 75%;
+  Padding: 30px;
+  height: 100%;
+  border-radius: 5px ;
+  margin: 30px auto;
+  margin-bottom: 20px;
+  background-color: #f1f1f1;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+.Newlayout { 
+  margin: auto 50px;
+}
+.layout h1 { 
+  text-transform: uppercase
+}
+.SurveyTitle { 
+  position: fixed;
+  width: calc(100% - 100px);
+  margin: 20px auto;
+}
+.SurveyTitle h1 { 
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  font-size: 4em;
+  font-weight: 200
+}

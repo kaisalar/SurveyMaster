@@ -7,19 +7,26 @@
   "scripts": {
     "client-install": "cd client && npm i",
     "server-install": "cd server && npm i",
-    "install": "yarn clint-install && yarn server-install",
+    "install": "yarn client-install && yarn server-install",
     "server": "cd server && yarn start",
     "client": "cd client && yarn start",
     "start": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
   },
-  "author": "Mouaz Alkhodari",
+  "author": "Mouaz Alkhodari, Kais Alar,Ammar Al-Helali ,Kinan Almoualem ,Kareem Dabbeet",
   "license": "MIT",
   "devDependencies": {
-    "nodemon": "^1.14.6",
-    "yarn": "^1.15.2"
+    "nodemon": "^1.19.0",
+    "yarn": "^1.16.0"
   },
   "dependencies": {
+    "@vitalets/google-translate-api": "^2.8.0",
     "concurrently": "^3.5.1",
-    "express": "^4.16.2"
+    "excel4node": "^1.7.2",
+    "express": "^4.17.0",
+    "files": "^1.0.0",
+    "google-translate-api": "^2.3.0",
+    "i": "^0.3.6",
+    "npm": "^6.10.0",
+    "react-color": "^2.17.3"
   }
 }

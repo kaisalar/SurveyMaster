@@ -1,21 +1,34 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Customers from './components/customers';
+import {BrowserRouter} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {currentUser} from './store/actions/viewAction'
+import jwtDecode from "jwt-decode";
+import Routes from './Routes'
+import './App.css'
 
 class App extends Component {
-  
+  state={}
+  componentDidMount() {
+    try {
+      const jwt = localStorage.getItem("token");
+        const user = jwtDecode(jwt);
+      this.props.currentUser(user)
+      this.setState({ user });
+    } catch (ex) {}
+  }
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">React Express Starter</h1>
-        </header>
-        <Customers />
-      </div>
+      <BrowserRouter >
+        <Routes />
+      </BrowserRouter>
     );
   }
 }
+// const mapStateToProps = state => ({
+//   isFill: state.viewSurvey.isFill 
+// });
+export default connect(
+  null,
+  { currentUser}
+)(App);
 
-export default App;

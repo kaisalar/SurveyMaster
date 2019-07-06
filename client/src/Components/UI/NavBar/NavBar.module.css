@@ -1,0 +1,60 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat|Cairo|Ubuntu|PT+Sans:400,500,600,800);
+.logo {
+  margin-left: 15px;
+  color:#553c8b  !important;
+  float: left;
+  text-align: center;
+  font-family: "Montserrat";
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.ul {
+     background-color: #d4d1d1;
+    list-style: none;
+    padding-top: 5px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 4rem;
+    box-shadow: 0px 5px 5px #d4d1d167;
+    font-size: 18px;
+
+}
+li {
+  font-weight: 500;
+  font-size: 1rem;
+  float: left;
+  display: contents;
+  text-decoration: none;
+}
+.a {
+  /* background-color: #f1f1f1; */
+  text-align: center;
+  color: #9ea9f0;
+  padding: 11px 10px 14px 10px;
+  margin: 0 7px;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease-in-out
+}
+li .a:hover:not(.active) {
+  color: #553c8b;
+  font-weight: bold;
+  border-bottom: 2px solid #553c8b;
+}
+.h2{
+  color:#9ea9f0;
+  font-weight: bold;
+  font-size: 16px;
+  margin:auto !important;
+}
+.active {
+  background-color: rgb(53, 53, 53);
+  text-decoration: none;    
+  color: #FFFBEA;
+
+}
+.btn{
+    background-color: transparent;
+}
