@@ -1,33 +1,51 @@
-# React Express Starter Pack
+# Survey Master
 
-> Create full stack apps with React and Express. Run your client and server with a single command. 
+> reate,fill and become Master of analyzing data. 
 
-## Quick Start
 
-``` bash
-# Install dependencies for server and client
-yarn install
 
-# Run the client & server with concurrently
-yarn start
+## Platforms: 
+* Back-end: nodejs with express
+* Web application: built with reactjs
+* Android app: built with kotlin
+* IOS App: built with swift, xcode.
 
-# Run the Express server only
-yarn server
+## Features:
+* Create new survey with wide types of questions
+* delete, Rearrange questions, change color of survey.
+* fill page to fill the survey with unique UI design.
+* get your responses, export them to xlsx or PDF
+* get reports of your survey displayed as charts to get useful information with one-click
 
-# Run the React client only
-yarn client
+## Beta features: 
+* translate your survey to any language
 
-# Server runs on http://localhost:5000 and client on http://localhost:3000
-```
+## Coming-soon features: 
+* improve reports page UI in web
+* add admins to surveys
+* add private surveys
+* break surveys into pages 
+* add profile section 
+* get more statistics about your surveys
 
-## App Info
-syrvey manager Application
-build with MERN teconology
+## Related Repos: 
+#### IOS: [here]
+#### Android: not-uploaded yet :)
 
+## Authors: 
+* [Kareem Dabbeet]
+* [Kais Alar]
+* [Ammar alhelali]
+* [Mouaz Alkhodari]
+* [Kinan Almoalem]
+ 
 ### Version
-
 1.0.0
 
-### License
+[here]: https://github.com/Ammar0ah/SurveyMaster-iOS.
+[Kareem Dabbeet]: https://github.com/KareemDa
+[Kais Alar]: https://github.com/kaisalar
+[Ammar alhelali]: https://github.com/Ammar0ah
+[Mouaz Alkhodari]: https://github.com/mouazAlkhodari
+[Kinan Almoalem]: https://github.com/kinanAlmoalm
 
-This project is licensed under the MIT License
