@@ -29,8 +29,8 @@
 * get more statistics about your surveys
 
 ## Related Repos: 
-#### IOS: [here]
-#### Android: not-uploaded yet :)
+#### IOS: [ios-repo]
+#### Android: [android-repo]
 
 ## Authors: 
 * [Kareem Dabbeet]
@@ -42,7 +42,8 @@
 ### Version
 1.0.0
 
-[here]: https://github.com/Ammar0ah/SurveyMaster-iOS
+[ios-repo]: https://github.com/Ammar0ah/SurveyMaster-iOS
+[android-repo]: https://github.com/kaisalar/SurveyMasterMVVM
 [Kareem Dabbeet]: https://github.com/KareemDa
 [Kais Alar]: https://github.com/kaisalar
 [Ammar alhelali]: https://github.com/Ammar0ah
