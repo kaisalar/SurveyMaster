@@ -42,7 +42,7 @@
 ### Version
 1.0.0
 
-[here]: https://github.com/Ammar0ah/SurveyMaster-iOS.
+[here]: https://github.com/Ammar0ah/SurveyMaster-iOS
 [Kareem Dabbeet]: https://github.com/KareemDa
 [Kais Alar]: https://github.com/kaisalar
 [Ammar alhelali]: https://github.com/Ammar0ah
