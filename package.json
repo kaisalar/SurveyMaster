@@ -16,7 +16,7 @@
   "license": "MIT",
   "devDependencies": {
     "nodemon": "^1.19.0",
-    "yarn": "^1.16.0"
+    "yarn": "^1.17.3"
   },
   "dependencies": {
     "@vitalets/google-translate-api": "^2.8.0",
