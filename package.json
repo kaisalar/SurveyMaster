@@ -21,7 +21,7 @@
   "dependencies": {
     "@vitalets/google-translate-api": "^2.8.0",
     "concurrently": "^3.5.1",
-    "excel4node": "^1.7.2",
+    "excel4node": "^1.8.0",
     "express": "^4.17.0",
     "files": "^1.0.0",
     "google-translate-api": "^2.3.0",
